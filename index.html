@@ -18,13 +18,16 @@
   <style>
     :root {
       --ink: #2a2218;
-      --ink-soft: #5c4f3d;
-      --vellum: #fbf4e4;
-      --parchment: #f4e7c9;
+      --ink-soft: #5a4b36;
+      --parchment: #e4d4ac;
+      --parchment-light: #efe4c6;
+      --sepia: #6e5230;
+      --sepia-soft: #9c7f4c;
+      --card-cream: #ecdcbe;
+      --card-ink: #1d2622;
       --lapis: #2d56a0;
       --lapis-deep: #1f3d78;
       --rose: #e38d9c;
-      --rose-soft: #f8dfe2;
       --gold: #c8963a;
       --gold-light: #ecc86f;
       --leaf: #5f8f4e;
@@ -52,7 +55,6 @@
       background: url("assets/img/forest-night.jpg") center / cover no-repeat, var(--forest);
     }
     body::after {
-      /* soft moonlit veil so the painting stays in the background */
       content: "";
       position: fixed; inset: 0; z-index: -1;
       background:
@@ -63,7 +65,7 @@
     a { color: var(--lapis); }
     svg { display: block; }
 
-    /* ---------- Star tile band ---------- */
+    /* ---------- Star tile band (between sections) ---------- */
     .tiles {
       height: 56px;
       background-color: #3b64ad;
@@ -82,7 +84,7 @@
     .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--moon); }
     .seal {
       width: 54px; height: 54px; flex: none;
-      background: var(--vellum);
+      background: var(--parchment-light);
       border: 3px solid var(--vermilion);
       outline: 1px solid var(--gold-light); outline-offset: 2px;
       display: grid; place-items: center;
@@ -98,124 +100,132 @@
     .social a:hover { background: var(--gold); color: var(--forest); }
     .social svg { width: 18px; height: 18px; }
 
-    /* ---------- Twinkling stars / fireflies ---------- */
+    /* ---------- Twinkling stars ---------- */
     .twinkle { position: absolute; color: var(--gold-light); pointer-events: none; animation: twinkle 3.6s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(236, 200, 111, .8)); }
     .twinkle svg { width: 100%; height: 100%; }
     @keyframes twinkle { 0%, 100% { opacity: .3; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.1); } }
 
-    /* ---------- Manuscript panel (shared) ---------- */
+    /* ---------- Parchment panel with an engraved flower garland ---------- */
     .panel {
+      --pad-x: 76px;
       position: relative;
+      isolation: isolate;
       background:
-        radial-gradient(ellipse at 50% 0%, #fffaf0 0%, rgba(255, 250, 240, 0) 60%),
-        radial-gradient(ellipse at 0% 100%, rgba(200, 150, 58, .12), transparent 55%),
-        var(--vellum);
-      border: 2px solid var(--gold);
-      outline: 1px solid var(--gold); outline-offset: 5px;
-      box-shadow: 0 0 0 12px var(--vellum), 0 0 0 14px var(--lapis), 0 0 0 16px var(--gold), 0 30px 70px rgba(0, 0, 0, .55);
-      margin: 18px;
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at 50% 40%, var(--parchment-light) 0%, var(--parchment) 62%, #cfb888 100%);
+      box-shadow:
+        inset 0 0 0 1px var(--sepia-soft),
+        inset 0 0 0 7px rgba(239, 228, 198, .6),
+        inset 0 0 0 8px var(--sepia-soft),
+        0 0 0 2px #b89a64,
+        0 30px 70px rgba(0, 0, 0, .55);
     }
-    .vine { position: absolute; width: 150px; height: 150px; pointer-events: none; }
-    .vine.tl { top: -22px; left: -22px; }
-    .vine.tr { top: -22px; right: -22px; transform: scaleX(-1); }
-    .vine.bl { bottom: -22px; left: -22px; transform: scaleY(-1); }
-    .vine.br { bottom: -22px; right: -22px; transform: scale(-1, -1); }
+    .panel.arch { border-radius: 50% 50% 0 0 / var(--arch, 300px) var(--arch, 300px) 0 0; }
+    .panel > .garland { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: visible; }
+    .panel > .garland .vine { fill: none; stroke: var(--sepia); stroke-width: 1.3; stroke-linecap: round; }
+    .panel > .garland .tendril { fill: none; stroke: var(--sepia); stroke-width: .9; stroke-linecap: round; }
+
+    /* Sun and sparkles (drawn after the storybook border) */
+    .sun { position: absolute; width: 210px; height: 210px; top: -54px; left: -70px; z-index: 2; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
+    .sparkle { position: absolute; z-index: 2; color: var(--gold); filter: drop-shadow(0 0 5px rgba(236, 200, 111, .7)); }
+    .sparkle svg { width: 100%; height: 100%; }
 
     /* ---------- Hero ---------- */
-    .hero { position: relative; max-width: 820px; margin: 0 auto; padding: 36px 16px 80px; }
-    .hero .panel { padding: 64px 56px 46px; text-align: center; }
-    .hero-raven { width: 120px; height: 110px; margin: 0 auto 6px; color: var(--ink); }
+    .hero { position: relative; max-width: 820px; margin: 0 auto; padding: 56px 16px 90px; }
+    .hero .panel { --arch: 340px; --pad-x: 84px; padding: 140px var(--pad-x) 76px; text-align: center; }
+    .hero-raven { width: 110px; height: 100px; margin: 0 auto 6px; color: var(--ink); }
     .kicker {
       font-family: "IM Fell English SC", serif; letter-spacing: .14em; font-size: 1rem;
       color: var(--vermilion); margin: 0 0 10px;
     }
     h1 {
       font-family: "Cinzel Decorative", serif; font-weight: 700;
-      font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.1;
+      font-size: clamp(2.2rem, 5.6vw, 3.7rem); line-height: 1.1;
       margin: 0 0 14px; color: var(--lapis-deep);
     }
     .i-red { color: var(--vermilion); }
     .i-green { color: var(--leaf); }
-    .i-gold { color: var(--gold); }
-    .lede { font-size: 1.25rem; font-style: italic; color: var(--ink-soft); margin: 0 auto 24px; max-width: 30em; }
-    .flourish { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 auto 28px; color: var(--gold); max-width: 360px; }
+    .i-gold { color: #b07f24; }
+    .lede { font-size: 1.22rem; font-style: italic; color: var(--ink-soft); margin: 0 auto 24px; max-width: 30em; }
+    .flourish { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 auto 30px; color: var(--sepia-soft); max-width: 360px; }
     .flourish::before, .flourish::after { content: ""; flex: 1; height: 1px; background: currentColor; }
     .flourish svg { width: 80px; height: 22px; }
 
-    /* Library card sign-up */
+    /* ---------- Library card (the frame is the vintage card picture) ---------- */
+    .card-wrap { container-type: inline-size; max-width: 530px; margin: 0 auto; }
     .libcard {
-      text-align: left;
-      max-width: 540px; margin: 0 auto;
-      background: var(--rose-soft);
-      border: 1px solid #d9a9b1;
-      box-shadow: 3px 5px 0 rgba(192, 65, 45, .12), 0 16px 30px rgba(60, 40, 10, .15);
+      --w: min(530px, 100cqw);
       position: relative;
-      transform: rotate(-.6deg);
+      text-align: left;
+      border-style: solid;
+      border-width: calc(var(--w) * 116 / 336) calc(var(--w) * 50 / 336) calc(var(--w) * 62 / 336);
+      border-image: url("assets/img/library-card.png") 116 50 62 / 1 / 0 stretch round;
+      background: var(--card-cream);
+      background-clip: padding-box;
+      box-shadow: inset 0 0 0 3px var(--card-cream), inset 0 0 0 5px var(--card-ink);
+      filter: drop-shadow(0 18px 26px rgba(40, 25, 5, .35));
     }
-    .libcard::before {
-      content: ""; position: absolute; inset: 86px 0 0;
-      background: repeating-linear-gradient(transparent 0 35px, rgba(45, 86, 160, .2) 35px 36px);
-      pointer-events: none;
+    .card-sub {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+      padding: 14px 18px 8px; margin: 0;
+      border-bottom: 2px solid var(--card-ink);
+      font-family: "IM Fell English SC", serif; font-size: .95rem; letter-spacing: .06em; color: var(--card-ink);
     }
-    .libcard-head { text-align: center; padding: 14px 20px 10px; border-bottom: 2px solid var(--lapis-deep); position: relative; }
-    .libcard-head .title { font-family: "IM Fell English SC", serif; font-size: 1.9rem; letter-spacing: .1em; line-height: 1.1; color: var(--lapis-deep); }
-    .libcard-head .sub { font-style: italic; font-size: .95rem; color: var(--ink-soft); }
-    .libcard-head .no { position: absolute; top: 10px; right: 12px; font-family: "IM Fell English SC", serif; font-size: .8rem; color: var(--vermilion); }
-    .libcard-head .stars { position: absolute; top: 12px; left: 14px; color: var(--gold); letter-spacing: 2px; font-size: .8rem; }
-    form { position: relative; padding: 14px 22px 18px; }
+    .card-sub i { font-family: "IM Fell English", serif; letter-spacing: 0; font-size: 1.02rem; }
+    form { position: relative; padding: 16px 18px 20px; }
     .line { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
-    .line label { font-family: "IM Fell English SC", serif; font-size: .95rem; white-space: nowrap; color: var(--ink-soft); }
+    .line label { font-family: "IM Fell English SC", serif; font-size: .95rem; white-space: nowrap; color: var(--card-ink); }
     .line input {
       flex: 1; min-width: 0;
       font: inherit; font-size: 1.15rem; font-style: italic; color: var(--lapis-deep);
-      background: transparent; border: 0; border-bottom: 1.5px solid var(--lapis-deep); border-radius: 0;
+      background: transparent; border: 0; border-bottom: 1.5px solid var(--card-ink); border-radius: 0;
       padding: 4px 2px;
     }
-    .line input::placeholder { color: #a08a8c; }
+    .line input::placeholder { color: #8f8472; }
     .line input:focus { outline: none; border-bottom-color: var(--vermilion); background: rgba(255, 255, 255, .45); }
     fieldset { border: 0; margin: 6px 0 16px; padding: 0; }
-    legend { font-family: "IM Fell English SC", serif; font-size: .95rem; color: var(--ink-soft); padding: 0; margin-bottom: 6px; }
+    legend { font-family: "IM Fell English SC", serif; font-size: .95rem; color: var(--card-ink); padding: 0; margin-bottom: 6px; }
     legend i { font-family: "IM Fell English", serif; font-size: .9rem; }
-    .picks { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; }
-    .pick { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 1.02rem; line-height: 1.3; }
+    .picks { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+    .pick { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 1rem; line-height: 1.3; }
     .pick input {
       appearance: none; -webkit-appearance: none;
       width: 18px; height: 18px; flex: none; margin: 0;
-      border: 1.5px solid var(--lapis-deep); background: var(--vellum);
+      border: 1.5px solid var(--card-ink); background: #f6ecd6;
       display: grid; place-items: center; cursor: pointer;
     }
     .pick input::after {
-      content: ""; width: 11px; height: 11px; background: var(--gold);
+      content: ""; width: 11px; height: 11px; background: var(--gold-light);
       clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
       transform: scale(0); transition: transform .12s;
     }
-    .pick input:checked { background: var(--lapis); }
+    .pick input:checked { background: var(--card-ink); }
     .pick input:checked::after { transform: scale(1.3); }
     .pick input:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 2px; }
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
     .submit {
       display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
       font-family: "IM Fell English SC", serif; font-size: 1.3rem; letter-spacing: .06em;
-      padding: 13px 18px; color: #fff;
-      background: linear-gradient(var(--lapis), var(--lapis-deep));
-      border: 2px solid var(--lapis-deep);
-      outline: 1px solid var(--gold-light); outline-offset: -6px;
+      padding: 13px 16px; color: var(--card-cream);
+      background: var(--card-ink);
+      border: 2px solid var(--card-ink);
+      outline: 1px solid var(--card-cream); outline-offset: -6px;
       cursor: pointer;
     }
-    .submit:hover { background: var(--lapis-deep); }
+    .submit:hover { background: #2c3a34; }
     .submit[disabled] { opacity: .75; cursor: wait; }
     .submit .star { color: var(--gold-light); }
     .msg { font-style: italic; color: var(--vermilion); min-height: 1.4em; margin: 10px 0 0; font-size: 1rem; }
     .fine { font-size: .9rem; font-style: italic; color: var(--ink-soft); margin: 4px 0 0; }
-    .inscribed { position: relative; padding: 26px 22px; text-align: center; }
+    .inscribed { position: relative; padding: 34px 20px; text-align: center; }
     .inscribed .stamp {
       display: inline-block; transform: rotate(-6deg);
       border: 3px double var(--vermilion); color: var(--vermilion);
       font-family: "IM Fell English SC", serif; font-size: 1.3rem; letter-spacing: .12em;
-      padding: 6px 14px; margin-bottom: 14px;
+      padding: 6px 14px; margin-bottom: 14px; background: var(--card-cream);
     }
-    .inscribed h3 { font-family: "Cinzel Decorative", serif; font-size: 1.7rem; margin: 0 0 8px; color: var(--lapis-deep); }
-    .inscribed p { margin: 0; }
+    .inscribed h3 { font-family: "Cinzel Decorative", serif; font-size: 1.6rem; margin: 0 0 8px; color: var(--card-ink); }
+    .inscribed p { margin: 0; background: var(--card-cream); }
 
     /* ---------- Section headings over the forest ---------- */
     .section-title {
@@ -233,8 +243,8 @@
     .panel .section-title .i-red { color: var(--vermilion); }
 
     /* ---------- Once upon a time ---------- */
-    .tale { max-width: 1120px; margin: 0 auto; padding: 80px 16px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 44px; align-items: center; }
-    .tale .panel { padding: 50px 48px 40px; }
+    .tale { max-width: 1120px; margin: 0 auto; padding: 80px 16px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 44px; align-items: end; }
+    .tale .panel { --pad-x: 64px; padding: 64px var(--pad-x) 56px; }
     .tale .section-title { text-align: left; }
     .tale p { margin: 0 0 16px; }
     .dropcap-p::after { content: ""; display: block; clear: both; }
@@ -245,16 +255,16 @@
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23ecc86f' stroke-width='1.6'%3E%3Cpath d='M8 80 C20 62 10 48 24 38 S20 14 36 8'/%3E%3Cpath d='M80 8 C68 26 78 40 64 50 S66 74 52 80'/%3E%3C/g%3E%3Cg fill='%237fae63'%3E%3Cellipse cx='14' cy='64' rx='5' ry='2.6' transform='rotate(-40 14 64)'/%3E%3Cellipse cx='26' cy='26' rx='5' ry='2.6' transform='rotate(30 26 26)'/%3E%3Cellipse cx='74' cy='24' rx='5' ry='2.6' transform='rotate(-40 74 24)'/%3E%3Cellipse cx='62' cy='64' rx='5' ry='2.6' transform='rotate(30 62 64)'/%3E%3C/g%3E%3Cg fill='%23e38d9c'%3E%3Ccircle cx='10' cy='10' r='3.4'/%3E%3Ccircle cx='78' cy='78' r='3.4'/%3E%3C/g%3E%3Cg fill='%23ecc86f'%3E%3Ccircle cx='78' cy='10' r='2.2'/%3E%3Ccircle cx='10' cy='78' r='2.2'/%3E%3C/g%3E%3C/svg%3E") center / cover,
         var(--lapis-deep);
       border: 3px solid var(--gold);
-      box-shadow: 0 0 0 2px var(--vellum), 0 0 0 3px var(--gold);
+      box-shadow: 0 0 0 2px var(--parchment-light), 0 0 0 3px var(--gold);
       font-family: "Cinzel Decorative", serif; font-weight: 900; font-size: 3.4rem; line-height: 1;
       color: var(--vermilion);
       text-shadow: 1px 1px 0 var(--gold-light), -1px -1px 0 var(--gold-light);
     }
 
-    .riddle { padding: 40px 34px 32px; text-align: center; }
-    .riddle .ornament { width: 60px; height: 60px; margin: 0 auto 8px; color: var(--gold); }
+    .riddle { --arch: 200px; --pad-x: 56px; padding: 110px var(--pad-x) 56px; text-align: center; }
+    .riddle .ornament { width: 56px; height: 56px; margin: 0 auto 8px; color: #b07f24; }
     .riddle h3 { font-family: "Cinzel Decorative", serif; font-size: 1.5rem; margin: 0 0 10px; color: var(--vermilion); }
-    .verse { font-style: italic; margin: 0 0 14px; line-height: 1.75; font-size: 1.15rem; color: var(--lapis-deep); }
+    .verse { font-style: italic; margin: 0 0 14px; line-height: 1.75; font-size: 1.12rem; color: var(--lapis-deep); }
     summary {
       cursor: pointer; display: inline-block; list-style: none;
       font-family: "IM Fell English SC", serif; color: var(--vermilion); border-bottom: 1px dashed var(--vermilion);
@@ -268,8 +278,8 @@
     .within { max-width: 1180px; margin: 0 auto; padding: 60px 16px 80px; }
     .tomes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
     .tome {
-      background: var(--vellum);
-      border: 2px solid var(--gold); outline: 1px solid var(--gold); outline-offset: 4px;
+      background: radial-gradient(ellipse at 50% 30%, var(--parchment-light), var(--parchment));
+      border: 2px solid var(--sepia-soft); outline: 1px solid var(--sepia-soft); outline-offset: 4px;
       box-shadow: 0 18px 36px rgba(0, 0, 0, .45);
       text-align: center;
     }
@@ -277,10 +287,8 @@
     .tome:nth-child(even) { transform: rotate(1deg) translateY(10px); }
     .tome .cover {
       height: 130px; display: grid; place-items: center;
-      border-bottom: 2px solid var(--gold);
-      background:
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .15), transparent 60%),
-        var(--c, var(--lapis));
+      border-bottom: 2px solid var(--sepia-soft);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .15), transparent 60%), var(--c, var(--lapis));
     }
     .tome:nth-child(1) .cover { --c: var(--lapis); }
     .tome:nth-child(2) .cover { --c: #243f63; }
@@ -295,17 +303,17 @@
     .bestiary { max-width: 1180px; margin: 0 auto; padding: 80px 16px 40px; }
     .scrolls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
     .scroll {
-      background: var(--vellum);
-      border: 1px solid var(--gold);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, .4);
-      padding: 22px 22px 20px 22px;
+      background: radial-gradient(ellipse at 50% 30%, var(--parchment-light), var(--parchment));
+      border: 1px solid var(--sepia-soft);
+      box-shadow: inset 0 0 0 4px var(--parchment-light), inset 0 0 0 5px var(--sepia-soft), 0 14px 30px rgba(0, 0, 0, .4);
+      padding: 22px;
       display: grid; grid-template-columns: 58px 1fr; gap: 16px; align-items: start;
     }
     .medal {
       width: 58px; height: 58px; border-radius: 50%;
       display: grid; place-items: center;
       background: radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold) 65%, #9b6f22);
-      box-shadow: 0 0 0 3px var(--vellum), 0 0 0 4px var(--gold);
+      box-shadow: 0 0 0 3px var(--parchment-light), 0 0 0 4px var(--sepia-soft);
       font-family: "Cinzel Decorative", serif; font-weight: 700; font-size: .95rem; color: var(--lapis-deep);
     }
     .scroll h3 { font-family: "Cinzel Decorative", serif; font-size: 1.1rem; margin: 2px 0 4px; color: var(--vermilion); line-height: 1.25; }
@@ -314,7 +322,7 @@
 
     /* ---------- Finale ---------- */
     .finale { max-width: 760px; margin: 0 auto; padding: 60px 16px 90px; }
-    .finale .panel { padding: 48px 44px 44px; text-align: center; }
+    .finale .panel { --arch: 300px; --pad-x: 72px; padding: 120px var(--pad-x) 64px; text-align: center; }
     .finale .raven { width: 110px; height: 100px; margin: 0 auto 6px; color: var(--ink); }
     .finale p { margin: 0 0 24px; font-size: 1.2rem; }
     .btn {
@@ -328,7 +336,7 @@
     .btn:hover { background: #9e3120; }
 
     /* ---------- Footer ---------- */
-    footer { text-align: center; padding: 44px 16px 54px; color: var(--moon); background: rgba(8, 22, 20, .55); }
+    footer { text-align: center; padding: 44px 16px 54px; color: var(--moon); background: rgba(8, 22, 20, .6); border-top: 1px solid rgba(236, 200, 111, .35); }
     footer .seal { margin: 0 auto 10px; }
     footer .wordmark { font-size: 1.8rem; color: var(--gold-light); }
     footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 22px; margin-top: 12px; font-family: "IM Fell English SC", serif; }
@@ -337,7 +345,8 @@
 
     /* ---------- Responsive ---------- */
     @media (max-width: 1000px) {
-      .tale { grid-template-columns: 1fr; gap: 50px; }
+      .tale { grid-template-columns: 1fr; gap: 60px; }
+      .riddle { max-width: 520px; width: 100%; justify-self: center; }
       .tomes { grid-template-columns: 1fr 1fr; }
       .scrolls { grid-template-columns: 1fr 1fr; }
     }
@@ -348,15 +357,19 @@
       .seal svg { width: 34px; height: 30px; }
       .social a { width: 38px; height: 38px; }
       .tiles { height: 40px; background-size: 40px 40px; }
-      .panel { margin: 14px 8px; box-shadow: 0 0 0 7px var(--vellum), 0 0 0 9px var(--lapis), 0 0 0 11px var(--gold), 0 20px 40px rgba(0, 0, 0, .5); }
-      .hero .panel { padding: 58px 18px 26px; }
-      .tale .panel, .riddle, .finale .panel { padding: 44px 20px 30px; }
-      .vine { width: 110px; height: 110px; }
-      .libcard { transform: none; }
-      .libcard-head .stars, .libcard-head .no { display: none; }
+      .panel, .hero .panel, .tale .panel, .riddle, .finale .panel { --pad-x: 22px; }
+      .hero { padding-top: 40px; }
+      .hero .panel { --arch: 170px; padding: 96px var(--pad-x) 44px; }
+      .tale .panel { padding: 46px var(--pad-x) 40px; }
+      .riddle { --arch: 150px; padding: 86px var(--pad-x) 40px; }
+      .finale .panel { --arch: 160px; padding: 92px var(--pad-x) 44px; }
+      .sun { width: 124px; height: 124px; top: -34px; left: -26px; }
+      .hero-raven { width: 84px; height: 76px; }
+      .card-sub { padding: 10px 12px 6px; font-size: .85rem; }
+      form { padding: 12px 12px 16px; }
       .line { flex-direction: column; align-items: stretch; gap: 0; }
       .picks { grid-template-columns: 1fr; }
-      .submit { font-size: 1.15rem; padding: 12px 10px; }
+      .submit { font-size: 1.1rem; padding: 12px 8px; }
       .tomes, .scrolls { grid-template-columns: 1fr; }
       .tome:nth-child(even) { transform: rotate(1deg); }
       .dropcap { width: 74px; height: 74px; font-size: 2.8rem; }
@@ -373,8 +386,8 @@
     <defs>
       <symbol id="raven" viewBox="0 0 110 100">
         <path fill="currentColor" d="M105 31 L89 24 C85 18 77 15 70 17 C61 19 55 26 51 34 C43 46 31 58 21 70 L5 90 L13 93 L30 81 C38 79 47 77 55 75 L57 83 L51 93 L55 93 L59 85 L61 93 L65 93 L62 81 C69 73 75 63 76 55 L81 51 L77 48 L83 45 L79 42 L85 39 L87 35 Z"/>
-        <circle cx="79" cy="24" r="1.7" fill="#fbf4e4"/>
-        <g fill="none" stroke="#fbf4e4" stroke-linecap="round" opacity=".45">
+        <circle cx="79" cy="24" r="1.7" fill="#efe4c6"/>
+        <g fill="none" stroke="#efe4c6" stroke-linecap="round" opacity=".45">
           <path d="M55 38 C60 50 56 62 36 76" stroke-width="1.2"/>
           <path d="M50 50 C48 58 42 66 30 74" stroke-width=".9"/>
           <path d="M45 58 C40 66 34 70 24 76" stroke-width=".8"/>
@@ -383,49 +396,89 @@
       <symbol id="star" viewBox="0 0 24 24">
         <path fill="currentColor" d="M12 0l2.6 7.8L22 5.5l-4.7 6.5L22 18.5l-7.4-2.3L12 24l-2.6-7.8L2 18.5l4.7-6.5L2 5.5l7.4 2.3z"/>
       </symbol>
-      <!-- Flowering vine for panel corners -->
-      <symbol id="vine" viewBox="0 0 160 160">
-        <g fill="none" stroke="#5f8f4e" stroke-width="2.6" stroke-linecap="round">
-          <path d="M10 156 C8 110 10 70 28 44 C44 22 76 10 156 10"/>
-          <path d="M22 96 C34 92 40 84 40 72"/>
-          <path d="M70 18 C72 30 80 36 92 36"/>
+      <!-- Long eight-pointed storybook star -->
+      <symbol id="sparkle" viewBox="-50 -50 100 100">
+        <path fill="currentColor" stroke="#8a6420" stroke-width=".8" d="M0.0 -50.0L1.2 -3.0L9.2 -9.2L3.0 -1.2L32.0 0.0L3.0 1.2L9.2 9.2L1.2 3.0L0.0 50.0L-1.2 3.0L-9.2 9.2L-3.0 1.2L-32.0 0.0L-3.0 -1.2L-9.2 -9.2L-1.2 -3.0Z"/>
+      </symbol>
+      <!-- The sun with a face -->
+      <symbol id="sun" viewBox="-62 -62 124 124">
+        <defs>
+          <radialGradient id="sunface" cx="40%" cy="35%" r="70%">
+            <stop offset="0" stop-color="#fbe08a"/>
+            <stop offset=".6" stop-color="#f0bf45"/>
+            <stop offset="1" stop-color="#d9962a"/>
+          </radialGradient>
+          <linearGradient id="sunray" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f7d170"/>
+            <stop offset="1" stop-color="#e2a43a"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#sunray)" stroke="#a8741f" stroke-width=".8" stroke-linejoin="round" d="M29.8 -3.7Q43.5 -6.9 57.9 4.0Q43.3 7.6 29.8 3.7ZM28.9 8.0Q37.0 8.9 41.2 20.5Q32.0 20.4 26.1 14.8ZM23.6 18.5Q35.6 25.9 38.1 43.8Q25.2 36.0 18.5 23.6ZM14.8 26.1Q19.9 32.4 14.6 43.6Q8.2 37.1 8.0 28.9ZM3.7 29.8Q6.9 43.5 -4.0 57.9Q-7.6 43.3 -3.7 29.8ZM-8.0 28.9Q-8.9 37.0 -20.5 41.2Q-20.4 32.0 -14.8 26.1ZM-18.5 23.6Q-25.9 35.6 -43.8 38.1Q-36.0 25.2 -23.6 18.5ZM-26.1 14.8Q-32.4 19.9 -43.6 14.6Q-37.1 8.2 -28.9 8.0ZM-29.8 3.7Q-43.5 6.9 -57.9 -4.0Q-43.3 -7.6 -29.8 -3.7ZM-28.9 -8.0Q-37.0 -8.9 -41.2 -20.5Q-32.0 -20.4 -26.1 -14.8ZM-23.6 -18.5Q-35.6 -25.9 -38.1 -43.8Q-25.2 -36.0 -18.5 -23.6ZM-14.8 -26.1Q-19.9 -32.4 -14.6 -43.6Q-8.2 -37.1 -8.0 -28.9ZM-3.7 -29.8Q-6.9 -43.5 4.0 -57.9Q7.6 -43.3 3.7 -29.8ZM8.0 -28.9Q8.9 -37.0 20.5 -41.2Q20.4 -32.0 14.8 -26.1ZM18.5 -23.6Q25.9 -35.6 43.8 -38.1Q36.0 -25.2 23.6 -18.5ZM26.1 -14.8Q32.4 -19.9 43.6 -14.6Q37.1 -8.2 28.9 -8.0Z"/>
+        <circle r="31" fill="url(#sunface)" stroke="#a8741f" stroke-width="1.2"/>
+        <g fill="none" stroke="#8a5a14" stroke-linecap="round" stroke-width="1.3">
+          <!-- brows -->
+          <path d="M-18 -12 Q-11 -17 -4 -12"/>
+          <path d="M4 -12 Q11 -17 18 -12"/>
+          <!-- sleepy eyes -->
+          <path d="M-17 -5 Q-11 -9 -5 -5"/>
+          <path d="M-17 -5 Q-11 -2 -5 -5" stroke-width=".9"/>
+          <path d="M5 -5 Q11 -9 17 -5"/>
+          <path d="M5 -5 Q11 -2 17 -5" stroke-width=".9"/>
+          <!-- nose -->
+          <path d="M0 -8 Q-2 2 -4 6 Q0 8 3 6"/>
+          <!-- smile -->
+          <path d="M-9 14 Q0 20 9 14"/>
+          <path d="M-6 17.5 Q0 19.5 6 17.5" stroke-width=".7"/>
+          <!-- engraved cheek and chin lines -->
+          <path d="M-22 6 Q-19 12 -14 14" stroke-width=".7"/>
+          <path d="M22 6 Q19 12 14 14" stroke-width=".7"/>
+          <path d="M-5 24 Q0 26 5 24" stroke-width=".7"/>
         </g>
-        <g fill="#7fae63">
-          <ellipse cx="12" cy="130" rx="9" ry="4" transform="rotate(-70 12 130)"/>
-          <ellipse cx="24" cy="112" rx="9" ry="4" transform="rotate(-30 24 112)"/>
-          <ellipse cx="112" cy="16" rx="9" ry="4" transform="rotate(-20 112 16)"/>
-          <ellipse cx="132" cy="8" rx="9" ry="4" transform="rotate(20 132 8)"/>
-          <ellipse cx="46" cy="30" rx="8" ry="3.6" transform="rotate(-45 46 30)"/>
-        </g>
-        <g transform="translate(30 30)">
-          <circle r="17" fill="#e38d9c"/>
-          <circle r="12" fill="#f3b3bd"/>
-          <path d="M-8 0 a8 8 0 0 1 16 0 a5 5 0 0 1 -10 0 a2.5 2.5 0 0 1 5 0" fill="none" stroke="#c0412d" stroke-width="1.6"/>
-          <circle r="2.6" fill="#c0412d"/>
-        </g>
-        <g fill="#5d7fc4">
-          <g transform="translate(40 72)"><circle cx="0" cy="-6" r="4.6"/><circle cx="5.7" cy="-1.9" r="4.6"/><circle cx="3.5" cy="4.9" r="4.6"/><circle cx="-3.5" cy="4.9" r="4.6"/><circle cx="-5.7" cy="-1.9" r="4.6"/></g>
-          <g transform="translate(92 36)"><circle cx="0" cy="-6" r="4.6"/><circle cx="5.7" cy="-1.9" r="4.6"/><circle cx="3.5" cy="4.9" r="4.6"/><circle cx="-3.5" cy="4.9" r="4.6"/><circle cx="-5.7" cy="-1.9" r="4.6"/></g>
-        </g>
-        <circle cx="40" cy="72" r="2.8" fill="#ecc86f"/>
-        <circle cx="92" cy="36" r="2.8" fill="#ecc86f"/>
-        <ellipse cx="10" cy="150" rx="4" ry="6" fill="#e38d9c"/>
-        <ellipse cx="150" cy="10" rx="6" ry="4" fill="#e38d9c"/>
-        <circle cx="62" cy="52" r="3" fill="#c0412d"/>
-        <circle cx="54" cy="60" r="2.4" fill="#c0412d"/>
-        <g fill="#c8963a">
-          <path d="M70 70 l2.2 6 6 2.2 -6 2.2 -2.2 6 -2.2 -6 -6 -2.2 6 -2.2z"/>
-          <path d="M12 58 l1.6 4.4 4.4 1.6 -4.4 1.6 -1.6 4.4 -1.6 -4.4 -4.4 -1.6 4.4 -1.6z"/>
-          <path d="M116 30 l1.6 4.4 4.4 1.6 -4.4 1.6 -1.6 4.4 -1.6 -4.4 -4.4 -1.6 4.4 -1.6z"/>
+        <g fill="#8a5a14"><circle cx="-11" cy="-5" r="1.4"/><circle cx="11" cy="-5" r="1.4"/></g>
+        <g fill="#e8906a" opacity=".45"><circle cx="-16" cy="8" r="5"/><circle cx="16" cy="8" r="5"/></g>
+      </symbol>
+
+      <!-- Engraved garland pieces (sepia line art) -->
+      <symbol id="g-rose" viewBox="-13 -13 26 26" overflow="visible">
+        <g fill="#efe2c2" stroke="#6e5230" stroke-width=".9" stroke-linejoin="round">
+          <path d="M0 -11 C6 -12 11 -7 11 -1 C12 5 7 11 0 11 C-7 11 -12 5 -11 -1 C-11 -7 -6 -12 0 -11Z"/>
+          <path d="M-7 -3 C-6 -8 6 -8 7 -3 C8 3 3 7 0 7 C-4 7 -8 3 -7 -3Z"/>
+          <path d="M-3 -1 C-3 -4 3 -4 3 -1 C3 2 0 3 -1 2" fill="none"/>
+          <path d="M-9 4 C-6 8 -2 9 0 9 M9 4 C6 8 2 9 0 9" fill="none" stroke-width=".6"/>
         </g>
       </symbol>
+      <symbol id="g-blossom" viewBox="-10 -10 20 20" overflow="visible">
+        <g fill="#efe2c2" stroke="#6e5230" stroke-width=".85">
+          <ellipse cx="0" cy="-5" rx="3.4" ry="4.6"/>
+          <ellipse cx="0" cy="-5" rx="3.4" ry="4.6" transform="rotate(72)"/>
+          <ellipse cx="0" cy="-5" rx="3.4" ry="4.6" transform="rotate(144)"/>
+          <ellipse cx="0" cy="-5" rx="3.4" ry="4.6" transform="rotate(216)"/>
+          <ellipse cx="0" cy="-5" rx="3.4" ry="4.6" transform="rotate(288)"/>
+          <circle r="2.4" fill="#c9a869"/>
+        </g>
+      </symbol>
+      <symbol id="g-grapes" viewBox="-8 -4 16 22" overflow="visible">
+        <g fill="#e3d0a4" stroke="#6e5230" stroke-width=".8">
+          <circle cx="-4" cy="0" r="3"/><circle cx="2" cy="0" r="3"/><circle cx="-1" cy="4.6" r="3"/>
+          <circle cx="5" cy="4.6" r="3"/><circle cx="-5" cy="4.6" r="3"/><circle cx="2" cy="9.2" r="3"/>
+          <circle cx="-3" cy="9.2" r="3"/><circle cx="-0.5" cy="13.6" r="3"/>
+        </g>
+      </symbol>
+      <symbol id="g-leaf" viewBox="0 -5 18 10" overflow="visible">
+        <path d="M0 0 C4 -5 12 -5 18 0 C12 5 4 5 0 0Z" fill="#e6d6ad" stroke="#6e5230" stroke-width=".8"/>
+        <path d="M1 0 L16 0 M6 0 L9 -2.6 M10 0 L13 -2.2 M6 0 L9 2.6 M10 0 L13 2.2" fill="none" stroke="#6e5230" stroke-width=".55"/>
+      </symbol>
+      <symbol id="g-bud" viewBox="-4 -10 8 12" overflow="visible">
+        <path d="M0 -9 C4 -6 4 -1 0 1 C-4 -1 -4 -6 0 -9Z" fill="#efe2c2" stroke="#6e5230" stroke-width=".8"/>
+        <path d="M-3 0 L0 -3 L3 0" fill="none" stroke="#6e5230" stroke-width=".6"/>
+      </symbol>
+
       <symbol id="flourish" viewBox="0 0 80 22">
         <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
           <path d="M2 11 C14 2 24 20 34 11"/><path d="M78 11 C66 2 56 20 46 11"/>
         </g>
         <path fill="currentColor" d="M40 3 l2.2 6 6 2 -6 2 -2.2 6 -2.2 -6 -6 -2 6 -2z"/>
       </symbol>
-      <!-- Crescent moon with stars -->
       <symbol id="moon" viewBox="0 0 60 60">
         <path fill="currentColor" d="M34 6a24 24 0 1 0 20 34A20 20 0 1 1 34 6z"/>
         <path fill="currentColor" d="M44 12l1.4 4 4 1.4-4 1.4-1.4 4-1.4-4-4-1.4 4-1.4z"/>
@@ -433,8 +486,6 @@
       </symbol>
     </defs>
   </svg>
-
-  <div class="tiles" aria-hidden="true"></div>
 
   <header class="topbar">
     <a class="brand" href="/" aria-label="CorvidzzPuzzles home">
@@ -452,15 +503,14 @@
   </header>
 
   <section class="hero">
-    <span class="twinkle" style="top:30px;left:2%;width:22px;height:22px" aria-hidden="true"><svg><use href="#star"/></svg></span>
-    <span class="twinkle" style="top:42%;right:2%;width:16px;height:16px;animation-delay:1.2s" aria-hidden="true"><svg><use href="#star"/></svg></span>
-    <span class="twinkle" style="bottom:50px;left:4%;width:18px;height:18px;animation-delay:2.1s" aria-hidden="true"><svg><use href="#star"/></svg></span>
+    <span class="twinkle" style="top:30px;right:6%;width:20px;height:20px" aria-hidden="true"><svg><use href="#star"/></svg></span>
+    <span class="twinkle" style="top:46%;left:2%;width:16px;height:16px;animation-delay:1.2s" aria-hidden="true"><svg><use href="#star"/></svg></span>
+    <span class="twinkle" style="bottom:60px;right:2%;width:18px;height:18px;animation-delay:2.1s" aria-hidden="true"><svg><use href="#star"/></svg></span>
 
-    <div class="panel">
-      <svg class="vine tl" aria-hidden="true"><use href="#vine"/></svg>
-      <svg class="vine tr" aria-hidden="true"><use href="#vine"/></svg>
-      <svg class="vine bl" aria-hidden="true"><use href="#vine"/></svg>
-      <svg class="vine br" aria-hidden="true"><use href="#vine"/></svg>
+    <div class="panel arch" data-garland>
+      <svg class="sun" aria-hidden="true"><use href="#sun"/></svg>
+      <span class="sparkle" style="width:66px;height:104px;left:24%;bottom:-50px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
+      <span class="sparkle" style="width:36px;height:56px;left:calc(24% + 58px);bottom:-10px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
 
       <svg class="hero-raven" aria-hidden="true"><use href="#raven"/></svg>
       <p class="kicker">&#10022; Once upon a riddle &#10022;</p>
@@ -468,47 +518,44 @@
       <p class="lede">Fairy-tale puzzle books painted like old manuscripts, where every riddle hides a modern answer. Join the waitlist for the full book.</p>
       <div class="flourish" aria-hidden="true"><svg><use href="#flourish"/></svg></div>
 
-      <div class="libcard" id="signup">
-        <div class="libcard-head">
-          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;</span>
-          <span class="no">No. 0001</span>
-          <div class="title">Library Card</div>
-          <div class="sub">The Ravens' Waiting List</div>
-        </div>
-        <form id="waitlist" novalidate>
-          <div class="line">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Thy name">
-          </div>
-          <div class="line">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
-          </div>
-          <fieldset>
-            <legend>Puzzles thou wouldst see <i>(choose any)</i></legend>
-            <div class="picks">
-              <label class="pick"><input type="checkbox" name="puzzles" value="Crosswords"> Crosswords</label>
-              <label class="pick"><input type="checkbox" name="puzzles" value="Cryptic crosswords"> Cryptic crosswords</label>
-              <label class="pick"><input type="checkbox" name="puzzles" value="Word search"> Word search</label>
-              <label class="pick"><input type="checkbox" name="puzzles" value="Ciphers"> Ciphers</label>
-              <label class="pick"><input type="checkbox" name="puzzles" value="Riddles"> Riddles</label>
-              <label class="pick"><input type="checkbox" name="puzzles" value="Logic puzzles"> Logic puzzles</label>
-              <label class="pick"><input type="checkbox" name="puzzles" value="Mazes"> Mazes</label>
-              <label class="pick"><input type="checkbox" name="puzzles" value="Quest maps"> Quest maps</label>
+      <div class="card-wrap">
+        <div class="libcard" id="signup" role="group" aria-label="Library card: the Ravens' waiting list">
+          <p class="card-sub"><i>The Ravens' Waiting List</i><span>No. 0001</span></p>
+          <form id="waitlist" novalidate>
+            <div class="line">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Thy name">
             </div>
-          </fieldset>
+            <div class="line">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
+            </div>
+            <fieldset>
+              <legend>Puzzles thou wouldst see <i>(choose any)</i></legend>
+              <div class="picks">
+                <label class="pick"><input type="checkbox" name="puzzles" value="Crosswords"> Crosswords</label>
+                <label class="pick"><input type="checkbox" name="puzzles" value="Cryptic crosswords"> Cryptic crosswords</label>
+                <label class="pick"><input type="checkbox" name="puzzles" value="Word search"> Word search</label>
+                <label class="pick"><input type="checkbox" name="puzzles" value="Ciphers"> Ciphers</label>
+                <label class="pick"><input type="checkbox" name="puzzles" value="Riddles"> Riddles</label>
+                <label class="pick"><input type="checkbox" name="puzzles" value="Logic puzzles"> Logic puzzles</label>
+                <label class="pick"><input type="checkbox" name="puzzles" value="Mazes"> Mazes</label>
+                <label class="pick"><input type="checkbox" name="puzzles" value="Quest maps"> Quest maps</label>
+              </div>
+            </fieldset>
 
-          <!-- Spam trap: real people never see or fill this -->
-          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <!-- Spam trap: real people never see or fill this -->
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-          <button type="submit" class="submit" id="submit">
-            <span class="star" aria-hidden="true">&#10022;</span>
-            <span id="submit-label">Join the Waitlist</span>
-            <span class="star" aria-hidden="true">&#10022;</span>
-          </button>
-          <p class="msg" id="msg" role="status" aria-live="polite"></p>
-          <p class="fine">No spam, only the launch news and the occasional riddle. Leave whenever thou wilt.</p>
-        </form>
+            <button type="submit" class="submit" id="submit">
+              <span class="star" aria-hidden="true">&#10022;</span>
+              <span id="submit-label">Join the Waitlist</span>
+              <span class="star" aria-hidden="true">&#10022;</span>
+            </button>
+            <p class="msg" id="msg" role="status" aria-live="polite"></p>
+            <p class="fine">No spam, only the launch news and the occasional riddle. Leave whenever thou wilt.</p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -516,9 +563,7 @@
   <div class="tiles" aria-hidden="true"></div>
 
   <section class="tale">
-    <div class="panel">
-      <svg class="vine tl" aria-hidden="true"><use href="#vine"/></svg>
-      <svg class="vine br" aria-hidden="true"><use href="#vine"/></svg>
+    <div class="panel" data-garland>
       <h2 class="section-title"><span class="i-red">O</span>nce Upon a Time</h2>
       <p class="dropcap-p">
         <span class="dropcap" aria-hidden="true">A</span><span style="position:absolute;left:-9999px">A</span>mong all the birds of the old storybooks, none is more magical than the raven. Ravens belong to the family of <em>Corvids</em>, birds famed the world over for solving puzzles and riddles. Our books are named in their honour.
@@ -529,7 +574,7 @@
       </p>
     </div>
 
-    <div class="panel riddle">
+    <div class="panel arch riddle" data-garland>
       <svg class="ornament" aria-hidden="true"><use href="#moon"/></svg>
       <h3>What am I?</h3>
       <p class="verse">
@@ -588,17 +633,14 @@
   </section>
 
   <section class="finale">
-    <div class="panel">
-      <svg class="vine tr" aria-hidden="true"><use href="#vine"/></svg>
-      <svg class="vine bl" aria-hidden="true"><use href="#vine"/></svg>
+    <div class="panel arch" data-garland>
+      <span class="sparkle" style="width:44px;height:68px;right:14%;bottom:-30px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
       <svg class="raven" aria-hidden="true"><use href="#raven"/></svg>
       <h2 class="section-title"><span class="i-red">T</span>he Ravens Are Gathering</h2>
       <p>Each month a new puzzle is illuminated and shared on Instagram and TikTok. Can you decode it? Put your name in the ledger and be the first to hear when the book is ready.</p>
       <a class="btn" href="#signup">&#10022; Join the Waitlist &#10022;</a>
     </div>
   </section>
-
-  <div class="tiles" aria-hidden="true"></div>
 
   <footer>
     <span class="seal" aria-hidden="true"><svg><use href="#raven"/></svg></span>
@@ -612,6 +654,128 @@
   </footer>
 
   <script>
+    // ===== Engraved flower garland =====
+    // Draws a climbing vine of roses, blossoms, grapes, buds and leaves just inside
+    // each panel's edge (up the sides and over the arch), sized to the panel.
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      const PIECES = ["g-rose", "g-blossom", "g-grapes", "g-blossom", "g-bud"];
+
+      function rng(seed) {
+        return function () {
+          seed = (seed * 16807) % 2147483647;
+          return (seed - 1) / 2147483646;
+        };
+      }
+
+      function el(name, attrs) {
+        const n = document.createElementNS(NS, name);
+        for (const k in attrs) n.setAttribute(k, attrs[k]);
+        return n;
+      }
+
+      function draw(panel, index) {
+        const W = panel.clientWidth, H = panel.clientHeight;
+        if (!W || !H) return;
+        const small = W < 460;
+        const d = small ? 14 : 24;          // inset from the edge
+        const k = small ? 0.8 : 1.3;        // size of flowers and leaves
+        const arch = panel.classList.contains("arch");
+        const ry = arch ? parseFloat(getComputedStyle(panel).getPropertyValue("--arch")) || 300 : 0;
+
+        let svg = panel.querySelector(":scope > .garland");
+        if (!svg) {
+          svg = el("svg", { class: "garland", "aria-hidden": "true" });
+          panel.prepend(svg);
+        }
+        svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+        svg.replaceChildren();
+
+        const bottom = H - d - 6;
+        let guide;
+        if (arch) {
+          const r = Math.min(ry, H * 0.6);
+          guide = `M${d} ${bottom} L${d} ${r} A${W / 2 - d} ${r - d} 0 0 1 ${W - d} ${r} L${W - d} ${bottom}`;
+        } else {
+          const c = 16;
+          guide = `M${d} ${bottom} L${d} ${d + c} Q${d} ${d} ${d + c} ${d} L${W - d - c} ${d} Q${W - d} ${d} ${W - d} ${d + c} L${W - d} ${bottom}`;
+        }
+        const g = el("path", { d: guide, fill: "none" });
+        svg.appendChild(g);
+        const L = g.getTotalLength();
+
+        const at = (s) => {
+          const p = g.getPointAtLength(Math.max(0, Math.min(L, s)));
+          const q = g.getPointAtLength(Math.max(0, Math.min(L, s + 1)));
+          const len = Math.hypot(q.x - p.x, q.y - p.y) || 1;
+          const tx = (q.x - p.x) / len, ty = (q.y - p.y) / len;
+          return { x: p.x, y: p.y, tx, ty, nx: -ty, ny: tx, a: Math.atan2(ty, tx) * 180 / Math.PI };
+        };
+
+        // Two intertwined wavy stems
+        for (const phase of [0, Math.PI]) {
+          let dStr = "";
+          for (let s = 0; s <= L; s += 4) {
+            const p = at(s);
+            const off = Math.sin(s / (38 * k) + phase) * 5 * k;
+            dStr += (s ? "L" : "M") + (p.x + p.nx * off).toFixed(1) + " " + (p.y + p.ny * off).toFixed(1);
+          }
+          svg.appendChild(el("path", { d: dStr, class: "vine" }));
+        }
+
+        const rand = rng(1234 + index * 97);
+        const leaves = el("g", {}), flowers = el("g", {}), tendrils = el("g", {});
+        let n = 0;
+        for (let s = 10; s < L - 6; s += 11 * k, n++) {
+          const p = at(s);
+          const side = n % 2 ? 1 : -1;
+          // leaf on alternating sides of the stem
+          const la = p.a + side * (48 + rand() * 20);
+          leaves.appendChild(el("use", {
+            href: "#g-leaf",
+            width: 18, height: 10,
+            transform: `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) rotate(${la.toFixed(1)}) scale(${(k * (0.8 + rand() * 0.45)).toFixed(2)}) translate(0 -5)`
+          }));
+          // a flower, grape cluster or bud every few leaves
+          if (n % 2 === 1) {
+            const piece = PIECES[Math.floor(rand() * PIECES.length)];
+            const inward = 4 + rand() * 6;
+            const fx = p.x + p.nx * inward * k, fy = p.y + p.ny * inward * k;
+            const size = piece === "g-rose" ? 26 : piece === "g-grapes" ? 16 : piece === "g-bud" ? 8 : 20;
+            const h = piece === "g-grapes" ? 22 : piece === "g-bud" ? 12 : size;
+            const sc = k * (0.85 + rand() * 0.35);
+            flowers.appendChild(el("use", {
+              href: "#" + piece,
+              width: size, height: h,
+              transform: `translate(${fx.toFixed(1)} ${fy.toFixed(1)}) rotate(${(p.a + 90 + (rand() - 0.5) * 60).toFixed(1)}) scale(${sc.toFixed(2)}) translate(${-size / 2} ${-h / 2})`
+            }));
+          }
+          // curling tendrils now and then
+          if (n % 7 === 3) {
+            const r = 7 * k;
+            const sx = p.x, sy = p.y;
+            const ex = sx + p.nx * r * 2 + p.tx * r, ey = sy + p.ny * r * 2 + p.ty * r;
+            tendrils.appendChild(el("path", {
+              class: "tendril",
+              d: `M${sx.toFixed(1)} ${sy.toFixed(1)} Q${(sx + p.nx * r * 2.6).toFixed(1)} ${(sy + p.ny * r * 2.6).toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)} q${(p.tx * r * 0.8).toFixed(1)} ${(p.ty * r * 0.8).toFixed(1)} ${(-p.nx * r * 0.6).toFixed(1)} ${(-p.ny * r * 0.6).toFixed(1)}`
+            }));
+          }
+        }
+        svg.append(tendrils, leaves, flowers);
+      }
+
+      const panels = [...document.querySelectorAll("[data-garland]")];
+      const redraw = () => panels.forEach(draw);
+      if ("ResizeObserver" in window) {
+        const ro = new ResizeObserver((entries) => entries.forEach((e) => draw(e.target, panels.indexOf(e.target))));
+        panels.forEach((p) => ro.observe(p));
+      } else {
+        window.addEventListener("resize", redraw);
+      }
+      redraw();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+    })();
+
     // ===== SETUP =====
     // 1. Create a free form at https://formspree.io using corvidzzpuzzles@gmail.com.
     // 2. Paste the endpoint it gives you below, e.g. "https://formspree.io/f/abcdwxyz".
@@ -664,7 +828,7 @@
 
         const name = form.name.value.trim().replace(/[<>&"]/g, "");
         card.innerHTML =
-          '<div class="libcard-head"><div class="title">Library Card</div><div class="sub">The Ravens\' Waiting List</div></div>' +
+          '<p class="card-sub"><i>The Ravens\' Waiting List</i><span>No. 0001</span></p>' +
           '<div class="inscribed">' +
             '<div class="stamp">Inscribed</div>' +
             '<h3>' + (name ? "Welcome, " + name : "Welcome, Solver") + '</h3>' +
