@@ -2,13 +2,13 @@
 
 The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups for the CorvidzzPuzzles puzzle books.
 
-The page is `index.html` plus three pictures in `assets/img/`: `sun.png`, the painted sun at the top of the main panel, `forest-night.jpg`, the painted night forest used as the fixed page background, and `library-card.png`, the vintage library card that frames the sign-up form. There's no build step.
+The page is `index.html` plus two pictures in `assets/img/`: `forest-night.jpg`, the painted night forest used as the fixed page background, and `library-card.png`, the vintage library card that frames the sign-up form. There's no build step.
 
-The content sits on arched parchment panels with an engraved-style sepia garland of roses, blossoms, grapes, buds and leaves climbing up the sides and over the arch. The sun is a painted picture (`assets/img/sun.png`). The long gold eight-pointed stars, the raven, the moon and the icons are all drawn in code on the page. The garland redraws itself to fit each panel on any screen size.
+The content sits on arched parchment panels with an engraved-style sepia garland of roses, blossoms, grapes, buds and leaves climbing up the sides and over the arch. The long gold eight-pointed stars, the raven, the moon and the icons are all drawn in code on the page. The garland redraws itself to fit each panel on any screen size.
 
 ## What's on the page
 
-- **Hero:** an arched parchment panel with the sun, the raven, "Can you decode this?" and the sign-up form inside the vintage library card. The form asks for name, email and which puzzle types the person wants to see.
+- **Hero:** an arched parchment panel with the raven, "Can you decode this?" and the sign-up form inside the vintage library card. The form asks for name, email and which puzzle types the person wants to see.
 - **Once Upon a Time:** the story behind the name with an illuminated "A", plus the "What am I?" Wi-Fi riddle
 - **What Lies Within:** monthly topic votes, the secret topic revealed on the 1st, the puzzle tracker, and points for limited editions
 - **A Bestiary of Puzzles:** nine of the planned puzzle types
