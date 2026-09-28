@@ -8,7 +8,7 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 
 ## What's on the page
 
-- **Hero:** an arched parchment panel with the logo, "Can you decode this?", the line "Today's pop culture, disguised as a medieval manuscript." and the sign-up form inside the vintage library card. The form asks for name, email, which puzzle types and which pop-culture topics the person wants to see.
+- **Hero:** an arched parchment panel with the logo, "Can you decode this?", the line "Today's pop culture, disguised as a medieval manuscript." and the sign-up form inside the vintage library card. The sign-up is a three-page library card: (1) name and email; (2) topics, where ticking a broad topic like Music reveals specific choices like K-pop or Latin, plus a free-text "current obsession"; (3) age range, country, favourite puzzles, difficulty and how they found us. Only the email is required, and page 2 has a "skip and join now" link.
 - **Ancient Riddles, Modern Answers:** six old-style riddles that reveal modern answers when tapped (smartphone, doomscrolling, binge-watching...)
 - **Try a Page:** an open puzzle book with a playable mini crossword and a three-step secret code to crack
 - **Once Upon a Time:** the story behind the name with an illuminated "A", plus the "What am I?" Wi-Fi riddle
@@ -18,6 +18,20 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
 To swap the background or the card, replace the file in `assets/img/` with another picture of the same name. The card frame is sliced from the picture's edges (top 116px, sides 50px, bottom 62px of a 336×528 image), so a replacement card should have a similar layout.
+
+## What each sign-up sends to Formspree
+
+| Field | Example |
+|---|---|
+| `name`, `email` | Morgan, morgan@example.com |
+| `topics` | TV and streaming, Music |
+| `topic_details` | TV & streaming: Anime \| Music: K-pop, Latin |
+| `obsession` | That new dragon show |
+| `age_range`, `country` | 25–34, Brazil |
+| `puzzles`, `difficulty` | Ciphers and codes, Fiendish |
+| `heard_from` | TikTok |
+
+Unanswered questions arrive as "(not answered)" or "(none chosen)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 
 ## 1. Connect the sign-up form (free)
 
