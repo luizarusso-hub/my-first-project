@@ -8,7 +8,7 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 
 ## What's on the page
 
-- **Hero:** an arched parchment panel with the logo, "Can you decode this?", the line "Today's pop culture, disguised as a medieval manuscript." and the sign-up form inside the vintage library card. The sign-up is a three-page library card: (1) name and email; (2) topics, where ticking a broad topic like Music reveals specific choices like K-pop or Latin, plus a free-text "current obsession"; (3) age range, country, favourite puzzles, difficulty and how they found us. Only the email is required, and page 2 has a "skip and join now" link.
+- **Hero:** an arched parchment panel with the logo, "Can you decode this?", the line "Today's pop culture, disguised as a medieval manuscript." and the sign-up form inside the vintage library card. The sign-up is one short page: name and email, three boxes where people type the exact names they are into (shows & movies; music & artists; creators, games, sports & trends), and tap-to-choose puzzle types. Only the email is required.
 - **Ancient Riddles, Modern Answers:** six old-style riddles that reveal modern answers when tapped (smartphone, doomscrolling, binge-watching...)
 - **Try a Page:** an open puzzle book with a playable mini crossword and a three-step secret code to crack
 - **Once Upon a Time:** the story behind the name with an illuminated "A", plus the "What am I?" Wi-Fi riddle
@@ -24,14 +24,12 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 | Field | Example |
 |---|---|
 | `name`, `email` | Morgan, morgan@example.com |
-| `topics` | TV and streaming, Music |
-| `topic_details` | TV & streaming: Anime \| Music: K-pop, Latin |
-| `obsession` | That new dragon show |
-| `age_range`, `country` | 25–34, Brazil |
-| `puzzles`, `difficulty` | Ciphers and codes, Fiendish |
-| `heard_from` | TikTok |
+| `shows_and_movies` | Stranger Things, Squid Game |
+| `music_and_artists` | Taylor Swift, Bad Bunny |
+| `creators_games_sports_trends` | MrBeast, Minecraft, Formula 1 |
+| `puzzles` | Crosswords, Ciphers and codes, Riddles |
 
-Unanswered questions arrive as "(not answered)" or "(none chosen)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
+Empty boxes arrive as "(not answered)" and no puzzle choice as "(none chosen)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 
 ## 1. Connect the sign-up form (free)
 

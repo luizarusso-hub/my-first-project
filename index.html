@@ -206,15 +206,9 @@
     .pick input:checked { background: var(--card-ink); }
     .pick input:checked::after { transform: scale(1.3); }
     .pick input:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 2px; }
-    /* multi-page sign-up */
-    .steps { display: flex; align-items: center; gap: 6px; margin: 0 0 12px; font-family: "IM Fell English SC", serif; font-size: .85rem; color: var(--ink-soft); }
-    .steps .dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--card-ink); }
-    .steps .dot.on { background: var(--card-ink); }
-    .steps span:last-child { margin-left: 6px; }
-    .line.tall { flex-direction: column; align-items: stretch; gap: 2px; margin-top: 4px; }
-    .cats { display: grid; gap: 6px; }
-    .subs { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 8px 26px; }
-    .subs[hidden] { display: none; }
+    .ask { margin: 6px 0 10px; font-family: "IM Fell English SC", serif; font-size: 1rem; color: var(--card-ink); line-height: 1.4; }
+    .ask i { display: block; font-family: "IM Fell English", serif; font-size: .95rem; color: var(--ink-soft); }
+    .line.tall { flex-direction: column; align-items: stretch; gap: 0; margin-bottom: 12px; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
     .chip span {
@@ -225,14 +219,6 @@
     .chip input:checked + span { background: var(--card-ink); color: var(--card-cream); }
     .chip input:checked + span::before { content: "\2726  "; color: var(--gold-light); }
     .chip input:focus-visible + span { outline: 2px solid var(--vermilion); outline-offset: 2px; }
-    .nav { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
-    .nav .submit { flex: 1; }
-    .submit.small { font-size: 1.15rem; padding: 11px 12px; }
-    .back {
-      font-family: "IM Fell English SC", serif; font-size: 1.05rem; background: transparent; color: var(--card-ink);
-      border: 1.5px solid var(--card-ink); padding: 10px 14px; cursor: pointer;
-    }
-    .skip { font: inherit; font-style: italic; background: none; border: 0; padding: 0; color: var(--vermilion); text-decoration: underline; cursor: pointer; }
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
     .submit {
       display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
@@ -642,169 +628,32 @@
         <div class="libcard" id="signup" role="group" aria-label="Library card: the Ravens' waiting list">
           <p class="card-sub"><i>The Ravens' Waiting List</i><span>No. 0001</span></p>
           <form id="waitlist" novalidate>
-            <p class="steps" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span> <span id="step-label">Page i of iii</span></p>
-
-            <!-- Page 1: who you are -->
-            <div class="step" data-step="1">
-              <div class="line">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Thy name">
-              </div>
-              <div class="line">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
-              </div>
-              <button type="button" class="submit" data-next>
-                <span class="star" aria-hidden="true">&#10022;</span><span>Continue</span><span class="star" aria-hidden="true">&#10022;</span>
-              </button>
-              <p class="fine">Two quick pages more and thou art on the list. They help us write the book around what thou lovest, and every question is optional.</p>
+            <div class="line">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Thy name">
+            </div>
+            <div class="line">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
             </div>
 
-            <!-- Page 2: topics -->
-            <div class="step" data-step="2" hidden>
-              <fieldset>
-                <legend>What should the book be about? <i>(tick any, then pick the details)</i></legend>
-                <div class="cats">
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="TV and streaming" data-cat="tv"> TV &amp; streaming</label>
-                  <div class="subs" id="subs-tv" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="TV & streaming: Reality TV"><span>Reality TV</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="TV & streaming: True crime"><span>True crime</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="TV & streaming: Fantasy & sci-fi series"><span>Fantasy &amp; sci-fi series</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="TV & streaming: Comedies & sitcoms"><span>Comedies &amp; sitcoms</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="TV & streaming: Anime"><span>Anime</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="TV & streaming: K-dramas"><span>K-dramas</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="TV & streaming: Talent & competition shows"><span>Talent &amp; competition shows</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="TV & streaming: Drama series"><span>Drama series</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Music" data-cat="music"> Music</label>
-                  <div class="subs" id="subs-music" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Music: Pop"><span>Pop</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Music: Hip-hop & rap"><span>Hip-hop &amp; rap</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Music: K-pop"><span>K-pop</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Music: Latin"><span>Latin</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Music: Rock & indie"><span>Rock &amp; indie</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Music: Country"><span>Country</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Music: R&B"><span>R&amp;B</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Music: Tours, festivals & award shows"><span>Tours, festivals &amp; award shows</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Movies" data-cat="movies"> Movies</label>
-                  <div class="subs" id="subs-movies" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Movies: Superheroes & franchises"><span>Superheroes &amp; franchises</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Movies: Horror"><span>Horror</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Movies: Rom-coms"><span>Rom-coms</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Movies: Animated"><span>Animated</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Movies: Big blockbusters"><span>Big blockbusters</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Movies: Award season"><span>Award season</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Memes and internet" data-cat="internet"> Memes &amp; internet</label>
-                  <div class="subs" id="subs-internet" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Memes & internet: Viral trends & challenges"><span>Viral trends &amp; challenges</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Memes & internet: Memes"><span>Memes</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Memes & internet: Influencers & creators"><span>Influencers &amp; creators</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Memes & internet: Internet drama"><span>Internet drama</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Memes & internet: Podcasts"><span>Podcasts</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Memes & internet: AI & tech"><span>AI &amp; tech</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Celebrities" data-cat="celebs"> Celebrities</label>
-                  <div class="subs" id="subs-celebs" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Celebrities: Celebrity couples & breakups"><span>Celebrity couples &amp; breakups</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Celebrities: Feuds & gossip"><span>Feuds &amp; gossip</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Celebrities: Red carpet & fashion"><span>Red carpet &amp; fashion</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Celebrities: Royal family"><span>Royal family</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Celebrities: Reality stars"><span>Reality stars</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Books and BookTok" data-cat="books"> Books &amp; BookTok</label>
-                  <div class="subs" id="subs-books" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Books & BookTok: Romantasy & fantasy"><span>Romantasy &amp; fantasy</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Books & BookTok: Romance"><span>Romance</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Books & BookTok: Thrillers & mystery"><span>Thrillers &amp; mystery</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Books & BookTok: Book-to-screen adaptations"><span>Book-to-screen adaptations</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Books & BookTok: Classics"><span>Classics</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Gaming" data-cat="gaming"> Gaming</label>
-                  <div class="subs" id="subs-gaming" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Gaming: Console & PC games"><span>Console &amp; PC games</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Gaming: Mobile games"><span>Mobile games</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Gaming: Cozy games"><span>Cozy games</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Gaming: Esports"><span>Esports</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Gaming: Streamers"><span>Streamers</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Sports" data-cat="sports"> Sports</label>
-                  <div class="subs" id="subs-sports" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Sports: Football (soccer)"><span>Football (soccer)</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Sports: American football"><span>American football</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Sports: Basketball"><span>Basketball</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Sports: Tennis"><span>Tennis</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Sports: Formula 1"><span>Formula 1</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Sports: Olympics & world cups"><span>Olympics &amp; world cups</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Fashion and beauty" data-cat="style"> Fashion &amp; beauty</label>
-                  <div class="subs" id="subs-style" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Fashion & beauty: Aesthetics & “core” trends"><span>Aesthetics &amp; “core” trends</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Fashion & beauty: Makeup & skincare"><span>Makeup &amp; skincare</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Fashion & beauty: Sneakers & streetwear"><span>Sneakers &amp; streetwear</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Fashion & beauty: Runway & designers"><span>Runway &amp; designers</span></label>
-                  </div>
-                </div>
-                <div class="cat">
-                  <label class="pick"><input type="checkbox" name="topics" value="Headlines" data-cat="news"> Headlines</label>
-                  <div class="subs" id="subs-news" hidden>
-                    <label class="chip"><input type="checkbox" name="details" value="Headlines: World news"><span>World news</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Headlines: Science & space"><span>Science &amp; space</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Headlines: Tech & gadgets"><span>Tech &amp; gadgets</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Headlines: Weird & funny news"><span>Weird &amp; funny news</span></label>
-                    <label class="chip"><input type="checkbox" name="details" value="Headlines: Business & brands"><span>Business &amp; brands</span></label>
-                  </div>
-                </div>
-                </div>
-              </fieldset>
-              <div class="line tall">
-                <label for="obsession">Thy current obsession</label>
-                <input id="obsession" name="obsession" type="text" maxlength="200" placeholder="A show, song, artist, game or trend">
-              </div>
-              <div class="nav">
-                <button type="button" class="back" data-back>&larr; Back</button>
-                <button type="button" class="submit small" data-next>Next &rarr;</button>
-              </div>
+            <p class="ask">What art thou into right now? <i>Name names: the ravens will turn them into puzzles.</i></p>
+            <div class="line tall">
+              <label for="shows">Shows &amp; movies</label>
+              <input id="shows" name="shows_and_movies" type="text" maxlength="300" placeholder="e.g. Stranger Things, Squid Game">
+            </div>
+            <div class="line tall">
+              <label for="music">Music &amp; artists</label>
+              <input id="music" name="music_and_artists" type="text" maxlength="300" placeholder="e.g. Taylor Swift, Bad Bunny">
+            </div>
+            <div class="line tall">
+              <label for="other">Creators, games, sports &amp; trends</label>
+              <input id="other" name="creators_games_sports_trends" type="text" maxlength="300" placeholder="e.g. MrBeast, Minecraft, Formula 1">
             </div>
 
-            <!-- Page 3: about you -->
-            <div class="step" data-step="3" hidden>
-              <fieldset>
-                <legend>Thy age</legend>
-                <div class="chips">
-                <label class="chip"><input type="radio" name="age_range" value="Under 18"><span>Under 18</span></label>
-                <label class="chip"><input type="radio" name="age_range" value="18–24"><span>18–24</span></label>
-                <label class="chip"><input type="radio" name="age_range" value="25–34"><span>25–34</span></label>
-                <label class="chip"><input type="radio" name="age_range" value="35–44"><span>35–44</span></label>
-                <label class="chip"><input type="radio" name="age_range" value="45–54"><span>45–54</span></label>
-                <label class="chip"><input type="radio" name="age_range" value="55+"><span>55+</span></label>
-                </div>
-              </fieldset>
-              <div class="line">
-                <label for="country">Country</label>
-                <input id="country" name="country" type="text" autocomplete="country-name" placeholder="Where thou dwellest">
-              </div>
-              <fieldset>
-                <legend>Favourite puzzles <i>(choose any)</i></legend>
-                <div class="chips">
+            <fieldset>
+              <legend>Puzzles thou lovest <i>(tap any)</i></legend>
+              <div class="chips">
                 <label class="chip"><input type="checkbox" name="puzzles" value="Crosswords"><span>Crosswords</span></label>
                 <label class="chip"><input type="checkbox" name="puzzles" value="Cryptic crosswords"><span>Cryptic crosswords</span></label>
                 <label class="chip"><input type="checkbox" name="puzzles" value="Word search"><span>Word search</span></label>
@@ -813,41 +662,19 @@
                 <label class="chip"><input type="checkbox" name="puzzles" value="Logic puzzles"><span>Logic puzzles</span></label>
                 <label class="chip"><input type="checkbox" name="puzzles" value="Sudoku"><span>Sudoku</span></label>
                 <label class="chip"><input type="checkbox" name="puzzles" value="Mazes"><span>Mazes</span></label>
-                <label class="chip"><input type="checkbox" name="puzzles" value="Quest maps"><span>Quest maps</span></label>
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend>How hard should they be?</legend>
-                <div class="chips">
-                <label class="chip"><input type="radio" name="difficulty" value="Gentle"><span>Gentle</span></label>
-                <label class="chip"><input type="radio" name="difficulty" value="Tricky"><span>Tricky</span></label>
-                <label class="chip"><input type="radio" name="difficulty" value="Fiendish"><span>Fiendish</span></label>
-                <label class="chip"><input type="radio" name="difficulty" value="A mix"><span>A mix</span></label>
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend>How didst thou find us?</legend>
-                <div class="chips">
-                <label class="chip"><input type="radio" name="heard_from" value="Instagram"><span>Instagram</span></label>
-                <label class="chip"><input type="radio" name="heard_from" value="TikTok"><span>TikTok</span></label>
-                <label class="chip"><input type="radio" name="heard_from" value="A friend"><span>A friend</span></label>
-                <label class="chip"><input type="radio" name="heard_from" value="Search"><span>Search</span></label>
-                <label class="chip"><input type="radio" name="heard_from" value="Other"><span>Other</span></label>
-                </div>
-              </fieldset>
-
-              <!-- Spam trap: real people never see or fill this -->
-              <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-              <div class="nav">
-                <button type="button" class="back" data-back>&larr; Back</button>
-                <button type="submit" class="submit small" id="submit"><span id="submit-label">Join the Waitlist</span></button>
               </div>
-            </div>
+            </fieldset>
 
+            <!-- Spam trap: real people never see or fill this -->
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <button type="submit" class="submit" id="submit">
+              <span class="star" aria-hidden="true">&#10022;</span>
+              <span id="submit-label">Join the Waitlist</span>
+              <span class="star" aria-hidden="true">&#10022;</span>
+            </button>
             <p class="msg" id="msg" role="status" aria-live="polite"></p>
-            <p class="fine skip-row" hidden><button type="submit" class="skip" id="skip">Skip this and join now</button></p>
-            <p class="fine">No spam, only the launch news and the occasional riddle. Leave whenever thou wilt.</p>
+            <p class="fine">Only thy email is needed. No spam, only the launch news and the occasional riddle. Leave whenever thou wilt.</p>
           </form>
         </div>
       </div>
@@ -1265,61 +1092,16 @@
 
     function showError(text) { msg.textContent = text; }
 
-    // ----- pages of the library card -----
-    const steps = [...form.querySelectorAll(".step")];
-    const dots = [...form.querySelectorAll(".steps .dot")];
-    const stepLabel = document.getElementById("step-label");
-    const skipRow = form.querySelector(".skip-row");
-    let current = 1;
-    const ROMAN = ["i", "ii", "iii"];
-
-    function emailOk() {
-      const email = form.email.value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError("Alas, that email looks amiss. Please check it.");
-        form.email.focus();
-        return false;
-      }
-      return true;
-    }
-
-    function go(n) {
-      msg.textContent = "";
-      current = n;
-      steps.forEach((s) => (s.hidden = Number(s.dataset.step) !== n));
-      dots.forEach((d, i) => d.classList.toggle("on", i < n));
-      stepLabel.textContent = "Page " + ROMAN[n - 1] + " of iii";
-      skipRow.hidden = n !== 2;
-      const first = steps[n - 1].querySelector("input:not(.hp)");
-      if (n > 1 && first) first.focus({ preventScroll: true });
-      card.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    form.querySelectorAll("[data-next]").forEach((b) => b.addEventListener("click", () => {
-      if (current === 1 && !emailOk()) return;
-      go(current + 1);
-    }));
-    form.querySelectorAll("[data-back]").forEach((b) => b.addEventListener("click", () => go(current - 1)));
-
-    // show the detailed choices under each ticked topic
-    form.querySelectorAll('input[name="topics"]').forEach((cb) => cb.addEventListener("change", () => {
-      const subs = document.getElementById("subs-" + cb.dataset.cat);
-      subs.hidden = !cb.checked;
-      if (!cb.checked) subs.querySelectorAll("input").forEach((i) => (i.checked = false));
-    }));
-
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.textContent = "";
 
-      // Enter on an earlier page moves forward instead of sending
-      const bySkip = e.submitter && e.submitter.id === "skip";
-      if (current < 3 && !bySkip) {
-        if (current === 1 && !emailOk()) return;
-        go(current + 1);
+      const email = form.email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError("Alas, that email looks amiss. Please check it.");
+        form.email.focus();
         return;
       }
-      if (!emailOk()) { go(1); emailOk(); return; }
 
       if (FORM_ENDPOINT.includes("YOUR_FORM_ID")) {
         showError("The ledger is not yet open. (Site owner: set FORM_ENDPOINT in index.html.)");
@@ -1327,22 +1109,12 @@
       }
 
       const data = new FormData(form);
-      const join = (key, sep) => { const v = data.getAll(key); data.delete(key); return v.join(sep || ", "); };
-      const topics = join("topics");
-      const puzzles = join("puzzles");
-      // group the detailed picks by topic: "Music: K-pop, Latin | TV & streaming: Anime"
-      const grouped = {};
-      data.getAll("details").forEach((d) => {
-        const i = d.indexOf(": ");
-        (grouped[d.slice(0, i)] = grouped[d.slice(0, i)] || []).push(d.slice(i + 2));
+      ["shows_and_movies", "music_and_artists", "creators_games_sports_trends"].forEach((k) => {
+        if (!String(data.get(k) || "").trim()) data.set(k, "(not answered)");
       });
-      data.delete("details");
-      data.append("topics", topics || "(none chosen)");
-      data.append("topic_details", Object.keys(grouped).map((k) => k + ": " + grouped[k].join(", ")).join(" | ") || "(none chosen)");
-      data.append("puzzles", puzzles || "(none chosen)");
-      ["obsession", "age_range", "country", "difficulty", "heard_from"].forEach((k) => {
-        if (!data.get(k)) data.set(k, "(not answered)");
-      });
+      const puzzles = data.getAll("puzzles");
+      data.delete("puzzles");
+      data.append("puzzles", puzzles.join(", ") || "(none chosen)");
       data.append("_subject", "New CorvidzzPuzzles sign-up");
 
       submit.disabled = true;
