@@ -3,311 +3,604 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- EDIT: your company name and a one-line pitch -->
-  <title>Puzzle Books Coming Soon — Join the Waiting List</title>
-  <meta name="description" content="New puzzle books are on the way. Join the waiting list for early access, launch discounts and a free printable puzzle.">
-  <meta property="og:title" content="Puzzle Books Coming Soon — Join the Waiting List">
-  <meta property="og:description" content="Join the waiting list for early access, launch discounts and a free printable puzzle.">
+  <title>CorvidzzPuzzles | Join the Waiting List</title>
+  <meta name="description" content="Illuminated puzzle books with medieval riddles, ciphers and crosswords that hide modern answers. Can you decode this? Join the waitlist for the full book.">
+  <meta property="og:title" content="CorvidzzPuzzles | Can you decode this?">
+  <meta property="og:description" content="Illuminated puzzle books with riddles, ciphers and crosswords that hide modern answers. Join the waitlist for the full book.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231f3a5f'/><rect x='6' y='6' width='9' height='9' fill='%23fff'/><rect x='17' y='6' width='9' height='9' fill='%23f2b134'/><rect x='6' y='17' width='9' height='9' fill='%23f2b134'/><rect x='17' y='17' width='9' height='9' fill='%23fff'/></svg>">
+  <meta property="og:url" content="https://corvidzz.com/">
+  <meta name="theme-color" content="#1c1a16">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='%23efe3c6'/><rect x='5' y='5' width='90' height='90' rx='6' fill='none' stroke='%23a3321f' stroke-width='6'/><g transform='translate(8 10) scale(.76)'><path fill='%231c1a16' d='M105 31 L89 24 C85 18 77 15 70 17 C61 19 55 26 51 34 C43 46 31 58 21 70 L5 90 L13 93 L30 81 C38 79 47 77 55 75 L57 83 L51 93 L55 93 L59 85 L61 93 L65 93 L62 81 C69 73 75 63 76 55 L81 51 L77 48 L83 45 L79 42 L85 39 L87 35 Z'/></g></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #1f2a37;
-      --muted: #5b6675;
-      --paper: #fbf7ef;
-      --card: #ffffff;
-      --navy: #1f3a5f;
-      --gold: #f2b134;
-      --gold-soft: #fde9bf;
-      --line: #e6dfd1;
-      --ok: #1e7a4c;
-      --err: #b42318;
-      --radius: 14px;
+      --ink: #1c1a16;
+      --ink-soft: #4a4237;
+      --parchment: #efe3c6;
+      --parchment-deep: #e2d1a8;
+      --vellum: #f7efdb;
+      --gold: #b8913a;
+      --gold-light: #e2c275;
+      --vermilion: #a3321f;
+      --damask: #4f5d3f;
+      --damask-deep: #36412b;
+      --lapis: #26457a;
+      --lapis-soft: #7f97bf;
+      --rose: #e8b9bf;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; }
     body {
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-family: "IM Fell English", Georgia, "Times New Roman", serif;
+      font-size: 1.125rem;
+      line-height: 1.6;
       color: var(--ink);
-      background:
-        linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 32px 32px,
-        linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 32px 32px,
-        var(--paper);
-      background-blend-mode: normal;
-      min-height: 100vh;
-      line-height: 1.55;
+      background-color: var(--parchment);
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 250, 235, .7), transparent 60%),
+        radial-gradient(ellipse at 0% 100%, rgba(120, 90, 40, .18), transparent 55%),
+        radial-gradient(ellipse at 100% 60%, rgba(120, 90, 40, .14), transparent 50%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
-    .wrap {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 28px 16px 48px;
-    }
-    header.brand {
+    a { color: var(--vermilion); }
+    img, svg { display: block; }
+
+    /* ---------- Header ---------- */
+    .topbar {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: var(--navy);
+      justify-content: space-between;
+      gap: 16px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 16px;
     }
-    .logo {
-      width: 32px; height: 32px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
-      padding: 4px; background: var(--navy); border-radius: 7px;
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+    .seal {
+      width: 52px; height: 52px; flex: none;
+      border: 3px solid var(--vermilion);
+      outline: 1px solid var(--vermilion); outline-offset: 2px;
+      background: var(--vellum);
+      display: grid; place-items: center;
     }
-    .logo span { background: #fff; border-radius: 2px; }
-    .logo span:nth-child(2), .logo span:nth-child(3) { background: var(--gold); }
+    .seal svg { width: 40px; height: 40px; }
+    .wordmark { font-family: "UnifrakturMaguntia", serif; font-size: 1.9rem; line-height: 1; }
+    .social { display: flex; gap: 10px; }
+    .social a {
+      width: 40px; height: 40px; display: grid; place-items: center;
+      border: 1px solid var(--ink-soft); border-radius: 50%; color: var(--ink);
+    }
+    .social a:hover { background: var(--ink); color: var(--parchment); }
+    .social svg { width: 18px; height: 18px; }
 
-    main {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
-      align-items: center;
-      margin-top: 56px;
+    /* ---------- Star tile band (blue diamonds + gold stars) ---------- */
+    .tiles {
+      height: 56px;
+      background-color: var(--vellum);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' fill='%23efe3c6'/%3E%3Cpath d='M0 0 L28 28 L0 56 Z M56 0 L28 28 L56 56 Z' fill='%2326457a'/%3E%3Cpath d='M28 14 l2.4 8 8-2.4-5.6 6.4 5.6 6.4-8-2.4-2.4 8-2.4-8-8 2.4 5.6-6.4-5.6-6.4 8 2.4z' fill='%23b8913a'/%3E%3C/svg%3E");
+      border-top: 3px solid var(--gold);
+      border-bottom: 3px solid var(--gold);
     }
-    .eyebrow {
-      display: inline-block;
-      background: var(--gold-soft);
-      color: #7a5200;
-      font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 6px 12px;
-      border-radius: 999px;
+
+    /* ---------- Hero: illuminated manuscript page ---------- */
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 16px 64px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .folio {
+      position: relative;
+      background: var(--vellum);
+      padding: 44px 44px 36px;
+      border: 2px solid var(--gold);
+      outline: 6px double var(--gold);
+      outline-offset: 6px;
+      box-shadow: 0 0 0 14px var(--vellum), 0 0 0 16px var(--gold), 0 24px 50px rgba(60, 40, 10, .25);
+      margin: 18px;
+    }
+    .corner {
+      position: absolute; width: 46px; height: 46px; color: var(--gold);
+    }
+    .corner.tl { top: -8px; left: -8px; }
+    .corner.tr { top: -8px; right: -8px; transform: scaleX(-1); }
+    .corner.bl { bottom: -8px; left: -8px; transform: scaleY(-1); }
+    .corner.br { bottom: -8px; right: -8px; transform: scale(-1, -1); }
+
+    .kicker {
+      font-family: "IM Fell English SC", serif;
+      letter-spacing: .12em;
+      color: var(--vermilion);
+      margin: 0 0 6px;
+      font-size: 1rem;
     }
     h1 {
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 800;
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-family: "UnifrakturMaguntia", serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
       line-height: 1.05;
-      margin: 18px 0 16px;
-      color: var(--navy);
-      text-wrap: balance;
-    }
-    h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--gold) 62%); }
-    .lede { font-size: 1.125rem; color: var(--muted); max-width: 34em; margin: 0 0 28px; }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(31, 58, 95, 0.08);
-      max-width: 520px;
-    }
-    .row { display: flex; gap: 10px; }
-    label.field { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
-    input[type="email"], input[type="text"] {
-      width: 100%;
-      font: inherit;
-      padding: 13px 14px;
-      border: 1.5px solid var(--line);
-      border-radius: 10px;
-      background: #fff;
+      margin: 0 0 22px;
       color: var(--ink);
     }
-    input[type="email"]:focus, input[type="text"]:focus {
-      outline: none;
-      border-color: var(--navy);
-      box-shadow: 0 0 0 3px rgba(31, 58, 95, 0.15);
-    }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-    fieldset { border: 0; margin: 0 0 18px; padding: 0; }
-    legend { font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; padding: 0; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip input { position: absolute; opacity: 0; pointer-events: none; }
-    .chip span {
-      display: inline-block;
-      padding: 7px 13px;
-      border: 1.5px solid var(--line);
-      border-radius: 999px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background .15s, border-color .15s;
-    }
-    .chip input:checked + span { background: var(--navy); border-color: var(--navy); color: #fff; }
-    .chip input:focus-visible + span { box-shadow: 0 0 0 3px rgba(31, 58, 95, 0.25); }
-    button {
-      width: 100%;
-      font: inherit;
-      font-weight: 600;
-      font-size: 1.05rem;
-      padding: 14px 18px;
-      border: 0;
-      border-radius: 10px;
-      background: var(--navy);
-      color: #fff;
-      cursor: pointer;
-      transition: transform .08s, background .15s;
-    }
-    button:hover { background: #17304f; }
-    button:active { transform: translateY(1px); }
-    button[disabled] { opacity: .7; cursor: wait; }
-    .fine { font-size: 0.8rem; color: var(--muted); margin: 12px 0 0; }
-    .msg { margin-top: 12px; font-weight: 500; font-size: 0.95rem; }
-    .msg.err { color: var(--err); }
-    .hp { position: absolute; left: -9999px; }
+    h1 .red { color: var(--vermilion); }
 
-    .success { text-align: center; padding: 12px 4px; }
-    .success h2 { font-family: "Fraunces", Georgia, serif; color: var(--navy); margin: 8px 0; font-size: 1.7rem; }
-    .success p { color: var(--muted); margin: 0; }
-    .check {
-      width: 56px; height: 56px; margin: 0 auto; border-radius: 50%;
-      background: #e3f4ea; color: var(--ok); display: grid; place-items: center; font-size: 28px;
+    /* Illuminated drop cap */
+    .illuminated::first-letter { float: none; }
+    .dropcap {
+      float: left;
+      width: 84px; height: 84px;
+      margin: 6px 14px 0 0;
+      display: grid; place-items: center;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23e2c275' stroke-width='1.6'%3E%3Cpath d='M8 76 C20 60 10 46 22 36 S20 14 34 8'/%3E%3Cpath d='M76 8 C64 24 74 38 62 48 S64 70 50 76'/%3E%3C/g%3E%3Cg fill='%237d9a55'%3E%3Cellipse cx='14' cy='60' rx='5' ry='2.6' transform='rotate(-40 14 60)'/%3E%3Cellipse cx='24' cy='26' rx='5' ry='2.6' transform='rotate(30 24 26)'/%3E%3Cellipse cx='70' cy='24' rx='5' ry='2.6' transform='rotate(-40 70 24)'/%3E%3Cellipse cx='60' cy='60' rx='5' ry='2.6' transform='rotate(30 60 60)'/%3E%3C/g%3E%3Cg fill='%23e2c275'%3E%3Ccircle cx='10' cy='10' r='3'/%3E%3Ccircle cx='74' cy='74' r='3'/%3E%3Ccircle cx='74' cy='10' r='2'/%3E%3Ccircle cx='10' cy='74' r='2'/%3E%3C/g%3E%3C/svg%3E") center / cover,
+        var(--damask-deep);
+      border: 3px solid var(--gold);
+      box-shadow: inset 0 0 0 2px var(--vermilion);
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 700;
+      font-size: 3.4rem;
+      line-height: 1;
+      color: var(--vermilion);
+      text-shadow: 0 0 1px var(--gold-light), 1px 1px 0 var(--gold-light);
     }
+    .intro { margin: 0 0 18px; }
+    .intro::after { content: ""; display: block; clear: both; }
+    .rule {
+      display: flex; align-items: center; gap: 12px; color: var(--gold);
+      margin: 26px 0;
+    }
+    .rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: currentColor; }
+    .rule svg { width: 22px; height: 22px; }
 
-    .perks { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 10px; max-width: 520px; }
-    .perks li { display: flex; gap: 10px; align-items: flex-start; }
-    .perks li::before {
-      content: ""; flex: none; width: 18px; height: 18px; margin-top: 3px;
-      background: var(--gold); border-radius: 4px;
-      box-shadow: inset 0 0 0 4px var(--gold-soft);
+    /* Riddle */
+    .riddle h2 {
+      font-family: "IM Fell English SC", serif; font-weight: 400;
+      font-size: 1.35rem; margin: 0 0 10px; color: var(--lapis);
     }
+    .verse {
+      font-style: italic; margin: 0 0 14px; padding-left: 16px;
+      border-left: 3px solid var(--vermilion);
+      font-size: 1.2rem; line-height: 1.7;
+    }
+    details {
+      font-family: "IM Fell English SC", serif;
+    }
+    summary {
+      cursor: pointer; display: inline-block; list-style: none;
+      color: var(--vermilion); border-bottom: 1px dashed var(--vermilion);
+    }
+    summary::-webkit-details-marker { display: none; }
+    details[open] summary { margin-bottom: 8px; }
+    .answer { font-family: "IM Fell English", serif; font-style: italic; margin: 0; }
+    .answer b { font-style: normal; font-family: "UnifrakturMaguntia", serif; font-weight: 400; font-size: 1.4rem; }
 
-    /* Decorative crossword */
-    .puzzle { justify-self: center; }
-    .xw {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      grid-template-rows: repeat(7, 1fr);
-      gap: 3px;
-      background: var(--navy);
-      padding: 3px;
-      border-radius: 10px;
-      width: min(100%, 380px);
-      aspect-ratio: 1;
-      box-shadow: 0 18px 40px rgba(31, 58, 95, 0.22);
-      transform: rotate(-3deg);
-    }
-    .xw div {
-      background: #fff;
-      display: grid;
-      place-items: center;
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 800;
-      font-size: clamp(1rem, 3.4vw, 1.6rem);
-      color: var(--navy);
+    /* ---------- Library card sign-up ---------- */
+    .card-wrap { position: sticky; top: 20px; padding-top: 18px; }
+    .libcard {
+      background: #f4ead2;
+      border: 1px solid #b7a37a;
+      box-shadow: 4px 6px 0 rgba(60, 40, 10, .15), 0 18px 40px rgba(60, 40, 10, .2);
+      padding: 0 0 22px;
+      transform: rotate(.8deg);
       position: relative;
-      border-radius: 2px;
     }
-    .xw div.b { background: var(--navy); }
-    .xw div.h { background: var(--gold-soft); }
-    .xw div[data-n]::before {
+    .libcard::before {
+      /* ruled lines */
+      content: ""; position: absolute; inset: 88px 0 0;
+      background: repeating-linear-gradient(transparent 0 35px, rgba(38, 69, 122, .18) 35px 36px);
+      pointer-events: none;
+    }
+    .libcard-head {
+      text-align: center;
+      padding: 16px 20px 10px;
+      border-bottom: 2px solid var(--ink);
+      position: relative;
+    }
+    .libcard-head .title {
+      font-family: "IM Fell English SC", serif;
+      font-size: 1.9rem; letter-spacing: .08em; line-height: 1.1;
+    }
+    .libcard-head .sub {
+      font-family: "IM Fell English", serif; font-style: italic; font-size: .95rem; color: var(--ink-soft);
+    }
+    .no {
+      position: absolute; top: 10px; right: 12px;
+      font-family: "IM Fell English SC", serif; font-size: .8rem; color: var(--vermilion);
+    }
+    form { position: relative; padding: 14px 22px 0; }
+    .line { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+    .line label {
+      font-family: "IM Fell English SC", serif; font-size: .95rem; white-space: nowrap; color: var(--ink-soft);
+    }
+    .line input {
+      flex: 1; min-width: 0;
+      font: inherit; font-size: 1.15rem; font-style: italic;
+      color: var(--lapis);
+      background: transparent;
+      border: 0; border-bottom: 1.5px solid var(--ink);
+      padding: 4px 2px;
+      border-radius: 0;
+    }
+    .line input::placeholder { color: #9b8f78; }
+    .line input:focus { outline: none; border-bottom-color: var(--vermilion); background: rgba(255, 255, 255, .35); }
+    fieldset { border: 0; margin: 6px 0 16px; padding: 0; }
+    legend { font-family: "IM Fell English SC", serif; font-size: .95rem; color: var(--ink-soft); padding: 0; margin-bottom: 6px; }
+    .legend-note { font-family: "IM Fell English", serif; font-style: italic; font-size: .9rem; }
+    .picks { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; }
+    .pick { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 1rem; line-height: 1.3; }
+    .pick input {
+      appearance: none; -webkit-appearance: none;
+      width: 18px; height: 18px; flex: none; margin: 0;
+      border: 1.5px solid var(--ink); background: var(--vellum);
+      display: grid; place-items: center; cursor: pointer;
+    }
+    .pick input::after {
+      content: ""; width: 10px; height: 10px; background: var(--vermilion);
+      clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
+      transform: scale(0); transition: transform .12s;
+    }
+    .pick input:checked::after { transform: scale(1.3); }
+    .pick input:focus-visible { outline: 2px solid var(--lapis); outline-offset: 2px; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+    .submit {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      width: 100%;
+      font-family: "IM Fell English SC", serif; font-size: 1.3rem; letter-spacing: .06em;
+      padding: 12px 18px;
+      color: var(--vellum);
+      background: var(--ink);
+      border: 2px solid var(--ink);
+      outline: 1px solid var(--gold); outline-offset: -6px;
+      cursor: pointer;
+      position: relative;
+    }
+    .submit:hover { background: #2e2a23; }
+    .submit[disabled] { opacity: .7; cursor: wait; }
+    .wax {
+      width: 34px; height: 34px; border-radius: 50%; flex: none;
+      background: radial-gradient(circle at 35% 30%, #c9533d, var(--vermilion) 55%, #6e1f12);
+      box-shadow: 0 0 0 3px rgba(163, 50, 31, .35);
+      display: grid; place-items: center;
+    }
+    .wax svg { width: 22px; height: 22px; }
+    .msg { font-style: italic; color: var(--vermilion); min-height: 1.4em; margin: 10px 0 0; font-size: 1rem; }
+    .fine { font-size: .9rem; font-style: italic; color: var(--ink-soft); margin: 6px 0 0; }
+
+    .inscribed { position: relative; padding: 26px 22px 6px; text-align: center; }
+    .inscribed .stamp {
+      display: inline-block; transform: rotate(-6deg);
+      border: 3px double var(--vermilion); color: var(--vermilion);
+      font-family: "IM Fell English SC", serif; font-size: 1.3rem; letter-spacing: .12em;
+      padding: 6px 14px; margin-bottom: 14px;
+    }
+    .inscribed h3 { font-family: "UnifrakturMaguntia", serif; font-weight: 400; font-size: 2rem; margin: 0 0 8px; }
+    .inscribed p { margin: 0; }
+
+
+    /* Jump link (phones only) */
+    .jump {
+      display: none;
+      font-family: "IM Fell English SC", serif; font-size: 1.15rem; letter-spacing: .06em;
+      text-align: center; text-decoration: none;
+      color: var(--vellum); background: var(--vermilion);
+      padding: 10px 16px; margin-top: 4px;
+      outline: 1px solid var(--gold-light); outline-offset: -5px;
+    }
+
+    /* Raven perched on a stack of old books */
+    .perch { margin: 44px 0 0; text-align: center; }
+    .big-raven { width: 190px; height: 173px; margin: 0 auto -6px; color: var(--ink); position: relative; left: 18px; }
+    .books { display: grid; justify-items: center; }
+    .books span {
+      display: block; height: 26px;
+      border: 1px solid rgba(0, 0, 0, .35);
+      box-shadow: inset 0 0 0 3px rgba(226, 194, 117, .0), inset 0 -2px 0 rgba(0, 0, 0, .2);
+      background:
+        linear-gradient(90deg, transparent 12px, var(--gold) 12px 14px, transparent 14px calc(100% - 14px), var(--gold) calc(100% - 14px) calc(100% - 12px), transparent calc(100% - 12px)),
+        var(--c);
+    }
+    .books span:nth-child(1) { width: 200px; --c: var(--lapis); }
+    .books span:nth-child(2) { width: 240px; --c: #5a3d2b; transform: translateX(-8px); }
+    .books span:nth-child(3) { width: 220px; --c: var(--damask); transform: translateX(6px); }
+    .perch figcaption { font-style: italic; color: var(--ink-soft); margin-top: 12px; }
+
+    /* ---------- What lies within: green damask ---------- */
+    .within {
+      color: var(--vellum);
+      background-color: var(--damask);
+      background-image:
+        radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, .35) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='160' viewBox='0 0 120 160'%3E%3Cg fill='none' stroke='%23738560' stroke-width='2' opacity='.75'%3E%3Cpath d='M60 10 C40 30 40 50 60 70 C80 50 80 30 60 10Z'/%3E%3Cpath d='M60 70 C30 60 18 80 30 100 C40 90 50 88 60 90 C70 88 80 90 90 100 C102 80 90 60 60 70Z'/%3E%3Cpath d='M60 90 L60 150'/%3E%3Cpath d='M60 120 C44 112 36 124 42 136'/%3E%3Cpath d='M60 120 C76 112 84 124 78 136'/%3E%3Cpath d='M0 0 C14 14 14 26 0 40 M120 0 C106 14 106 26 120 40'/%3E%3Cpath d='M0 80 C16 96 16 116 0 130 M120 80 C104 96 104 116 120 130'/%3E%3C/g%3E%3Cg fill='%23738560' opacity='.75'%3E%3Ccircle cx='60' cy='40' r='4'/%3E%3Ccircle cx='0' cy='160' r='5'/%3E%3Ccircle cx='120' cy='160' r='5'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Ccircle cx='120' cy='0' r='5'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover, 120px 160px;
+      padding: 72px 16px;
+      border-top: 3px solid var(--gold);
+    }
+    .within-inner { max-width: 1120px; margin: 0 auto; }
+    .within h2 {
+      font-family: "UnifrakturMaguntia", serif; font-weight: 400;
+      font-size: clamp(2.2rem, 5vw, 3.2rem); text-align: center; margin: 0 0 8px; color: var(--gold-light);
+    }
+    .within .lead { text-align: center; font-style: italic; max-width: 40em; margin: 0 auto 44px; color: #e6dcc0; }
+    .tomes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .tome {
+      /* old cloth book covers */
+      padding: 26px 20px 24px;
+      border: 1px solid rgba(226, 194, 117, .6);
+      outline: 1px solid rgba(226, 194, 117, .6); outline-offset: -8px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, .3);
+      text-align: center;
+    }
+    .tome:nth-child(1) { background: #2b3f6a; }
+    .tome:nth-child(2) { background: #5a3d2b; }
+    .tome:nth-child(3) { background: #6d7f95; }
+    .tome:nth-child(4) { background: #2a2620; }
+    .tome svg { width: 44px; height: 44px; margin: 0 auto 12px; color: var(--gold-light); }
+    .tome h3 {
+      font-family: "IM Fell English SC", serif; font-weight: 400; font-size: 1.3rem;
+      margin: 0 0 8px; color: var(--gold-light); letter-spacing: .04em;
+    }
+    .tome p { margin: 0; font-size: 1rem; color: #efe6cf; }
+
+    /* ---------- Puzzle list ---------- */
+    .bestiary { max-width: 1120px; margin: 0 auto; padding: 64px 16px 24px; }
+    .bestiary h2 {
+      font-family: "UnifrakturMaguntia", serif; font-weight: 400; text-align: center;
+      font-size: clamp(2rem, 4.5vw, 2.8rem); margin: 0 0 6px;
+    }
+    .bestiary .lead { text-align: center; font-style: italic; color: var(--ink-soft); max-width: 38em; margin: 0 auto 32px; }
+    .scrolls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .scroll {
+      background: var(--vellum); border: 1px solid #c9b688; padding: 18px 18px 16px;
+      position: relative;
+    }
+    .scroll::before {
       content: attr(data-n);
-      position: absolute; top: 2px; left: 4px;
-      font-family: "Inter", sans-serif; font-size: 0.55rem; font-weight: 600; color: var(--muted);
+      font-family: "Cinzel Decorative", serif; font-weight: 700; color: var(--vermilion);
+      position: absolute; top: 10px; right: 14px; font-size: .9rem;
     }
-    .clue {
-      margin-top: 22px; text-align: center; font-size: 0.9rem; color: var(--muted);
-    }
-    .clue b { color: var(--ink); }
+    .scroll h3 { font-family: "IM Fell English SC", serif; font-weight: 400; margin: 0 0 4px; font-size: 1.2rem; color: var(--lapis); }
+    .scroll p { margin: 0; font-size: 1rem; }
+    .more { text-align: center; font-style: italic; margin: 22px 0 0; color: var(--ink-soft); }
 
-    footer { margin-top: 64px; font-size: 0.85rem; color: var(--muted); text-align: center; }
-    footer a { color: var(--navy); }
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center; padding: 40px 16px 48px; color: var(--ink-soft);
+    }
+    footer .raven { width: 60px; height: 60px; margin: 0 auto 10px; color: var(--ink); }
+    footer .wordmark { font-size: 1.6rem; color: var(--ink); }
+    footer p { margin: 8px 0 0; font-size: 1rem; }
+    footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 20px; margin-top: 12px; font-family: "IM Fell English SC", serif; }
 
-    @media (max-width: 860px) {
-      main { grid-template-columns: 1fr; gap: 40px; margin-top: 32px; }
-      .xw { width: min(100%, 280px); }
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; gap: 28px; }
+      .card-wrap { position: static; }
+      .perch { display: none; }
+      .jump { display: block; }
+      .tomes { grid-template-columns: 1fr 1fr; }
+      .scrolls { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 480px) {
-      .grid-2 { grid-template-columns: 1fr; }
-      .card { padding: 18px; }
+    @media (max-width: 560px) {
+      body { font-size: 1.05rem; }
+      .wordmark { font-size: 1.5rem; }
+      .seal { width: 44px; height: 44px; }
+      .seal svg { width: 32px; height: 32px; }
+      .social a { width: 36px; height: 36px; }
+      .folio { padding: 28px 20px 24px; margin: 14px 8px; box-shadow: 0 0 0 8px var(--vellum), 0 0 0 10px var(--gold), 0 18px 36px rgba(60, 40, 10, .25); outline-offset: 3px; }
+      .dropcap { width: 66px; height: 66px; font-size: 2.6rem; margin-right: 10px; }
+      .libcard { transform: none; }
+      .picks { grid-template-columns: 1fr; }
+      .tomes, .scrolls { grid-template-columns: 1fr; }
+      .line { flex-direction: column; align-items: stretch; gap: 0; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; }
-    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="brand">
-      <div class="logo" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-      <!-- EDIT: your company name -->
-      <span id="brand-name">Your Puzzle Co.</span>
-    </header>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- The raven, drawn as a perched silhouette -->
+      <symbol id="raven" viewBox="0 0 110 100">
+        <path fill="currentColor" d="M105 31 L89 24 C85 18 77 15 70 17 C61 19 55 26 51 34 C43 46 31 58 21 70 L5 90 L13 93 L30 81 C38 79 47 77 55 75 L57 83 L51 93 L55 93 L59 85 L61 93 L65 93 L62 81 C69 73 75 63 76 55 L81 51 L77 48 L83 45 L79 42 L85 39 L87 35 Z"/>
+        <circle cx="79" cy="24" r="1.7" fill="#efe3c6"/>
+        <g fill="none" stroke="#efe3c6" stroke-linecap="round" opacity=".45">
+          <path d="M55 38 C60 50 56 62 36 76" stroke-width="1.2"/>
+          <path d="M50 50 C48 58 42 66 30 74" stroke-width=".9"/>
+          <path d="M45 58 C40 66 34 70 24 76" stroke-width=".8"/>
+        </g>
+      </symbol>
+      <symbol id="fleuron" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 2c1.5 3 4.5 4 4.5 7.2 0 2.2-1.8 3.8-4.5 5.3-2.7-1.5-4.5-3.1-4.5-5.3C7.5 6 10.5 5 12 2zm0 13.6c2 1.3 5.5.6 7.5-1.6-.2 3.4-3 5.8-6.4 6.1L12 22l-1.1-1.9C7.5 19.8 4.7 17.4 4.5 14c2 2.2 5.5 2.9 7.5 1.6z"/>
+      </symbol>
+      <symbol id="corner" viewBox="0 0 46 46">
+        <g fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 42 V4 H42"/>
+          <path d="M10 42 V10 H42" stroke-width="1"/>
+          <path d="M4 4 C14 8 18 14 16 24 C24 18 30 20 34 28" stroke-width="1.4"/>
+        </g>
+        <circle cx="4" cy="4" r="4" fill="currentColor"/>
+        <circle cx="16" cy="24" r="2" fill="currentColor"/>
+        <circle cx="34" cy="28" r="2" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
 
-    <main>
-      <section>
-        <span class="eyebrow">Coming soon</span>
-        <h1>Puzzle books that are <em>seriously</em> fun.</h1>
-        <p class="lede">
-          Crosswords, sudoku, logic grids and word games for curious minds.
-          Our first collection is almost ready. Join the waiting list to hear first.
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="CorvidzzPuzzles home">
+      <span class="seal"><svg><use href="#raven"/></svg></span>
+      <span class="wordmark">CorvidzzPuzzles</span>
+    </a>
+    <nav class="social" aria-label="Social media">
+      <a href="https://www.instagram.com/corvidzzpuzzles/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@corvidzzpuzzles" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.8 5.8 0 1 0 5 5.7V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <div class="tiles" aria-hidden="true"></div>
+
+  <section class="hero">
+    <article class="folio">
+      <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
+      <svg class="corner tr" aria-hidden="true"><use href="#corner"/></svg>
+      <svg class="corner bl" aria-hidden="true"><use href="#corner"/></svg>
+      <svg class="corner br" aria-hidden="true"><use href="#corner"/></svg>
+
+      <p class="kicker">A book of riddles, ciphers &amp; secrets</p>
+      <h1>Can you <span class="red">decode</span> this?</h1>
+
+      <p class="intro">
+        <span class="dropcap" aria-hidden="true">T</span>
+        <span style="position:absolute;left:-9999px">T</span>he Corvids are an ancient family of birds, and the raven chief among them: a creature of storybook magic, known the world over for solving puzzles and riddles.
+        Our books are painted in their honour. Each page is a manuscript of gold-leaf borders, old proverbs, knights and dragons,
+        where every clue hides a <em>modern</em> answer. What the world is talking about this month becomes next month's puzzle.
+      </p>
+      <p class="intro">Join the waitlist for the full book, and be among the first to hear when the ravens take flight.</p>
+      <a class="jump" href="#signup-card">Join the waitlist &darr;</a>
+
+      <div class="rule" aria-hidden="true"><svg><use href="#fleuron"/></svg></div>
+
+      <div class="riddle">
+        <h2>What am I?</h2>
+        <p class="verse">
+          Unseen I dwell in every hall,<br>
+          No body have I, yet answer all.<br>
+          Sever my bond and the whole court moans;<br>
+          Speak thou my secret word, and I am thine own.
         </p>
+        <details>
+          <summary>Reveal the answer</summary>
+          <p class="answer">I am thy <b>Wi-Fi</b>, and my secret word is the password.</p>
+        </details>
+      </div>
+    </article>
 
-        <div class="card" id="signup-card">
-          <form id="waitlist" novalidate>
-            <div class="grid-2">
-              <div>
-                <label class="field" for="name">First name</label>
-                <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Alex">
-              </div>
-              <div>
-                <label class="field" for="email">Email <span aria-hidden="true">*</span></label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-              </div>
+    <div class="card-wrap">
+      <div class="libcard" id="signup-card">
+        <div class="libcard-head">
+          <span class="no">No. 0001</span>
+          <div class="title">Library Card</div>
+          <div class="sub">The Ravens' Waiting List</div>
+        </div>
+
+        <form id="waitlist" novalidate>
+          <div class="line">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Thy name">
+          </div>
+          <div class="line">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
+          </div>
+
+          <fieldset>
+            <legend>Puzzles thou wouldst see <span class="legend-note">(choose any)</span></legend>
+            <div class="picks">
+              <label class="pick"><input type="checkbox" name="puzzles" value="Crosswords"> Crosswords</label>
+              <label class="pick"><input type="checkbox" name="puzzles" value="Cryptic crosswords"> Cryptic crosswords</label>
+              <label class="pick"><input type="checkbox" name="puzzles" value="Word search"> Word search</label>
+              <label class="pick"><input type="checkbox" name="puzzles" value="Ciphers"> Ciphers</label>
+              <label class="pick"><input type="checkbox" name="puzzles" value="Riddles"> Riddles</label>
+              <label class="pick"><input type="checkbox" name="puzzles" value="Logic puzzles"> Logic puzzles</label>
+              <label class="pick"><input type="checkbox" name="puzzles" value="Mazes"> Mazes</label>
+              <label class="pick"><input type="checkbox" name="puzzles" value="Rune sudoku"> Rune sudoku</label>
             </div>
+          </fieldset>
 
-            <fieldset>
-              <legend>What do you love solving? <span style="font-weight:400;color:var(--muted)">(optional)</span></legend>
-              <div class="chips">
-                <label class="chip"><input type="checkbox" name="interests" value="Crosswords"><span>Crosswords</span></label>
-                <label class="chip"><input type="checkbox" name="interests" value="Sudoku"><span>Sudoku</span></label>
-                <label class="chip"><input type="checkbox" name="interests" value="Logic puzzles"><span>Logic puzzles</span></label>
-                <label class="chip"><input type="checkbox" name="interests" value="Word search"><span>Word search</span></label>
-                <label class="chip"><input type="checkbox" name="interests" value="Kids' puzzles"><span>Kids' puzzles</span></label>
-              </div>
-            </fieldset>
+          <!-- Spam trap: real people never see or fill this -->
+          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-            <!-- Spam trap: real people never see or fill this -->
-            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="submit" id="submit">
+            <span class="wax" aria-hidden="true"><svg style="color:#f0d9a8"><use href="#raven"/></svg></span>
+            <span id="submit-label">Seal my place</span>
+          </button>
+          <p class="msg" id="msg" role="status" aria-live="polite"></p>
+          <p class="fine">No spam, only the launch news and the occasional riddle. Leave whenever thou wilt.</p>
+        </form>
+      </div>
 
-            <button type="submit" id="submit">Join the waiting list</button>
-            <p class="msg" id="msg" role="status" aria-live="polite"></p>
-            <p class="fine">No spam. Just a launch announcement and the occasional puzzle. Unsubscribe any time.</p>
-          </form>
+      <figure class="perch" aria-hidden="true">
+        <svg class="big-raven"><use href="#raven"/></svg>
+        <div class="books"><span></span><span></span><span></span></div>
+        <figcaption>The ravens are gathering&hellip;</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="within">
+    <div class="within-inner">
+      <h2>What lies within</h2>
+      <p class="lead">Not all books are alike. Over time new kinds of puzzles join the collection, and the ones readers love most stay.</p>
+      <div class="tomes">
+        <div class="tome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="M10 20v-5h4v5"/><path d="M12 4V2"/></svg>
+          <h3>Voted by the Court</h3>
+          <p>Each month, readers vote on the topics they want to see in the next issues.</p>
         </div>
-
-        <ul class="perks">
-          <li>Early access before the books go on sale</li>
-          <li>An exclusive launch-day discount</li>
-          <li>A free printable puzzle pack when you sign up</li>
-        </ul>
-      </section>
-
-      <aside class="puzzle" aria-hidden="true">
-        <!-- 7x7 mini crossword. "b" = black square, "h" = highlighted answer -->
-        <div class="xw">
-          <div data-n="1" class="h">P</div><div class="h">U</div><div class="h">Z</div><div class="h">Z</div><div class="h">L</div><div class="h">E</div><div class="b"></div>
-          <div></div><div class="b"></div><div></div><div class="b"></div><div></div><div class="b"></div><div data-n="2">S</div>
-          <div data-n="3">B</div><div>O</div><div>O</div><div>K</div><div>S</div><div class="b"></div><div>O</div>
-          <div></div><div class="b"></div><div></div><div class="b"></div><div></div><div class="b"></div><div>O</div>
-          <div class="b"></div><div data-n="4">F</div><div>U</div><div>N</div><div class="b"></div><div class="b"></div><div>N</div>
-          <div></div><div class="b"></div><div></div><div class="b"></div><div></div><div class="b"></div><div class="b"></div>
-          <div class="b"></div><div></div><div class="b"></div><div></div><div class="b"></div><div></div><div class="b"></div>
+        <div class="tome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l2.4 6.9H21l-5.4 4 2 6.9L12 15.8 6.4 19.8l2-6.9L3 8.9h6.6z"/></svg>
+          <h3>A Secret Each Moon</h3>
+          <p>The topic is a surprise, revealed on the first of each month, with clues hidden throughout the month before.</p>
         </div>
-        <p class="clue"><b>2 Down:</b> When our first book arrives (4)</p>
-      </aside>
-    </main>
+        <div class="tome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 3h14v18H5z"/><path d="M8 7h8M8 11h8M8 15h5"/><path d="M15 15l1.5 1.5L19 14"/></svg>
+          <h3>The Puzzle Tracker</h3>
+          <p>The first page of every book keeps count of the puzzles you solve each week and month.</p>
+        </div>
+        <div class="tome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8l4 4 4-7 4 7 4-4-2 11H6z"/><path d="M6 21h12"/></svg>
+          <h3>Points &amp; Treasure</h3>
+          <p>Collect points as you solve, and trade them for limited edition books and prizes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-      <!-- EDIT: your company name and contact email -->
-      &copy; <span id="year"></span> Your Puzzle Co. &middot; <a href="mailto:hello@example.com">hello@example.com</a>
-    </footer>
-  </div>
+  <div class="tiles" aria-hidden="true"></div>
+
+  <section class="bestiary">
+    <h2>A Bestiary of Puzzles</h2>
+    <p class="lead">A glimpse at some of the puzzles being painted for the books.</p>
+    <div class="scrolls">
+      <div class="scroll" data-n="I"><h3>Crossword</h3><p>A grid painted onto a manuscript page with gold-leaf borders, its clues written as old proverbs that hide modern answers.</p></div>
+      <div class="scroll" data-n="II"><h3>Cryptic Crossword</h3><p>Each clue a riddling line of verse from a scribe, with wordplay leading to answers like STREAMING or PLAYLIST.</p></div>
+      <div class="scroll" data-n="III"><h3>Word Search</h3><p>A dense block of blackletter script that looks like an ordinary page of ancient text, secretly hiding trending words.</p></div>
+      <div class="scroll" data-n="IV"><h3>Rebus</h3><p>A row of tiny medieval pictures (a raven, a key, a crown) that combine to spell out a modern word or phrase.</p></div>
+      <div class="scroll" data-n="V"><h3>Rune Sudoku</h3><p>A 9&times;9 grid set inside a stained-glass window, using runes or heraldic symbols instead of numbers.</p></div>
+      <div class="scroll" data-n="VI"><h3>Truth-teller &amp; Liar</h3><p>Three castle guards each make a statement, and you must work out who lies to find the right door.</p></div>
+      <div class="scroll" data-n="VII"><h3>Caesar Cipher</h3><p>A rotating wheel drawn like an astrolabe, turned to shift the letters and decode a prophecy.</p></div>
+      <div class="scroll" data-n="VIII"><h3>Quest Map</h3><p>A painted fantasy map where each landmark holds a puzzle, and the answers reveal the path to the treasure.</p></div>
+      <div class="scroll" data-n="IX"><h3>The Meta Puzzle</h3><p>The answers from every chapter combine at the end of the book to unlock the ravens' final secret.</p></div>
+    </div>
+    <p class="more">…and many more besides: mazes, nonograms, magic squares, pigpen ciphers, acrostics and alchemists' riddles.</p>
+  </section>
+
+  <footer>
+    <svg class="raven" aria-hidden="true"><use href="#raven"/></svg>
+    <div class="wordmark">CorvidzzPuzzles</div>
+    <nav aria-label="Contact">
+      <a href="mailto:corvidzzpuzzles@gmail.com">corvidzzpuzzles@gmail.com</a>
+      <a href="https://www.instagram.com/corvidzzpuzzles/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@corvidzzpuzzles" target="_blank" rel="noopener">TikTok</a>
+    </nav>
+    <p>&copy; <span id="year"></span> CorvidzzPuzzles &middot; corvidzz.com</p>
+  </footer>
 
   <script>
     // ===== SETUP =====
-    // 1. Create a free form at https://formspree.io (sign in, "New form").
+    // 1. Create a free form at https://formspree.io using corvidzzpuzzles@gmail.com.
     // 2. Paste the endpoint it gives you below, e.g. "https://formspree.io/f/abcdwxyz".
-    // Every sign-up will then show up in your Formspree dashboard (and your inbox),
-    // and you can export the list as CSV.
+    // Every sign-up then appears in the Formspree dashboard and your inbox,
+    // and the whole list can be exported as CSV.
     const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
     // =================
 
@@ -316,12 +609,10 @@
     const form = document.getElementById("waitlist");
     const msg = document.getElementById("msg");
     const submit = document.getElementById("submit");
+    const submitLabel = document.getElementById("submit-label");
     const card = document.getElementById("signup-card");
 
-    function showError(text) {
-      msg.className = "msg err";
-      msg.textContent = text;
-    }
+    function showError(text) { msg.textContent = text; }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -329,23 +620,23 @@
 
       const email = form.email.value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError("Please enter a valid email address.");
+        showError("Alas, that email looks amiss. Please check it.");
         form.email.focus();
         return;
       }
 
       if (FORM_ENDPOINT.includes("YOUR_FORM_ID")) {
-        showError("Almost there! The site owner still needs to connect this form (see FORM_ENDPOINT in index.html).");
+        showError("The ledger is not yet open. (Site owner: set FORM_ENDPOINT in index.html.)");
         return;
       }
 
       const data = new FormData(form);
-      const interests = data.getAll("interests");
-      data.delete("interests");
-      data.append("interests", interests.join(", ") || "(none selected)");
+      const puzzles = data.getAll("puzzles");
+      data.delete("puzzles");
+      data.append("puzzles", puzzles.join(", ") || "(none chosen)");
 
       submit.disabled = true;
-      submit.textContent = "Joining…";
+      submitLabel.textContent = "Sealing…";
 
       try {
         const res = await fetch(FORM_ENDPOINT, {
@@ -355,17 +646,18 @@
         });
         if (!res.ok) throw new Error("Request failed");
 
-        const name = form.name.value.trim();
+        const name = form.name.value.trim().replace(/[<>&"]/g, "");
         card.innerHTML =
-          '<div class="success">' +
-            '<div class="check" aria-hidden="true">&#10003;</div>' +
-            '<h2>You\'re on the list' + (name ? ", " + name.replace(/[<>&"]/g, "") : "") + '!</h2>' +
-            '<p>We\'ll email you as soon as our first puzzle book is ready.</p>' +
+          '<div class="libcard-head"><div class="title">Library Card</div><div class="sub">The Ravens\' Waiting List</div></div>' +
+          '<div class="inscribed">' +
+            '<div class="stamp">Inscribed</div>' +
+            '<h3>' + (name ? "Welcome, " + name : "Welcome, solver") + '</h3>' +
+            '<p>Thy name is written in the ledger. The ravens shall bring word when the book is ready.</p>' +
           '</div>';
       } catch (err) {
-        showError("Something went wrong. Please try again in a moment.");
+        showError("A storm has scattered the ravens. Please try again in a moment.");
         submit.disabled = false;
-        submit.textContent = "Join the waiting list";
+        submitLabel.textContent = "Seal my place";
       }
     });
   </script>
