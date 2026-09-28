@@ -366,14 +366,15 @@
     .tome:nth-child(even) { transform: rotate(1deg) translateY(10px); }
     .tome .cover {
       height: 130px; display: grid; place-items: center;
-      border-bottom: 2px solid var(--sepia-soft);
-      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .15), transparent 60%), var(--c, var(--lapis));
+      margin: 10px 10px 0;
+      border-bottom: 1px solid var(--sepia-soft);
+      background:
+        repeating-linear-gradient(45deg, rgba(110, 82, 48, .07) 0 1px, transparent 1px 7px),
+        radial-gradient(ellipse at 50% 50%, var(--parchment-light), #d9c497);
+      box-shadow: inset 0 0 0 1px var(--sepia-soft), inset 0 0 0 4px var(--parchment-light), inset 0 0 0 5px var(--sepia-soft);
     }
-    .tome:nth-child(1) .cover { --c: var(--lapis); }
-    .tome:nth-child(2) .cover { --c: #243f63; }
-    .tome:nth-child(3) .cover { --c: #7c4a3a; }
-    .tome:nth-child(4) .cover { --c: #4d6b3d; }
-    .tome .cover svg { width: 64px; height: 64px; color: var(--gold-light); filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .3)); }
+    .tome .cover .medal { width: 82px; height: 82px; }
+    .tome .cover svg { width: 46px; height: 46px; color: var(--lapis-deep); }
     .tome .body { padding: 18px 18px 22px; }
     .tome h3 { font-family: "Cinzel Decorative", serif; font-size: 1.15rem; margin: 0 0 8px; color: var(--lapis-deep); line-height: 1.25; }
     .tome p { margin: 0; font-size: 1.02rem; }
@@ -714,19 +715,19 @@
     <p class="section-lead">Not all books are alike. Over time new puzzles join the collection, and the ones readers love most are kept.</p>
     <div class="tomes">
       <article class="tome">
-        <div class="cover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 21h18M5 21V11l7-6 7 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/><path d="M12 5V2l3 1-3 1"/><path d="M3 11l2 0M19 11h2"/></svg></div>
+        <div class="cover"><span class="medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 21h18M5 21V11l7-6 7 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/><path d="M12 5V2l3 1-3 1"/><path d="M3 11l2 0M19 11h2"/></svg></span></div>
         <div class="body"><h3>Voted by the Court</h3><p>Each month, readers vote on the topics they want to see in the next issues.</p></div>
       </article>
       <article class="tome">
-        <div class="cover"><svg aria-hidden="true"><use href="#moon"/></svg></div>
+        <div class="cover"><span class="medal"><svg aria-hidden="true"><use href="#moon"/></svg></span></div>
         <div class="body"><h3>A Secret Each Moon</h3><p>The topic stays a surprise until the first of each month, with clues hidden all through the month before.</p></div>
       </article>
       <article class="tome">
-        <div class="cover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h12"/><path d="M8 7h7M8 10h5"/></svg></div>
+        <div class="cover"><span class="medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h12"/><path d="M8 7h7M8 10h5"/></svg></span></div>
         <div class="body"><h3>The Puzzle Tracker</h3><p>The first page of every book keeps count of the puzzles you solve each week and month.</p></div>
       </article>
       <article class="tome">
-        <div class="cover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8l4.5 4L12 4l4.5 8L21 8l-2 11H5z"/><path d="M5 22h14"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/></svg></div>
+        <div class="cover"><span class="medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8l4.5 4L12 4l4.5 8L21 8l-2 11H5z"/><path d="M5 22h14"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/></svg></span></div>
         <div class="body"><h3>Points &amp; Treasure</h3><p>Collect points as you solve, and trade them for limited edition books and prizes.</p></div>
       </article>
     </div>
