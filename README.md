@@ -9,6 +9,7 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 ## What's on the page
 
 - **Hero:** an arched parchment panel with the raven, "Can you decode this?" and the sign-up form inside the vintage library card. The form asks for name, email and which puzzle types the person wants to see.
+- **Try a Page:** an open puzzle book with a playable mini crossword and a three-step secret code to crack
 - **Once Upon a Time:** the story behind the name with an illuminated "A", plus the "What am I?" Wi-Fi riddle
 - **What Lies Within:** monthly topic votes, the secret topic revealed on the 1st, the puzzle tracker, and points for limited editions
 - **A Bestiary of Puzzles:** nine of the planned puzzle types
