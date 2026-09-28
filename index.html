@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CorvidzzPuzzles | Join the Waiting List</title>
-  <meta name="description" content="Fairy-tale puzzle books painted like medieval manuscripts: riddles, ciphers, mazes and crosswords that hide modern answers. Can you decode this? Join the waitlist for the full book.">
+  <meta name="description" content="Today's pop culture, disguised as a medieval manuscript. Viral trends, the shows everyone is watching, the songs on repeat and the internet's latest drama, turned into riddles, ciphers and crosswords. Join the waitlist.">
   <meta property="og:title" content="CorvidzzPuzzles | Can you decode this?">
-  <meta property="og:description" content="Fairy-tale puzzle books painted like medieval manuscripts. Join the waitlist for the full book.">
+  <meta property="og:description" content="Today's pop culture, disguised as a medieval manuscript. A new trending topic every month, turned into riddles, ciphers and crosswords.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://corvidzz.com/">
   <meta property="og:image" content="https://corvidzz.com/assets/img/share-preview.jpg">
@@ -246,6 +246,38 @@
     .panel .section-title { color: var(--lapis-deep); text-shadow: none; }
     .panel .section-title .i-red { color: var(--vermilion); }
 
+    /* ---------- Ancient riddles, modern answers ---------- */
+    .tagline {
+      font-family: "Cinzel", serif; font-weight: 700; font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      color: var(--vermilion); margin: 0 auto 12px; max-width: 30em; line-height: 1.35;
+    }
+    .oracles { max-width: 1180px; margin: 0 auto; padding: 80px 16px 10px; }
+    .oracle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .oracle {
+      position: relative;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at 50% 30%, var(--parchment-light), var(--parchment));
+      box-shadow: inset 0 0 0 1px var(--sepia-soft), inset 0 0 0 5px var(--parchment-light), inset 0 0 0 6px var(--sepia-soft), 0 16px 32px rgba(0, 0, 0, .45);
+      padding: 26px 26px 22px;
+      text-align: center;
+    }
+    .oracle summary { display: block; cursor: pointer; list-style: none; border: 0; }
+    .oracle summary::-webkit-details-marker { display: none; }
+    .oracle .olde { display: block; font-family: "IM Fell English", Georgia, serif; font-style: italic; font-size: 1.12rem; line-height: 1.6; color: var(--ink); margin-bottom: 14px; }
+    .oracle .reveal {
+      display: inline-block; font-family: "IM Fell English SC", serif; font-size: .98rem; letter-spacing: .04em;
+      color: var(--vermilion); border-bottom: 1px dashed var(--vermilion);
+    }
+    .oracle[open] .reveal { display: none; }
+    .oracle .modern {
+      margin: 0; padding: 10px 14px;
+      font-family: "Cinzel", serif; font-weight: 800; font-size: 1.25rem; letter-spacing: .02em;
+      color: #fff; background: var(--lapis-deep);
+      outline: 1px solid var(--gold-light); outline-offset: -5px;
+    }
+    .oracles .more { margin-top: 28px; }
+
     /* ---------- Try a page: open puzzle book ---------- */
     .sample { max-width: 1120px; margin: 0 auto; padding: 80px 16px 20px; }
     .book {
@@ -436,6 +468,12 @@
       .scrolls { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 820px) {
+      .oracle-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .oracle-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
       .book { grid-template-columns: 1fr; gap: 10px; }
       .page.left, .page.right { border-radius: 6px; }
       .page.left::after, .page.right::after { display: none; }
@@ -569,7 +607,8 @@
       <img class="hero-logo" src="assets/img/logo.png" width="480" height="480" alt="CorvidzzPuzzles logo">
       <p class="kicker">&#10022; A Puzzle Book &middot; Volume I &middot; Coming Soon &#10022;</p>
       <h1>Can you decode this?</h1>
-      <p class="lede">A fairy-tale puzzle book of crosswords, ciphers, riddles and mazes, painted like an old manuscript, where every clue hides a modern answer. Join the waitlist for the full book.</p>
+      <p class="tagline">Today's pop culture, disguised as a medieval manuscript.</p>
+      <p class="lede">The viral trends, the shows everyone is binge-watching, the songs on repeat and the internet's latest drama, all turned into riddles, ciphers and crosswords. A new topic every month, chosen by readers.</p>
       <div class="flourish" aria-hidden="true"><svg><use href="#flourish"/></svg></div>
 
       <div class="card-wrap">
@@ -597,6 +636,19 @@
                 <label class="pick"><input type="checkbox" name="puzzles" value="Quest maps"> Quest maps</label>
               </div>
             </fieldset>
+            <fieldset>
+              <legend>Topics thou lovest <i>(choose any)</i></legend>
+              <div class="picks">
+                <label class="pick"><input type="checkbox" name="topics" value="TV and streaming"> TV &amp; streaming</label>
+                <label class="pick"><input type="checkbox" name="topics" value="Music"> Music</label>
+                <label class="pick"><input type="checkbox" name="topics" value="Movies"> Movies</label>
+                <label class="pick"><input type="checkbox" name="topics" value="Memes and internet"> Memes &amp; internet</label>
+                <label class="pick"><input type="checkbox" name="topics" value="Celebrities"> Celebrities</label>
+                <label class="pick"><input type="checkbox" name="topics" value="Gaming"> Gaming</label>
+                <label class="pick"><input type="checkbox" name="topics" value="Sports"> Sports</label>
+                <label class="pick"><input type="checkbox" name="topics" value="Headlines"> Headlines</label>
+              </div>
+            </fieldset>
 
             <!-- Spam trap: real people never see or fill this -->
             <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -616,48 +668,98 @@
 
   <div class="tiles" aria-hidden="true"></div>
 
+  <section class="oracles" aria-labelledby="oracles-title">
+    <h2 class="section-title" id="oracles-title"><span class="i-red">A</span>ncient Riddles, Modern Answers</h2>
+    <p class="section-lead">The book looks like it was written five hundred years ago, but every puzzle is about what's happening right now: the trends, the shows, the music, the memes and the headlines everyone is talking about. Tap a riddle to see.</p>
+    <div class="oracle-grid">
+      <details class="oracle">
+        <summary>
+          <span class="olde">&ldquo;A glowing mirror that answereth every question, and is never more than an arm's length from its keeper.&rdquo;</span>
+          <span class="reveal">Reveal the modern answer</span>
+        </summary>
+        <p class="modern">A smartphone</p>
+      </details>
+      <details class="oracle">
+        <summary>
+          <span class="olde">&ldquo;A scroll that hath no end, read by the whole kingdom by candlelight when they ought to be asleep.&rdquo;</span>
+          <span class="reveal">Reveal the modern answer</span>
+        </summary>
+        <p class="modern">Doomscrolling</p>
+      </details>
+      <details class="oracle">
+        <summary>
+          <span class="olde">&ldquo;A tale told in many chapters, which the court watcheth one after another until the cock crows.&rdquo;</span>
+          <span class="reveal">Reveal the modern answer</span>
+        </summary>
+        <p class="modern">Binge-watching</p>
+      </details>
+      <details class="oracle">
+        <summary>
+          <span class="olde">&ldquo;A minstrel's tune that every soul in the land hath heard twenty times since the last full moon.&rdquo;</span>
+          <span class="reveal">Reveal the modern answer</span>
+        </summary>
+        <p class="modern">The song of the summer</p>
+      </details>
+      <details class="oracle">
+        <summary>
+          <span class="olde">&ldquo;A tiny moving picture, passed from hand to hand until the whole realm hath laughed at it.&rdquo;</span>
+          <span class="reveal">Reveal the modern answer</span>
+        </summary>
+        <p class="modern">A viral video</p>
+      </details>
+      <details class="oracle">
+        <summary>
+          <span class="olde">&ldquo;A great quarrel among the nobles, which every peasant followeth closely though none were invited.&rdquo;</span>
+          <span class="reveal">Reveal the modern answer</span>
+        </summary>
+        <p class="modern">Celebrity drama online</p>
+      </details>
+    </div>
+    <p class="more">Each month the book takes on whatever the world is talking about, from the newest streaming hit to the latest internet obsession.</p>
+  </section>
+
   <section class="sample" aria-labelledby="sample-title">
     <h2 class="section-title" id="sample-title"><span class="i-red">T</span>ry a Page</h2>
-    <p class="section-lead">A little taste of what lies inside the book. Solve them both, if thou canst.</p>
+    <p class="section-lead">A little taste of the book: old-fashioned clues, answers straight from the internet. Solve them both, if thou canst.</p>
 
     <div class="book">
       <div class="page left">
         <h3>A Crossword</h3>
         <p class="how">Click a square and write thy answer.</p>
         <div class="xw" id="xw">
-            <div class="cell" data-a="R"><span class="num">1</span><input maxlength="1" aria-label="Row 1, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="A"><input maxlength="1" aria-label="Row 1, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="V"><input maxlength="1" aria-label="Row 1, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="E"><input maxlength="1" aria-label="Row 1, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="N"><span class="num">2</span><input maxlength="1" aria-label="Row 1, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="O"><input maxlength="1" aria-label="Row 2, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="V"><span class="num">1</span><input maxlength="1" aria-label="Row 1, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="I"><input maxlength="1" aria-label="Row 1, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="R"><input maxlength="1" aria-label="Row 1, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="A"><input maxlength="1" aria-label="Row 1, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="L"><span class="num">2</span><input maxlength="1" aria-label="Row 1, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="I"><input maxlength="1" aria-label="Row 2, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
             <div class="cell" data-a="O"><input maxlength="1" aria-label="Row 2, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="O"><input maxlength="1" aria-label="Row 3, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="B"><input maxlength="1" aria-label="Row 3, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
-            <div class="cell" data-a="V"><input maxlength="1" aria-label="Row 3, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="K"><span class="num">3</span><input maxlength="1" aria-label="Row 4, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="N"><input maxlength="1" aria-label="Row 4, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="A"><input maxlength="1" aria-label="Row 4, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="V"><input maxlength="1" aria-label="Row 4, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-            <div class="cell" data-a="E"><input maxlength="1" aria-label="Row 4, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="G"><input maxlength="1" aria-label="Row 3, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="E"><span class="num">3</span><input maxlength="1" aria-label="Row 4, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="M"><input maxlength="1" aria-label="Row 4, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="O"><input maxlength="1" aria-label="Row 4, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="J"><input maxlength="1" aria-label="Row 4, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="I"><input maxlength="1" aria-label="Row 4, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
-            <div class="cell" data-a="L"><input maxlength="1" aria-label="Row 5, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+            <div class="cell" data-a="N"><input maxlength="1" aria-label="Row 5, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
         </div>
         <div class="clues">
           <h4>Across</h4>
-          <p><b>1</b> Black-feathered keeper of riddles, for whom this book is named (5)</p>
-          <p><b>3</b> A rascal of the royal court, or the jack in a deck of cards (5)</p>
+          <p><b>1</b> Spreadeth faster than the plague, yet no one falleth ill (5)</p>
+          <p><b>3</b> A tiny painted face, sent by messenger to show one's mood (5)</p>
           <h4>Down</h4>
-          <p><b>1</b> A cousin of the raven, or a castle upon the chessboard (4)</p>
-          <p><b>2</b> A long tale bound between two covers (5)</p>
+          <p><b>1</b> The feeling in the air, as the young ones of the court say (4)</p>
+          <p><b>2</b> The secret words spoken to pass the gate of one's account (5)</p>
         </div>
         <button type="button" class="try-btn" id="xw-check">Check my answers</button>
         <p class="verdict" id="xw-verdict" role="status" aria-live="polite"></p>
@@ -675,7 +777,7 @@
           <path d="M75 45 L79 75 L75 105 L71 75Z" fill="#c8963a" stroke="currentColor" stroke-width=".8"/>
           <circle cx="75" cy="75" r="4" fill="currentColor"/>
         </svg>
-        <p class="cipher-text" aria-label="Coded message: W K H, U D Y H Q V, D U H, F R P L Q J">WKH UDYHQV<br>DUH FRPLQJ</p>
+        <p class="cipher-text" aria-label="Coded message: O L N H, D Q G, V X E V F U L E H">OLNH DQG<br>VXEVFULEH</p>
         <form class="guess" id="cipher-form">
           <label for="cipher-guess" style="position:absolute;left:-9999px">Your decoded message</label>
           <input id="cipher-guess" type="text" placeholder="Thy decoded message" autocomplete="off">
@@ -685,7 +787,7 @@
         <span class="folio-no">~ ii ~</span>
       </div>
     </div>
-    <p class="more">The full book holds dozens of puzzles like these, and many harder. <a href="#signup">Join the waitlist</a> to be the first to open it.</p>
+    <p class="more">The full book holds dozens of puzzles like these, all about what's trending that month. <a href="#signup">Join the waitlist</a> to be the first to open it.</p>
   </section>
 
   <section class="tale">
@@ -696,7 +798,8 @@
       </p>
       <p>
         Every page is painted like a manuscript from a fairy tale, full of gold-leaf borders, castles, dragons, knights and flowers.
-        The clues are old proverbs and riddling verse, but the answers are <em>modern</em>, and the topics are the ones the world is talking about right now.
+        But look closer. The knights are rival fandoms, the royal proclamation is last week's viral post, and the wise old riddle is about your group chat.
+        <strong>The book is about pop culture, right now:</strong> the shows, the music, the memes, the celebrities and the headlines everyone is talking about this month.
       </p>
     </div>
 
@@ -718,15 +821,15 @@
 
   <section class="within">
     <h2 class="section-title"><span class="i-red">W</span>hat Lies Within</h2>
-    <p class="section-lead">Not all books are alike. Over time new puzzles join the collection, and the ones readers love most are kept.</p>
+    <p class="section-lead">Every issue follows what the world is talking about. Over time new puzzles join the collection, and the ones readers love most are kept.</p>
     <div class="tomes">
       <article class="tome">
         <div class="cover"><span class="medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 21h18M5 21V11l7-6 7 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/><path d="M12 5V2l3 1-3 1"/><path d="M3 11l2 0M19 11h2"/></svg></span></div>
-        <div class="body"><h3>Voted by the Court</h3><p>Each month, readers vote on the topics they want to see in the next issues.</p></div>
+        <div class="body"><h3>Voted by the Court</h3><p>Each month, readers vote on which trends, shows, songs and headlines get the ancient treatment next.</p></div>
       </article>
       <article class="tome">
         <div class="cover"><span class="medal"><svg aria-hidden="true"><use href="#moon"/></svg></span></div>
-        <div class="body"><h3>A Secret Each Moon</h3><p>The topic stays a surprise until the first of each month, with clues hidden all through the month before.</p></div>
+        <div class="body"><h3>A Secret Each Moon</h3><p>A new pop-culture topic is revealed on the first of each month, with clues hidden all through the month before.</p></div>
       </article>
       <article class="tome">
         <div class="cover"><span class="medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h12"/><path d="M8 7h7M8 10h5"/></svg></span></div>
@@ -741,15 +844,15 @@
 
   <section class="bestiary">
     <h2 class="section-title"><span class="i-red">A</span> Bestiary of Puzzles</h2>
-    <p class="section-lead">A glimpse of the puzzles being painted for the books.</p>
+    <p class="section-lead">Old-world puzzles, every one of them hiding something from this month's feed.</p>
     <div class="scrolls">
-      <div class="scroll"><span class="medal">I</span><div><h3>Crossword</h3><p>A grid painted onto a manuscript page with gold-leaf borders, its clues old proverbs that hide modern answers.</p></div></div>
+      <div class="scroll"><span class="medal">I</span><div><h3>Crossword</h3><p>A grid painted onto a manuscript page with gold-leaf borders, its clues old proverbs hiding this month's trending words.</p></div></div>
       <div class="scroll"><span class="medal">II</span><div><h3>Cryptic Crossword</h3><p>Each clue a riddling line of verse from a scribe, leading to answers like STREAMING or PLAYLIST.</p></div></div>
-      <div class="scroll"><span class="medal">III</span><div><h3>Word Search</h3><p>An ordinary-looking page of ancient script, secretly hiding the words everyone is talking about.</p></div></div>
+      <div class="scroll"><span class="medal">III</span><div><h3>Word Search</h3><p>An ordinary-looking page of ancient script, secretly hiding the words everyone is posting about.</p></div></div>
       <div class="scroll"><span class="medal">IV</span><div><h3>Rebus</h3><p>A row of tiny medieval pictures (a raven, a key, a crown) that combine to spell a modern word or phrase.</p></div></div>
-      <div class="scroll"><span class="medal">V</span><div><h3>Rune Sudoku</h3><p>A 9&times;9 grid set inside a stained-glass window, with runes and heraldic symbols in place of numbers.</p></div></div>
-      <div class="scroll"><span class="medal">VI</span><div><h3>Truth-teller &amp; Liar</h3><p>Three castle guards each make a statement. Work out who lies to find the right door.</p></div></div>
-      <div class="scroll"><span class="medal">VII</span><div><h3>Caesar Cipher</h3><p>A rotating wheel drawn like an astrolabe, turned to shift the letters and decode a prophecy.</p></div></div>
+      <div class="scroll"><span class="medal">V</span><div><h3>Rune Sudoku</h3><p>A 9&times;9 grid set inside a stained-glass window, with runes and emoji-like heraldic symbols in place of numbers.</p></div></div>
+      <div class="scroll"><span class="medal">VI</span><div><h3>Truth-teller &amp; Liar</h3><p>Three castle guards each spread a rumour. Work out which one is fake news to find the right door.</p></div></div>
+      <div class="scroll"><span class="medal">VII</span><div><h3>Caesar Cipher</h3><p>A rotating wheel drawn like an astrolabe, turned to shift the letters and decode a message about the latest headline.</p></div></div>
       <div class="scroll"><span class="medal">VIII</span><div><h3>Quest Map</h3><p>A painted fantasy map where every landmark holds a puzzle, and the answers reveal the path to the treasure.</p></div></div>
       <div class="scroll"><span class="medal">IX</span><div><h3>The Ravens' Secret</h3><p>The answers from every chapter combine at the end of the book to unlock the ravens' final secret.</p></div></div>
     </div>
@@ -761,7 +864,7 @@
       <span class="sparkle" style="width:44px;height:68px;right:14%;bottom:-30px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
       <svg class="raven" aria-hidden="true"><use href="#raven"/></svg>
       <h2 class="section-title"><span class="i-red">T</span>he Ravens Are Gathering</h2>
-      <p>Each month a new puzzle is illuminated and shared on Instagram and TikTok. Can you decode it? Put your name in the ledger and be the first to hear when the book is ready.</p>
+      <p>Each month we take whatever is trending, illuminate it as a manuscript puzzle and share it on Instagram and TikTok. Can you decode it? Put your name in the ledger and be the first to hear when the book is ready.</p>
       <a class="btn" href="#signup">&#10022; Join the Waitlist &#10022;</a>
     </div>
   </section>
@@ -948,10 +1051,10 @@
         e.preventDefault();
         const guess = document.getElementById("cipher-guess").value.toUpperCase().replace(/[^A-Z]/g, "");
         const out = document.getElementById("cipher-verdict");
-        if (guess === "THERAVENSARECOMING") {
-          out.className = "verdict win"; out.textContent = "Thou hast cracked it: \u201cThe ravens are coming.\u201d Join the waitlist to meet them.";
+        if (guess === "LIKEANDSUBSCRIBE") {
+          out.className = "verdict win"; out.textContent = "Thou hast cracked it: \u201cLike and subscribe.\u201d Even the ravens are online now.";
         } else {
-          out.className = "verdict lose"; out.textContent = "Not quite. Hint: W becomes T, and K becomes H.";
+          out.className = "verdict lose"; out.textContent = "Not quite. Hint: O becomes L, and D becomes A.";
         }
       });
     })();
@@ -994,6 +1097,9 @@
       const puzzles = data.getAll("puzzles");
       data.delete("puzzles");
       data.append("puzzles", puzzles.join(", ") || "(none chosen)");
+      const topics = data.getAll("topics");
+      data.delete("topics");
+      data.append("topics", topics.join(", ") || "(none chosen)");
 
       submit.disabled = true;
       submitLabel.textContent = "Inscribing…";
