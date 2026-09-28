@@ -126,7 +126,7 @@
     .panel > .garland .tendril { fill: none; stroke: var(--sepia); stroke-width: .9; stroke-linecap: round; }
 
     /* Sun and sparkles (drawn after the storybook border) */
-    .sun { position: absolute; width: 210px; height: 210px; top: -54px; left: -70px; z-index: 2; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
+    .sun { position: absolute; width: 240px; height: auto; top: -60px; left: -86px; z-index: 2; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
     .sparkle { position: absolute; z-index: 2; color: var(--gold); filter: drop-shadow(0 0 5px rgba(236, 200, 111, .7)); }
     .sparkle svg { width: 100%; height: 100%; }
 
@@ -363,7 +363,7 @@
       .tale .panel { padding: 46px var(--pad-x) 40px; }
       .riddle { --arch: 150px; padding: 86px var(--pad-x) 40px; }
       .finale .panel { --arch: 160px; padding: 92px var(--pad-x) 44px; }
-      .sun { width: 124px; height: 124px; top: -34px; left: -26px; }
+      .sun { width: 140px; top: -40px; left: -30px; }
       .hero-raven { width: 84px; height: 76px; }
       .card-sub { padding: 10px 12px 6px; font-size: .85rem; }
       form { padding: 12px 12px 16px; }
@@ -400,44 +400,6 @@
       <symbol id="sparkle" viewBox="-50 -50 100 100">
         <path fill="currentColor" stroke="#8a6420" stroke-width=".8" d="M0.0 -50.0L1.2 -3.0L9.2 -9.2L3.0 -1.2L32.0 0.0L3.0 1.2L9.2 9.2L1.2 3.0L0.0 50.0L-1.2 3.0L-9.2 9.2L-3.0 1.2L-32.0 0.0L-3.0 -1.2L-9.2 -9.2L-1.2 -3.0Z"/>
       </symbol>
-      <!-- The sun with a face -->
-      <symbol id="sun" viewBox="-62 -62 124 124">
-        <defs>
-          <radialGradient id="sunface" cx="40%" cy="35%" r="70%">
-            <stop offset="0" stop-color="#fbe08a"/>
-            <stop offset=".6" stop-color="#f0bf45"/>
-            <stop offset="1" stop-color="#d9962a"/>
-          </radialGradient>
-          <linearGradient id="sunray" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f7d170"/>
-            <stop offset="1" stop-color="#e2a43a"/>
-          </linearGradient>
-        </defs>
-        <path fill="url(#sunray)" stroke="#a8741f" stroke-width=".8" stroke-linejoin="round" d="M29.8 -3.7Q43.5 -6.9 57.9 4.0Q43.3 7.6 29.8 3.7ZM28.9 8.0Q37.0 8.9 41.2 20.5Q32.0 20.4 26.1 14.8ZM23.6 18.5Q35.6 25.9 38.1 43.8Q25.2 36.0 18.5 23.6ZM14.8 26.1Q19.9 32.4 14.6 43.6Q8.2 37.1 8.0 28.9ZM3.7 29.8Q6.9 43.5 -4.0 57.9Q-7.6 43.3 -3.7 29.8ZM-8.0 28.9Q-8.9 37.0 -20.5 41.2Q-20.4 32.0 -14.8 26.1ZM-18.5 23.6Q-25.9 35.6 -43.8 38.1Q-36.0 25.2 -23.6 18.5ZM-26.1 14.8Q-32.4 19.9 -43.6 14.6Q-37.1 8.2 -28.9 8.0ZM-29.8 3.7Q-43.5 6.9 -57.9 -4.0Q-43.3 -7.6 -29.8 -3.7ZM-28.9 -8.0Q-37.0 -8.9 -41.2 -20.5Q-32.0 -20.4 -26.1 -14.8ZM-23.6 -18.5Q-35.6 -25.9 -38.1 -43.8Q-25.2 -36.0 -18.5 -23.6ZM-14.8 -26.1Q-19.9 -32.4 -14.6 -43.6Q-8.2 -37.1 -8.0 -28.9ZM-3.7 -29.8Q-6.9 -43.5 4.0 -57.9Q7.6 -43.3 3.7 -29.8ZM8.0 -28.9Q8.9 -37.0 20.5 -41.2Q20.4 -32.0 14.8 -26.1ZM18.5 -23.6Q25.9 -35.6 43.8 -38.1Q36.0 -25.2 23.6 -18.5ZM26.1 -14.8Q32.4 -19.9 43.6 -14.6Q37.1 -8.2 28.9 -8.0Z"/>
-        <circle r="31" fill="url(#sunface)" stroke="#a8741f" stroke-width="1.2"/>
-        <g fill="none" stroke="#8a5a14" stroke-linecap="round" stroke-width="1.3">
-          <!-- brows -->
-          <path d="M-18 -12 Q-11 -17 -4 -12"/>
-          <path d="M4 -12 Q11 -17 18 -12"/>
-          <!-- sleepy eyes -->
-          <path d="M-17 -5 Q-11 -9 -5 -5"/>
-          <path d="M-17 -5 Q-11 -2 -5 -5" stroke-width=".9"/>
-          <path d="M5 -5 Q11 -9 17 -5"/>
-          <path d="M5 -5 Q11 -2 17 -5" stroke-width=".9"/>
-          <!-- nose -->
-          <path d="M0 -8 Q-2 2 -4 6 Q0 8 3 6"/>
-          <!-- smile -->
-          <path d="M-9 14 Q0 20 9 14"/>
-          <path d="M-6 17.5 Q0 19.5 6 17.5" stroke-width=".7"/>
-          <!-- engraved cheek and chin lines -->
-          <path d="M-22 6 Q-19 12 -14 14" stroke-width=".7"/>
-          <path d="M22 6 Q19 12 14 14" stroke-width=".7"/>
-          <path d="M-5 24 Q0 26 5 24" stroke-width=".7"/>
-        </g>
-        <g fill="#8a5a14"><circle cx="-11" cy="-5" r="1.4"/><circle cx="11" cy="-5" r="1.4"/></g>
-        <g fill="#e8906a" opacity=".45"><circle cx="-16" cy="8" r="5"/><circle cx="16" cy="8" r="5"/></g>
-      </symbol>
-
       <!-- Engraved garland pieces (sepia line art) -->
       <symbol id="g-rose" viewBox="-13 -13 26 26" overflow="visible">
         <g fill="#efe2c2" stroke="#6e5230" stroke-width=".9" stroke-linejoin="round">
@@ -508,7 +470,7 @@
     <span class="twinkle" style="bottom:60px;right:2%;width:18px;height:18px;animation-delay:2.1s" aria-hidden="true"><svg><use href="#star"/></svg></span>
 
     <div class="panel arch" data-garland>
-      <svg class="sun" aria-hidden="true"><use href="#sun"/></svg>
+      <img class="sun" src="assets/img/sun.png" width="430" height="370" alt="">
       <span class="sparkle" style="width:66px;height:104px;left:24%;bottom:-50px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
       <span class="sparkle" style="width:36px;height:56px;left:calc(24% + 58px);bottom:-10px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
 

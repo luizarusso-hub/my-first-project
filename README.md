@@ -2,9 +2,9 @@
 
 The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups for the CorvidzzPuzzles puzzle books.
 
-The page is `index.html` plus two pictures in `assets/img/`: `forest-night.jpg`, the painted night forest used as the fixed page background, and `library-card.png`, the vintage library card that frames the sign-up form. There's no build step.
+The page is `index.html` plus three pictures in `assets/img/`: `sun.png`, the painted sun at the top of the main panel, `forest-night.jpg`, the painted night forest used as the fixed page background, and `library-card.png`, the vintage library card that frames the sign-up form. There's no build step.
 
-The content sits on arched parchment panels with an engraved-style sepia garland of roses, blossoms, grapes, buds and leaves climbing up the sides and over the arch. The sun with a face, the long gold eight-pointed stars, the raven, the moon and the icons are all drawn in code on the page. The garland redraws itself to fit each panel on any screen size.
+The content sits on arched parchment panels with an engraved-style sepia garland of roses, blossoms, grapes, buds and leaves climbing up the sides and over the arch. The sun is a painted picture (`assets/img/sun.png`). The long gold eight-pointed stars, the raven, the moon and the icons are all drawn in code on the page. The garland redraws itself to fit each panel on any screen size.
 
 ## What's on the page
 
