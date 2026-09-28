@@ -206,6 +206,19 @@
     .pick input:checked { background: var(--card-ink); }
     .pick input:checked::after { transform: scale(1.3); }
     .pick input:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 2px; }
+    .ask { margin: 6px 0 10px; font-family: "IM Fell English SC", serif; font-size: 1rem; color: var(--card-ink); line-height: 1.4; }
+    .ask i { display: block; font-family: "IM Fell English", serif; font-size: .95rem; color: var(--ink-soft); }
+    .line.tall { flex-direction: column; align-items: stretch; gap: 0; margin-bottom: 12px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .chip span {
+      display: inline-block; padding: 4px 11px; font-size: .95rem; line-height: 1.3; cursor: pointer;
+      border: 1.5px solid var(--card-ink); border-radius: 999px; background: #f6ecd6; color: var(--card-ink);
+      user-select: none;
+    }
+    .chip input:checked + span { background: var(--card-ink); color: var(--card-cream); }
+    .chip input:checked + span::before { content: "\2726  "; color: var(--gold-light); }
+    .chip input:focus-visible + span { outline: 2px solid var(--vermilion); outline-offset: 2px; }
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
     .submit {
       display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
@@ -623,30 +636,32 @@
               <label for="email">Email</label>
               <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
             </div>
+
+            <p class="ask">What art thou into right now? <i>Name names: the ravens will turn them into puzzles.</i></p>
+            <div class="line tall">
+              <label for="shows">Shows &amp; movies</label>
+              <input id="shows" name="shows_and_movies" type="text" maxlength="300" placeholder="e.g. Stranger Things, Squid Game">
+            </div>
+            <div class="line tall">
+              <label for="music">Music &amp; artists</label>
+              <input id="music" name="music_and_artists" type="text" maxlength="300" placeholder="e.g. Taylor Swift, Bad Bunny">
+            </div>
+            <div class="line tall">
+              <label for="other">Creators, games, sports &amp; trends</label>
+              <input id="other" name="creators_games_sports_trends" type="text" maxlength="300" placeholder="e.g. MrBeast, Minecraft, Formula 1">
+            </div>
+
             <fieldset>
-              <legend>Puzzles thou wouldst see <i>(choose any)</i></legend>
-              <div class="picks">
-                <label class="pick"><input type="checkbox" name="puzzles" value="Crosswords"> Crosswords</label>
-                <label class="pick"><input type="checkbox" name="puzzles" value="Cryptic crosswords"> Cryptic crosswords</label>
-                <label class="pick"><input type="checkbox" name="puzzles" value="Word search"> Word search</label>
-                <label class="pick"><input type="checkbox" name="puzzles" value="Ciphers"> Ciphers</label>
-                <label class="pick"><input type="checkbox" name="puzzles" value="Riddles"> Riddles</label>
-                <label class="pick"><input type="checkbox" name="puzzles" value="Logic puzzles"> Logic puzzles</label>
-                <label class="pick"><input type="checkbox" name="puzzles" value="Mazes"> Mazes</label>
-                <label class="pick"><input type="checkbox" name="puzzles" value="Quest maps"> Quest maps</label>
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend>Topics thou lovest <i>(choose any)</i></legend>
-              <div class="picks">
-                <label class="pick"><input type="checkbox" name="topics" value="TV and streaming"> TV &amp; streaming</label>
-                <label class="pick"><input type="checkbox" name="topics" value="Music"> Music</label>
-                <label class="pick"><input type="checkbox" name="topics" value="Movies"> Movies</label>
-                <label class="pick"><input type="checkbox" name="topics" value="Memes and internet"> Memes &amp; internet</label>
-                <label class="pick"><input type="checkbox" name="topics" value="Celebrities"> Celebrities</label>
-                <label class="pick"><input type="checkbox" name="topics" value="Gaming"> Gaming</label>
-                <label class="pick"><input type="checkbox" name="topics" value="Sports"> Sports</label>
-                <label class="pick"><input type="checkbox" name="topics" value="Headlines"> Headlines</label>
+              <legend>Puzzles thou lovest <i>(tap any)</i></legend>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="puzzles" value="Crosswords"><span>Crosswords</span></label>
+                <label class="chip"><input type="checkbox" name="puzzles" value="Cryptic crosswords"><span>Cryptic crosswords</span></label>
+                <label class="chip"><input type="checkbox" name="puzzles" value="Word search"><span>Word search</span></label>
+                <label class="chip"><input type="checkbox" name="puzzles" value="Ciphers and codes"><span>Ciphers &amp; codes</span></label>
+                <label class="chip"><input type="checkbox" name="puzzles" value="Riddles"><span>Riddles</span></label>
+                <label class="chip"><input type="checkbox" name="puzzles" value="Logic puzzles"><span>Logic puzzles</span></label>
+                <label class="chip"><input type="checkbox" name="puzzles" value="Sudoku"><span>Sudoku</span></label>
+                <label class="chip"><input type="checkbox" name="puzzles" value="Mazes"><span>Mazes</span></label>
               </div>
             </fieldset>
 
@@ -659,7 +674,7 @@
               <span class="star" aria-hidden="true">&#10022;</span>
             </button>
             <p class="msg" id="msg" role="status" aria-live="polite"></p>
-            <p class="fine">No spam, only the launch news and the occasional riddle. Leave whenever thou wilt.</p>
+            <p class="fine">Only thy email is needed. No spam, only the launch news and the occasional riddle. Leave whenever thou wilt.</p>
           </form>
         </div>
       </div>
@@ -1094,12 +1109,13 @@
       }
 
       const data = new FormData(form);
+      ["shows_and_movies", "music_and_artists", "creators_games_sports_trends"].forEach((k) => {
+        if (!String(data.get(k) || "").trim()) data.set(k, "(not answered)");
+      });
       const puzzles = data.getAll("puzzles");
       data.delete("puzzles");
       data.append("puzzles", puzzles.join(", ") || "(none chosen)");
-      const topics = data.getAll("topics");
-      data.delete("topics");
-      data.append("topics", topics.join(", ") || "(none chosen)");
+      data.append("_subject", "New CorvidzzPuzzles sign-up");
 
       submit.disabled = true;
       submitLabel.textContent = "Inscribing…";
