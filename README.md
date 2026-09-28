@@ -2,20 +2,20 @@
 
 The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups for the CorvidzzPuzzles puzzle books.
 
-The page is `index.html` plus the pictures in `assets/img/`. There's no build step.
+The page is `index.html` plus one picture, `assets/img/forest-night.jpg`. There's no build step.
 
-The look is taken from the mood boards in the CorvidzzPuzzles overview document. The pictures in `assets/img/` were cut straight out of those mood boards: illuminated manuscripts, the swan and star tiles, the painted castle map, fairy-tale book covers, the alphabet, mazes, old puzzle pages and the engraved ravens. Around them the page adds painted flower vines, gold stars, blue star-tile borders and a pink library-card sign-up form.
-
-> **Before launch:** most mood-board pictures are collected from the web (Pinterest). The old manuscripts and 1800s books are usually public domain, but some pictures are modern artwork or stock images, such as the illuminated alphabet, the "Antoine" drop cap, the board-game illustrations and the castle map. Check that you have the right to use each one on a commercial site, or replace it with your own art. Replacing a picture only means overwriting the file in `assets/img/` with one of the same name.
+The night-forest painting is the page background and stays in place as you scroll. The content sits on parchment manuscript panels with gold-leaf borders, painted corners of roses, blue flowers and vines, and gold stars. Blue star-tile bands separate the sections. The raven, flowers, stars, moon and icons are all drawn in code on the page, so no mood-board pictures are used.
 
 ## What's on the page
 
-- **Hero:** a flower-framed manuscript panel with "Can you decode this?" and the library-card sign-up form, between two columns of pasted mood-board pictures. The form asks for name, email and which puzzle types the person wants to see.
-- **Once Upon a Time:** the story behind the name, with the illuminated "A" drop cap and the "What am I?" Wi-Fi riddle
+- **Hero:** a flower-framed manuscript panel with the raven, "Can you decode this?" and a pink library-card sign-up form. The form asks for name, email and which puzzle types the person wants to see.
+- **Once Upon a Time:** the story behind the name with an illuminated "A", plus the "What am I?" Wi-Fi riddle
 - **What Lies Within:** monthly topic votes, the secret topic revealed on the 1st, the puzzle tracker, and points for limited editions
-- **A Bestiary of Puzzles:** nine of the planned puzzle types, each with a picture
-- **The Ravens Are Gathering:** the castle map and a second button that jumps to the form
+- **A Bestiary of Puzzles:** nine of the planned puzzle types
+- **The Ravens Are Gathering:** a closing panel with a button that jumps back to the form
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
+
+To change the background, replace `assets/img/forest-night.jpg` with another picture of the same name.
 
 ## 1. Connect the sign-up form (free)
 
