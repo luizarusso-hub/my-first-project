@@ -209,6 +209,19 @@
     .ask { margin: 6px 0 10px; font-family: "IM Fell English SC", serif; font-size: 1rem; color: var(--card-ink); line-height: 1.4; }
     .ask i { display: block; font-family: "IM Fell English", serif; font-size: .95rem; color: var(--ink-soft); }
     .line.tall { flex-direction: column; align-items: stretch; gap: 0; margin-bottom: 12px; }
+    .groups { display: grid; gap: 6px; margin-bottom: 12px; }
+    .group { border: 1.5px solid var(--card-ink); background: rgba(246, 236, 214, .6); }
+    .group summary {
+      cursor: pointer; list-style: none; padding: 7px 12px;
+      font-family: "IM Fell English SC", serif; font-size: 1rem; color: var(--card-ink);
+      display: flex; align-items: center; gap: 8px; border: 0;
+    }
+    .group summary::-webkit-details-marker { display: none; }
+    .group summary::after { content: "+"; margin-left: auto; font-family: "Cinzel", serif; font-weight: 700; }
+    .group[open] summary::after { content: "\2013"; }
+    .group .count:not(:empty) { font-family: "IM Fell English", serif; font-style: italic; font-size: .9rem; color: var(--vermilion); }
+    .group .chips { padding: 2px 10px 10px; }
+    .line.tall label i { font-family: "IM Fell English", serif; text-transform: none; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
     .chip span {
@@ -637,18 +650,106 @@
               <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
             </div>
 
-            <p class="ask">What art thou into right now? <i>Name names: the ravens will turn them into puzzles.</i></p>
-            <div class="line tall">
-              <label for="shows">Shows &amp; movies</label>
-              <input id="shows" name="shows_and_movies" type="text" maxlength="300" placeholder="e.g. Stranger Things, Squid Game">
+            <p class="ask">What art thou into right now? <i>Tap everything thou lovest. Open each scroll for more.</i></p>
+            <div class="groups">
+              <details class="group" open>
+                <summary>Shows &amp; movies <span class="count" data-for="shows_and_movies"></span></summary>
+                <div class="chips">
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Stranger Things"><span>Stranger Things</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Wednesday"><span>Wednesday</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Squid Game"><span>Squid Game</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="The Last of Us"><span>The Last of Us</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="House of the Dragon"><span>House of the Dragon</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Bridgerton"><span>Bridgerton</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="The White Lotus"><span>The White Lotus</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Severance"><span>Severance</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="The Bear"><span>The Bear</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Love Island"><span>Love Island</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="One Piece"><span>One Piece</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Marvel"><span>Marvel</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Star Wars"><span>Star Wars</span></label>
+                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Harry Potter"><span>Harry Potter</span></label>
+                </div>
+              </details>
+              <details class="group">
+                <summary>Music <span class="count" data-for="music"></span></summary>
+                <div class="chips">
+                  <label class="chip"><input type="checkbox" name="music" value="Taylor Swift"><span>Taylor Swift</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Sabrina Carpenter"><span>Sabrina Carpenter</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Beyoncé"><span>Beyoncé</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Bad Bunny"><span>Bad Bunny</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Billie Eilish"><span>Billie Eilish</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Olivia Rodrigo"><span>Olivia Rodrigo</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Chappell Roan"><span>Chappell Roan</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Ariana Grande"><span>Ariana Grande</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Harry Styles"><span>Harry Styles</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Kendrick Lamar"><span>Kendrick Lamar</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Drake"><span>Drake</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="BTS"><span>BTS</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="BLACKPINK"><span>BLACKPINK</span></label>
+                  <label class="chip"><input type="checkbox" name="music" value="Coldplay"><span>Coldplay</span></label>
+                </div>
+              </details>
+              <details class="group">
+                <summary>Creators &amp; internet <span class="count" data-for="creators_and_internet"></span></summary>
+                <div class="chips">
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="MrBeast"><span>MrBeast</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="IShowSpeed"><span>IShowSpeed</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Kai Cenat"><span>Kai Cenat</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Emma Chamberlain"><span>Emma Chamberlain</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Mark Rober"><span>Mark Rober</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Dude Perfect"><span>Dude Perfect</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="BookTok"><span>BookTok</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Viral dances & challenges"><span>Viral dances &amp; challenges</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Memes"><span>Memes</span></label>
+                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="AI & ChatGPT"><span>AI &amp; ChatGPT</span></label>
+                </div>
+              </details>
+              <details class="group">
+                <summary>Games <span class="count" data-for="games"></span></summary>
+                <div class="chips">
+                  <label class="chip"><input type="checkbox" name="games" value="Minecraft"><span>Minecraft</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="Fortnite"><span>Fortnite</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="Roblox"><span>Roblox</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="Pokémon"><span>Pokémon</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="Mario"><span>Mario</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="Zelda"><span>Zelda</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="Animal Crossing"><span>Animal Crossing</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="Call of Duty"><span>Call of Duty</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="The Sims"><span>The Sims</span></label>
+                  <label class="chip"><input type="checkbox" name="games" value="Grand Theft Auto"><span>Grand Theft Auto</span></label>
+                </div>
+              </details>
+              <details class="group">
+                <summary>Sports <span class="count" data-for="sports"></span></summary>
+                <div class="chips">
+                  <label class="chip"><input type="checkbox" name="sports" value="Formula 1"><span>Formula 1</span></label>
+                  <label class="chip"><input type="checkbox" name="sports" value="The NFL"><span>The NFL</span></label>
+                  <label class="chip"><input type="checkbox" name="sports" value="The NBA"><span>The NBA</span></label>
+                  <label class="chip"><input type="checkbox" name="sports" value="Premier League"><span>Premier League</span></label>
+                  <label class="chip"><input type="checkbox" name="sports" value="World Cup"><span>World Cup</span></label>
+                  <label class="chip"><input type="checkbox" name="sports" value="The Olympics"><span>The Olympics</span></label>
+                  <label class="chip"><input type="checkbox" name="sports" value="Tennis"><span>Tennis</span></label>
+                  <label class="chip"><input type="checkbox" name="sports" value="WWE"><span>WWE</span></label>
+                </div>
+              </details>
+              <details class="group">
+                <summary>Celebrities <span class="count" data-for="celebrities"></span></summary>
+                <div class="chips">
+                  <label class="chip"><input type="checkbox" name="celebrities" value="The Royal Family"><span>The Royal Family</span></label>
+                  <label class="chip"><input type="checkbox" name="celebrities" value="The Kardashians"><span>The Kardashians</span></label>
+                  <label class="chip"><input type="checkbox" name="celebrities" value="Zendaya"><span>Zendaya</span></label>
+                  <label class="chip"><input type="checkbox" name="celebrities" value="Timothée Chalamet"><span>Timothée Chalamet</span></label>
+                  <label class="chip"><input type="checkbox" name="celebrities" value="Pedro Pascal"><span>Pedro Pascal</span></label>
+                  <label class="chip"><input type="checkbox" name="celebrities" value="Selena Gomez"><span>Selena Gomez</span></label>
+                  <label class="chip"><input type="checkbox" name="celebrities" value="Rihanna"><span>Rihanna</span></label>
+                  <label class="chip"><input type="checkbox" name="celebrities" value="Celebrity couples & breakups"><span>Celebrity couples &amp; breakups</span></label>
+                </div>
+              </details>
             </div>
             <div class="line tall">
-              <label for="music">Music &amp; artists</label>
-              <input id="music" name="music_and_artists" type="text" maxlength="300" placeholder="e.g. Taylor Swift, Bad Bunny">
-            </div>
-            <div class="line tall">
-              <label for="other">Creators, games, sports &amp; trends</label>
-              <input id="other" name="creators_games_sports_trends" type="text" maxlength="300" placeholder="e.g. MrBeast, Minecraft, Formula 1">
+              <label for="other">Not listed? <i>(optional)</i></label>
+              <input id="other" name="something_else" type="text" maxlength="200" placeholder="Add a name">
             </div>
 
             <fieldset>
@@ -1092,6 +1193,16 @@
 
     function showError(text) { msg.textContent = text; }
 
+    // interest groups: show how many names are ticked in each
+    const INTEREST_GROUPS = ["shows_and_movies", "music", "creators_and_internet", "games", "sports", "celebrities"];
+    INTEREST_GROUPS.forEach((k) => {
+      const counter = form.querySelector('.count[data-for="' + k + '"]');
+      form.querySelectorAll('input[name="' + k + '"]').forEach((cb) => cb.addEventListener("change", () => {
+        const n = form.querySelectorAll('input[name="' + k + '"]:checked').length;
+        counter.textContent = n ? "(" + n + " chosen)" : "";
+      }));
+    });
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.textContent = "";
@@ -1109,9 +1220,12 @@
       }
 
       const data = new FormData(form);
-      ["shows_and_movies", "music_and_artists", "creators_games_sports_trends"].forEach((k) => {
-        if (!String(data.get(k) || "").trim()) data.set(k, "(not answered)");
+      INTEREST_GROUPS.forEach((k) => {
+        const picked = data.getAll(k);
+        data.delete(k);
+        data.append(k, picked.join(", ") || "(none chosen)");
       });
+      if (!String(data.get("something_else") || "").trim()) data.set("something_else", "(not answered)");
       const puzzles = data.getAll("puzzles");
       data.delete("puzzles");
       data.append("puzzles", puzzles.join(", ") || "(none chosen)");

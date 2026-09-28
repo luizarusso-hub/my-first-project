@@ -8,7 +8,7 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 
 ## What's on the page
 
-- **Hero:** an arched parchment panel with the logo, "Can you decode this?", the line "Today's pop culture, disguised as a medieval manuscript." and the sign-up form inside the vintage library card. The sign-up is one short page: name and email, three boxes where people type the exact names they are into (shows & movies; music & artists; creators, games, sports & trends), and tap-to-choose puzzle types. Only the email is required.
+- **Hero:** an arched parchment panel with the logo, "Can you decode this?", the line "Today's pop culture, disguised as a medieval manuscript." and the sign-up form inside the vintage library card. The sign-up is one short page: name and email, then tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities (each group opens with a tap), an optional "Not listed?" box, and tap-to-choose puzzle types. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
 - **Ancient Riddles, Modern Answers:** six old-style riddles that reveal modern answers when tapped (smartphone, doomscrolling, binge-watching...)
 - **Try a Page:** an open puzzle book with a playable mini crossword and a three-step secret code to crack
 - **Once Upon a Time:** the story behind the name with an illuminated "A", plus the "What am I?" Wi-Fi riddle
@@ -25,11 +25,15 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 |---|---|
 | `name`, `email` | Morgan, morgan@example.com |
 | `shows_and_movies` | Stranger Things, Squid Game |
-| `music_and_artists` | Taylor Swift, Bad Bunny |
-| `creators_games_sports_trends` | MrBeast, Minecraft, Formula 1 |
+| `music` | Taylor Swift, Bad Bunny |
+| `creators_and_internet` | MrBeast, BookTok |
+| `games` | Minecraft, Pokémon |
+| `sports` | Formula 1 |
+| `celebrities` | The Royal Family |
+| `something_else` | (anything typed in "Not listed?") |
 | `puzzles` | Crosswords, Ciphers and codes, Riddles |
 
-Empty boxes arrive as "(not answered)" and no puzzle choice as "(none chosen)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
+Groups with nothing ticked arrive as "(none chosen)" and an empty "Not listed?" box as "(not answered)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 
 ## 1. Connect the sign-up form (free)
 
