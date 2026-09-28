@@ -2,14 +2,19 @@
 
 The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups for the CorvidzzPuzzles puzzle books.
 
-It's a single file, `index.html`, with no build step. The look follows the mood boards in the CorvidzzPuzzles overview document: engraved ravens, illuminated manuscripts with gold-leaf borders and drop caps, green damask, blue star tiles, old cloth-bound books and vintage puzzle papers (the sign-up form is a library card).
+The page is `index.html` plus the pictures in `assets/img/`. There's no build step.
+
+The look is taken from the mood boards in the CorvidzzPuzzles overview document. The pictures in `assets/img/` were cut straight out of those mood boards: illuminated manuscripts, the swan and star tiles, the painted castle map, fairy-tale book covers, the alphabet, mazes, old puzzle pages and the engraved ravens. Around them the page adds painted flower vines, gold stars, blue star-tile borders and a pink library-card sign-up form.
+
+> **Before launch:** most mood-board pictures are collected from the web (Pinterest). The old manuscripts and 1800s books are usually public domain, but some pictures are modern artwork or stock images, such as the illuminated alphabet, the "Antoine" drop cap, the board-game illustrations and the castle map. Check that you have the right to use each one on a commercial site, or replace it with your own art. Replacing a picture only means overwriting the file in `assets/img/` with one of the same name.
 
 ## What's on the page
 
-- **Hero:** a manuscript page with the headline "Can you decode this?", the story behind the name, and the "What am I?" Wi-Fi riddle with a reveal
-- **Sign-up library card:** name, email, and which puzzle types the person wants to see. Those answers help decide which puzzles stay in the books.
-- **What lies within:** monthly topic votes, the secret topic revealed on the 1st, the puzzle tracker, and points for limited editions
-- **A Bestiary of Puzzles:** nine of the planned puzzle types
+- **Hero:** a flower-framed manuscript panel with "Can you decode this?" and the library-card sign-up form, between two columns of pasted mood-board pictures. The form asks for name, email and which puzzle types the person wants to see.
+- **Once Upon a Time:** the story behind the name, with the illuminated "A" drop cap and the "What am I?" Wi-Fi riddle
+- **What Lies Within:** monthly topic votes, the secret topic revealed on the 1st, the puzzle tracker, and points for limited editions
+- **A Bestiary of Puzzles:** nine of the planned puzzle types, each with a picture
+- **The Ravens Are Gathering:** the castle map and a second button that jumps to the form
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
 ## 1. Connect the sign-up form (free)
@@ -40,8 +45,8 @@ GitHub Pages needs a public repo on a free GitHub account.
 
 ### Option B: Netlify (free, drag and drop)
 
-Go to [app.netlify.com/drop](https://app.netlify.com/drop) and drag in the folder that contains `index.html`. Then open **Domain management → Add a domain**, enter `corvidzz.com`, and add the DNS records Netlify shows you in GoDaddy.
+Go to [app.netlify.com/drop](https://app.netlify.com/drop) and drag in the whole project folder (with `index.html` and `assets`). Then open **Domain management → Add a domain**, enter `corvidzz.com`, and add the DNS records Netlify shows you in GoDaddy.
 
 ## Preview locally
 
-Double-click `index.html` to open it in a browser.
+Double-click `index.html` to open it in a browser. Keep the `assets` folder next to it.
