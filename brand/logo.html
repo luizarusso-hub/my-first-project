@@ -52,6 +52,10 @@
   <circle cx="540" cy="540" r="300" fill="none" stroke="#9c7f4c" stroke-width="2"/>
   <circle cx="540" cy="540" r="290" fill="none" stroke="#9c7f4c" stroke-width="1"/>
 
+  <!-- faint crossword behind the raven -->
+  <clipPath id="medClip"><circle cx="540" cy="540" r="262"/></clipPath>
+  <g id="xword" clip-path="url(#medClip)" opacity=".24"></g>
+
   <!-- engraved garland around the inside of the medallion -->
   <g id="garland"></g>
 
@@ -90,7 +94,10 @@
   <rect width="2400" height="800" fill="url(#bannerGlow)"/>
   <defs>
     <radialGradient id="bannerGlow" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="#1d3f39"/><stop offset="1" stop-color="#0e2421" stop-opacity="0"/></radialGradient>
+    <radialGradient id="bannerFade" cx="52%" cy="55%" r="45%"><stop offset="0" stop-color="#0e2421" stop-opacity=".7"/><stop offset="1" stop-color="#0e2421" stop-opacity="0"/></radialGradient>
   </defs>
+  <g id="bxword" opacity=".075"></g>
+  <rect x="0" y="0" width="2400" height="800" fill="url(#bannerFade)"/>
   <image id="seal-in-banner" x="160" y="100" width="600" height="600"/>
   <text x="880" y="385" font-family="Cinzel, serif" font-weight="800" font-size="150" letter-spacing="6" fill="url(#gold)">CORVIDZZ</text>
   <text x="880" y="545" font-family="Cinzel, serif" font-weight="700" font-size="110" letter-spacing="22" fill="#efe2c2">PUZZLES</text>
@@ -113,5 +120,38 @@
     add('#leaf', x, y, 30, 17, deg + (i % 15 ? 40 : -40));
     if (i % 22.5 === 0) add(i % 45 === 0 ? '#rose' : '#blossom', x, y, i % 45 === 0 ? 38 : 28, i % 45 === 0 ? 38 : 28, deg);
   }
+
+  // crossword grid: '#' = black square, '.' = empty square, letters = filled answers
+  function crossword(target, x0, y0, cell, rows, color, ink) {
+    const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+    let num = 1;
+    rows.forEach((row, r) => [...row].forEach((ch, c) => {
+      const x = x0 + c * cell, y = y0 + r * cell;
+      if (ch === '#') { target.appendChild(el('rect', { x, y, width: cell, height: cell, fill: ink })); return; }
+      target.appendChild(el('rect', { x, y, width: cell, height: cell, fill: 'none', stroke: ink, 'stroke-width': cell / 22 }));
+      const startA = (c === 0 || row[c - 1] === '#') && row[c + 1] && row[c + 1] !== '#';
+      const startD = (r === 0 || rows[r - 1][c] === '#') && rows[r + 1] && rows[r + 1][c] !== '#';
+      if (startA || startD) { const t = el('text', { x: x + cell * .1, y: y + cell * .3, 'font-size': cell * .24, fill: ink, 'font-family': 'Cinzel, serif' }); t.textContent = num++; target.appendChild(t); }
+      if (ch !== '.') { const t = el('text', { x: x + cell / 2, y: y + cell * .75, 'font-size': cell * .6, 'text-anchor': 'middle', fill: color, 'font-family': 'Cinzel, serif', 'font-weight': 700 }); t.textContent = ch; target.appendChild(t); }
+    }));
+  }
+  const grid = [
+    "R.#K#...#P.#",
+    "AVEN.#C.#UP.",
+    "V#R.IDDLE#Z.",
+    "E.#Y#P.#.Z#C",
+    "NOVEL#H#.L.I",
+    "#.#.#.E.#E.P",
+    "C.#KEY#R#.#H",
+    "O#Q.#.S.#.#E",
+    "D.U#R.#QUEST",
+    "E#E#A.#.#.#R",
+    "#.S.V#MAZE.#",
+    "..T#EN#.#..#"
+  ];
+  crossword(document.getElementById('xword'), 540 - 6 * 46, 540 - 6 * 46, 46, grid, '#3a2c1a', '#6e5230');
+  const wide = [];
+  for (let r = 0; r < 9; r++) { let row = ''; for (let c = 0; c < 28; c++) row += grid[(r + 3) % 12][c % 12]; wide.push(row); }
+  crossword(document.getElementById('bxword'), -40, -20, 92, wide, '#efe2c2', '#e7d6ad');
 </script>
 </body></html>
