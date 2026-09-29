@@ -8,7 +8,7 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 
 ## What's on the page
 
-It's deliberately a single, mysterious page. Behind everything, silhouettes of ravens and dragons (`assets/img/raven.svg` and `dragon.svg`, generated in the owner's Canva account and traced into vector shapes) fly slowly over the night forest, circling back as if searching, with drifting fog and fireflies. The words fade in one by one on arrival.
+It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The words fade in one by one on arrival.
 
 - **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
 - **The arch panel:** "Volume I · Coming Soon", the title "Can you decode this?" and the lines "Something old has been watching something new. The ravens are searching for those who can read its message."
