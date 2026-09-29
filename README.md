@@ -8,13 +8,12 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 
 ## What's on the page
 
-- **Hero:** an arched parchment panel with the logo, "Can you decode this?", the line "Today's pop culture, disguised as a medieval manuscript." and the sign-up form inside the vintage library card. The sign-up is one short page: name and email, then tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities (each group opens with a tap), an optional "Not listed?" box, and tap-to-choose puzzle types. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
-- **Ancient Riddles, Modern Answers:** six old-style riddles that reveal modern answers when tapped (smartphone, doomscrolling, binge-watching...)
-- **Try a Page:** an open puzzle book with a playable mini crossword and a three-step secret code to crack
-- **Once Upon a Time:** the story behind the name with an illuminated "A", plus the "What am I?" Wi-Fi riddle
-- **What Lies Within:** monthly topic votes, the secret topic revealed on the 1st, the puzzle tracker, and points for limited editions
-- **A Bestiary of Puzzles:** nine of the planned puzzle types
-- **The Ravens Are Gathering:** a closing panel with a button that jumps back to the form
+It's deliberately a single, mysterious page:
+
+- **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
+- **The arch panel:** "Volume I · Coming Soon", the title "Can you decode this?" and the line "An old book has been watching the new world."
+- **The raven's cipher wheel:** the only puzzle. The coded message `WKH UDYHQV ZDWFK BRXU IHHG` decodes as the visitor turns the wheel. After three turns it reads "THE RAVENS WATCH YOUR FEED" and reveals what the book is about. A hint ("The raven counts to three.") appears after five turns. The message and answer are set at the top of the cipher-wheel script in `index.html`.
+- **The library card sign-up:** name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, and tap-to-choose puzzle types. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
 To swap the background or the card, replace the file in `assets/img/` with another picture of the same name. The card frame is sliced from the picture's edges (top 116px, sides 50px, bottom 62px of a 336×528 image), so a replacement card should have a similar layout.
