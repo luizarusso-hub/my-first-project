@@ -8,10 +8,10 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 
 ## What's on the page
 
-It's deliberately a single, mysterious page:
+It's deliberately a single, mysterious page. Behind everything, silhouettes of ravens and dragons (drawn in code) fly slowly over the night forest, circling back as if searching, with drifting fog and fireflies. The words fade in one by one on arrival.
 
 - **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
-- **The arch panel:** "Volume I · Coming Soon", the title "Can you decode this?" and the line "An old book has been watching the new world."
+- **The arch panel:** "Volume I · Coming Soon", the title "Can you decode this?" and the lines "Something old has been watching something new. The ravens are searching for those who can read its message."
 - **The raven's cipher wheel:** the only puzzle. The coded message `WKH UDYHQV ZDWFK BRXU IHHG` decodes as the visitor turns the wheel. After three turns it reads "THE RAVENS WATCH YOUR FEED" and reveals what the book is about. A hint ("The raven counts to three.") appears after five turns. The message and answer are set at the top of the cipher-wheel script in `index.html`.
 - **The library card sign-up:** name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, and tap-to-choose puzzle types. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok

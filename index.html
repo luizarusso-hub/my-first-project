@@ -273,6 +273,108 @@
     .panel .section-title { color: var(--lapis-deep); text-shadow: none; }
     .panel .section-title .i-red { color: var(--vermilion); }
 
+    /* ---------- The night sky: fog, fireflies, searching ravens & dragons ---------- */
+    .sky { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .sky .fog {
+      position: absolute; inset: -20% -50%;
+      background:
+        radial-gradient(ellipse 30% 18% at 20% 70%, rgba(210, 225, 215, .16), transparent 70%),
+        radial-gradient(ellipse 35% 20% at 70% 40%, rgba(210, 225, 215, .12), transparent 70%),
+        radial-gradient(ellipse 25% 14% at 45% 90%, rgba(210, 225, 215, .18), transparent 70%);
+      animation: fog 60s linear infinite alternate;
+    }
+    .sky .fog.two { animation-duration: 90s; animation-direction: alternate-reverse; opacity: .8; }
+    @keyframes fog { from { transform: translateX(-12%); } to { transform: translateX(12%); } }
+    .sky .veil {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(3, 10, 9, .55) 100%);
+    }
+    .firefly {
+      position: absolute; width: 4px; height: 4px; border-radius: 50%;
+      background: #f3dc8a; box-shadow: 0 0 10px 3px rgba(243, 220, 138, .6);
+      animation: drift var(--d, 14s) ease-in-out infinite alternate, glow var(--g, 3s) ease-in-out infinite;
+    }
+    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(var(--x, 40px), var(--y, -60px)); } }
+    @keyframes glow { 0%, 100% { opacity: .1; } 50% { opacity: .95; } }
+
+    .creature { position: absolute; top: 0; left: 0; color: #040908; will-change: transform; }
+    .creature svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0 5px rgba(205, 225, 215, .35)); }
+    .creature .wing { transform-box: fill-box; animation: flap 2.6s ease-in-out infinite; }
+    .creature .wing.near { transform-origin: 90% 100%; }
+    .creature .wing.far { transform-origin: 10% 100%; }
+    .creature.dragon .wing { animation: flapslow 3.2s ease-in-out infinite; }
+    /* a few beats, then a long glide with the wings raised */
+    @keyframes flap { 0%, 32%, 100% { transform: scaleY(1); } 8%, 24% { transform: scaleY(-.45); } 16% { transform: scaleY(1); } }
+    @keyframes flapslow { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(-.3); } }
+
+    /* flight paths: mostly along the sides and above the panel, sweeping, hesitating and circling back as if searching */
+    .c1 { width: 150px; opacity: .9;  animation: path1 38s ease-in-out infinite; }
+    .c2 { width: 105px; opacity: .8;  animation: path2 24s ease-in-out infinite; animation-delay: -6s; }
+    .c3 { width: 60px;  opacity: .6;  animation: path3 46s linear infinite; animation-delay: -18s; }
+    .c4 { width: 380px; opacity: .6;  animation: path4 64s linear infinite; animation-delay: -8s; }
+    .c5 { width: 190px; opacity: .45; filter: blur(.8px); animation: path5 90s linear infinite; animation-delay: -40s; }
+    .c6 { width: 90px;  opacity: .75; animation: path6 28s ease-in-out infinite; animation-delay: -12s; }
+    @keyframes path1 {
+      0%   { transform: translate(-14vw, 8vh) scaleX(1) rotate(6deg); }
+      22%  { transform: translate(30vw, 2vh) scaleX(1) rotate(-4deg); }
+      34%  { transform: translate(52vw, 5vh) scaleX(1) rotate(8deg); }
+      42%  { transform: translate(56vw, 12vh) scaleX(-1) rotate(-10deg); }
+      56%  { transform: translate(30vw, 6vh) scaleX(-1) rotate(4deg); }
+      70%  { transform: translate(8vw, 22vh) scaleX(-1) rotate(-12deg); }
+      80%  { transform: translate(4vw, 34vh) scaleX(1) rotate(10deg); }
+      100% { transform: translate(-16vw, 18vh) scaleX(-1) rotate(0deg); }
+    }
+    @keyframes path2 {
+      0%   { transform: translate(83vw, 18vh) scaleX(1) rotate(0deg); }
+      25%  { transform: translate(91vw, 32vh) scaleX(1) rotate(22deg); }
+      50%  { transform: translate(84vw, 48vh) scaleX(-1) rotate(-8deg); }
+      75%  { transform: translate(77vw, 30vh) scaleX(-1) rotate(-22deg); }
+      100% { transform: translate(83vw, 18vh) scaleX(1) rotate(0deg); }
+    }
+    @keyframes path6 {
+      0%   { transform: translate(6vw, 52vh) scaleX(-1) rotate(0deg); }
+      25%  { transform: translate(1vw, 64vh) scaleX(-1) rotate(-20deg); }
+      50%  { transform: translate(8vw, 76vh) scaleX(1) rotate(8deg); }
+      75%  { transform: translate(15vw, 62vh) scaleX(1) rotate(20deg); }
+      100% { transform: translate(6vw, 52vh) scaleX(-1) rotate(0deg); }
+    }
+    @keyframes path3 {
+      0%   { transform: translate(110vw, 4vh) scaleX(-1); }
+      40%  { transform: translate(70vw, 9vh) scaleX(-1); }
+      48%  { transform: translate(66vw, 3vh) scaleX(1); }
+      56%  { transform: translate(72vw, 7vh) scaleX(-1); }
+      100% { transform: translate(-10vw, 2vh) scaleX(-1); }
+    }
+    @keyframes path4 {
+      0%   { transform: translate(-45vw, 68vh) scaleX(1) rotate(-4deg); }
+      35%  { transform: translate(10vw, 60vh) scaleX(1) rotate(-7deg); }
+      50%  { transform: translate(40vw, 66vh) scaleX(1) rotate(3deg); }
+      70%  { transform: translate(68vw, 58vh) scaleX(1) rotate(-6deg); }
+      100% { transform: translate(125vw, 50vh) scaleX(1) rotate(-3deg); }
+    }
+    @keyframes path5 {
+      0%   { transform: translate(115vw, 6vh) scaleX(-1) rotate(4deg); }
+      50%  { transform: translate(45vw, 1vh) scaleX(-1) rotate(-3deg); }
+      60%  { transform: translate(35vw, 4vh) scaleX(-1) rotate(6deg); }
+      100% { transform: translate(-35vw, 2vh) scaleX(-1) rotate(0deg); }
+    }
+
+    /* slow reveal of the words on arrival */
+    .hero .kicker, .hero h1, .hero .whisper, .hero .cipher { animation: emerge 1.6s ease both; }
+    .hero h1 { animation-delay: .5s; }
+    .hero .whisper { animation-delay: 1.2s; }
+    .hero .cipher { animation-delay: 1.9s; }
+    @keyframes emerge { from { opacity: 0; filter: blur(6px); transform: translateY(6px); } to { opacity: 1; filter: none; transform: none; } }
+
+    @media (max-width: 560px) {
+      .c1 { width: 90px; } .c2 { width: 64px; } .c3 { width: 40px; } .c4 { width: 230px; } .c5 { width: 120px; } .c6 { width: 56px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sky .fog, .firefly, .creature, .creature .wing, .hero .kicker, .hero h1, .hero .whisper, .hero .cipher { animation: none !important; }
+      .c1 { transform: translate(8vw, 18vh); } .c2 { transform: translate(80vw, 16vh); } .c4 { transform: translate(55vw, 55vh); }
+      .c3, .c5, .c6 { display: none; }
+    }
+
     /* ---------- The raven's cipher wheel ---------- */
     .whisper { font-style: italic; font-size: 1.2rem; color: var(--ink-soft); margin: 0 auto 22px; max-width: 26em; line-height: 1.55; }
     .cipher { margin: 0 auto 34px; max-width: 520px; }
@@ -641,6 +743,12 @@
     </defs>
   </svg>
 
+  <div class="sky" id="sky" aria-hidden="true">
+    <div class="fog"></div>
+    <div class="fog two"></div>
+    <div class="veil"></div>
+  </div>
+
   <header class="topbar">
     <a class="brand" href="/" aria-label="CorvidzzPuzzles home">
       <img class="brand-logo" src="assets/img/logo.png" width="480" height="480" alt="">
@@ -667,7 +775,7 @@
 
       <p class="kicker">&#10022; Volume I &middot; Coming Soon &#10022;</p>
       <h1>Can you decode this?</h1>
-      <p class="whisper">An old book has been watching the new world.<br>Turn the raven's wheel to read what it wrote.</p>
+      <p class="whisper">Something old has been watching something new.<br>The ravens are searching for those who can read its message.</p>
 
       <div class="cipher" id="cipher">
         <svg class="wheel2" id="wheel" viewBox="0 0 300 300" role="img" aria-label="The raven's cipher wheel">
@@ -977,6 +1085,37 @@
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
     })();
 
+
+    // ===== The night sky: searching ravens & dragons, fireflies =====
+    (function () {
+      const sky = document.getElementById("sky");
+      const RAVEN = '<svg viewBox="20 0 102 50">' +
+        '<path class="wing far" fill="currentColor" opacity=".8" d="M80 34 C86 22 96 12 112 4 L109 10 L118 8 L111 14 L120 14 L110 19 C102 24 94 30 88 36Z"/>' +
+        '<path fill="currentColor" d="M40 34 C52 27 72 27 88 31 C94 28 101 28 106 32 L118 35 L105 38 C101 42 94 44 88 44 C70 49 52 48 40 43 L24 48 L27 39 L22 31 Z"/>' +
+        '<path class="wing near" fill="currentColor" d="M76 34 C70 22 58 10 40 2 L44 8 L35 6 L42 12 L31 11 L40 16 L29 17 L42 22 C50 28 60 32 66 38Z"/></svg>';
+      const DRAGON = '<svg viewBox="-8 0 190 86">' +
+        '<path class="wing far" fill="currentColor" opacity=".75" d="M112 52 L124 8 C128 20 136 30 148 36 C140 40 132 46 124 54Z"/>' +
+        '<path fill="currentColor" d="M60 58 C75 50 100 48 125 52 C135 50 145 44 152 38 C156 34 162 32 168 33 L180 34 L170 37 L178 40 L166 41 C160 42 156 46 150 52 C142 60 132 66 118 68 C98 71 76 68 60 64 C44 62 30 66 18 76 C10 82 4 82 0 78 L-6 84 L-2 74 C6 76 12 74 20 68 C32 58 46 56 60 58Z M166 33 L172 24 L170 34Z M160 34 L162 25 L164 34Z M92 66 L88 78 L96 72Z M114 66 L116 78 L120 70Z"/>' +
+        '<path class="wing near" fill="currentColor" d="M104 52 L82 4 L78 2 C74 14 62 24 44 30 C52 32 56 36 56 42 C64 40 70 42 74 48 C80 46 86 48 90 54Z"/></svg>';
+      [["c1", RAVEN], ["c2", RAVEN], ["c3", RAVEN], ["c6", RAVEN], ["c4 dragon", DRAGON], ["c5 dragon", DRAGON]].forEach(([cls, art]) => {
+        const d = document.createElement("div");
+        d.className = "creature " + cls;
+        d.innerHTML = art;
+        sky.appendChild(d);
+      });
+      for (let i = 0; i < 18; i++) {
+        const f = document.createElement("span");
+        f.className = "firefly";
+        f.style.left = Math.random() * 100 + "vw";
+        f.style.top = 40 + Math.random() * 60 + "vh";
+        f.style.setProperty("--d", 10 + Math.random() * 14 + "s");
+        f.style.setProperty("--g", 2 + Math.random() * 4 + "s");
+        f.style.setProperty("--x", (Math.random() * 120 - 60).toFixed(0) + "px");
+        f.style.setProperty("--y", (Math.random() * -120).toFixed(0) + "px");
+        f.style.animationDelay = (-Math.random() * 10).toFixed(1) + "s, " + (-Math.random() * 4).toFixed(1) + "s";
+        sky.appendChild(f);
+      }
+    })();
 
     // ===== The raven's cipher wheel =====
     (function () {
