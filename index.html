@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CorvidzzPuzzles | Join the Waiting List</title>
-  <meta name="description" content="An old book has been watching the new world. Can you decode this? Volume I is coming soon.">
+  <meta name="description" content="The ledger of early readers is sealed. Solve the raven's crossword to claim early access to Volume I.">
   <meta property="og:title" content="CorvidzzPuzzles | Can you decode this?">
-  <meta property="og:description" content="An old book has been watching the new world. Turn the raven's wheel and see.">
+  <meta property="og:description" content="Solve the raven's crossword. Claim early access.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://corvidzz.com/">
   <meta property="og:image" content="https://corvidzz.com/assets/img/share-preview.jpg">
@@ -368,45 +368,35 @@
     }
 
     /* slow reveal of the words on arrival */
-    .hero .kicker, .hero h1, .hero .whisper, .hero .cipher { animation: emerge 1.6s ease both; }
+    .hero .kicker, .hero h1, .hero .whisper, .hero .riddle-page { animation: emerge 1.6s ease both; }
     .hero h1 { animation-delay: .5s; }
     .hero .whisper { animation-delay: 1.2s; }
-    .hero .cipher { animation-delay: 1.9s; }
+    .hero .riddle-page { animation-delay: 1.9s; }
     @keyframes emerge { from { opacity: 0; filter: blur(6px); transform: translateY(6px); } to { opacity: 1; filter: none; transform: none; } }
 
     @media (max-width: 560px) {
       .c1 { width: 90px; } .c2 { width: 64px; } .c3 { width: 40px; } .c6 { width: 56px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .sky .fog, .firefly, .creature, .creature img, .bfly, .bfly img, .hero .kicker, .hero h1, .hero .whisper, .hero .cipher { animation: none !important; }
+      .sky .fog, .firefly, .creature, .creature img, .bfly, .bfly img, .hero .kicker, .hero h1, .hero .whisper, .hero .riddle-page { animation: none !important; }
       .c1 { transform: translate(8vw, 18vh); } .c2 { transform: translate(80vw, 16vh); }
       .c3, .c6 { display: none; }
     }
 
-    /* ---------- The raven's cipher wheel ---------- */
-    .whisper { font-style: italic; font-size: 1.2rem; color: var(--ink-soft); margin: 0 auto 22px; max-width: 26em; line-height: 1.55; }
-    .cipher { margin: 0 auto 34px; max-width: 520px; }
-    .wheel2 { width: min(300px, 78vw); height: auto; margin: 0 auto; display: block; filter: drop-shadow(0 10px 16px rgba(40, 25, 5, .3)); cursor: pointer; }
-    #ring-inner { transform-origin: 150px 150px; transition: transform .45s cubic-bezier(.3, 1.4, .5, 1); }
-    .wheel-ctrl { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 14px 0 6px; }
-    .turn {
-      width: 52px; height: 52px; border-radius: 50%; cursor: pointer;
-      font-size: 1.6rem; line-height: 1; color: var(--parchment-light);
-      background: radial-gradient(circle at 35% 30%, #3a5fa8, var(--lapis-deep));
-      border: 2px solid var(--gold); box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
-    }
-    .turn:hover { background: var(--lapis); }
-    .turn:focus-visible { outline: 3px solid var(--vermilion); outline-offset: 2px; }
-    .turn-note { font-family: "IM Fell English SC", serif; color: var(--ink-soft); min-width: 5.5em; }
-    .scroll-msg {
-      font-family: "Cinzel", serif; font-weight: 800; letter-spacing: .16em;
-      font-size: clamp(1.15rem, 3.4vw, 1.7rem); line-height: 1.5; color: var(--lapis-deep);
-      margin: 12px auto 4px; min-height: 3em; transition: color .4s, text-shadow .4s;
-    }
-    .cipher.solved .scroll-msg { color: #9b6f22; text-shadow: 0 0 18px rgba(236, 200, 111, .8); }
-    .hint { font-style: italic; color: var(--vermilion); margin: 4px 0 0; }
+    /* ---------- The raven's crossword (unlocks the library card) ---------- */
+    .whisper { font-style: italic; font-size: 1.2rem; color: var(--ink-soft); margin: 0 auto 22px; max-width: 28em; line-height: 1.55; }
+    .whisper strong { font-style: normal; font-family: "Cinzel", serif; color: var(--vermilion); }
+    .riddle-page { margin: 0 auto 30px; max-width: 460px; }
+    .riddle-page .xw { width: min(100%, 270px); margin: 0 auto 18px; box-shadow: 0 10px 18px rgba(40, 25, 5, .25); }
+    .riddle-page .clues p { transition: color .3s; }
+    .riddle-page .clues p.done { color: var(--leaf); text-decoration: line-through; text-decoration-color: rgba(95, 143, 78, .5); }
+    .xw .cell.ok { background: #eef3dc; }
+    .xw .cell.given input { color: #9b6f22; }
+    .hint-btn { font: inherit; font-style: italic; font-size: .98rem; background: none; border: 0; padding: 2px 0; color: var(--vermilion); text-decoration: underline; cursor: pointer; }
+    .riddle-page.solved .hint-btn { display: none; }
+    .riddle-page.solved .xw { box-shadow: 0 0 0 3px var(--gold-light), 0 0 30px rgba(236, 200, 111, .8); transition: box-shadow .6s; }
     .revealed {
-      margin: 18px auto 0; padding: 20px 22px 16px; max-width: 480px;
+      margin: 18px auto 0; padding: 20px 22px 16px; max-width: 460px;
       background: rgba(255, 250, 238, .6); border: 1px solid var(--sepia-soft);
       box-shadow: inset 0 0 0 4px rgba(239, 228, 198, .8), inset 0 0 0 5px var(--sepia-soft);
       animation: unveil .8s ease both;
@@ -415,7 +405,28 @@
     .revealed .seal-line { font-family: "Cinzel", serif; font-weight: 800; color: var(--vermilion); letter-spacing: .08em; }
     .revealed .small { font-style: italic; color: var(--ink-soft); font-size: 1rem; margin: 0; }
     @keyframes unveil { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) { #ring-inner { transition: none; } .revealed { animation: none; } }
+
+    /* the library card stays sealed until the crossword is solved */
+    .libcard > form { transition: filter .8s, opacity .8s; }
+    .libcard.sealed > form { filter: blur(3px) grayscale(.4); opacity: .45; pointer-events: none; user-select: none; }
+    .seal-over {
+      position: absolute; inset: 60px 0 0; z-index: 3;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      padding: 60px 24px 0; text-align: center;
+      transition: opacity .9s ease, transform .9s ease;
+    }
+    .libcard:not(.sealed) .seal-over { opacity: 0; transform: scale(1.15); pointer-events: none; }
+    .wax-seal {
+      width: 120px; height: 120px; border-radius: 50%; display: grid; place-items: center;
+      background: radial-gradient(circle at 35% 30%, #d0543e, var(--vermilion) 55%, #6e1f12);
+      box-shadow: 0 0 0 6px rgba(163, 50, 31, .35), 0 12px 24px rgba(60, 15, 5, .45), inset 0 -6px 12px rgba(0, 0, 0, .3);
+    }
+    .wax-seal img { width: 70px; filter: brightness(0) invert(.85) sepia(.6) saturate(2) hue-rotate(-15deg); opacity: .85; }
+    .libcard.breaking .wax-seal { animation: crack .9s ease forwards; }
+    @keyframes crack { 30% { transform: rotate(-8deg) scale(1.08); } 60% { transform: rotate(6deg) scale(1.1); } 100% { transform: scale(.2) rotate(40deg); opacity: 0; } }
+    .seal-title { font-family: "Cinzel", serif; font-weight: 800; letter-spacing: .2em; color: var(--card-ink); margin: 18px 0 6px; font-size: 1.3rem; }
+    .seal-text { font-style: italic; color: var(--ink-soft); margin: 0; max-width: 18em; }
+    @media (prefers-reduced-motion: reduce) { .revealed { animation: none; } .libcard.breaking .wax-seal { animation: none; } }
 
     /* ---------- Ancient riddles, modern answers ---------- */
     .tagline {
@@ -783,43 +794,63 @@
 
       <p class="kicker">&#10022; Volume I &middot; Coming Soon &#10022;</p>
       <h1>Can you decode this?</h1>
-      <p class="whisper">Something old has been watching something new.<br>The ravens are searching for those who can read its message.</p>
+      <p class="whisper">The ledger of early readers is sealed.<br>Solve the raven's crossword to break the seal and claim <strong>early access</strong>.</p>
 
-      <div class="cipher" id="cipher">
-        <svg class="wheel2" id="wheel" viewBox="0 0 300 300" role="img" aria-label="The raven's cipher wheel">
-          <circle cx="150" cy="150" r="146" fill="#efe4c6" stroke="#6e5230" stroke-width="2"/>
-          <circle cx="150" cy="150" r="140" fill="none" stroke="#9c7f4c" stroke-width="1"/>
-          <circle cx="150" cy="150" r="112" fill="none" stroke="#6e5230" stroke-width="1.5"/>
-          <g id="ring-outer" font-family="Cinzel, serif" font-weight="700" font-size="15" text-anchor="middle" fill="#2a2218"></g>
-          <g id="ring-inner">
-            <circle cx="150" cy="150" r="108" fill="#1f3d78"/>
-            <circle cx="150" cy="150" r="80" fill="none" stroke="#ecc86f" stroke-width="1"/>
-            <g id="ring-inner-letters" font-family="Cinzel, serif" font-weight="700" font-size="13" text-anchor="middle" fill="#ecc86f"></g>
-          </g>
-          <circle cx="150" cy="150" r="76" fill="#efe4c6" stroke="#6e5230" stroke-width="1.5"/>
-          <image href="assets/img/logo.png" x="80" y="80" width="140" height="140"/>
-          <path d="M150 2 L158 18 L142 18 Z" fill="#c0412d"/>
-        </svg>
-        <div class="wheel-ctrl">
-          <button type="button" class="turn" id="turn-left" aria-label="Turn the wheel left">&#8630;</button>
-          <span class="turn-note" id="turn-note">Turn</span>
-          <button type="button" class="turn" id="turn-right" aria-label="Turn the wheel right">&#8631;</button>
+      <div class="riddle-page" id="riddle-page">
+        <div class="xw" id="xw">
+            <div class="cell" data-a="V" data-r="0" data-c="0"><span class="num">1</span><input maxlength="1" aria-label="Row 1, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="I" data-r="0" data-c="1"><input maxlength="1" aria-label="Row 1, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="R" data-r="0" data-c="2"><input maxlength="1" aria-label="Row 1, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="A" data-r="0" data-c="3"><input maxlength="1" aria-label="Row 1, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="L" data-r="0" data-c="4"><span class="num">2</span><input maxlength="1" aria-label="Row 1, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="I" data-r="1" data-c="0"><input maxlength="1" aria-label="Row 2, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="O" data-r="1" data-c="4"><input maxlength="1" aria-label="Row 2, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="B" data-r="2" data-c="0"><input maxlength="1" aria-label="Row 3, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="G" data-r="2" data-c="4"><input maxlength="1" aria-label="Row 3, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="E" data-r="3" data-c="0"><span class="num">3</span><input maxlength="1" aria-label="Row 4, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="M" data-r="3" data-c="1"><input maxlength="1" aria-label="Row 4, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="O" data-r="3" data-c="2"><input maxlength="1" aria-label="Row 4, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="J" data-r="3" data-c="3"><input maxlength="1" aria-label="Row 4, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="I" data-r="3" data-c="4"><input maxlength="1" aria-label="Row 4, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="N" data-r="4" data-c="4"><input maxlength="1" aria-label="Row 5, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
         </div>
-        <p class="scroll-msg" id="scroll-msg" aria-live="polite"></p>
-        <p class="hint" id="hint" hidden>The raven counts to three.</p>
+        <div class="clues">
+          <h4>Across</h4>
+          <p data-word="a1"><b>1</b> Spreadeth faster than the plague, yet no one falleth ill (5)</p>
+          <p data-word="a3"><b>3</b> A tiny painted face, sent by messenger to show one's mood (5)</p>
+          <h4>Down</h4>
+          <p data-word="d1"><b>1</b> The feeling in the air, as the young ones of the court say (4)</p>
+          <p data-word="d2"><b>2</b> The secret word that opens the gate to thy account (5)</p>
+        </div>
+        <p class="verdict" id="xw-verdict" role="status" aria-live="polite"></p>
+        <button type="button" class="hint-btn" id="xw-hint">Stuck? The raven will lend a letter</button>
         <div class="revealed" id="revealed" hidden>
-          <p class="seal-line">&#10022; Thou hast cracked it &#10022;</p>
-          <p>The shows everyone is watching. The songs on repeat. The trends, the memes, the drama.
-          <strong>Everything the world is talking about, hidden inside an old book of riddles</strong>, with a new mystery every month.</p>
-          <p class="small">Volume I is being written. Sign the library card to open it first.</p>
+          <p class="seal-line">&#10022; The seal is broken &#10022;</p>
+          <p>Old riddles, modern answers. Every page of this book hides something from the world right now: <strong>the shows, the songs, the trends and the drama everyone is talking about.</strong></p>
+          <p class="small">Thou hast earned early access. Sign the ledger below to read Volume I before anyone else.</p>
         </div>
       </div>
       <div class="flourish" aria-hidden="true"><svg><use href="#flourish"/></svg></div>
 
       <div class="card-wrap">
-        <div class="libcard" id="signup" role="group" aria-label="Library card: the Ravens' waiting list">
-          <p class="card-sub"><i>The Ravens' Waiting List</i><span>No. 0001</span></p>
-          <form id="waitlist" novalidate>
+        <div class="libcard sealed" id="signup" role="group" aria-label="Library card: early access list">
+          <p class="card-sub"><i>Early Access &middot; The Ravens' Ledger</i><span>No. 0001</span></p>
+          <div class="seal-over" id="seal-over">
+            <div class="wax-seal" aria-hidden="true"><img src="assets/img/raven.svg" alt=""></div>
+            <p class="seal-title">Sealed</p>
+            <p class="seal-text">Solve the crossword above to break the seal and claim early access.</p>
+          </div>
+          <form id="waitlist" novalidate inert>
             <div class="line">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Thy name">
@@ -950,7 +981,7 @@
 
             <button type="submit" class="submit" id="submit">
               <span class="star" aria-hidden="true">&#10022;</span>
-              <span id="submit-label">Join the Waitlist</span>
+              <span id="submit-label">Claim Early Access</span>
               <span class="star" aria-hidden="true">&#10022;</span>
             </button>
             <p class="msg" id="msg" role="status" aria-live="polite"></p>
@@ -1138,50 +1169,104 @@
       }
     })();
 
-    // ===== The raven's cipher wheel =====
+    // ===== The raven's crossword: solving it breaks the seal on the library card =====
     (function () {
-      const A = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      const SECRET = "WKH UDYHQV ZDWFK BRXU IHHG"; // "THE RAVENS WATCH YOUR FEED", each letter moved 3 along
-      const KEY = 3;
-      const NS = "http://www.w3.org/2000/svg";
-      const outer = document.getElementById("ring-outer");
-      const inner = document.getElementById("ring-inner-letters");
-      const ring = document.getElementById("ring-inner");
-      const box = document.getElementById("cipher");
-      const out = document.getElementById("scroll-msg");
-      const note = document.getElementById("turn-note");
-      const hint = document.getElementById("hint");
-      const revealed = document.getElementById("revealed");
-      const letter = (g, ch, r, i, size) => {
-        const a = (i / 26) * 2 * Math.PI - Math.PI / 2;
-        const t = document.createElementNS(NS, "text");
-        t.setAttribute("x", (150 + r * Math.cos(a)).toFixed(1));
-        t.setAttribute("y", (150 + r * Math.sin(a) + size * 0.36).toFixed(1));
-        t.setAttribute("transform", `rotate(${(i / 26) * 360} ${(150 + r * Math.cos(a)).toFixed(1)} ${(150 + r * Math.sin(a)).toFixed(1)})`);
-        t.textContent = ch; g.appendChild(t);
+      const page = document.getElementById("riddle-page");
+      const cells = [...document.querySelectorAll("#xw .cell[data-a]")];
+      const at = (r, c) => cells.find((x) => +x.dataset.r === r && +x.dataset.c === c);
+      const WORDS = {
+        a1: [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
+        a3: [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4]],
+        d1: [[0, 0], [1, 0], [2, 0], [3, 0]],
+        d2: [[0, 4], [1, 4], [2, 4], [3, 4], [4, 4]]
       };
-      for (let i = 0; i < 26; i++) { letter(outer, A[i], 126, i, 15); letter(inner, A[i], 94, i, 13); }
+      const verdict = document.getElementById("xw-verdict");
+      const card = document.getElementById("signup");
+      let dir = "across", solved = false;
 
-      let shift = 0, turns = 0, solved = false;
-      const decode = (n) => SECRET.replace(/[A-Z]/g, (c) => A[(A.indexOf(c) - n + 26) % 26]);
-      function render() {
-        ring.style.transform = `rotate(${(shift * 360) / 26}deg)`;
-        const n = ((shift % 26) + 26) % 26;
-        out.textContent = decode(n);
-        note.textContent = n ? n + (n === 1 ? " turn" : " turns") : "Turn";
-        if (n === KEY && !solved) {
-          solved = true;
-          box.classList.add("solved");
-          hint.hidden = true;
-          revealed.hidden = false;
-          try { localStorage.setItem("corvidzz-solved", "1"); } catch (e) {}
+      const input = (cell) => cell.querySelector("input");
+      function next(cell, step) {
+        let r = +cell.dataset.r, c = +cell.dataset.c;
+        for (let i = 0; i < 5; i++) {
+          if (dir === "across") c += step; else r += step;
+          const n = at(r, c);
+          if (n) return n;
+          if (r < 0 || c < 0 || r > 4 || c > 4) return null;
         }
+        return null;
       }
-      function turn(d) { shift += d; turns++; if (turns >= 5 && !solved) hint.hidden = false; render(); }
-      document.getElementById("turn-right").addEventListener("click", () => turn(1));
-      document.getElementById("turn-left").addEventListener("click", () => turn(-1));
-      document.getElementById("wheel").addEventListener("click", () => turn(1));
-      render();
+
+      function check() {
+        let all = true;
+        Object.entries(WORDS).forEach(([k, pos]) => {
+          const ok = pos.every(([r, c]) => input(at(r, c)).value === at(r, c).dataset.a);
+          document.querySelector('.clues [data-word="' + k + '"]').classList.toggle("done", ok);
+          pos.forEach(([r, c]) => { if (ok) at(r, c).classList.add("ok"); });
+          if (!ok) all = false;
+        });
+        cells.forEach((c) => {
+          const inWord = Object.values(WORDS).some((pos) => pos.some(([r, cc]) => at(r, cc) === c) &&
+            pos.every(([r, cc]) => input(at(r, cc)).value === at(r, cc).dataset.a));
+          if (!inWord) c.classList.remove("ok");
+        });
+        if (all && !solved) unlock();
+      }
+
+      function unlock() {
+        solved = true;
+        page.classList.add("solved");
+        verdict.className = "verdict win";
+        verdict.textContent = "Splendid. The ravens have seen thee.";
+        cells.forEach((c) => (input(c).readOnly = true));
+        document.getElementById("revealed").hidden = false;
+        card.classList.add("breaking");
+        setTimeout(() => {
+          card.classList.remove("sealed");
+          document.getElementById("waitlist").inert = false;
+          document.getElementById("seal-over").setAttribute("aria-hidden", "true");
+          setTimeout(() => card.scrollIntoView({ behavior: "smooth", block: "start" }), 900);
+        }, 700);
+      }
+
+      cells.forEach((cell) => {
+        const inp = input(cell);
+        inp.addEventListener("focus", () => inp.select());
+        inp.addEventListener("click", () => {
+          // tapping the same square again switches between across and down
+          if (document.activeElement === inp && inp.dataset.tapped) dir = dir === "across" ? "down" : "across";
+          inp.dataset.tapped = "1";
+          const r = +cell.dataset.r, c = +cell.dataset.c;
+          if (!at(r, c + 1) && !at(r, c - 1)) dir = "down";
+          if (!at(r + 1, c) && !at(r - 1, c)) dir = "across";
+        });
+        inp.addEventListener("blur", () => delete inp.dataset.tapped);
+        inp.addEventListener("input", () => {
+          inp.value = inp.value.replace(/[^a-z]/gi, "").slice(-1).toUpperCase();
+          if (inp.value) { const n = next(cell, 1); if (n) input(n).focus(); }
+          check();
+        });
+        inp.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace" && !inp.value) { const p = next(cell, -1); if (p) { input(p).focus(); input(p).value = ""; } e.preventDefault(); check(); }
+          const moves = { ArrowRight: [0, 1, "across"], ArrowLeft: [0, -1, "across"], ArrowDown: [1, 0, "down"], ArrowUp: [-1, 0, "down"] };
+          if (moves[e.key]) {
+            const [dr, dc, d] = moves[e.key]; dir = d;
+            const n = at(+cell.dataset.r + dr, +cell.dataset.c + dc) || next(cell, dr + dc);
+            if (n) input(n).focus();
+            e.preventDefault();
+          }
+        });
+      });
+
+      document.getElementById("xw-hint").addEventListener("click", () => {
+        const empty = cells.filter((c) => input(c).value !== c.dataset.a);
+        if (!empty.length) return;
+        const pick = empty[Math.floor(Math.random() * empty.length)];
+        input(pick).value = pick.dataset.a;
+        pick.classList.add("given");
+        verdict.className = "verdict";
+        verdict.textContent = "The raven drops a letter into the grid.";
+        check();
+      });
     })();
 
     // ===== SETUP =====
@@ -1215,6 +1300,7 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.textContent = "";
+      if (card.classList.contains("sealed")) return;
 
       const email = form.email.value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -1253,16 +1339,16 @@
 
         const name = form.name.value.trim().replace(/[<>&"]/g, "");
         card.innerHTML =
-          '<p class="card-sub"><i>The Ravens\' Waiting List</i><span>No. 0001</span></p>' +
+          '<p class="card-sub"><i>Early Access &middot; The Ravens\' Ledger</i><span>No. 0001</span></p>' +
           '<div class="inscribed">' +
             '<div class="stamp">Inscribed</div>' +
             '<h3>' + (name ? "Welcome, " + name : "Welcome, Solver") + '</h3>' +
-            '<p>Thy name is written in the ledger. The ravens shall bring word when the book is ready.</p>' +
+            '<p>Thy name is written in the ledger of early readers. The ravens shall bring word before anyone else hears.</p>' +
           '</div>';
       } catch (err) {
         showError("A storm has scattered the ravens. Please try again in a moment.");
         submit.disabled = false;
-        submitLabel.textContent = "Join the Waitlist";
+        submitLabel.textContent = "Claim Early Access";
       }
     });
   </script>
