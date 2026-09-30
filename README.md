@@ -14,6 +14,7 @@ It's deliberately a single, mysterious page. Behind everything, raven silhouette
 - **The arch panel:** "Volume I · Coming Soon", the title "Can you decode this?" and "The ledger of early readers is sealed. Solve the raven's crossword to break the seal and claim early access."
 - **The raven's crossword:** the only puzzle, a 5×5 mini crossword with old-fashioned clues and modern answers: VIRAL and EMOJI across, VIBE and LOGIN down. Each word turns green when it's right. "Stuck? The raven will lend a letter" fills in one correct letter per tap, so nobody is locked out. Solving it shows the "seal is broken" message, which explains the book is about today's pop culture, and unseals the library card. The grid and clues are in the hero section of `index.html`, and the answer positions are in `WORDS` in the crossword script.
 - **The library card sign-up:** the same layout as before, headed "Early Access · The Ravens' Ledger". Until the crossword is solved it sits blurred under a red wax seal and can't be used. Once open, it has name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, tap-to-choose puzzle types and a "Claim Early Access" button. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
+- **"Not one for riddles?" link:** under the card, "Join the waiting list instead" opens the card without the puzzle, as the ordinary waiting list (header "The Ravens' Waiting List", button "Join the Waitlist"). Solving the crossword still gives early access.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
 To swap the background or the card, replace the file in `assets/img/` with another picture of the same name. The card frame is sliced from the picture's edges (top 116px, sides 50px, bottom 62px of a 336×528 image), so a replacement card should have a similar layout.
@@ -31,6 +32,7 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 | `celebrities` | The Royal Family |
 | `something_else` | (anything typed in "Not listed?") |
 | `puzzles` | Crosswords, Ciphers and codes, Riddles |
+| `access` | early access (solved the crossword) *or* waiting list (skipped the crossword) |
 
 Groups with nothing ticked arrive as "(none chosen)" and an empty "Not listed?" box as "(not answered)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 
