@@ -255,6 +255,9 @@
       font-family: "IM Fell English SC", serif; font-size: 1.3rem; letter-spacing: .12em;
       padding: 6px 14px; margin-bottom: 14px; background: var(--card-cream);
     }
+    .inscribed .place-no { font-family: "Cinzel", serif; font-weight: 800; font-size: 2.4rem; letter-spacing: .08em; color: var(--card-ink); margin: 0 0 6px; }
+    .inscribed .place-line { margin: 0 0 10px; }
+    .inscribed .place-line strong { font-family: "Cinzel", serif; color: var(--vermilion); }
     .inscribed h3 { font-family: "Cinzel Decorative", serif; font-size: 1.6rem; margin: 0 0 8px; color: var(--card-ink); }
     .inscribed p { margin: 0; background: var(--card-cream); }
 
@@ -848,7 +851,7 @@
 
       <div class="card-wrap">
         <div class="libcard sealed" id="signup" role="group" aria-label="Library card: early access list">
-          <p class="card-sub"><i>Early Access &middot; The Ravens' Ledger</i><span>No. 0001</span></p>
+          <p class="card-sub"><i>Early Access &middot; The Ravens' Ledger</i><span>No. ____</span></p>
           <div class="seal-over" id="seal-over">
             <div class="wax-seal" aria-hidden="true"><img src="assets/img/raven.svg" alt=""></div>
             <p class="seal-title">Sealed</p>
@@ -1300,6 +1303,10 @@
     // Every sign-up then appears in the Formspree dashboard and your inbox,
     // and the whole list can be exported as CSV.
     const FORM_ENDPOINT = "https://formspree.io/f/xyezlyoe";
+    // 3. The Google Sheet that numbers the list (see SETUP-GOOGLE-SHEET.md).
+    //    Paste the web app URL from Apps Script below. Until it's set, sign-ups
+    //    still go to Formspree, just without a place number.
+    const SHEET_ENDPOINT = "PASTE_GOOGLE_WEB_APP_URL_HERE";
     // =================
 
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -1354,21 +1361,42 @@
       submit.disabled = true;
       submitLabel.textContent = "Inscribing…";
 
+      const early = document.getElementById("access").value.startsWith("early");
+      const sheetOn = !SHEET_ENDPOINT.includes("PASTE_");
+
+      // the numbered ledger (Google Sheet): a plain form post, so no special permissions are needed
+      const toSheet = sheetOn
+        ? fetch(SHEET_ENDPOINT, { method: "POST", body: new URLSearchParams(data) })
+            .then((r) => r.json())
+            .then((j) => (j && j.ok ? j : Promise.reject(new Error("sheet refused"))))
+        : Promise.reject(new Error("sheet not set up"));
+      const toFormspree = fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } })
+        .then((r) => (r.ok ? r : Promise.reject(new Error("formspree refused"))));
+
       try {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          body: data,
-          headers: { Accept: "application/json" }
-        });
-        if (!res.ok) throw new Error("Request failed");
+        const [sheet, fs] = await Promise.allSettled([toSheet, toFormspree]);
+        if (sheet.status !== "fulfilled" && fs.status !== "fulfilled") throw new Error("Request failed");
+
+        const num = sheet.status === "fulfilled" && sheet.value.number ? Number(sheet.value.number) : null;
+        const numText = num ? "No. " + String(num).padStart(4, "0") : "No. ____";
+        const ordinal = (n) => n + ((n % 100 >= 11 && n % 100 <= 13) ? "th" : ({ 1: "st", 2: "nd", 3: "rd" }[n % 10] || "th"));
+        const placeLine = num
+          ? (sheet.value.returning
+              ? "Thou wert already in the ledger. Thy place is kept: <strong>the " + ordinal(num) + "</strong> to sign."
+              : "Thou art <strong>the " + ordinal(num) + "</strong> to sign the ledger.")
+          : "";
 
         const name = form.name.value.trim().replace(/[<>&"]/g, "");
         card.innerHTML =
-          '<p class="card-sub"><i>Early Access &middot; The Ravens\' Ledger</i><span>No. 0001</span></p>' +
+          '<p class="card-sub"><i>' + (early ? "Early Access &middot; The Ravens\' Ledger" : "The Ravens\' Waiting List") + '</i><span>' + numText + '</span></p>' +
           '<div class="inscribed">' +
             '<div class="stamp">Inscribed</div>' +
+            (num ? '<div class="place-no">' + numText + '</div>' : '') +
             '<h3>' + (name ? "Welcome, " + name : "Welcome, Solver") + '</h3>' +
-            '<p>Thy name is written in the ledger of early readers. The ravens shall bring word before anyone else hears.</p>' +
+            (placeLine ? '<p class="place-line">' + placeLine + '</p>' : '') +
+            '<p>' + (early
+              ? "Thy name is written in the ledger of early readers. The ravens shall bring word before anyone else hears."
+              : "Thy name is written in the ledger. The ravens shall bring word when the book is ready.") + '</p>' +
           '</div>';
       } catch (err) {
         showError("A storm has scattered the ravens. Please try again in a moment.");
