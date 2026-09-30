@@ -67,3 +67,25 @@ Go to [app.netlify.com/drop](https://app.netlify.com/drop) and drag in the whole
 ## Preview locally
 
 Double-click `index.html` to open it in a browser. Keep the `assets` folder next to it.
+
+---
+
+# The full website (`website/`)
+
+The complete CorvidzzPuzzles site lives in the `website/` folder, in the same night-forest, raven and parchment style as the waiting list. The waiting list at the root stays live until you're ready to switch. Once it's on the main branch you can preview it at **corvidzz.com/website/**, or open it locally by double-clicking `website/index.html`.
+
+| Page | File | What's on it |
+|---|---|---|
+| Home | `index.html` | "Can you decode this?" arch, tap-to-reveal "Ancient riddles, modern answers", What lies within, a playable crossword and secret code |
+| The Book | `book.html` | What's inside every issue, and the Library shelf: Volume I, the monthly issues, limited editions |
+| Puzzles | `puzzles.html` | All 27 puzzle kinds in six chapters, plus the Wi-Fi riddle |
+| The Monthly Council | `council.html` | A live countdown to the first of next month, the clues → reveal → vote cycle, points and treasure |
+| Our Tale | `about.html` | Why ravens (Corvids), the look of the book, what the ravens believe |
+| Contact | `contact.html` | Email, Instagram, TikTok and a FAQ |
+| Join the Waitlist | `join.html` | The same library card as the waiting list page |
+
+Shared files: `website/css/site.css` (all styles), `website/js/site.js` (garland, night sky, menu, puzzles, countdown, sign-up form) and `website/assets/img/` (a copy of the pictures). The header and footer are repeated in each page, so a new menu link has to be added to all seven files.
+
+The join page sends to the same Formspree form (`FORM_ENDPOINT` in `website/js/site.js`) with the same fields as the table above, plus `source` = `Website`, so you can tell the two apart in the export.
+
+**Going live:** when the book launches, move the contents of `website/` to the root of the repo (replacing the waiting-list `index.html` and `assets/`) and add a link to the Shopify shop on `book.html`.

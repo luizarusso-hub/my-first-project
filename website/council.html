@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Monthly Council | CorvidzzPuzzles</title>
+  <meta name="description" content="A new secret topic every month, revealed on the first, with clues all month before. Readers vote on the topics and collect points toward limited editions.">
+  <meta property="og:title" content="The Monthly Council | CorvidzzPuzzles">
+  <meta property="og:description" content="A new secret topic every month, revealed on the first, with clues all month before. Readers vote on the topics and collect points toward limited editions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://corvidzz.com/council.html">
+  <meta property="og:image" content="https://corvidzz.com/assets/img/share-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0e2421">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" as="image" href="assets/img/forest-night.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the content</a>
+
+  <div class="sky" id="sky" aria-hidden="true">
+    <div class="fog"></div>
+    <div class="fog two"></div>
+    <div class="veil"></div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="CorvidzzPuzzles home">
+      <img class="brand-logo" src="assets/img/logo.png" width="480" height="480" alt="">
+      <span class="wordmark">CorvidzzPuzzles</span>
+    </a>
+    <button type="button" class="menu-btn" id="menu-btn" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="book.html">The Book</a>
+      <a href="puzzles.html">Puzzles</a>
+      <a href="council.html" aria-current="page">The Monthly Council</a>
+      <a href="about.html">Our Tale</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav-join" href="join.html">&#10022; Join the Waitlist</a>
+      <span class="social">
+        <a href="https://www.instagram.com/corvidzzpuzzles/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        <a href="https://www.tiktok.com/@corvidzzpuzzles" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.8 5.8 0 1 0 5 5.7V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg></a>
+      </span>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+    <span class="twinkle" style="top:30px;right:6%;width:20px;height:20px" aria-hidden="true"><svg><use href="#star"/></svg></span>
+    <span class="twinkle" style="top:46%;left:2%;width:16px;height:16px;animation-delay:1.2s" aria-hidden="true"><svg><use href="#star"/></svg></span>
+    <span class="twinkle" style="bottom:60px;right:2%;width:18px;height:18px;animation-delay:2.1s" aria-hidden="true"><svg><use href="#star"/></svg></span>
+      <div class="panel arch" data-garland>
+      <p class="kicker">&#10022; A New Secret Every Month &#10022;</p>
+      <h1>The Monthly Council</h1>
+      <p class="lede">The book is never finished. Every month it takes on a new secret topic, and the readers help decide what comes next.</p>
+      </div>
+    </section>
+
+    <section class="wrap narrow">
+      <div class="panel arch prose center" data-garland style="--arch:220px;padding-top:96px">
+        <p class="kicker">&#10022; The Next Secret &#10022;</p>
+        <h2 class="section-title">Revealed on the First of <span class="i-red" id="next-month">Next Month</span></h2>
+        <div class="countdown" id="countdown" role="timer" aria-live="off">
+          <div><b data-d>0</b><span>Days</span></div>
+          <div><b data-h>00</b><span>Hours</span></div>
+          <div><b data-m>00</b><span>Minutes</span></div>
+          <div><b data-s>00</b><span>Seconds</span></div>
+        </div>
+        <p>The topic stays a surprise until the first of the month. But the ravens are careless with their secrets: clues appear all through the month before, for anyone watching closely.</p>
+        <div class="actions">
+          <a class="btn" href="https://www.instagram.com/corvidzzpuzzles/" target="_blank" rel="noopener">Watch on Instagram</a>
+          <a class="btn ghost" href="https://www.tiktok.com/@corvidzzpuzzles" target="_blank" rel="noopener">Watch on TikTok</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="tiles" aria-hidden="true"></div>
+
+    <section class="wrap" aria-labelledby="cycle-title">
+      <h2 class="section-title" id="cycle-title"><span class="i-red">T</span>he Turning of the Moon</h2>
+      <p class="section-lead">How every month unfolds.</p>
+      <div class="cycle">
+        <article class="step">
+          <span class="medal">I</span>
+          <span class="when">All month long</span>
+          <h3>The Clues</h3>
+          <p>Hints about the next topic are scattered through the month, so you can guess what's coming and get curious.</p>
+        </article>
+        <article class="step">
+          <span class="medal">II</span>
+          <span class="when">On the first</span>
+          <h3>The Reveal</h3>
+          <p>The secret topic is revealed and the new puzzles are released, all about whatever the world is talking about.</p>
+        </article>
+        <article class="step">
+          <span class="medal">III</span>
+          <span class="when">Every month</span>
+          <h3>The Vote</h3>
+          <p>Readers who own a book vote in the monthly poll on which topics they'd like to see in the next issues.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="tale" id="points">
+      <div class="panel" data-garland>
+        <h2 class="section-title"><span class="i-red">P</span>oints &amp; Treasure</h2>
+        <p class="dropcap-p"><span class="dropcap" aria-hidden="true">T</span><span class="sr-only">T</span>he first page of every book holds a tracker. Each week and each month, mark how many puzzles you have solved.</p>
+        <p>Every solve earns points, and points are the key to the ravens' treasure room: <strong>limited edition books and prizes</strong> that can't be found anywhere else.</p>
+        <p>The more you solve, the more the ravens trust you.</p>
+      </div>
+
+      <div class="panel arch riddle" data-garland>
+        <svg class="ornament" aria-hidden="true"><use href="#moon"/></svg>
+        <h3>Can You Decode This?</h3>
+        <p class="verse">Each month, the ravens illuminate whatever is trending as a single manuscript puzzle, and set it loose on Instagram and TikTok.</p>
+        <p class="answer">Share it, solve it, and see which of your friends can keep up.</p>
+      </div>
+    </section>
+
+    <section class="finale">
+      <div class="panel arch" data-garland>
+        <span class="sparkle" style="width:44px;height:68px;right:14%;bottom:-30px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
+        <svg class="raven" aria-hidden="true"><use href="#raven"/></svg>
+        <h2 class="section-title"><span class="i-red">J</span>oin the Council</h2>
+        <p>Put your name in the ledger, tell the ravens what you're into right now, and help shape the very first issues.</p>
+        <a class="btn" href="join.html">&#10022; Join the Waitlist &#10022;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img class="footer-logo" src="assets/img/logo.png" width="480" height="480" alt="" loading="lazy">
+    <div class="wordmark">CorvidzzPuzzles</div>
+    <nav class="foot-nav" aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="book.html">The Book</a>
+      <a href="puzzles.html">Puzzles</a>
+      <a href="council.html">The Monthly Council</a>
+      <a href="about.html">Our Tale</a>
+      <a href="contact.html">Contact</a>
+      <a href="join.html">Join the Waitlist</a>
+    </nav>
+    <nav aria-label="Contact">
+      <a href="mailto:corvidzzpuzzles@gmail.com">corvidzzpuzzles@gmail.com</a>
+      <a href="https://www.instagram.com/corvidzzpuzzles/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@corvidzzpuzzles" target="_blank" rel="noopener">TikTok</a>
+    </nav>
+    <p>&copy; <span class="year"></span> CorvidzzPuzzles &middot; corvidzz.com</p>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>
