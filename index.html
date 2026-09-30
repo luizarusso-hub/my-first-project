@@ -406,6 +406,10 @@
     .revealed .small { font-style: italic; color: var(--ink-soft); font-size: 1rem; margin: 0; }
     @keyframes unveil { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
+    .skip-line { margin: 26px 0 0; font-style: italic; color: var(--ink-soft); font-size: 1rem; }
+    .skip-line button { font: inherit; background: none; border: 0; padding: 0; color: var(--lapis-deep); text-decoration: underline; cursor: pointer; }
+    .skip-line button:hover { color: var(--vermilion); }
+    .skip-line[hidden] { display: none; }
     /* the library card stays sealed until the crossword is solved */
     .libcard > form { transition: filter .8s, opacity .8s; }
     .libcard.sealed > form { filter: blur(3px) grayscale(.4); opacity: .45; pointer-events: none; user-select: none; }
@@ -976,6 +980,8 @@
               </div>
             </fieldset>
 
+            <input type="hidden" name="access" id="access" value="early access (solved the crossword)">
+
             <!-- Spam trap: real people never see or fill this -->
             <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
@@ -989,6 +995,7 @@
           </form>
         </div>
       </div>
+      <p class="skip-line" id="skip-line">Not one for riddles? <button type="button" id="skip-puzzle">Join the waiting list instead</button></p>
     </div>
   </section>
 
@@ -1219,6 +1226,15 @@
         verdict.textContent = "Splendid. The ravens have seen thee.";
         cells.forEach((c) => (input(c).readOnly = true));
         document.getElementById("revealed").hidden = false;
+        document.getElementById("access").value = "early access (solved the crossword)";
+        document.querySelector("#signup .card-sub i").innerHTML = "Early Access &middot; The Ravens' Ledger";
+        document.getElementById("submit-label").textContent = "Claim Early Access";
+        document.getElementById("skip-line").hidden = true;
+        openCard();
+      }
+
+      function openCard() {
+        if (!card.classList.contains("sealed")) return;
         card.classList.add("breaking");
         setTimeout(() => {
           card.classList.remove("sealed");
@@ -1227,6 +1243,15 @@
           setTimeout(() => card.scrollIntoView({ behavior: "smooth", block: "start" }), 900);
         }, 700);
       }
+
+      // for those who'd rather not solve: open the card as the ordinary waiting list (no early access)
+      document.getElementById("skip-puzzle").addEventListener("click", () => {
+        document.getElementById("access").value = "waiting list (skipped the crossword)";
+        document.querySelector("#signup .card-sub i").textContent = "The Ravens' Waiting List";
+        document.getElementById("submit-label").textContent = "Join the Waitlist";
+        document.getElementById("skip-line").innerHTML = "Changed thy mind? The crossword above still grants <strong>early access</strong>.";
+        openCard();
+      });
 
       cells.forEach((cell) => {
         const inp = input(cell);
@@ -1348,7 +1373,7 @@
       } catch (err) {
         showError("A storm has scattered the ravens. Please try again in a moment.");
         submit.disabled = false;
-        submitLabel.textContent = "Claim Early Access";
+        submitLabel.textContent = document.getElementById("access").value.startsWith("early") ? "Claim Early Access" : "Join the Waitlist";
       }
     });
   </script>
