@@ -70,22 +70,34 @@ Double-click `index.html` to open it in a browser. Keep the `assets` folder next
 
 ---
 
-# The full website (`website/`)
+# The shop website (`website/`)
 
-The complete CorvidzzPuzzles site lives in the `website/` folder, in the same night-forest, raven and parchment style as the waiting list. The waiting list at the root stays live until you're ready to switch. Once it's on the main branch you can preview it at **corvidzz.com/website/**, or open it locally by double-clicking `website/index.html`.
+The CorvidzzPuzzles shop lives in the `website/` folder, in the same night-forest, raven and parchment style as the waiting list. The waiting list at the root stays live until you're ready to switch. Once it's on the main branch you can preview it at **corvidzz.com/website/**, or open it locally by double-clicking `website/index.html`.
 
 | Page | File | What's on it |
 |---|---|---|
-| Home | `index.html` | "Can you decode this?" arch, tap-to-reveal "Ancient riddles, modern answers", What lies within, a playable crossword and secret code |
-| The Book | `book.html` | What's inside every issue, and the Library shelf: Volume I, the monthly issues, limited editions |
+| Home | `index.html` | "Can you decode this?" arch with Buy buttons, the featured Volume I with price and Add to Basket, the riddles, What lies within, a playable crossword and secret code |
+| Shop | `shop.html` | The Library: Volume I for sale, the monthly puzzles and the limited editions (earned with points), plus secure checkout / council vote / points |
+| Volume I | `book.html` | The product page: cover, price, quantity, Add to Basket and Buy Now, what's inside, a peek at the riddles |
 | Puzzles | `puzzles.html` | All 27 puzzle kinds in six chapters, plus the Wi-Fi riddle |
 | The Monthly Council | `council.html` | A live countdown to the first of next month, the clues → reveal → vote cycle, points and treasure |
 | Our Tale | `about.html` | Why ravens (Corvids), the look of the book, what the ravens believe |
 | Contact | `contact.html` | Email, Instagram, TikTok and a FAQ |
-| Join the Waitlist | `join.html` | The same library card as the waiting list page |
 
-Shared files: `website/css/site.css` (all styles), `website/js/site.js` (garland, night sky, menu, puzzles, countdown, sign-up form) and `website/assets/img/` (a copy of the pictures). The header and footer are repeated in each page, so a new menu link has to be added to all seven files.
+Every page has a basket button in the header. The basket remembers what's in it as visitors move between pages, and **Checkout** sends them to your Shopify checkout with the books already in the cart. Shopify takes the payment and works out shipping and taxes.
 
-The join page sends to the same Formspree form (`FORM_ENDPOINT` in `website/js/site.js`) with the same fields as the table above, plus `source` = `Website`, so you can tell the two apart in the export.
+## Connect the shop to Shopify
 
-**Going live:** when the book launches, move the contents of `website/` to the root of the repo (replacing the waiting-list `index.html` and `assets/`) and add a link to the Shopify shop on `book.html`.
+Open `website/js/site.js` and find `SHOP SETUP`:
+
+1. `STORE`: your store's Shopify address. It's set to `cx1p1x-zq.myshopify.com` (from your Shopify admin link); check it in Shopify admin → **Settings → Domains**.
+2. For Volume I, set `price` (for example `24.99`) and `variantId`. To find the variant ID, open Shopify admin → **Products → Volume I**, click the variant, and copy the long number at the end of the page address. If the book has no variants, add `.json` to the end of the product page address in admin and copy the `id` under `variants`.
+3. `CURRENCY` is `USD`; change it if your store sells in another currency.
+
+Until a book has its price and variant ID, it shows "Price coming soon" and the basket explains that it isn't on sale yet. The price shown on the site is for display; Shopify charges whatever price is set in Shopify, so keep the two the same.
+
+To sell another book later, add it to `PRODUCTS` with a new name (such as `"volume-2"`) and use that name in `data-price="volume-2"` and `data-add="volume-2"` on its page.
+
+Shared files: `website/css/site.css` (all styles), `website/js/site.js` (garland, night sky, menu, puzzles, countdown, basket) and `website/assets/img/` (a copy of the pictures). The header and footer are repeated in each page, so a new menu link has to be added to all seven files.
+
+**Going live:** move the contents of `website/` to the root of the repo (replacing the waiting-list `index.html` and `assets/`).

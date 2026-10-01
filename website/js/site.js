@@ -338,76 +338,155 @@ document.querySelectorAll(".year").forEach((n) => { n.textContent = new Date().g
   setInterval(tick, 1000);
 })();
 
-// ===== The waiting list library card =====
+// ===== The shop: products, basket and Shopify checkout =====
 (function () {
-  // Same free Formspree form as the waiting list page, so every sign-up lands in one list.
-  // To change it, create a form at https://formspree.io and paste its endpoint here.
-  const FORM_ENDPOINT = "https://formspree.io/f/xyezlyoe";
+  // ===== SHOP SETUP =====
+  // 1. STORE: your Shopify store address (Shopify admin → Settings → Domains).
+  // 2. For each book, fill in the price and its Shopify variant ID.
+  //    Find the variant ID in Shopify admin → Products → the book → click the
+  //    variant (or the only one): the long number at the end of the page address.
+  // Until a book has its price and variant ID it shows "Price coming soon" and
+  // can't be added to the basket.
+  const SHOP = {
+    STORE: "cx1p1x-zq.myshopify.com",
+    CURRENCY: "USD",
+    PRODUCTS: {
+      "volume-1": {
+        name: "CorvidzzPuzzles · Volume I",
+        price: null,      // e.g. 24.99
+        variantId: ""     // e.g. "45123456789012"
+      }
+    }
+  };
+  // ======================
 
-  const form = document.getElementById("waitlist");
-  if (!form) return;
-  const msg = document.getElementById("msg");
-  const submit = document.getElementById("submit");
-  const submitLabel = document.getElementById("submit-label");
-  const card = document.getElementById("signup");
-  const showError = (text) => { msg.textContent = text; };
+  const KEY = "corvidzz-basket";
+  const ready = (id) => { const p = SHOP.PRODUCTS[id]; return !!(p && typeof p.price === "number" && /^\d+$/.test(String(p.variantId))); };
+  const money = (n) => new Intl.NumberFormat("en", { style: "currency", currency: SHOP.CURRENCY }).format(n);
 
-  // interest groups: show how many names are ticked in each
-  const INTEREST_GROUPS = ["shows_and_movies", "music", "creators_and_internet", "games", "sports", "celebrities"];
-  INTEREST_GROUPS.forEach((k) => {
-    const counter = form.querySelector('.count[data-for="' + k + '"]');
-    form.querySelectorAll('input[name="' + k + '"]').forEach((cb) => cb.addEventListener("change", () => {
-      const n = form.querySelectorAll('input[name="' + k + '"]:checked').length;
-      counter.textContent = n ? "(" + n + " chosen)" : "";
-    }));
+  let basket = {};
+  try { basket = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+  for (const id in basket) if (!SHOP.PRODUCTS[id] || !(basket[id] > 0)) delete basket[id];
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(basket)); } catch (e) {} };
+
+  // prices on the page
+  document.querySelectorAll("[data-price]").forEach((el) => {
+    const id = el.dataset.price;
+    el.textContent = ready(id) ? money(SHOP.PRODUCTS[id].price) : "Price coming soon";
   });
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  // the basket drawer, added to every page
+  const drawer = document.createElement("div");
+  drawer.className = "basket";
+  drawer.hidden = true;
+  drawer.innerHTML = `
+    <div class="basket-shade" data-close-basket></div>
+    <aside class="basket-panel" role="dialog" aria-modal="true" aria-labelledby="basket-title">
+      <div class="basket-head">
+        <h2 id="basket-title">Thy Basket</h2>
+        <button type="button" class="basket-x" data-close-basket aria-label="Close the basket">&times;</button>
+      </div>
+      <div class="basket-items" id="basket-items"></div>
+      <div class="basket-foot">
+        <p class="basket-total"><span>Subtotal</span><b id="basket-total"></b></p>
+        <p class="fine">Shipping and taxes are worked out at checkout.</p>
+        <button type="button" class="submit" id="basket-checkout"><span class="star" aria-hidden="true">&#10022;</span><span>Checkout</span><span class="star" aria-hidden="true">&#10022;</span></button>
+        <p class="msg" id="basket-msg" role="status" aria-live="polite"></p>
+      </div>
+    </aside>`;
+  document.body.appendChild(drawer);
+  const list = drawer.querySelector("#basket-items");
+  const total = drawer.querySelector("#basket-total");
+  const msg = drawer.querySelector("#basket-msg");
+  const checkoutBtn = drawer.querySelector("#basket-checkout");
+  let opener = null;
+
+  function render() {
+    const ids = Object.keys(basket);
+    const count = ids.reduce((n, id) => n + basket[id], 0);
+    document.querySelectorAll("[data-basket-count]").forEach((el) => { el.textContent = count; el.hidden = !count; });
+    if (!ids.length) {
+      list.innerHTML = '<p class="basket-empty">The basket is empty. <a href="shop.html">Visit the shop</a>.</p>';
+    } else {
+      list.innerHTML = ids.map((id) => {
+        const p = SHOP.PRODUCTS[id];
+        return `<div class="basket-item">
+          <img src="assets/img/logo.png" width="480" height="480" alt="">
+          <div>
+            <p class="bi-name">${p.name}</p>
+            <p class="bi-price">${ready(id) ? money(p.price) : ""}</p>
+            <div class="qty small">
+              <button type="button" data-step="${id}:-1" aria-label="One fewer">&minus;</button>
+              <span aria-label="Quantity">${basket[id]}</span>
+              <button type="button" data-step="${id}:1" aria-label="One more">+</button>
+            </div>
+          </div>
+          <button type="button" class="bi-remove" data-remove="${id}">Remove</button>
+        </div>`;
+      }).join("");
+    }
+    total.textContent = money(ids.reduce((n, id) => n + (ready(id) ? SHOP.PRODUCTS[id].price * basket[id] : 0), 0));
+    checkoutBtn.disabled = !ids.length;
+  }
+
+  function open() {
+    opener = document.activeElement;
     msg.textContent = "";
+    drawer.hidden = false;
+    document.body.classList.add("basket-open");
+    drawer.querySelector(".basket-x").focus();
+  }
+  function close() {
+    drawer.hidden = true;
+    document.body.classList.remove("basket-open");
+    if (opener && opener.focus) opener.focus();
+  }
 
-    const email = form.email.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showError("Alas, that email looks amiss. Please check it.");
-      form.email.focus();
-      return;
+  function add(id, qty) {
+    if (!ready(id)) {
+      open();
+      msg.textContent = "This book isn't on sale just yet. (Site owner: set its price and variant ID in js/site.js.)";
+      return false;
     }
+    basket[id] = Math.min(20, (basket[id] || 0) + qty);
+    save(); render();
+    return true;
+  }
 
-    const data = new FormData(form);
-    INTEREST_GROUPS.forEach((k) => {
-      const picked = data.getAll(k);
-      data.delete(k);
-      data.append(k, picked.join(", ") || "(none chosen)");
-    });
-    if (!String(data.get("something_else") || "").trim()) data.set("something_else", "(not answered)");
-    const puzzles = data.getAll("puzzles");
-    data.delete("puzzles");
-    data.append("puzzles", puzzles.join(", ") || "(none chosen)");
-    data.append("_subject", "New CorvidzzPuzzles sign-up");
+  function qtyFrom(btn) {
+    const input = btn.dataset.qtyFrom && document.getElementById(btn.dataset.qtyFrom);
+    const n = input ? parseInt(input.value, 10) : 1;
+    return Math.max(1, Math.min(20, n || 1));
+  }
 
-    submit.disabled = true;
-    submitLabel.textContent = "Inscribing…";
+  function checkout() {
+    const ids = Object.keys(basket).filter(ready);
+    if (!ids.length) return;
+    // Shopify cart link: opens the store's checkout with these books already in it
+    location.href = "https://" + SHOP.STORE + "/cart/" + ids.map((id) => SHOP.PRODUCTS[id].variantId + ":" + basket[id]).join(",");
+  }
 
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" }
-      });
-      if (!res.ok) throw new Error("Request failed");
-
-      const name = form.name.value.trim().replace(/[<>&"]/g, "");
-      card.innerHTML =
-        '<p class="card-sub"><i>The Ravens\' Waiting List</i><span>No. 0001</span></p>' +
-        '<div class="inscribed">' +
-          '<div class="stamp">Inscribed</div>' +
-          '<h3>' + (name ? "Welcome, " + name : "Welcome, Solver") + '</h3>' +
-          '<p>Thy name is written in the ledger. The ravens shall bring word when the book is ready.</p>' +
-        '</div>';
-    } catch (err) {
-      showError("A storm has scattered the ravens. Please try again in a moment.");
-      submit.disabled = false;
-      submitLabel.textContent = "Join the Waitlist";
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-add],[data-buy-now],[data-open-basket],[data-close-basket],[data-step],[data-remove],[data-qty-step]");
+    if (!t) return;
+    if (t.dataset.add) { if (add(t.dataset.add, qtyFrom(t))) open(); }
+    else if (t.dataset.buyNow) { if (add(t.dataset.buyNow, qtyFrom(t))) checkout(); }
+    else if (t.hasAttribute("data-open-basket")) open();
+    else if (t.hasAttribute("data-close-basket")) close();
+    else if (t.dataset.step) {
+      const [id, d] = t.dataset.step.split(":");
+      basket[id] = Math.min(20, basket[id] + Number(d));
+      if (basket[id] < 1) delete basket[id];
+      save(); render();
+    } else if (t.dataset.remove) { delete basket[t.dataset.remove]; save(); render(); }
+    else if (t.dataset.qtyStep) {
+      const input = t.parentElement.querySelector("input");
+      input.value = Math.max(1, Math.min(20, (parseInt(input.value, 10) || 1) + Number(t.dataset.qtyStep)));
     }
   });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !drawer.hidden) close(); });
+  checkoutBtn.addEventListener("click", checkout);
+  window.addEventListener("storage", (e) => { if (e.key === KEY) { try { basket = JSON.parse(e.newValue) || {}; } catch (err) { basket = {}; } render(); } });
+
+  render();
 })();

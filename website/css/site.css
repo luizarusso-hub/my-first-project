@@ -833,8 +833,111 @@ footer p { margin: 10px 0 0; font-size: 1rem; opacity: .85; }
 .faq details[open] summary::after { content: "\2013"; }
 .faq details p { margin: 10px 0 2px; }
 
-/* ---------- Join page ---------- */
-.join .panel { --arch: 300px; }
+/* ---------- Basket button in the header ---------- */
+.basket-btn {
+  position: relative; order: 3; width: 46px; height: 46px; border-radius: 50%; flex: none;
+  display: grid; place-items: center; cursor: pointer;
+  border: 2px solid var(--gold); background: rgba(14, 36, 33, .6); color: var(--moon);
+}
+.basket-btn:hover { background: var(--gold); color: var(--forest); }
+.basket-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+.basket-btn svg { width: 22px; height: 22px; }
+.basket-count {
+  position: absolute; top: -6px; right: -6px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px;
+  background: var(--vermilion); color: #fff; font: 700 .8rem/22px "Cinzel", serif; text-align: center;
+  box-shadow: 0 0 0 2px var(--forest);
+}
+.site-nav { order: 2; margin-left: auto; }
+.menu-btn { order: 4; }
+
+/* ---------- The painted book cover ---------- */
+.cover-art {
+  position: relative; display: block; aspect-ratio: 3 / 4; width: 100%; max-width: 380px; margin: 0 auto;
+  border-radius: 4px 10px 10px 4px; text-decoration: none; color: var(--gold-light);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .35), transparent 7%, rgba(255, 255, 255, .06) 8%, transparent 12%),
+    repeating-linear-gradient(45deg, rgba(236, 200, 111, .1) 0 1px, transparent 1px 10px),
+    radial-gradient(ellipse at 50% 38%, #2c4f8f, var(--lapis-deep) 62%, #15294f);
+  box-shadow:
+    inset 0 0 0 10px var(--lapis-deep), inset 0 0 0 11px var(--gold), inset 0 0 0 17px var(--lapis-deep), inset 0 0 0 18px var(--gold),
+    8px 0 0 -2px #e9dcb8, 10px 2px 0 -2px #cdb98c, 0 30px 60px rgba(0, 0, 0, .6);
+  transform: rotate(-2deg); transition: transform .3s;
+}
+a.cover-art:hover { transform: rotate(0) translateY(-4px); }
+.cover-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 34px; text-align: center; }
+.cover-inner img { width: 58%; height: auto; filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .45)); }
+.cover-title { font-family: "Cinzel Decorative", serif; font-weight: 900; font-size: clamp(1.6rem, 3.4vw, 2.3rem); letter-spacing: .04em; text-shadow: 0 2px 8px rgba(0, 0, 0, .5); }
+.cover-sub { font-family: "IM Fell English SC", serif; font-size: 1rem; letter-spacing: .1em; color: var(--parchment-light); }
+
+.feature-grid, .product-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+.feature { padding-top: 70px; }
+.feature .section-title { text-align: left; }
+.feature .kicker, .buy-box .kicker { margin-bottom: 4px; }
+.buy-box h1 { margin-bottom: 6px; }
+.price-line { margin: 4px 0 18px !important; }
+.price { font-family: "Cinzel", serif; font-weight: 800; font-size: 1.7rem; color: var(--lapis-deep); }
+
+/* ---------- Quantity picker ---------- */
+.qty-row { display: flex; align-items: center; gap: 14px; margin: 0 0 18px; }
+.qty-row label { font-family: "IM Fell English SC", serif; color: var(--ink); }
+.qty { display: inline-flex; align-items: stretch; border: 1.5px solid var(--card-ink); background: #f6ecd6; }
+.qty button { width: 40px; border: 0; background: transparent; font: 700 1.2rem "Cinzel", serif; color: var(--card-ink); cursor: pointer; }
+.qty button:hover { background: rgba(31, 61, 120, .1); }
+.qty input, .qty span {
+  width: 52px; text-align: center; border: 0; border-left: 1.5px solid var(--card-ink); border-right: 1.5px solid var(--card-ink);
+  background: transparent; font: 700 1.1rem "Cinzel", serif; color: var(--lapis-deep); padding: 8px 0; -moz-appearance: textfield;
+}
+.qty input::-webkit-inner-spin-button, .qty input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.qty.small button { width: 32px; font-size: 1rem; }
+.qty.small span { width: 40px; padding: 4px 0; font-size: 1rem; }
+button.btn { border: 0; cursor: pointer; font-family: "IM Fell English SC", serif; }
+button.btn.ghost { border: 2px solid var(--lapis-deep); }
+
+.perks { list-style: none; margin: 24px 0 0; padding: 18px 0 0; border-top: 1px solid var(--sepia-soft); display: grid; gap: 10px; }
+.perks li { display: flex; align-items: center; gap: 12px; font-size: 1.04rem; }
+.perks svg { width: 26px; height: 26px; flex: none; color: #b07f24; }
+
+.volume .spine { text-decoration: none; }
+.volume h3 a { color: inherit; text-decoration: none; }
+.volume .actions { margin-top: auto; }
+.volume .actions .btn { margin-top: 0; }
+.volume .price-line { margin: -6px 0 14px !important; }
+.volume .price { font-size: 1.35rem; }
+.step .medal svg { width: 28px; height: 28px; color: var(--lapis-deep); }
+
+/* ---------- The basket drawer ---------- */
+body.basket-open { overflow: hidden; }
+.basket { position: fixed; inset: 0; z-index: 100; }
+.basket[hidden] { display: none; }
+.basket-shade { position: absolute; inset: 0; background: rgba(3, 10, 9, .6); animation: fadein .2s ease both; }
+.basket-panel {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(420px, 100%);
+  display: flex; flex-direction: column;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    var(--parchment-light);
+  box-shadow: inset 6px 0 0 var(--gold), inset 7px 0 0 var(--sepia), -20px 0 50px rgba(0, 0, 0, .5);
+  animation: slidein .25s ease both;
+}
+@keyframes slidein { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.basket-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px 14px 30px; border-bottom: 1px solid var(--sepia-soft); }
+.basket-head h2 { margin: 0; font-family: "Cinzel Decorative", serif; font-size: 1.5rem; color: var(--lapis-deep); }
+.basket-x { width: 40px; height: 40px; border: 0; background: transparent; font-size: 2rem; line-height: 1; color: var(--ink); cursor: pointer; }
+.basket-x:focus-visible { outline: 2px solid var(--vermilion); }
+.basket-items { flex: 1; overflow: auto; padding: 8px 22px 8px 30px; }
+.basket-empty { font-style: italic; color: var(--ink-soft); margin: 24px 0; }
+.basket-item { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: start; padding: 16px 0; border-bottom: 1px dashed var(--sepia-soft); }
+.basket-item img { width: 64px; height: 64px; }
+.bi-name { margin: 0; font-family: "Cinzel", serif; font-weight: 700; font-size: 1rem; color: var(--lapis-deep); line-height: 1.3; }
+.bi-price { margin: 2px 0 8px; font-style: italic; }
+.bi-remove { border: 0; background: none; color: var(--vermilion); font: italic .95rem "IM Fell English", serif; cursor: pointer; text-decoration: underline; padding: 0; }
+.basket-foot { padding: 16px 22px 22px 30px; border-top: 1px solid var(--sepia-soft); }
+.basket-total { display: flex; justify-content: space-between; align-items: baseline; margin: 0; font-family: "IM Fell English SC", serif; font-size: 1.15rem; }
+.basket-total b { font-family: "Cinzel", serif; font-size: 1.4rem; color: var(--lapis-deep); }
+.basket-foot .fine { margin: 2px 0 14px; }
+.basket .submit[disabled] { opacity: .5; cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) { .basket-panel, .basket-shade { animation: none; } }
 
 /* ---------- Footer ---------- */
 footer .foot-nav { font-family: "IM Fell English SC", serif; }
@@ -856,6 +959,9 @@ footer .foot-nav a:hover { color: var(--gold-light); text-decoration: underline;
   .site-nav .social { margin: 14px 0 0; justify-content: center; }
   .site-nav .social a { border: 2px solid var(--gold); padding: 0; }
   .cycle, .volumes, .contact-grid { grid-template-columns: 1fr 1fr; }
+  .feature-grid, .product-grid { grid-template-columns: 1fr; gap: 40px; }
+  .site-nav { margin-left: 0; }
+  .basket-btn { order: 3; margin-left: auto; }
 }
 @media (max-width: 700px) {
   .cycle, .volumes, .contact-grid { grid-template-columns: 1fr; }
