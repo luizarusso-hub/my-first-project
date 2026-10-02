@@ -19,6 +19,10 @@ It's deliberately a single, mysterious page. Behind everything, raven silhouette
 
 To swap the background or the card, replace the file in `assets/img/` with another picture of the same name. The card frame is sliced from the picture's edges (top 116px, sides 50px, bottom 62px of a 336×528 image), so a replacement card should have a similar layout.
 
+## QR codes
+
+`brand/qr/` has two QR codes, both opening the site: `corvidzz-qr-instagram.png` (opens `https://www.corvidzz.com/?from=instagram`) and `corvidzz-qr-tiktok.png` (`?from=tiktok`), as branded 1080×1350 posters, plus `-square` versions with only the code and seal. The page reads `?from=` (or `utm_source=`) and sends it with each sign-up as `came_from`, so you can count sign-ups per platform. Anyone arriving without a tag is recorded as `direct`.
+
 ## The numbered list (Google Sheet)
 
 Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the library card shows the person's place, for example "No. 0042 · Thou art the 42nd to sign the ledger". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number.
@@ -37,6 +41,7 @@ Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com,
 | `something_else` | (anything typed in "Not listed?") |
 | `puzzles` | Crosswords, Ciphers and codes, Riddles |
 | `access` | early access (solved the crossword) *or* waiting list (skipped the crossword) |
+| `came_from` | instagram, tiktok (from the QR codes) *or* direct |
 
 Groups with nothing ticked arrive as "(none chosen)" and an empty "Not listed?" box as "(not answered)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 

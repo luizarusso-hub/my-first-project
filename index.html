@@ -984,6 +984,7 @@
             </fieldset>
 
             <input type="hidden" name="access" id="access" value="early access (solved the crossword)">
+            <input type="hidden" name="came_from" id="came_from" value="direct">
 
             <!-- Spam trap: real people never see or fill this -->
             <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -1310,6 +1311,13 @@
     // =================
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // where the visitor came from: the QR codes add ?from=instagram or ?from=tiktok
+    (function () {
+      const p = new URLSearchParams(location.search);
+      const from = (p.get("from") || p.get("utm_source") || "").toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 30);
+      if (from) document.getElementById("came_from").value = from;
+    })();
 
     const form = document.getElementById("waitlist");
     const msg = document.getElementById("msg");
