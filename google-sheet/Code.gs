@@ -11,7 +11,7 @@
 var COLUMNS = [
   'number', 'signed_up_at', 'name', 'email', 'access',
   'shows_and_movies', 'music', 'creators_and_internet', 'games', 'sports',
-  'celebrities', 'something_else', 'puzzles'
+  'celebrities', 'something_else', 'puzzles', 'came_from'
 ];
 
 function doPost(e) {
