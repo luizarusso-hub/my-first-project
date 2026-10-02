@@ -23,6 +23,10 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 
 `brand/qr/` has two QR codes, both opening the site: `corvidzz-qr-instagram.png` (opens `https://www.corvidzz.com/?from=instagram`) and `corvidzz-qr-tiktok.png` (`?from=tiktok`), as branded 1080×1350 posters, plus `-square` versions with only the code and seal. The page reads `?from=` (or `utm_source=`) and sends it with each sign-up as `came_from`, so you can count sign-ups per platform. Anyone arriving without a tag is recorded as `direct`.
 
+## Looping social video
+
+`brand/video/corvidzz-loop-instagram.mp4` and `corvidzz-loop-tiktok.mp4` are 12-second vertical videos (1080×1920, 30 fps) for Reels, Stories and TikTok. The site's night sky moves behind the QR poster, and every animation repeats a whole number of times in 12 seconds, so the video loops seamlessly. To change and re-render: edit `brand/video/scene.html`, then run `node brand/video/render.js <frames folder> <path to ffmpeg>` (needs Playwright).
+
 ## The numbered list (Google Sheet)
 
 Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the library card shows the person's place, for example "No. 0042 · Thou art the 42nd to sign the ledger". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number.
