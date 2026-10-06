@@ -390,7 +390,8 @@
     .whisper { font-style: italic; font-size: 1.2rem; color: var(--ink-soft); margin: 0 auto 22px; max-width: 28em; line-height: 1.55; }
     .whisper strong { font-style: normal; font-family: "Cinzel", serif; color: var(--vermilion); }
     .riddle-page { margin: 0 auto 30px; max-width: 460px; }
-    .riddle-page .xw { width: min(100%, 270px); margin: 0 auto 18px; box-shadow: 0 10px 18px rgba(40, 25, 5, .25); }
+    .riddle-page .xw { grid-template-columns: repeat(8, 1fr); width: min(100%, 330px); margin: 0 auto 18px; box-shadow: 0 10px 18px rgba(40, 25, 5, .25); }
+    .riddle-page .xw input { font-size: 1.1rem; }
     .riddle-page .clues p { transition: color .3s; }
     .riddle-page .clues p.done { color: var(--leaf); text-decoration: line-through; text-decoration-color: rgba(95, 143, 78, .5); }
     .xw .cell.ok { background: #eef3dc; }
@@ -805,39 +806,70 @@
 
       <div class="riddle-page" id="riddle-page">
         <div class="xw" id="xw">
-            <div class="cell" data-a="V" data-r="0" data-c="0"><span class="num">1</span><input maxlength="1" aria-label="Row 1, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="I" data-r="0" data-c="1"><input maxlength="1" aria-label="Row 1, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="R" data-r="0" data-c="2"><input maxlength="1" aria-label="Row 1, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="A" data-r="0" data-c="3"><input maxlength="1" aria-label="Row 1, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="L" data-r="0" data-c="4"><span class="num">2</span><input maxlength="1" aria-label="Row 1, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="I" data-r="1" data-c="0"><input maxlength="1" aria-label="Row 2, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell blk"></div>
-            <div class="cell blk"></div>
-            <div class="cell blk"></div>
-            <div class="cell" data-a="O" data-r="1" data-c="4"><input maxlength="1" aria-label="Row 2, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="B" data-r="2" data-c="0"><input maxlength="1" aria-label="Row 3, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell blk"></div>
-            <div class="cell blk"></div>
-            <div class="cell blk"></div>
-            <div class="cell" data-a="G" data-r="2" data-c="4"><input maxlength="1" aria-label="Row 3, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="E" data-r="3" data-c="0"><span class="num">3</span><input maxlength="1" aria-label="Row 4, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="M" data-r="3" data-c="1"><input maxlength="1" aria-label="Row 4, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="O" data-r="3" data-c="2"><input maxlength="1" aria-label="Row 4, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="J" data-r="3" data-c="3"><input maxlength="1" aria-label="Row 4, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
-            <div class="cell" data-a="I" data-r="3" data-c="4"><input maxlength="1" aria-label="Row 4, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
             <div class="cell blk"></div>
-            <div class="cell" data-a="N" data-r="4" data-c="4"><input maxlength="1" aria-label="Row 5, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="J" data-r="0" data-c="5"><span class="num">1</span><input maxlength="1" aria-label="Row 1, column 6" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="D" data-r="1" data-c="0"><span class="num">2</span><input maxlength="1" aria-label="Row 2, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="A" data-r="1" data-c="1"><input maxlength="1" aria-label="Row 2, column 2" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="K" data-r="1" data-c="2"><input maxlength="1" aria-label="Row 2, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="O" data-r="1" data-c="3"><input maxlength="1" aria-label="Row 2, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="T" data-r="1" data-c="4"><input maxlength="1" aria-label="Row 2, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="A" data-r="1" data-c="5"><input maxlength="1" aria-label="Row 2, column 6" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="I" data-r="2" data-c="0"><input maxlength="1" aria-label="Row 3, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="C" data-r="2" data-c="5"><input maxlength="1" aria-label="Row 3, column 6" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="G" data-r="3" data-c="0"><input maxlength="1" aria-label="Row 4, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="K" data-r="3" data-c="5"><input maxlength="1" aria-label="Row 4, column 6" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="G" data-r="4" data-c="0"><input maxlength="1" aria-label="Row 5, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="V" data-r="4" data-c="2"><span class="num">3</span><input maxlength="1" aria-label="Row 5, column 3" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="E" data-r="4" data-c="3"><input maxlength="1" aria-label="Row 5, column 4" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="R" data-r="4" data-c="4"><input maxlength="1" aria-label="Row 5, column 5" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="I" data-r="4" data-c="5"><input maxlength="1" aria-label="Row 5, column 6" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="T" data-r="4" data-c="6"><input maxlength="1" aria-label="Row 5, column 7" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="Y" data-r="4" data-c="7"><input maxlength="1" aria-label="Row 5, column 8" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell" data-a="E" data-r="5" data-c="0"><input maxlength="1" aria-label="Row 6, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="E" data-r="5" data-c="5"><input maxlength="1" aria-label="Row 6, column 6" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell" data-a="R" data-r="6" data-c="0"><input maxlength="1" aria-label="Row 7, column 1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
+            <div class="cell blk"></div>
         </div>
         <div class="clues">
           <h4>Across</h4>
-          <p data-word="a1"><b>1</b> Spreadeth faster than the plague, yet no one falleth ill (5)</p>
-          <p data-word="a3"><b>3</b> A tiny painted face, sent by messenger to show one's mood (5)</p>
+          <p data-word="a2"><b>2</b> ___ Johnson, the actress who hosted Saturday Night Live this weekend (6)</p>
+          <p data-word="a3"><b>3</b> The Colleen Hoover thriller with Anne Hathaway that opened in cinemas this week (6)</p>
           <h4>Down</h4>
-          <p data-word="d1"><b>1</b> The feeling in the air, as the young ones of the court say (4)</p>
-          <p data-word="d2"><b>2</b> The secret word that opens the gate to thy account (5)</p>
+          <p data-word="d1"><b>1</b> Kill ___, Catherine Zeta-Jones's new revenge series that premiered this week (6)</p>
+          <p data-word="d2"><b>2</b> Tom Cruise's new film that had a very weak opening weekend at the box office (6)</p>
         </div>
         <p class="verdict" id="xw-verdict" role="status" aria-live="polite"></p>
         <button type="button" class="hint-btn" id="xw-hint">Stuck? The raven will lend a letter</button>
@@ -1186,10 +1218,10 @@
       const cells = [...document.querySelectorAll("#xw .cell[data-a]")];
       const at = (r, c) => cells.find((x) => +x.dataset.r === r && +x.dataset.c === c);
       const WORDS = {
-        a1: [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
-        a3: [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4]],
-        d1: [[0, 0], [1, 0], [2, 0], [3, 0]],
-        d2: [[0, 4], [1, 4], [2, 4], [3, 4], [4, 4]]
+        a2: [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5]],
+        a3: [[4, 2], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7]],
+        d1: [[0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]],
+        d2: [[1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0]]
       };
       const verdict = document.getElementById("xw-verdict");
       const card = document.getElementById("signup");
@@ -1198,11 +1230,11 @@
       const input = (cell) => cell.querySelector("input");
       function next(cell, step) {
         let r = +cell.dataset.r, c = +cell.dataset.c;
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 8; i++) {
           if (dir === "across") c += step; else r += step;
           const n = at(r, c);
           if (n) return n;
-          if (r < 0 || c < 0 || r > 4 || c > 4) return null;
+          if (r < 0 || c < 0 || r > 6 || c > 7) return null;
         }
         return null;
       }
