@@ -1,0 +1,114 @@
+<!doctype html>
+<!-- Looping social video scene (9:16). Open with ?qr=instagram or ?qr=tiktok.
+     Every animation repeats a whole number of times in LOOP seconds, so the last frame
+     matches the first. Rendered to MP4 by brand/video/render.js. -->
+<html><head><meta charset="utf-8">
+<style>
+  :root { --loop: 12s; }
+  html, body { margin: 0; width: 540px; height: 960px; overflow: hidden; background: #0e2421; }
+  .bg { position: absolute; inset: -4%; background: url("../../assets/img/forest-night.jpg") center / cover; animation: breathe 12s ease-in-out infinite; }
+  @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+  .veil { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(8,22,20,.05) 30%, rgba(3,10,9,.7) 100%); }
+  .fog { position: absolute; inset: -20% -60%;
+    background: radial-gradient(ellipse 30% 14% at 25% 78%, rgba(210,225,215,.2), transparent 70%),
+                radial-gradient(ellipse 35% 16% at 70% 22%, rgba(210,225,215,.14), transparent 70%),
+                radial-gradient(ellipse 25% 10% at 50% 95%, rgba(210,225,215,.22), transparent 70%);
+    animation: fog 6s ease-in-out infinite alternate; }
+  .fog.two { animation-direction: alternate-reverse; opacity: .8; }
+  @keyframes fog { from { transform: translateX(-8%); } to { transform: translateX(8%); } }
+
+  .star { position: absolute; color: #ecc86f; filter: drop-shadow(0 0 5px rgba(236,200,111,.9)); animation: tw var(--t) ease-in-out infinite; animation-delay: var(--d); }
+  .star svg { display: block; width: 100%; height: 100%; }
+  @keyframes tw { 0%,100% { opacity: .2; transform: scale(.75); } 50% { opacity: 1; transform: scale(1.1); } }
+  .fly { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #f3dc8a; box-shadow: 0 0 9px 3px rgba(243,220,138,.6);
+    animation: drift var(--t) ease-in-out infinite alternate, glow var(--g) ease-in-out infinite; animation-delay: var(--d), var(--d); }
+  @keyframes drift { to { transform: translate(var(--x), var(--y)); } }
+  @keyframes glow { 0%,100% { opacity: .1; } 50% { opacity: 1; } }
+
+  .raven { position: absolute; left: 0; top: 0; }
+  .raven img { display: block; width: 100%; filter: brightness(0) drop-shadow(0 0 4px rgba(205,225,215,.4)); transform-origin: 50% 55%; animation: beat 3s ease-in-out infinite; }
+  @keyframes beat { 0%,34%,100% { transform: scaleY(1); } 8%,24% { transform: translateY(-2px) scaleY(.84); } 16% { transform: scaleY(1.03); } }
+  .r1 { width: 92px;  animation: p1 12s linear infinite; }
+  .r2 { width: 70px;  animation: p2 12s ease-in-out infinite; }
+  .r3 { width: 84px;  animation: p3 12s linear infinite; animation-delay: -5s; }
+  .r4 { width: 44px;  opacity: .7; animation: p4 6s ease-in-out infinite; }
+  .r5 { width: 58px;  opacity: .85; animation: p5 12s ease-in-out infinite; animation-delay: -3s; }
+  /* across the top, hesitating over the card, then away */
+  @keyframes p1 { 0% { transform: translate(-130px, 120px) scaleX(1) rotate(6deg); } 35% { transform: translate(170px, 50px) scaleX(1) rotate(-6deg); }
+                  50% { transform: translate(250px, 90px) scaleX(1) rotate(8deg); } 65% { transform: translate(330px, 40px) scaleX(1) rotate(-4deg); }
+                  100% { transform: translate(640px, 110px) scaleX(1) rotate(4deg); } }
+  /* circling the top-right corner */
+  @keyframes p2 { 0%,100% { transform: translate(430px, 150px) scaleX(1) rotate(0); } 25% { transform: translate(470px, 220px) scaleX(1) rotate(22deg); }
+                  50% { transform: translate(420px, 280px) scaleX(-1) rotate(-8deg); } 75% { transform: translate(370px, 210px) scaleX(-1) rotate(-22deg); } }
+  /* low across the bottom, right to left */
+  @keyframes p3 { 0% { transform: translate(620px, 770px) scaleX(-1) rotate(-4deg); } 45% { transform: translate(280px, 745px) scaleX(-1) rotate(4deg); }
+                  55% { transform: translate(230px, 765px) scaleX(-1) rotate(-6deg); } 100% { transform: translate(-140px, 740px) scaleX(-1) rotate(2deg); } }
+  /* small and far, circling top-left */
+  @keyframes p4 { 0%,100% { transform: translate(40px, 210px) scaleX(-1); } 50% { transform: translate(90px, 260px) scaleX(1); } }
+  /* circling the bottom-left corner */
+  @keyframes p5 { 0%,100% { transform: translate(20px, 660px) scaleX(1) rotate(-10deg); } 25% { transform: translate(55px, 720px) scaleX(1) rotate(14deg); }
+                  50% { transform: translate(25px, 780px) scaleX(-1) rotate(4deg); } 75% { transform: translate(-10px, 715px) scaleX(-1) rotate(-14deg); } }
+
+  .bfly { position: absolute; left: 0; top: 0; width: var(--s); animation: wander 6s ease-in-out infinite alternate; animation-delay: var(--d); }
+  .bfly img { display: block; width: 100%; filter: drop-shadow(0 0 7px rgba(243,223,160,.9)); animation: flutter .3s ease-in-out infinite alternate; }
+  @keyframes flutter { from { transform: rotate(var(--r)) scaleX(1); } to { transform: rotate(var(--r)) scaleX(.25); } }
+  @keyframes wander { 0% { transform: translate(var(--x0), var(--y0)); } 33% { transform: translate(var(--x1), var(--y1)); } 66% { transform: translate(var(--x2), var(--y2)); } 100% { transform: translate(var(--x3), var(--y3)); } }
+
+  .poster { position: absolute; left: 50%; top: 47%; width: 440px; transform: translate(-50%, -50%); animation: float 6s ease-in-out infinite; z-index: 5; }
+  .poster img { display: block; width: 100%; border-radius: 12px; box-shadow: 0 0 0 1px rgba(236,200,111,.6), 0 18px 50px rgba(0,0,0,.65), 0 0 40px rgba(236,200,111,.25); }
+  @keyframes float { 0%,100% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, calc(-50% - 7px)); } }
+  .tag { position: absolute; left: 0; right: 0; bottom: 64px; text-align: center; z-index: 6;
+    font: 700 22px/1 "Cinzel", Georgia, serif; letter-spacing: .14em; color: #ecc86f; text-shadow: 0 2px 10px rgba(0,0,0,.9); animation: pulse 4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: .7; } 50% { opacity: 1; } }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+</head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0l2.6 7.8L22 5.5l-4.7 6.5L22 18.5l-7.4-2.3L12 24l-2.6-7.8L2 18.5l4.7-6.5L2 5.5l7.4 2.3z"/></symbol>
+  <symbol id="sparkle" viewBox="-50 -50 100 100"><path fill="currentColor" d="M0 -50L1.2 -3L9.2 -9.2L3 -1.2L32 0L3 1.2L9.2 9.2L1.2 3L0 50L-1.2 3L-9.2 9.2L-3 1.2L-32 0L-3 -1.2L-9.2 -9.2L-1.2 -3Z"/></symbol>
+</defs></svg>
+<div class="bg"></div>
+<div class="fog"></div><div class="fog two"></div>
+<div id="sky"></div>
+<div class="veil"></div>
+<div class="poster"><img id="poster" alt=""></div>
+<div class="tag">✦ CORVIDZZ.COM ✦</div>
+<script>
+  const qr = new URLSearchParams(location.search).get("qr") === "tiktok" ? "tiktok" : "instagram";
+  document.getElementById("poster").src = "../qr/corvidzz-qr-" + qr + ".png";
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;   // same scene every render
+  const sky = document.getElementById("sky");
+  const add = (html) => { const d = document.createElement("div"); d.innerHTML = html; const el = d.firstElementChild; sky.appendChild(el); return el; };
+
+  ["r1", "r2", "r3", "r4", "r5"].forEach((c) => add('<div class="raven ' + c + '"><img src="../../assets/img/raven.svg" alt=""></div>'));
+
+  // stars: top band, bottom band and the side margins around the poster
+  const starSpots = [[30,40],[120,22],[210,60],[330,30],[455,55],[505,110],[20,140],[505,330],[18,420],[512,560],[25,640],[500,690],[90,905],[200,930],[340,915],[470,895],[260,15],[400,120]];
+  starSpots.forEach(([x, y], i) => {
+    const big = i % 6 === 0, s = big ? 18 + rnd() * 10 : 6 + rnd() * 7;
+    const el = add('<span class="star"><svg><use href="#' + (big ? "sparkle" : "star") + '"/></svg></span>');
+    Object.assign(el.style, { left: x + "px", top: y + "px", width: s + "px", height: (big ? s * 1.55 : s) + "px" });
+    el.style.setProperty("--t", [2, 3, 4, 6][i % 4] + "s"); el.style.setProperty("--d", (-rnd() * 6).toFixed(2) + "s");
+  });
+  for (let i = 0; i < 22; i++) {
+    const el = add('<span class="fly"></span>');
+    Object.assign(el.style, { left: rnd() * 540 + "px", top: (rnd() < .5 ? 760 + rnd() * 190 : rnd() * 200) + "px" });
+    el.style.setProperty("--t", [3, 6][i % 2] + "s"); el.style.setProperty("--g", [2, 3, 4][i % 3] + "s");
+    el.style.setProperty("--x", (rnd() * 60 - 30).toFixed(0) + "px"); el.style.setProperty("--y", (-rnd() * 50).toFixed(0) + "px");
+    el.style.setProperty("--d", (-rnd() * 6).toFixed(2) + "s");
+  }
+  // butterflies along the sides and the bottom
+  const lanes = [[8, 40], [470, 520], [10, 60], [480, 520], [150, 380], [60, 200], [330, 470]];
+  lanes.forEach(([a, b], i) => {
+    const el = add('<div class="bfly"><img src="../../assets/img/butterfly.svg" alt=""></div>');
+    const yBase = i < 4 ? 260 + rnd() * 380 : 770 + rnd() * 120;
+    for (let k = 0; k < 4; k++) {
+      el.style.setProperty("--x" + k, (a + rnd() * (b - a)).toFixed(0) + "px");
+      el.style.setProperty("--y" + k, (yBase + rnd() * 90 - 45).toFixed(0) + "px");
+    }
+    el.style.setProperty("--s", (16 + rnd() * 10).toFixed(0) + "px");
+    el.style.setProperty("--r", (rnd() * 40 - 20).toFixed(0) + "deg");
+    el.style.setProperty("--d", (-rnd() * 6).toFixed(2) + "s");
+  });
+</script>
+</body></html>
