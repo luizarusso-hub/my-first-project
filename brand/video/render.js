@@ -21,7 +21,10 @@ const LOOP = 12, FPS = 30;
     await page.close();
     const out = path.resolve(__dirname, "corvidzz-loop-" + qr + ".mp4");
     execFileSync(ffmpeg, ["-y", "-loglevel", "error", "-framerate", String(FPS), "-i", path.join(dir, "%04d.png"),
-      "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20", "-preset", "slow", "-movflags", "+faststart", out]);
+      // a silent sound track: some apps (TikTok among them) refuse or stall on videos with no audio at all
+      "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100", "-shortest",
+      "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20", "-preset", "slow", "-c:a", "aac", "-b:a", "128k",
+      "-movflags", "+faststart", out]);
     console.log("wrote", out);
   }
   await browser.close();
