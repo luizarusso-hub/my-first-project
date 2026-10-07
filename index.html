@@ -1015,6 +1015,18 @@
               </div>
             </fieldset>
 
+            <fieldset>
+              <legend>Where didst thou find us? <i>(tap one)</i></legend>
+              <div class="chips" id="found-us">
+                <label class="chip"><input type="radio" name="found_us" value="Instagram"><span>Instagram</span></label>
+                <label class="chip"><input type="radio" name="found_us" value="TikTok"><span>TikTok</span></label>
+                <label class="chip"><input type="radio" name="found_us" value="A bookstore"><span>A bookstore</span></label>
+                <label class="chip"><input type="radio" name="found_us" value="A friend"><span>A friend</span></label>
+                <label class="chip"><input type="radio" name="found_us" value="Google search"><span>Google search</span></label>
+                <label class="chip"><input type="radio" name="found_us" value="Somewhere else"><span>Somewhere else</span></label>
+              </div>
+            </fieldset>
+
             <input type="hidden" name="access" id="access" value="early access (solved the crossword)">
             <input type="hidden" name="came_from" id="came_from" value="direct">
 
@@ -1349,6 +1361,10 @@
       const p = new URLSearchParams(location.search);
       const from = (p.get("from") || p.get("utm_source") || "").toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 30);
       if (from) document.getElementById("came_from").value = from;
+      // a QR code scan already tells us where they found us, so tick that answer for them
+      const SPOT = { instagram: "Instagram", tiktok: "TikTok", bookstore: "A bookstore" };
+      const pre = SPOT[from] && document.querySelector('#found-us input[value="' + SPOT[from] + '"]');
+      if (pre) pre.checked = true;
     })();
 
     const form = document.getElementById("waitlist");
@@ -1393,6 +1409,7 @@
         data.append(k, picked.join(", ") || "(none chosen)");
       });
       if (!String(data.get("something_else") || "").trim()) data.set("something_else", "(not answered)");
+      if (!data.get("found_us")) data.set("found_us", "(not answered)");
       const puzzles = data.getAll("puzzles");
       data.delete("puzzles");
       data.append("puzzles", puzzles.join(", ") || "(none chosen)");
