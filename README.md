@@ -13,7 +13,7 @@ It's deliberately a single, mysterious page. Behind everything, raven silhouette
 - **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
 - **The arch panel:** "Volume I · Coming Soon", the title "Can you decode this?" and "The ledger of early readers is sealed. Solve the raven's crossword to break the seal and claim early access."
 - **The raven's crossword:** the only puzzle, a small crossword with plain-English clues about this week's pop culture: DAKOTA (Dakota Johnson hosted Saturday Night Live) and VERITY (the Colleen Hoover thriller in cinemas) across, JACKIE (Catherine Zeta-Jones's series *Kill Jackie*) and DIGGER (Tom Cruise's new film) down. Swap the answers as the news changes to keep the puzzle current. Each word turns green when it's right. "Stuck? The raven will lend a letter" fills in one correct letter per tap, so nobody is locked out. Solving it shows the "seal is broken" message, which explains the book is about today's pop culture, and unseals the library card. The grid and clues are in the hero section of `index.html`, and the answer positions are in `WORDS` in the crossword script.
-- **The library card sign-up:** the same layout as before, headed "Early Access · The Ravens' Ledger". Until the crossword is solved it sits blurred under a red wax seal and can't be used. Once open, it has name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, tap-to-choose puzzle types and a "Claim Early Access" button. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
+- **The library card sign-up:** the same layout as before, headed "Early Access · The Ravens' Ledger". Until the crossword is solved it sits blurred under a red wax seal and can't be used. Once open, it has name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, tap-to-choose puzzle types, "Where didst thou find us?" (tap one: Instagram, TikTok, A bookstore, A friend, Google search, Somewhere else) and a "Claim Early Access" button. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
 - **"Not one for riddles?" link:** under the card, "Join the waiting list instead" opens the card without the puzzle, as the ordinary waiting list (header "The Ravens' Waiting List", button "Join the Waitlist"). Solving the crossword still gives early access.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
@@ -21,7 +21,7 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 
 ## QR codes
 
-`brand/qr/` has two QR codes, both opening the site: `corvidzz-qr-instagram.png` (opens `https://www.corvidzz.com/?from=instagram`) and `corvidzz-qr-tiktok.png` (`?from=tiktok`), as branded 1080×1350 posters, plus `-square` versions with only the code and seal. The page reads `?from=` (or `utm_source=`) and sends it with each sign-up as `came_from`, so you can count sign-ups per platform. Anyone arriving without a tag is recorded as `direct`.
+`brand/qr/` has three QR codes, all opening the site: `corvidzz-qr-instagram.png` (opens `https://www.corvidzz.com/?from=instagram`), `corvidzz-qr-tiktok.png` (`?from=tiktok`) and `corvidzz-qr-bookstore.png` (`?from=bookstore`, for shelf cards and posters in bookstores), as branded 1080×1350 posters, plus `-square` versions with only the code and seal. For printing large, use the `-plain.svg` files, which stay sharp at any size. The page reads `?from=` (or `utm_source=`) and sends it with each sign-up as `came_from`, so you can count sign-ups per platform. Anyone arriving without a tag is recorded as `direct`. People who scanned a code also have their answer to "Where didst thou find us?" ticked for them.
 
 ## Looping social video
 
@@ -29,7 +29,7 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 
 ## The numbered list (Google Sheet)
 
-Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the library card shows the person's place, for example "No. 0042 · Thou art the 42nd to sign the ledger". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number.
+Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the library card shows the person's place, for example "No. 0042 · Thou art the 42nd to sign the ledger". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number. Whenever `Code.gs` changes (it last gained the `found_us` column), paste the new version into Apps Script and choose **Deploy → Manage deployments → Edit → Version: New version**; the sheet adds the new column heading by itself.
 
 ## What each sign-up sends to Formspree
 
@@ -45,7 +45,8 @@ Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com,
 | `something_else` | (anything typed in "Not listed?") |
 | `puzzles` | Crosswords, Ciphers and codes, Riddles |
 | `access` | early access (solved the crossword) *or* waiting list (skipped the crossword) |
-| `came_from` | instagram, tiktok (from the QR codes) *or* direct |
+| `came_from` | instagram, tiktok, bookstore (from the QR codes) *or* direct |
+| `found_us` | Instagram, TikTok, A bookstore, A friend, Google search, Somewhere else *or* (not answered) |
 
 Groups with nothing ticked arrive as "(none chosen)" and an empty "Not listed?" box as "(not answered)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 

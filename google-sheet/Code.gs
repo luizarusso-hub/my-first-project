@@ -11,7 +11,7 @@
 var COLUMNS = [
   'number', 'signed_up_at', 'name', 'email', 'access',
   'shows_and_movies', 'music', 'creators_and_internet', 'games', 'sports',
-  'celebrities', 'something_else', 'puzzles', 'came_from'
+  'celebrities', 'something_else', 'puzzles', 'came_from', 'found_us'
 ];
 
 function doPost(e) {
@@ -32,6 +32,9 @@ function doPost(e) {
       sheet.appendRow(COLUMNS);
       sheet.setFrozenRows(1);
       sheet.getRange(1, 1, 1, COLUMNS.length).setFontWeight('bold');
+    } else if (sheet.getLastColumn() < COLUMNS.length) {
+      // new columns were added to COLUMNS since the sheet was started: add their headings
+      sheet.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]).setFontWeight('bold');
     }
 
     // If this email already signed up, give them back their original number.
