@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crossword Generator | CorvidzzPuzzles</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #2a2218;
+      --ink-soft: #5a4b36;
+      --parchment: #efe4c6;
+      --paper: #fbf6e8;
+      --sepia: #6e5230;
+      --sepia-soft: #9c7f4c;
+      --vermilion: #c0412d;
+      --leaf: #4d7a3e;
+      --forest: #0e2421;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "IM Fell English", Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: var(--ink);
+      background: var(--parchment);
+    }
+    header { background: var(--forest); color: #efe6cc; padding: 18px 16px; text-align: center; }
+    header h1 { font-family: "Cinzel", serif; margin: 0; font-size: 1.6rem; letter-spacing: .06em; }
+    header p { margin: 4px 0 0; font-style: italic; opacity: .85; }
+    main { max-width: 1200px; margin: 0 auto; padding: 20px 16px 48px; display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+    .panel { background: var(--paper); border: 1px solid var(--sepia-soft); border-radius: 6px; padding: 18px; box-shadow: 0 4px 14px rgba(60, 40, 10, .12); }
+    h2 { font-family: "Cinzel", serif; font-size: 1.05rem; letter-spacing: .05em; margin: 0 0 10px; color: var(--sepia); }
+    label { display: block; font-size: .95rem; margin: 12px 0 4px; color: var(--ink-soft); }
+    input[type=text], textarea, select {
+      width: 100%; font: inherit; font-size: 1rem; color: var(--ink);
+      background: #fff; border: 1px solid var(--sepia-soft); border-radius: 4px; padding: 8px 10px;
+    }
+    textarea { min-height: 300px; resize: vertical; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9rem; line-height: 1.45; }
+    .hint { font-size: .88rem; font-style: italic; color: var(--ink-soft); margin: 6px 0 0; }
+    .check { display: flex; gap: 8px; align-items: center; margin: 8px 0 0; font-size: .95rem; color: var(--ink); }
+    .check input { width: 18px; height: 18px; accent-color: var(--sepia); }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    button {
+      font: inherit; font-family: "Cinzel", serif; font-weight: 700; font-size: .85rem; letter-spacing: .04em;
+      padding: 9px 14px; border-radius: 4px; cursor: pointer;
+      border: 1px solid var(--sepia); background: #fff; color: var(--sepia);
+    }
+    button:hover { background: var(--parchment); }
+    button.primary { background: var(--vermilion); border-color: var(--vermilion); color: #fff; }
+    button.primary:hover { background: #a6331f; }
+    button:disabled { opacity: .45; cursor: default; }
+    .msg { margin: 0 0 12px; padding: 10px 12px; border-radius: 4px; font-size: .95rem; }
+    .msg.warn { background: #fbe9d7; border: 1px solid #e0a46a; }
+    .msg.ok { background: #e6efd9; border: 1px solid #9cbb83; }
+    .msg ul { margin: 4px 0 0; padding-left: 20px; }
+    .tabs { display: flex; gap: 0; margin-bottom: 14px; }
+    .tabs button { border-radius: 0; }
+    .tabs button:first-child { border-radius: 4px 0 0 4px; }
+    .tabs button:last-child { border-radius: 0 4px 4px 0; border-left: 0; }
+    .tabs button[aria-pressed=true] { background: var(--sepia); color: #fff; }
+    .sheet h3 { font-family: "Cinzel", serif; text-align: center; margin: 4px 0 14px; font-size: 1.4rem; }
+    .gridwrap { overflow-x: auto; text-align: center; margin-bottom: 18px; }
+    .gridwrap svg { max-width: 100%; height: auto; }
+    .clues { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; }
+    @media (max-width: 560px) { .clues { grid-template-columns: 1fr; } }
+    .clues h4 { font-family: "Cinzel", serif; margin: 0 0 6px; letter-spacing: .08em; font-size: .95rem; }
+    .clues ol { list-style: none; margin: 0; padding: 0; }
+    .clues li { margin: 0 0 5px; padding-left: 2em; text-indent: -2em; }
+    .clues b { display: inline-block; min-width: 2em; text-indent: 0; }
+    .clues .ans { color: var(--leaf); font-family: "Cinzel", serif; font-size: .82rem; letter-spacing: .05em; }
+    .stats { font-size: .88rem; font-style: italic; color: var(--ink-soft); margin: 12px 0 0; }
+    .empty { text-align: center; font-style: italic; color: var(--ink-soft); padding: 60px 10px; }
+    .print-only { display: none; }
+
+    @media print {
+      @page { margin: 14mm; }
+      body { background: #fff; font-size: 11pt; }
+      header, .controls, .tabs, .msg, .stats, .output-actions { display: none !important; }
+      main { display: block; padding: 0; max-width: none; }
+      .panel { border: 0; box-shadow: none; padding: 0; background: #fff; }
+      .print-only { display: block; }
+      .sheet { break-inside: avoid; }
+      .sheet + .sheet { break-before: page; }
+      .sheet[hidden] { display: block !important; }
+      body.no-key .sheet.key { display: none !important; }
+      .clues .ans { color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Crossword Generator</h1>
+    <p>Words and clues in, a finished crossword out</p>
+  </header>
+
+  <main>
+    <section class="panel controls" aria-label="Words and settings">
+      <h2>Your words and clues</h2>
+      <label for="title">Puzzle title</label>
+      <input type="text" id="title" value="The Raven's Crossword">
+
+      <label for="words">One per line: answer, then the clue</label>
+      <textarea id="words" spellcheck="false"></textarea>
+      <p class="hint">Separate the answer and clue with a colon, a dash with spaces, a tab or <code>|</code>. Phrases are fine (ICE CREAM shows as 3,5). Lines starting with # are skipped.</p>
+
+      <label for="size">Largest grid</label>
+      <select id="size">
+        <option value="0">No limit</option>
+        <option value="9">9 × 9</option>
+        <option value="11">11 × 11</option>
+        <option value="13">13 × 13</option>
+        <option value="15" selected>15 × 15</option>
+        <option value="17">17 × 17</option>
+        <option value="21">21 × 21</option>
+      </select>
+
+      <label class="check"><input type="checkbox" id="counts" checked> Show letter counts after clues</label>
+      <label class="check"><input type="checkbox" id="black"> Fill the empty squares in black</label>
+      <label class="check"><input type="checkbox" id="printkey" checked> Print the answer key on a second page</label>
+
+      <div class="row">
+        <button class="primary" id="go">Make the crossword</button>
+        <button id="again" disabled>Try another layout</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Your crossword">
+      <div id="messages"></div>
+      <div class="tabs" role="group" aria-label="Show">
+        <button id="tab-puzzle" aria-pressed="true">Puzzle</button>
+        <button id="tab-key" aria-pressed="false">Answer key</button>
+      </div>
+      <div id="out"><p class="empty">Your crossword appears here.</p></div>
+      <p class="stats" id="stats"></p>
+      <div class="row output-actions">
+        <button id="print" disabled>Print</button>
+        <button id="svg" disabled>Download puzzle (SVG)</button>
+        <button id="svgkey" disabled>Download key (SVG)</button>
+        <button id="png" disabled>Download puzzle (PNG)</button>
+        <button id="copy" disabled>Copy clues as text</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="crossword.js"></script>
+  <script>
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const SAMPLE = [
+        "Raven: A large black bird of omen",
+        "Midnight: The witching hour",
+        "Lantern: It lights the way through the woods",
+        "Moon: It waxes and wanes",
+        "Owl: Night hunter that hoots",
+        "Riddle: A puzzling question",
+        "Forest: Where the trees gather",
+        "Quill: Feather pen",
+        "Ledger: Book of records",
+        "Cipher: A secret code",
+        "Ice cream: A frozen treat"
+      ].join("\n");
+      const STORE = "corvidzz-crossword-input";
+      const store = {
+        get() { try { return JSON.parse(localStorage.getItem(STORE)); } catch (e) { return null; } },
+        set(v) { try { localStorage.setItem(STORE, JSON.stringify(v)); } catch (e) { /* not saved */ } }
+      };
+      const saved = store.get();
+      $("words").value = saved && saved.words ? saved.words : SAMPLE;
+      if (saved && saved.title != null) $("title").value = saved.title;
+      const save = () => store.set({ words: $("words").value, title: $("title").value });
+      $("words").addEventListener("input", save);
+      $("title").addEventListener("input", save);
+
+      let puzzle = null, showKey = false;
+      const esc = (s) => String(s).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+
+      // The grid as an SVG picture, so it looks the same on screen, in print and downloaded.
+      function gridSVG(p, answers) {
+        const S = 40, pad = 2, black = $("black").checked;
+        const W = p.width * S + pad * 2, H = p.height * S + pad * 2;
+        const out = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Crossword grid">'];
+        out.push('<rect width="' + W + '" height="' + H + '" fill="#fff"/>');
+        if (black) out.push('<rect x="' + pad + '" y="' + pad + '" width="' + p.width * S + '" height="' + p.height * S + '" fill="#111"/>');
+        for (let r = 0; r < p.height; r++) for (let c = 0; c < p.width; c++) {
+          const ch = p.grid[r][c];
+          if (!ch) continue;
+          const x = pad + c * S, y = pad + r * S;
+          out.push('<rect x="' + x + '" y="' + y + '" width="' + S + '" height="' + S + '" fill="#fff" stroke="#111" stroke-width="1.6"/>');
+          if (p.numbers[r][c]) out.push('<text x="' + (x + 3) + '" y="' + (y + 11) + '" font-family="Georgia, serif" font-size="10" fill="#111">' + p.numbers[r][c] + "</text>");
+          if (answers) out.push('<text x="' + (x + S / 2) + '" y="' + (y + S / 2 + 8) + '" text-anchor="middle" font-family="Georgia, serif" font-size="21" fill="#111">' + ch + "</text>");
+        }
+        out.push("</svg>");
+        return out.join("");
+      }
+
+      function clueList(words, answers) {
+        const counts = $("counts").checked;
+        return "<ol>" + words.map((w) =>
+          "<li><b>" + w.number + "</b> " + esc(w.clue) + (counts ? " " + esc(w.enumeration) : "") +
+          (answers ? ' <span class="ans">' + esc(w.shown.toUpperCase()) + "</span>" : "") + "</li>").join("") + "</ol>";
+      }
+
+      function sheet(p, answers) {
+        const title = $("title").value.trim();
+        return '<div class="sheet' + (answers ? " key" : "") + '"' + (answers === showKey ? "" : " hidden") + ">" +
+          (title ? "<h3>" + esc(title) + (answers ? " · Answers" : "") + "</h3>" : (answers ? "<h3>Answers</h3>" : "")) +
+          '<div class="gridwrap">' + gridSVG(p, answers) + "</div>" +
+          '<div class="clues"><div><h4>Across</h4>' + clueList(p.across, answers) + "</div>" +
+          "<div><h4>Down</h4>" + clueList(p.down, answers) + "</div></div></div>";
+      }
+
+      function render() {
+        if (!puzzle) return;
+        $("out").innerHTML = sheet(puzzle, false) + sheet(puzzle, true);
+        const n = puzzle.across.length + puzzle.down.length;
+        $("stats").textContent = puzzle.width + " × " + puzzle.height + " grid · " + n + " words · layout no. " + puzzle.seed;
+        document.body.classList.toggle("no-key", !$("printkey").checked);
+      }
+
+      function showMessages(problems, unplaced) {
+        let html = "";
+        if (unplaced.length) {
+          html += '<div class="msg warn"><strong>' + unplaced.length + " word" + (unplaced.length > 1 ? "s" : "") +
+            " didn't fit:</strong> " + unplaced.map((e) => esc(e.shown)).join(", ") +
+            ". Try another layout, allow a larger grid, or add a word that shares letters with " + (unplaced.length > 1 ? "them" : "it") + ".</div>";
+        }
+        if (problems.length) html += '<div class="msg warn"><strong>Check these lines:</strong><ul>' + problems.map((p) => "<li>" + esc(p) + "</li>").join("") + "</ul></div>";
+        if (!html && puzzle) html = '<div class="msg ok">All ' + (puzzle.across.length + puzzle.down.length) + " words fit.</div>";
+        $("messages").innerHTML = html;
+      }
+
+      function make() {
+        const { entries, problems } = Crossword.parseInput($("words").value);
+        if (!entries.length) {
+          puzzle = null;
+          $("out").innerHTML = '<p class="empty">Add at least one line like <em>RAVEN: A large black bird</em>.</p>';
+          $("stats").textContent = "";
+          showMessages(problems, []);
+          setButtons(false);
+          return;
+        }
+        const max = Number($("size").value);
+        puzzle = Crossword.generate(entries, { maxWidth: max, maxHeight: max });
+        showMessages(problems, puzzle.unplaced);
+        render();
+        setButtons(true);
+      }
+
+      function setButtons(on) {
+        ["again", "print", "svg", "svgkey", "png", "copy"].forEach((id) => { $(id).disabled = !on; });
+      }
+
+      function setTab(key) {
+        showKey = key;
+        $("tab-puzzle").setAttribute("aria-pressed", String(!key));
+        $("tab-key").setAttribute("aria-pressed", String(key));
+        render();
+      }
+
+      function fileName(ext, suffix) {
+        const base = ($("title").value.trim() || "crossword").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "crossword";
+        return base + (suffix || "") + "." + ext;
+      }
+      function download(blob, name) {
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      }
+
+      function asText() {
+        const counts = $("counts").checked;
+        const list = (ws) => ws.map((w) => w.number + ". " + w.clue + (counts ? " " + w.enumeration : "")).join("\n");
+        const answers = (ws) => ws.map((w) => w.number + ". " + w.shown.toUpperCase()).join("\n");
+        const title = $("title").value.trim();
+        return (title ? title + "\n\n" : "") + "ACROSS\n" + list(puzzle.across) + "\n\nDOWN\n" + list(puzzle.down) +
+          "\n\nANSWERS\nAcross\n" + answers(puzzle.across) + "\nDown\n" + answers(puzzle.down) + "\n";
+      }
+
+      $("go").addEventListener("click", make);
+      $("again").addEventListener("click", make);
+      $("tab-puzzle").addEventListener("click", () => setTab(false));
+      $("tab-key").addEventListener("click", () => setTab(true));
+      ["counts", "black", "printkey", "title"].forEach((id) => $(id).addEventListener("input", render));
+      $("print").addEventListener("click", () => window.print());
+      $("svg").addEventListener("click", () => download(new Blob([gridSVG(puzzle, false)], { type: "image/svg+xml" }), fileName("svg")));
+      $("svgkey").addEventListener("click", () => download(new Blob([gridSVG(puzzle, true)], { type: "image/svg+xml" }), fileName("svg", "-answers")));
+      $("png").addEventListener("click", () => {
+        const svg = gridSVG(puzzle, false);
+        const img = new Image();
+        img.onload = () => {
+          const scale = 4, canvas = document.createElement("canvas");
+          canvas.width = img.width * scale; canvas.height = img.height * scale;
+          const ctx = canvas.getContext("2d");
+          ctx.scale(scale, scale);
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob((b) => download(b, fileName("png")), "image/png");
+        };
+        img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+      });
+      $("copy").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(asText());
+          $("copy").textContent = "Copied";
+        } catch (e) {
+          download(new Blob([asText()], { type: "text/plain" }), fileName("txt"));
+          $("copy").textContent = "Saved as a file";
+        }
+        setTimeout(() => { $("copy").textContent = "Copy clues as text"; }, 1800);
+      });
+
+      make();
+    })();
+  </script>
+</body>
+</html>
