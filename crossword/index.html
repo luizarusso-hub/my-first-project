@@ -150,7 +150,8 @@
         <option value="Georgia">Georgia (classic newspaper)</option>
         <option value="Arial">Arial (plain and very clear)</option>
       </select>
-      <label class="check"><input type="checkbox" id="black"> Fill the empty squares in the line colour</label>
+      <label class="check"><input type="checkbox" id="black"> Newspaper grid: fill the empty squares and add a thick frame</label>
+      <div class="row"><button type="button" id="classic">Use the classic newspaper look</button></div>
 
       <div class="row">
         <button class="primary" id="go">Make the crossword</button>
@@ -228,7 +229,8 @@
       ["fill", "line", "font"].forEach((id) => {
         if (saved && saved[id] && [...$(id).options].some((o) => o.value === saved[id])) $(id).value = saved[id];
       });
-      const save = () => store.set({ words: $("words").value, title: $("title").value, fill: $("fill").value, line: $("line").value, font: $("font").value });
+      if (saved && saved.black) $("black").checked = true;
+      const save = () => store.set({ words: $("words").value, title: $("title").value, fill: $("fill").value, line: $("line").value, font: $("font").value, black: $("black").checked });
       $("words").addEventListener("input", save);
       $("title").addEventListener("input", save);
 
@@ -252,10 +254,11 @@
           if (!ch) continue;
           const x = PAD + c * S, y = PAD + r * S;
           const fill = L.fill === "transparent" ? (L.black ? "#ffffff" : "none") : L.fill;
-          out.push('<rect x="' + x + '" y="' + y + '" width="' + S + '" height="' + S + '" fill="' + fill + '" stroke="' + L.line + '" stroke-width="1.6"/>');
+          out.push('<rect x="' + x + '" y="' + y + '" width="' + S + '" height="' + S + '" fill="' + fill + '" stroke="' + L.line + '" stroke-width="' + (L.black ? 1 : 1.6) + '"/>');
           if (p.numbers[r][c]) out.push('<text x="' + (x + 3) + '" y="' + (y + 11) + '" font-family="' + fam + '" font-size="10.5" fill="' + L.line + '">' + p.numbers[r][c] + "</text>");
           if (answers) out.push('<text x="' + (x + S / 2) + '" y="' + (y + S / 2 + 8) + '" text-anchor="middle" font-family="' + fam + '" font-size="22" fill="' + L.line + '">' + ch + "</text>");
         }
+        if (L.black) out.push('<rect x="' + PAD + '" y="' + PAD + '" width="' + p.width * S + '" height="' + p.height * S + '" fill="none" stroke="' + L.line + '" stroke-width="3"/>');
         out.push("</svg>");
         return out.join("");
       }
@@ -279,7 +282,7 @@
           if (L.black && L.fill === "transparent") ctx.clearRect(x, y, S, S);
           else if (L.fill !== "transparent") { ctx.fillStyle = L.fill; ctx.fillRect(x, y, S, S); }
         }
-        ctx.strokeStyle = L.line; ctx.lineWidth = 1.6; ctx.fillStyle = L.line;
+        ctx.strokeStyle = L.line; ctx.lineWidth = L.black ? 1 : 1.6; ctx.fillStyle = L.line;
         for (let r = 0; r < p.height; r++) for (let c = 0; c < p.width; c++) {
           const ch = p.grid[r][c];
           if (!ch) continue;
@@ -294,6 +297,7 @@
             ctx.fillText(ch, x + S / 2, y + S / 2 + 8);
           }
         }
+        if (L.black) { ctx.lineWidth = 3; ctx.strokeRect(PAD, PAD, p.width * S, p.height * S); }
         // mark the file as 300 DPI so Canva and printers size it correctly
         const blob = await new Promise((res) => canvas.toBlob(res, "image/png"));
         return withDPI(new Uint8Array(await blob.arrayBuffer()), 300);
@@ -407,6 +411,10 @@
       }
 
       $("go").addEventListener("click", make);
+      $("classic").addEventListener("click", () => {
+        $("fill").value = "#ffffff"; $("line").value = "#1a1a1a"; $("font").value = "Arial"; $("black").checked = true;
+        save(); render();
+      });
       $("again").addEventListener("click", make);
       $("tab-puzzle").addEventListener("click", () => setTab(false));
       $("tab-key").addEventListener("click", () => setTab(true));
