@@ -27,16 +27,28 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 
 `brand/video/corvidzz-loop-instagram.mp4` and `corvidzz-loop-tiktok.mp4` are 12-second vertical videos (1080×1920, 30 fps) for Reels, Stories and TikTok. The site's night sky moves behind the QR poster, and every animation repeats a whole number of times in 12 seconds, so the video loops seamlessly. To change and re-render: edit `brand/video/scene.html`, then run `node brand/video/render.js <frames folder> <path to ffmpeg>` (needs Playwright).
 
-## Crossword generator
+## Crossword generator (for the Canva books)
 
-`crossword/index.html` (at `corvidzz.com/crossword/` once the site is live) turns a list of words and clues into a finished crossword. Type one per line, the answer then the clue, separated by a colon, a dash with spaces, a tab or `|`:
+`crossword/index.html` (at `corvidzz.com/crossword/` once the site is live) turns a list of words and clues into crossword grids ready to place on the book's Canva pages. Type one per line, the answer then the clue, separated by a colon, a dash with spaces, a tab or `|`:
 
 ```
 Raven: A large black bird of omen
 Ice cream - A frozen treat
 ```
 
-Press **Make the crossword** and it finds an interlocking layout, numbers the squares and sorts the clues into Across and Down. Phrases get letter counts like (3,5). Choose the largest grid allowed (for example 15 × 15 for a book page), tap **Try another layout** for a different arrangement, and switch between the puzzle and the answer key. **Print** gives the puzzle on one page and the answer key on the next. You can also download the grid as SVG (sharp at any size, for book layouts) or PNG, and copy the clues and answers as text. If a word can't be joined to the others it's listed so you can try again, allow a bigger grid or add a connecting word. Your list is remembered in the browser.
+Press **Make the crossword** and it finds an interlocking layout, numbers the squares and sorts the clues into Across and Down. Phrases get letter counts like (3,5). Choose the largest grid allowed (15 × 15 suits a book page), tap **Try another layout** for a different arrangement, and switch between the puzzle and the answer key. If a word can't be joined to the others it's listed, so you can try again, allow a bigger grid or add a connecting word.
+
+**Look for the book:** squares can be see-through (the Canva page design shows inside them), white or parchment; lines and letters can be black, dark sepia, sepia or raven green-black; the numbers and answer letters can be IM Fell English (the website's font), Georgia or Arial; and the empty squares can be filled in the line colour.
+
+**Getting it into Canva:**
+
+1. Click **Puzzle grid (PNG)** and **Answer key grid (PNG)**. They're 300 DPI pictures with a see-through background, each square about 8.5 mm (a third of an inch) wide at full size.
+2. In Canva, **Uploads → Upload files**, then drag the PNG onto the page and resize it from a corner.
+3. Click **Copy Across clues** and paste into a Canva text box, then do the same with **Copy Down clues**, so the clues use the book's own fonts.
+4. Put the answer key PNG on the answers page at the back. **Copy answers list** gives the answers as text too.
+5. To update a puzzle, download again and use **Replace** on the picture in Canva so it keeps its size and position.
+
+**Print** gives the puzzle on one page and the answer key on the next, and the SVG downloads are there for other design tools. Your list and look settings are remembered in the browser.
 
 The layout engine is `crossword/crossword.js`. It also runs from the command line: `node crossword/crossword.js words.txt --answers --max 15`.
 

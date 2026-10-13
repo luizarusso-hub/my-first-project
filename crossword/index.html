@@ -78,6 +78,11 @@
     .stats { font-size: .88rem; font-style: italic; color: var(--ink-soft); margin: 12px 0 0; }
     .empty { text-align: center; font-style: italic; color: var(--ink-soft); padding: 60px 10px; }
     .print-only { display: none; }
+    h2.sub { font-size: .95rem; margin: 22px 0 4px; }
+    .howto { margin: 14px 0 0; font-size: .95rem; }
+    .howto summary { cursor: pointer; color: var(--sepia); font-style: italic; }
+    .howto ol { margin: 8px 0 0; padding-left: 22px; }
+    .gridwrap svg { background: repeating-conic-gradient(#f3ead2 0% 25%, #fbf6e8 0% 50%) 0 0 / 16px 16px; }
 
     @media print {
       @page { margin: 14mm; }
@@ -91,6 +96,7 @@
       .sheet[hidden] { display: block !important; }
       body.no-key .sheet.key { display: none !important; }
       .clues .ans { color: #000; }
+      .gridwrap svg { background: none; }
     }
   </style>
 </head>
@@ -122,8 +128,29 @@
       </select>
 
       <label class="check"><input type="checkbox" id="counts" checked> Show letter counts after clues</label>
-      <label class="check"><input type="checkbox" id="black"> Fill the empty squares in black</label>
       <label class="check"><input type="checkbox" id="printkey" checked> Print the answer key on a second page</label>
+
+      <h2 class="sub">Look for the book</h2>
+      <label for="fill">Squares</label>
+      <select id="fill">
+        <option value="transparent" selected>See-through (best for Canva)</option>
+        <option value="#ffffff">White</option>
+        <option value="#efe4c6">Parchment</option>
+      </select>
+      <label for="line">Lines, numbers and letters</label>
+      <select id="line">
+        <option value="#1a1a1a" selected>Black</option>
+        <option value="#4a3620">Dark sepia</option>
+        <option value="#6e5230">Sepia</option>
+        <option value="#1d2622">Raven green-black</option>
+      </select>
+      <label for="font">Numbers and answer letters</label>
+      <select id="font">
+        <option value="IM Fell English" selected>IM Fell English (the website's font)</option>
+        <option value="Georgia">Georgia (classic newspaper)</option>
+        <option value="Arial">Arial (plain and very clear)</option>
+      </select>
+      <label class="check"><input type="checkbox" id="black"> Fill the empty squares in the line colour</label>
 
       <div class="row">
         <button class="primary" id="go">Make the crossword</button>
@@ -139,12 +166,36 @@
       </div>
       <div id="out"><p class="empty">Your crossword appears here.</p></div>
       <p class="stats" id="stats"></p>
-      <div class="row output-actions">
-        <button id="print" disabled>Print</button>
-        <button id="svg" disabled>Download puzzle (SVG)</button>
-        <button id="svgkey" disabled>Download key (SVG)</button>
-        <button id="png" disabled>Download puzzle (PNG)</button>
-        <button id="copy" disabled>Copy clues as text</button>
+      <div class="output-actions">
+        <h2 class="sub">For your Canva book</h2>
+        <p class="hint">1. Download the grid pictures. They're print quality (300 DPI) with a see-through background.</p>
+        <div class="row">
+          <button class="primary" id="png" disabled>Puzzle grid (PNG)</button>
+          <button class="primary" id="pngkey" disabled>Answer key grid (PNG)</button>
+        </div>
+        <p class="hint">2. Copy the clues, then paste each list into its own Canva text box, so you can style them with your book's fonts.</p>
+        <div class="row">
+          <button id="copy-across" disabled>Copy Across clues</button>
+          <button id="copy-down" disabled>Copy Down clues</button>
+          <button id="copy-answers" disabled>Copy answers list</button>
+        </div>
+        <details class="howto">
+          <summary>How to put it on a Canva page</summary>
+          <ol>
+            <li>In Canva, open your book and click <strong>Uploads</strong> → <strong>Upload files</strong>, and choose the PNG.</li>
+            <li>Drag it onto the page and resize it from a corner (it stays sharp).</li>
+            <li>Add two text boxes (<strong>Text</strong> → <strong>Add a little bit of body text</strong>) and paste the Across and Down clues into them.</li>
+            <li>Put the answer key PNG on your answers page at the back of the book.</li>
+            <li>Changed the clues or layout? Download again and use <strong>Replace</strong> on the picture in Canva so its size and position stay.</li>
+          </ol>
+        </details>
+        <h2 class="sub">Other</h2>
+        <div class="row">
+          <button id="print" disabled>Print</button>
+          <button id="svg" disabled>Puzzle (SVG)</button>
+          <button id="svgkey" disabled>Answer key (SVG)</button>
+          <button id="copy" disabled>Copy everything as text</button>
+        </div>
       </div>
     </section>
   </main>
@@ -174,30 +225,98 @@
       const saved = store.get();
       $("words").value = saved && saved.words ? saved.words : SAMPLE;
       if (saved && saved.title != null) $("title").value = saved.title;
-      const save = () => store.set({ words: $("words").value, title: $("title").value });
+      ["fill", "line", "font"].forEach((id) => {
+        if (saved && saved[id] && [...$(id).options].some((o) => o.value === saved[id])) $(id).value = saved[id];
+      });
+      const save = () => store.set({ words: $("words").value, title: $("title").value, fill: $("fill").value, line: $("line").value, font: $("font").value });
       $("words").addEventListener("input", save);
       $("title").addEventListener("input", save);
 
       let puzzle = null, showKey = false;
       const esc = (s) => String(s).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
 
+      // The chosen look, shared by the screen, print, SVG and PNG versions.
+      function look() {
+        return { fill: $("fill").value, line: $("line").value, font: $("font").value, black: $("black").checked };
+      }
+      const S = 40, PAD = 2;
+
       // The grid as an SVG picture, so it looks the same on screen, in print and downloaded.
       function gridSVG(p, answers) {
-        const S = 40, pad = 2, black = $("black").checked;
-        const W = p.width * S + pad * 2, H = p.height * S + pad * 2;
+        const L = look(), fam = esc(L.font) + ", Georgia, serif";
+        const W = p.width * S + PAD * 2, H = p.height * S + PAD * 2;
         const out = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Crossword grid">'];
-        out.push('<rect width="' + W + '" height="' + H + '" fill="#fff"/>');
-        if (black) out.push('<rect x="' + pad + '" y="' + pad + '" width="' + p.width * S + '" height="' + p.height * S + '" fill="#111"/>');
+        if (L.black) out.push('<rect x="' + PAD + '" y="' + PAD + '" width="' + p.width * S + '" height="' + p.height * S + '" fill="' + L.line + '"/>');
         for (let r = 0; r < p.height; r++) for (let c = 0; c < p.width; c++) {
           const ch = p.grid[r][c];
           if (!ch) continue;
-          const x = pad + c * S, y = pad + r * S;
-          out.push('<rect x="' + x + '" y="' + y + '" width="' + S + '" height="' + S + '" fill="#fff" stroke="#111" stroke-width="1.6"/>');
-          if (p.numbers[r][c]) out.push('<text x="' + (x + 3) + '" y="' + (y + 11) + '" font-family="Georgia, serif" font-size="10" fill="#111">' + p.numbers[r][c] + "</text>");
-          if (answers) out.push('<text x="' + (x + S / 2) + '" y="' + (y + S / 2 + 8) + '" text-anchor="middle" font-family="Georgia, serif" font-size="21" fill="#111">' + ch + "</text>");
+          const x = PAD + c * S, y = PAD + r * S;
+          const fill = L.fill === "transparent" ? (L.black ? "#ffffff" : "none") : L.fill;
+          out.push('<rect x="' + x + '" y="' + y + '" width="' + S + '" height="' + S + '" fill="' + fill + '" stroke="' + L.line + '" stroke-width="1.6"/>');
+          if (p.numbers[r][c]) out.push('<text x="' + (x + 3) + '" y="' + (y + 11) + '" font-family="' + fam + '" font-size="10.5" fill="' + L.line + '">' + p.numbers[r][c] + "</text>");
+          if (answers) out.push('<text x="' + (x + S / 2) + '" y="' + (y + S / 2 + 8) + '" text-anchor="middle" font-family="' + fam + '" font-size="22" fill="' + L.line + '">' + ch + "</text>");
         }
         out.push("</svg>");
         return out.join("");
+      }
+
+      // The grid drawn straight onto a canvas at print quality, using the page's loaded fonts.
+      // Each square comes out about 0.33 in (8.5 mm) wide at 300 DPI; Canva can shrink it as needed.
+      async function gridPNG(p, answers) {
+        const L = look(), fam = '"' + L.font + '", Georgia, serif';
+        try { await Promise.all([document.fonts.load("22px " + fam), document.fonts.ready]); } catch (e) { /* falls back to Georgia */ }
+        const scale = 2.5;
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round((p.width * S + PAD * 2) * scale);
+        canvas.height = Math.round((p.height * S + PAD * 2) * scale);
+        const ctx = canvas.getContext("2d");
+        ctx.scale(scale, scale);
+        if (L.black) { ctx.fillStyle = L.line; ctx.fillRect(PAD, PAD, p.width * S, p.height * S); }
+        for (let r = 0; r < p.height; r++) for (let c = 0; c < p.width; c++) {
+          const ch = p.grid[r][c];
+          if (!ch) continue;
+          const x = PAD + c * S, y = PAD + r * S;
+          if (L.black && L.fill === "transparent") ctx.clearRect(x, y, S, S);
+          else if (L.fill !== "transparent") { ctx.fillStyle = L.fill; ctx.fillRect(x, y, S, S); }
+        }
+        ctx.strokeStyle = L.line; ctx.lineWidth = 1.6; ctx.fillStyle = L.line;
+        for (let r = 0; r < p.height; r++) for (let c = 0; c < p.width; c++) {
+          const ch = p.grid[r][c];
+          if (!ch) continue;
+          const x = PAD + c * S, y = PAD + r * S;
+          ctx.strokeRect(x, y, S, S);
+          if (p.numbers[r][c]) {
+            ctx.font = "10.5px " + fam; ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+            ctx.fillText(String(p.numbers[r][c]), x + 3, y + 11);
+          }
+          if (answers) {
+            ctx.font = "22px " + fam; ctx.textAlign = "center";
+            ctx.fillText(ch, x + S / 2, y + S / 2 + 8);
+          }
+        }
+        // mark the file as 300 DPI so Canva and printers size it correctly
+        const blob = await new Promise((res) => canvas.toBlob(res, "image/png"));
+        return withDPI(new Uint8Array(await blob.arrayBuffer()), 300);
+      }
+
+      // Adds a pHYs chunk (pixels per metre) to a PNG so it carries its print resolution.
+      function withDPI(png, dpi) {
+        const ppm = Math.round(dpi / 0.0254);
+        const chunk = new Uint8Array(21);
+        const dv = new DataView(chunk.buffer);
+        dv.setUint32(0, 9);
+        chunk.set([112, 72, 89, 115], 4); // "pHYs"
+        dv.setUint32(8, ppm); dv.setUint32(12, ppm); chunk[16] = 1;
+        let crc = -1;
+        for (let i = 4; i < 17; i++) {
+          crc ^= chunk[i];
+          for (let k = 0; k < 8; k++) crc = (crc >>> 1) ^ (0xedb88320 & -(crc & 1));
+        }
+        dv.setUint32(17, (crc ^ -1) >>> 0);
+        const at = 33; // straight after the IHDR chunk
+        const out = new Uint8Array(png.length + 21);
+        out.set(png.subarray(0, at), 0); out.set(chunk, at); out.set(png.subarray(at), at + 21);
+        return new Blob([out], { type: "image/png" });
       }
 
       function clueList(words, answers) {
@@ -254,7 +373,7 @@
       }
 
       function setButtons(on) {
-        ["again", "print", "svg", "svgkey", "png", "copy"].forEach((id) => { $(id).disabled = !on; });
+        ["again", "print", "svg", "svgkey", "png", "pngkey", "copy", "copy-across", "copy-down", "copy-answers"].forEach((id) => { $(id).disabled = !on; });
       }
 
       function setTab(key) {
@@ -291,33 +410,31 @@
       $("again").addEventListener("click", make);
       $("tab-puzzle").addEventListener("click", () => setTab(false));
       $("tab-key").addEventListener("click", () => setTab(true));
-      ["counts", "black", "printkey", "title"].forEach((id) => $(id).addEventListener("input", render));
+      ["counts", "black", "printkey", "title", "fill", "line", "font"].forEach((id) => $(id).addEventListener("input", () => { save(); render(); }));
       $("print").addEventListener("click", () => window.print());
       $("svg").addEventListener("click", () => download(new Blob([gridSVG(puzzle, false)], { type: "image/svg+xml" }), fileName("svg")));
       $("svgkey").addEventListener("click", () => download(new Blob([gridSVG(puzzle, true)], { type: "image/svg+xml" }), fileName("svg", "-answers")));
-      $("png").addEventListener("click", () => {
-        const svg = gridSVG(puzzle, false);
-        const img = new Image();
-        img.onload = () => {
-          const scale = 4, canvas = document.createElement("canvas");
-          canvas.width = img.width * scale; canvas.height = img.height * scale;
-          const ctx = canvas.getContext("2d");
-          ctx.scale(scale, scale);
-          ctx.drawImage(img, 0, 0);
-          canvas.toBlob((b) => download(b, fileName("png")), "image/png");
-        };
-        img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
-      });
-      $("copy").addEventListener("click", async () => {
+      $("png").addEventListener("click", async () => download(await gridPNG(puzzle, false), fileName("png")));
+      $("pngkey").addEventListener("click", async () => download(await gridPNG(puzzle, true), fileName("png", "-answers")));
+
+      async function copyText(id, text, label) {
+        const btn = $(id);
         try {
-          await navigator.clipboard.writeText(asText());
-          $("copy").textContent = "Copied";
+          await navigator.clipboard.writeText(text);
+          btn.textContent = "Copied";
         } catch (e) {
-          download(new Blob([asText()], { type: "text/plain" }), fileName("txt"));
-          $("copy").textContent = "Saved as a file";
+          download(new Blob([text], { type: "text/plain" }), fileName("txt", "-" + id.replace("copy-", "")));
+          btn.textContent = "Saved as a file";
         }
-        setTimeout(() => { $("copy").textContent = "Copy clues as text"; }, 1800);
-      });
+        setTimeout(() => { btn.textContent = label; }, 1800);
+      }
+      const clueLines = (ws) => ws.map((w) => w.number + ". " + w.clue + ($("counts").checked ? " " + w.enumeration : "")).join("\n");
+      $("copy-across").addEventListener("click", () => copyText("copy-across", "ACROSS\n" + clueLines(puzzle.across), "Copy Across clues"));
+      $("copy-down").addEventListener("click", () => copyText("copy-down", "DOWN\n" + clueLines(puzzle.down), "Copy Down clues"));
+      $("copy-answers").addEventListener("click", () => copyText("copy-answers",
+        "ACROSS\n" + puzzle.across.map((w) => w.number + ". " + w.shown.toUpperCase()).join("\n") +
+        "\n\nDOWN\n" + puzzle.down.map((w) => w.number + ". " + w.shown.toUpperCase()).join("\n"), "Copy answers list"));
+      $("copy").addEventListener("click", () => copyText("copy", asText(), "Copy everything as text"));
 
       make();
     })();
