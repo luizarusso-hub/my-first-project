@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CorvidzzPuzzles | Join the Waiting List</title>
-  <meta name="description" content="The ledger of early readers is sealed. Solve the raven's crossword to claim early access to Volume I.">
+  <meta name="description" content="Join the waiting list for Volume I, or solve the raven's crossword to claim early access.">
   <meta property="og:title" content="CorvidzzPuzzles | What is the raven hiding?">
   <meta property="og:description" content="Solve the raven's crossword. Claim early access.">
   <meta property="og:type" content="website">
@@ -410,31 +410,7 @@
     .revealed .small { font-style: italic; color: var(--ink-soft); font-size: 1rem; margin: 0; }
     @keyframes unveil { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-    .skip-line { margin: 26px 0 0; font-style: italic; color: var(--ink-soft); font-size: 1rem; }
-    .skip-line button { font: inherit; background: none; border: 0; padding: 0; color: var(--lapis-deep); text-decoration: underline; cursor: pointer; }
-    .skip-line button:hover { color: var(--vermilion); }
-    .skip-line[hidden] { display: none; }
-    /* the library card stays sealed until the crossword is solved */
-    .libcard > form { transition: filter .8s, opacity .8s; }
-    .libcard.sealed > form { filter: blur(3px) grayscale(.4); opacity: .45; pointer-events: none; user-select: none; }
-    .seal-over {
-      position: absolute; inset: 60px 0 0; z-index: 3;
-      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-      padding: 60px 24px 0; text-align: center;
-      transition: opacity .9s ease, transform .9s ease;
-    }
-    .libcard:not(.sealed) .seal-over { opacity: 0; transform: scale(1.15); pointer-events: none; }
-    .wax-seal {
-      width: 120px; height: 120px; border-radius: 50%; display: grid; place-items: center;
-      background: radial-gradient(circle at 35% 30%, #d0543e, var(--vermilion) 55%, #6e1f12);
-      box-shadow: 0 0 0 6px rgba(163, 50, 31, .35), 0 12px 24px rgba(60, 15, 5, .45), inset 0 -6px 12px rgba(0, 0, 0, .3);
-    }
-    .wax-seal img { width: 70px; filter: brightness(0) invert(.85) sepia(.6) saturate(2) hue-rotate(-15deg); opacity: .85; }
-    .libcard.breaking .wax-seal { animation: crack .9s ease forwards; }
-    @keyframes crack { 30% { transform: rotate(-8deg) scale(1.08); } 60% { transform: rotate(6deg) scale(1.1); } 100% { transform: scale(.2) rotate(40deg); opacity: 0; } }
-    .seal-title { font-family: "Cinzel", serif; font-weight: 800; letter-spacing: .2em; color: var(--card-ink); margin: 18px 0 6px; font-size: 1.3rem; }
-    .seal-text { font-style: italic; color: var(--ink-soft); margin: 0; max-width: 18em; }
-    @media (prefers-reduced-motion: reduce) { .revealed { animation: none; } .libcard.breaking .wax-seal { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .revealed { animation: none; } }
 
     /* ---------- Ancient riddles, modern answers ---------- */
     .tagline {
@@ -802,7 +778,7 @@
 
       <p class="kicker">&#10022; Volume I &middot; Coming Soon &#10022;</p>
       <h1>What is the raven hiding?</h1>
-      <p class="whisper">The ledger of early readers is sealed.<br>Solve the raven's crossword to break the seal and claim <strong>early access</strong>.</p>
+      <p class="whisper">The ravens' ledger is open. Sign it below,<br>or solve the raven's crossword first to claim <strong>early access</strong>.</p>
 
       <div class="riddle-page" id="riddle-page">
         <div class="xw" id="xw">
@@ -867,7 +843,7 @@
         <p class="verdict" id="xw-verdict" role="status" aria-live="polite"></p>
         <button type="button" class="hint-btn" id="xw-hint">Stuck? The raven will lend a letter</button>
         <div class="revealed" id="revealed" hidden>
-          <p class="seal-line">&#10022; The seal is broken &#10022;</p>
+          <p class="seal-line">&#10022; The raven's secret is revealed &#10022;</p>
           <p>Old riddles, modern answers. Every page of this book hides something from the world right now: <strong>the shows, the songs, the trends and the drama everyone is talking about.</strong></p>
           <p class="small">Thou hast earned early access. Sign the ledger below to read Volume I before anyone else.</p>
         </div>
@@ -875,14 +851,9 @@
       <div class="flourish" aria-hidden="true"><svg><use href="#flourish"/></svg></div>
 
       <div class="card-wrap">
-        <div class="libcard sealed" id="signup" role="group" aria-label="Library card: early access list">
-          <p class="card-sub"><i>Early Access &middot; The Ravens' Ledger</i><span>No. ____</span></p>
-          <div class="seal-over" id="seal-over">
-            <div class="wax-seal" aria-hidden="true"><img src="assets/img/raven.svg" alt=""></div>
-            <p class="seal-title">Sealed</p>
-            <p class="seal-text">Solve the crossword above to break the seal and claim early access.</p>
-          </div>
-          <form id="waitlist" novalidate inert>
+        <div class="libcard" id="signup" role="group" aria-label="Library card: waiting list">
+          <p class="card-sub"><i>The Ravens' Waiting List</i><span>No. ____</span></p>
+          <form id="waitlist" novalidate>
             <div class="line">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Thy name">
@@ -1020,7 +991,7 @@
               </div>
             </fieldset>
 
-            <input type="hidden" name="access" id="access" value="early access (solved the crossword)">
+            <input type="hidden" name="access" id="access" value="waiting list (did not solve the crossword)">
             <input type="hidden" name="came_from" id="came_from" value="direct">
 
             <!-- Spam trap: real people never see or fill this -->
@@ -1028,7 +999,7 @@
 
             <button type="submit" class="submit" id="submit">
               <span class="star" aria-hidden="true">&#10022;</span>
-              <span id="submit-label">Claim Early Access</span>
+              <span id="submit-label">Join the Waitlist</span>
               <span class="star" aria-hidden="true">&#10022;</span>
             </button>
             <p class="msg" id="msg" role="status" aria-live="polite"></p>
@@ -1036,7 +1007,6 @@
           </form>
         </div>
       </div>
-      <p class="skip-line" id="skip-line">Not one for riddles? <button type="button" id="skip-puzzle">Join the waiting list instead</button></p>
     </div>
   </section>
 
@@ -1217,7 +1187,7 @@
       }
     })();
 
-    // ===== The raven's crossword: solving it breaks the seal on the library card =====
+    // ===== The raven's crossword: optional; solving it turns the sign-up into early access =====
     (function () {
       const page = document.getElementById("riddle-page");
       const cells = [...document.querySelectorAll("#xw .cell[data-a]")];
@@ -1270,29 +1240,8 @@
         document.getElementById("access").value = "early access (solved the crossword)";
         document.querySelector("#signup .card-sub i").innerHTML = "Early Access &middot; The Ravens' Ledger";
         document.getElementById("submit-label").textContent = "Claim Early Access";
-        document.getElementById("skip-line").hidden = true;
-        openCard();
+        setTimeout(() => card.scrollIntoView({ behavior: "smooth", block: "start" }), 1600);
       }
-
-      function openCard() {
-        if (!card.classList.contains("sealed")) return;
-        card.classList.add("breaking");
-        setTimeout(() => {
-          card.classList.remove("sealed");
-          document.getElementById("waitlist").inert = false;
-          document.getElementById("seal-over").setAttribute("aria-hidden", "true");
-          setTimeout(() => card.scrollIntoView({ behavior: "smooth", block: "start" }), 900);
-        }, 700);
-      }
-
-      // for those who'd rather not solve: open the card as the ordinary waiting list (no early access)
-      document.getElementById("skip-puzzle").addEventListener("click", () => {
-        document.getElementById("access").value = "waiting list (skipped the crossword)";
-        document.querySelector("#signup .card-sub i").textContent = "The Ravens' Waiting List";
-        document.getElementById("submit-label").textContent = "Join the Waitlist";
-        document.getElementById("skip-line").innerHTML = "Changed thy mind? The crossword above still grants <strong>early access</strong>.";
-        openCard();
-      });
 
       cells.forEach((cell) => {
         const inp = input(cell);
@@ -1381,7 +1330,6 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.textContent = "";
-      if (card.classList.contains("sealed")) return;
 
       const email = form.email.value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
