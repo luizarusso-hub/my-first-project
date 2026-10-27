@@ -215,6 +215,24 @@
     }
     .about-book p { margin: 0 0 8px; line-height: 1.5; }
     .about-book strong { font-family: "Cinzel", serif; font-size: .92em; }
+    .book-cover {
+      position: relative; width: 150px; aspect-ratio: 3 / 4; margin: 6px auto 14px; padding: 18px 10px 12px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+      background: radial-gradient(ellipse at 50% 35%, #1d4039, #0e2421 75%);
+      border-radius: 3px 8px 8px 3px;
+      box-shadow: inset 7px 0 8px -4px rgba(0, 0, 0, .55), inset 0 0 0 5px #0e2421, inset 0 0 0 6.5px var(--gold), inset 0 0 0 9px #0e2421, inset 0 0 0 10px var(--gold),
+        6px 10px 18px rgba(30, 20, 5, .45);
+      transform: rotate(-3deg);
+    }
+    .book-cover img { width: 92px; height: 92px; border-radius: 50%; }
+    .book-cover-vol { font-family: "Cinzel", serif; font-weight: 800; letter-spacing: .14em; font-size: .78rem; color: var(--gold-light); }
+    .book-cover-soon { font-style: italic; font-size: .72rem; color: #e7d6ad; }
+    .about-lead { font-size: 1.05rem; }
+    .inside { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 10px; }
+    .inside figure { margin: 0; color: var(--card-ink); }
+    .inside svg { display: block; width: 100%; max-width: 72px; margin: 0 auto 6px; }
+    .inside figcaption { font-size: .82rem; line-height: 1.3; color: var(--ink-soft); }
+    .inside figcaption b { display: block; font-family: "Cinzel", serif; font-size: .78rem; color: var(--card-ink); letter-spacing: .03em; }
     .about-title { font-family: "Cinzel", serif; font-weight: 700; letter-spacing: .04em; font-size: .86rem; color: var(--vermilion); white-space: nowrap; }
     .about-book .about-small { margin: 0; font-style: italic; color: var(--ink-soft); font-size: .95rem; }
     .ask { margin: 6px 0 10px; font-family: "IM Fell English SC", serif; font-size: 1rem; color: var(--card-ink); line-height: 1.4; }
@@ -745,110 +763,47 @@
 
             <div class="about-book">
               <p class="about-title">&#10022; What the raven is hiding &#10022;</p>
-              <p>A <strong>puzzle book</strong> that looks like an old fairy-tale manuscript, but every crossword, cipher and riddle inside is about <strong>what's happening right now</strong>: the shows, songs, celebrities and trends everyone is talking about.</p>
-              <p class="about-small">Volume I is coming soon. Sign up and be the first to know.</p>
-            </div>
-
-            <p class="ask">What art thou into right now? <i>Tap everything thou lovest. Open each scroll for more.</i></p>
-            <div class="groups">
-              <details class="group" open>
-                <summary>Shows &amp; movies <span class="count" data-for="shows_and_movies"></span></summary>
-                <div class="chips">
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Stranger Things"><span>Stranger Things</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Wednesday"><span>Wednesday</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Squid Game"><span>Squid Game</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="The Last of Us"><span>The Last of Us</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="House of the Dragon"><span>House of the Dragon</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Bridgerton"><span>Bridgerton</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="The White Lotus"><span>The White Lotus</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Severance"><span>Severance</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="The Bear"><span>The Bear</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Love Island"><span>Love Island</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="One Piece"><span>One Piece</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Marvel"><span>Marvel</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Star Wars"><span>Star Wars</span></label>
-                  <label class="chip"><input type="checkbox" name="shows_and_movies" value="Harry Potter"><span>Harry Potter</span></label>
-                </div>
-              </details>
-              <details class="group">
-                <summary>Music <span class="count" data-for="music"></span></summary>
-                <div class="chips">
-                  <label class="chip"><input type="checkbox" name="music" value="Taylor Swift"><span>Taylor Swift</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Sabrina Carpenter"><span>Sabrina Carpenter</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Beyoncé"><span>Beyoncé</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Bad Bunny"><span>Bad Bunny</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Billie Eilish"><span>Billie Eilish</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Olivia Rodrigo"><span>Olivia Rodrigo</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Chappell Roan"><span>Chappell Roan</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Ariana Grande"><span>Ariana Grande</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Harry Styles"><span>Harry Styles</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Kendrick Lamar"><span>Kendrick Lamar</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Drake"><span>Drake</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="BTS"><span>BTS</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="BLACKPINK"><span>BLACKPINK</span></label>
-                  <label class="chip"><input type="checkbox" name="music" value="Coldplay"><span>Coldplay</span></label>
-                </div>
-              </details>
-              <details class="group">
-                <summary>Creators &amp; internet <span class="count" data-for="creators_and_internet"></span></summary>
-                <div class="chips">
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="MrBeast"><span>MrBeast</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="IShowSpeed"><span>IShowSpeed</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Kai Cenat"><span>Kai Cenat</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Emma Chamberlain"><span>Emma Chamberlain</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Mark Rober"><span>Mark Rober</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Dude Perfect"><span>Dude Perfect</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="BookTok"><span>BookTok</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Viral dances & challenges"><span>Viral dances &amp; challenges</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="Memes"><span>Memes</span></label>
-                  <label class="chip"><input type="checkbox" name="creators_and_internet" value="AI & ChatGPT"><span>AI &amp; ChatGPT</span></label>
-                </div>
-              </details>
-              <details class="group">
-                <summary>Games <span class="count" data-for="games"></span></summary>
-                <div class="chips">
-                  <label class="chip"><input type="checkbox" name="games" value="Minecraft"><span>Minecraft</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="Fortnite"><span>Fortnite</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="Roblox"><span>Roblox</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="Pokémon"><span>Pokémon</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="Mario"><span>Mario</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="Zelda"><span>Zelda</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="Animal Crossing"><span>Animal Crossing</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="Call of Duty"><span>Call of Duty</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="The Sims"><span>The Sims</span></label>
-                  <label class="chip"><input type="checkbox" name="games" value="Grand Theft Auto"><span>Grand Theft Auto</span></label>
-                </div>
-              </details>
-              <details class="group">
-                <summary>Sports <span class="count" data-for="sports"></span></summary>
-                <div class="chips">
-                  <label class="chip"><input type="checkbox" name="sports" value="Formula 1"><span>Formula 1</span></label>
-                  <label class="chip"><input type="checkbox" name="sports" value="The NFL"><span>The NFL</span></label>
-                  <label class="chip"><input type="checkbox" name="sports" value="The NBA"><span>The NBA</span></label>
-                  <label class="chip"><input type="checkbox" name="sports" value="Premier League"><span>Premier League</span></label>
-                  <label class="chip"><input type="checkbox" name="sports" value="World Cup"><span>World Cup</span></label>
-                  <label class="chip"><input type="checkbox" name="sports" value="The Olympics"><span>The Olympics</span></label>
-                  <label class="chip"><input type="checkbox" name="sports" value="Tennis"><span>Tennis</span></label>
-                  <label class="chip"><input type="checkbox" name="sports" value="WWE"><span>WWE</span></label>
-                </div>
-              </details>
-              <details class="group">
-                <summary>Celebrities <span class="count" data-for="celebrities"></span></summary>
-                <div class="chips">
-                  <label class="chip"><input type="checkbox" name="celebrities" value="The Royal Family"><span>The Royal Family</span></label>
-                  <label class="chip"><input type="checkbox" name="celebrities" value="The Kardashians"><span>The Kardashians</span></label>
-                  <label class="chip"><input type="checkbox" name="celebrities" value="Zendaya"><span>Zendaya</span></label>
-                  <label class="chip"><input type="checkbox" name="celebrities" value="Timothée Chalamet"><span>Timothée Chalamet</span></label>
-                  <label class="chip"><input type="checkbox" name="celebrities" value="Pedro Pascal"><span>Pedro Pascal</span></label>
-                  <label class="chip"><input type="checkbox" name="celebrities" value="Selena Gomez"><span>Selena Gomez</span></label>
-                  <label class="chip"><input type="checkbox" name="celebrities" value="Rihanna"><span>Rihanna</span></label>
-                  <label class="chip"><input type="checkbox" name="celebrities" value="Celebrity couples & breakups"><span>Celebrity couples &amp; breakups</span></label>
-                </div>
-              </details>
-            </div>
-            <div class="line tall">
-              <label for="other">Not listed? <i>(optional)</i></label>
-              <input id="other" name="something_else" type="text" maxlength="200" placeholder="Add a name">
+              <div class="book-cover" aria-hidden="true">
+                <img src="assets/img/logo.png" alt="">
+                <span class="book-cover-vol">Volume I</span>
+                <span class="book-cover-soon">Coming soon</span>
+              </div>
+              <p class="about-lead">A fairy-tale <strong>puzzle book</strong> about <strong>what's happening right now</strong>.</p>
+              <div class="inside">
+                <figure>
+                  <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <g stroke="currentColor" stroke-width="1.6" fill="#fbf4e0">
+                      <rect x="8" y="8" width="16" height="16"/><rect x="24" y="8" width="16" height="16"/><rect x="40" y="8" width="16" height="16" fill="currentColor"/>
+                      <rect x="8" y="24" width="16" height="16"/><rect x="24" y="24" width="16" height="16" fill="currentColor"/><rect x="40" y="24" width="16" height="16"/>
+                      <rect x="8" y="40" width="16" height="16"/><rect x="24" y="40" width="16" height="16"/><rect x="40" y="40" width="16" height="16"/>
+                    </g>
+                    <g font-family="Cinzel, serif" font-weight="700" font-size="11" text-anchor="middle" fill="var(--vermilion)">
+                      <text x="16" y="20">T</text><text x="32" y="20">V</text><text x="16" y="36">O</text><text x="48" y="36">S</text><text x="16" y="52">P</text><text x="32" y="52">O</text><text x="48" y="52">P</text>
+                    </g>
+                  </svg>
+                  <figcaption><b>Crosswords</b> on the shows you binge</figcaption>
+                </figure>
+                <figure>
+                  <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <circle cx="32" cy="32" r="26" fill="#fbf4e0" stroke="currentColor" stroke-width="1.6"/>
+                    <circle cx="32" cy="32" r="16" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                    <g stroke="currentColor" stroke-width="1"><path d="M32 6v10M32 48v10M6 32h10M48 32h10M13.6 13.6l7 7M43.4 43.4l7 7M50.4 13.6l-7 7M20.6 43.4l-7 7"/></g>
+                    <g font-family="Cinzel, serif" font-weight="700" font-size="8" text-anchor="middle" fill="currentColor"><text x="22" y="13">A</text><text x="44" y="13">B</text><text x="56" y="27">C</text><text x="56" y="44">D</text></g>
+                    <g font-family="Cinzel, serif" font-weight="700" font-size="7" text-anchor="middle" fill="var(--vermilion)"><text x="27" y="26">X</text><text x="38" y="26">Y</text><text x="40" y="38">Z</text></g>
+                    <circle cx="32" cy="32" r="3" fill="var(--vermilion)"/>
+                  </svg>
+                  <figcaption><b>Ciphers</b> hiding celebrity secrets</figcaption>
+                </figure>
+                <figure>
+                  <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <path d="M14 12h34a6 6 0 0 1 0 12H48v26a6 6 0 0 1-6 6H16a6 6 0 0 1 0-12h2V18a6 6 0 0 0-4-6z" fill="#fbf4e0" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    <path d="M18 44h20a6 6 0 0 1-6 12" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                    <text x="33" y="40" font-family="Cinzel, serif" font-weight="800" font-size="20" text-anchor="middle" fill="var(--vermilion)">?</text>
+                  </svg>
+                  <figcaption><b>Riddles</b> about this week's trends</figcaption>
+                </figure>
+              </div>
+              <p class="about-small">Sign up and be the first to know when it's out.</p>
             </div>
 
             <fieldset>
@@ -1106,16 +1061,6 @@
 
     function showError(text) { msg.textContent = text; }
 
-    // interest groups: show how many names are ticked in each
-    const INTEREST_GROUPS = ["shows_and_movies", "music", "creators_and_internet", "games", "sports", "celebrities"];
-    INTEREST_GROUPS.forEach((k) => {
-      const counter = form.querySelector('.count[data-for="' + k + '"]');
-      form.querySelectorAll('input[name="' + k + '"]').forEach((cb) => cb.addEventListener("change", () => {
-        const n = form.querySelectorAll('input[name="' + k + '"]:checked').length;
-        counter.textContent = n ? "(" + n + " chosen)" : "";
-      }));
-    });
-
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.textContent = "";
@@ -1133,12 +1078,6 @@
       }
 
       const data = new FormData(form);
-      INTEREST_GROUPS.forEach((k) => {
-        const picked = data.getAll(k);
-        data.delete(k);
-        data.append(k, picked.join(", ") || "(none chosen)");
-      });
-      if (!String(data.get("something_else") || "").trim()) data.set("something_else", "(not answered)");
       if (!data.get("found_us")) data.set("found_us", "(not answered)");
       const puzzles = data.getAll("puzzles");
       data.delete("puzzles");

@@ -11,7 +11,7 @@ The page is just the vintage library card sign-up, sitting on the night-forest b
 It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The library card fades in on arrival.
 
 - **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
-- **The library card sign-up:** headed "The Ravens' Waiting List" with a "Join the Waitlist" button. It starts with name and email, then a short note in a double-ruled box saying what's being sold ("What the raven is hiding": a puzzle book that looks like an old fairy-tale manuscript but is about the shows, songs, celebrities and trends of right now; Volume I coming soon). After that come tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, tap-to-choose puzzle types, "Where didst thou find us?" (tap one: Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else) and a "Claim Early Access" button. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
+- **The library card sign-up:** headed "The Ravens' Waiting List" with a "Join the Waitlist" button. It starts with name and email. Below them, "What the raven is hiding" shows what's being sold: a drawn book cover (dark green with gold borders, the round logo, "Volume I · Coming soon"), the line "A fairy-tale puzzle book about what's happening right now", and three small drawings: Crosswords on the shows you binge, Ciphers hiding celebrity secrets, Riddles about this week's trends. Then come tap-to-choose puzzle types, "Where didst thou find us?" and the button. Only the email is required.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
 To swap the background or the card, replace the file in `assets/img/` with another picture of the same name. The card frame is sliced from the picture's edges (top 116px, sides 50px, bottom 62px of a 336×528 image), so a replacement card should have a similar layout.
@@ -33,19 +33,12 @@ Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com,
 | Field | Example |
 |---|---|
 | `name`, `email` | Morgan, morgan@example.com |
-| `shows_and_movies` | Stranger Things, Squid Game |
-| `music` | Taylor Swift, Bad Bunny |
-| `creators_and_internet` | MrBeast, BookTok |
-| `games` | Minecraft, Pokémon |
-| `sports` | Formula 1 |
-| `celebrities` | The Royal Family |
-| `something_else` | (anything typed in "Not listed?") |
 | `puzzles` | Crosswords, Ciphers and codes, Riddles |
 | `access` | waiting list (kept so the Google Sheet columns stay the same) |
 | `came_from` | instagram, tiktok, bookstore (from the QR codes) *or* direct |
 | `found_us` | Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else *or* (not answered) |
 
-Groups with nothing ticked arrive as "(none chosen)" and an empty "Not listed?" box as "(not answered)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
+Puzzle types with nothing ticked arrive as "(none chosen)". (The Google Sheet still has the old interest columns; they now stay empty.) Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 
 ## 1. Connect the sign-up form (free)
 
