@@ -11,9 +11,8 @@ The content sits on arched parchment panels with an engraved-style sepia garland
 It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The words fade in one by one on arrival.
 
 - **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
-- **The arch panel:** "Volume I · Coming Soon", the title "What is the raven hiding?" and "The ravens' ledger is open. Sign it below, or solve the raven's crossword first to claim early access."
-- **The raven's crossword:** the only puzzle, a 7×7 crossword with plain-English, storybook-style clues about this week's pop culture: KERI (Keri Russell, *The Diplomat* season 4) and FIGHTER (*Street Fighter*, number one at the box office) across, RODRIGO (Olivia Rodrigo's "expectations" remix with Chappell Roan) and MILEY (Miley Cyrus's first Hollywood Bowl shows) down. Swap the answers as the news changes to keep the puzzle current. Each word turns green when it's right. "Stuck? The raven will lend a letter" fills in one correct letter per tap, so nobody is locked out. Solving it is optional: it shows "The raven's secret is revealed", which explains the book is about today's pop culture, and turns the sign-up into early access. The grid and clues are in the hero section of `index.html`, and the answer positions are in `WORDS` in the crossword script.
-- **The library card sign-up:** always open, headed "The Ravens' Waiting List" with a "Join the Waitlist" button. Solving the crossword changes these to "Early Access · The Ravens' Ledger" and "Claim Early Access". It has name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, tap-to-choose puzzle types, "Where didst thou find us?" (tap one: Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else) and a "Claim Early Access" button. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
+- **The arch panel:** "Volume I · Coming Soon", the title "What is the raven hiding?" and "Old riddles, modern answers. Sign the ravens' ledger to be the first to know when Volume I arrives."
+- **The library card sign-up:** headed "The Ravens' Waiting List" with a "Join the Waitlist" button. It has name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, tap-to-choose puzzle types, "Where didst thou find us?" (tap one: Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else) and a "Claim Early Access" button. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
 To swap the background or the card, replace the file in `assets/img/` with another picture of the same name. The card frame is sliced from the picture's edges (top 116px, sides 50px, bottom 62px of a 336×528 image), so a replacement card should have a similar layout.
@@ -43,7 +42,7 @@ Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com,
 | `celebrities` | The Royal Family |
 | `something_else` | (anything typed in "Not listed?") |
 | `puzzles` | Crosswords, Ciphers and codes, Riddles |
-| `access` | early access (solved the crossword) *or* waiting list (did not solve the crossword) |
+| `access` | waiting list (kept so the Google Sheet columns stay the same) |
 | `came_from` | instagram, tiktok, bookstore (from the QR codes) *or* direct |
 | `found_us` | Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else *or* (not answered) |
 
