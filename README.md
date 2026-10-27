@@ -4,14 +4,13 @@ The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups f
 
 The page is `index.html` plus the pictures in `assets/img/`: `forest-night.jpg` (the painted night forest used as the fixed page background), `library-card.png` (the vintage library card that frames the sign-up form), `logo.png` (the round logo in the header, main panel and footer), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
 
-The content sits on arched parchment panels with an engraved-style sepia garland of roses, blossoms, grapes, buds and leaves climbing up the sides and over the arch. The long gold eight-pointed stars, the raven, the moon and the icons are all drawn in code on the page. The garland redraws itself to fit each panel on any screen size.
+The page is just the vintage library card sign-up, sitting on the night-forest background between the header and footer. The gold stars, raven, moon and icons are drawn in code on the page.
 
 ## What's on the page
 
-It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The words fade in one by one on arrival.
+It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The library card fades in on arrival.
 
 - **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
-- **The arch panel:** "Volume I · Coming Soon", the title "What is the raven hiding?" and "Old riddles, modern answers. Sign the ravens' ledger to be the first to know when Volume I arrives."
 - **The library card sign-up:** headed "The Ravens' Waiting List" with a "Join the Waitlist" button. It has name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, tap-to-choose puzzle types, "Where didst thou find us?" (tap one: Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else) and a "Claim Early Access" button. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
