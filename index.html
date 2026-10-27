@@ -209,6 +209,14 @@
     .pick input:checked { background: var(--card-ink); }
     .pick input:checked::after { transform: scale(1.3); }
     .pick input:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 2px; }
+    .about-book {
+      margin: 4px 0 18px; padding: 14px 4px 12px; text-align: center; color: var(--card-ink);
+      border-top: 3px double var(--card-ink); border-bottom: 3px double var(--card-ink);
+    }
+    .about-book p { margin: 0 0 8px; line-height: 1.5; }
+    .about-book strong { font-family: "Cinzel", serif; font-size: .92em; }
+    .about-title { font-family: "Cinzel", serif; font-weight: 700; letter-spacing: .04em; font-size: .86rem; color: var(--vermilion); white-space: nowrap; }
+    .about-book .about-small { margin: 0; font-style: italic; color: var(--ink-soft); font-size: .95rem; }
     .ask { margin: 6px 0 10px; font-family: "IM Fell English SC", serif; font-size: 1rem; color: var(--card-ink); line-height: 1.4; }
     .ask i { display: block; font-family: "IM Fell English", serif; font-size: .95rem; color: var(--ink-soft); }
     .line.tall { flex-direction: column; align-items: stretch; gap: 0; margin-bottom: 12px; }
@@ -733,6 +741,12 @@
             <div class="line">
               <label for="email">Email</label>
               <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
+            </div>
+
+            <div class="about-book">
+              <p class="about-title">&#10022; What the raven is hiding &#10022;</p>
+              <p>A <strong>puzzle book</strong> that looks like an old fairy-tale manuscript, but every crossword, cipher and riddle inside is about <strong>what's happening right now</strong>: the shows, songs, celebrities and trends everyone is talking about.</p>
+              <p class="about-small">Volume I is coming soon. Sign up and be the first to know.</p>
             </div>
 
             <p class="ask">What art thou into right now? <i>Tap everything thou lovest. Open each scroll for more.</i></p>
