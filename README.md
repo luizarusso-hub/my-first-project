@@ -2,19 +2,19 @@
 
 The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups for the CorvidzzPuzzles puzzle books.
 
-The page is `index.html` plus the pictures in `assets/img/`: `forest-night.jpg` (the painted night forest used as the fixed page background), `library-card.png` (the vintage library card that frames the sign-up form), `logo.png` (the round logo in the header, main panel and footer), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
+The page is `index.html` plus the pictures in `assets/img/`: `forest-night.jpg` (the painted night forest used as the fixed page background), `logo.png` (the round logo in the header, main panel and footer), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
 
-The page is just the vintage library card sign-up, sitting on the night-forest background between the header and footer. The gold stars, raven, moon and icons are drawn in code on the page.
+The page is a simple sign-up box on the night-forest background, between the header and footer. The gold stars, raven, moon and icons are drawn in code on the page.
 
 ## What's on the page
 
-It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The library card fades in on arrival.
+It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The sign-up box fades in on arrival.
 
 - **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
-- **The library card sign-up:** headed "The Ravens' Waiting List" with a "Join the Waitlist" button. It starts with name and email. Below them, "What the raven is hiding" shows what's being sold: a drawn book cover (dark green with gold borders, the round logo, "Volume I · Coming soon"), the line "A fairy-tale puzzle book about what's happening right now", and three small drawings: Crosswords on the shows you binge, Ciphers hiding celebrity secrets, Riddles about this week's trends. Then come tap-to-choose puzzle types, "Where didst thou find us?" and the button. Only the email is required.
+- **The sign-up box:** a parchment panel with a gold double border. On the left: "Volume I · Coming Soon", the heading "Join the waiting list", one line of explanation, Name and Email boxes and a "Join the Waitlist" button. On the right, "What the raven is hiding" shows what's being sold: a drawn book cover (logo, "Volume I · Coming soon"), "A fairy-tale puzzle book about what's happening right now", and three small drawings for crosswords, ciphers and riddles. On a phone the form comes first and the book sits below it. Only the email is required. After signing up, the form is replaced by "You're on the list", the person's number and a welcome.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
 
-To swap the background or the card, replace the file in `assets/img/` with another picture of the same name. The card frame is sliced from the picture's edges (top 116px, sides 50px, bottom 62px of a 336×528 image), so a replacement card should have a similar layout.
+To swap the background, replace `assets/img/forest-night.jpg` with another picture of the same name.
 
 ## QR codes
 
@@ -26,19 +26,17 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 
 ## The numbered list (Google Sheet)
 
-Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the library card shows the person's place, for example "No. 0042 · Thou art the 42nd to sign the ledger". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number. Whenever `Code.gs` changes (it last gained the `found_us` column), paste the new version into Apps Script and choose **Deploy → Manage deployments → Edit → Version: New version**; the sheet adds the new column heading by itself.
+Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the page shows the person's place, for example "No. 0042 · You're the 42nd to join the waiting list". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number. Whenever `Code.gs` changes (it last gained the `found_us` column), paste the new version into Apps Script and choose **Deploy → Manage deployments → Edit → Version: New version**; the sheet adds the new column heading by itself.
 
 ## What each sign-up sends to Formspree
 
 | Field | Example |
 |---|---|
 | `name`, `email` | Morgan, morgan@example.com |
-| `puzzles` | Crosswords, Ciphers and codes, Riddles |
 | `access` | waiting list (kept so the Google Sheet columns stay the same) |
 | `came_from` | instagram, tiktok, bookstore (from the QR codes) *or* direct |
-| `found_us` | Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else *or* (not answered) |
 
-Puzzle types with nothing ticked arrive as "(none chosen)". (The Google Sheet still has the old interest columns; they now stay empty.) Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
+(The Google Sheet still has the old interest, puzzle and found_us columns; they now stay empty. `came_from` still records instagram, tiktok, reddit or bookstore from the QR codes and links.) Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 
 ## 1. Connect the sign-up form (free)
 
@@ -50,7 +48,7 @@ The page needs somewhere to send sign-ups. It uses [Formspree](https://formspree
 
 Each sign-up arrives by email and in the Formspree dashboard, and you can export the list to CSV. You can later import that CSV into Shopify's customer list, or into any email tool, for the launch announcement.
 
-Until the endpoint is set, the form shows "The ledger is not yet open" and nothing is lost silently.
+Until the endpoint is set, the form shows "Sign-ups are not open yet" and nothing is lost silently.
 
 ## 2. Put it on corvidzz.com (GoDaddy domain)
 

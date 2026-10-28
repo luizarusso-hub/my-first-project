@@ -135,7 +135,6 @@
 
     /* ---------- Hero ---------- */
     .hero { position: relative; max-width: 820px; margin: 0 auto; padding: 20px 16px 90px; }
-    .hero .card-wrap { animation: emerge 1.6s ease both; }
     .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
     .hero .panel { --arch: 340px; --pad-x: 84px; padding: 110px var(--pad-x) 76px; text-align: center; }
     .hero-logo { display: block; width: 190px; height: 190px; margin: -40px auto 14px; filter: drop-shadow(0 8px 14px rgba(40, 25, 5, .35)); }
@@ -158,63 +157,32 @@
     .flourish::before, .flourish::after { content: ""; flex: 1; height: 1px; background: currentColor; }
     .flourish svg { width: 80px; height: 22px; }
 
-    /* ---------- Library card (the frame is the vintage card picture) ---------- */
-    .card-wrap { container-type: inline-size; max-width: 530px; margin: 0 auto; }
-    .libcard {
-      --w: min(530px, 100cqw);
-      position: relative;
-      text-align: left;
-      border-style: solid;
-      border-width: calc(var(--w) * 116 / 336) calc(var(--w) * 50 / 336) calc(var(--w) * 62 / 336);
-      border-image: url("assets/img/library-card.png") 116 50 62 / 1 / 0 stretch round;
-      background: var(--card-cream);
-      background-clip: padding-box;
-      box-shadow: inset 0 0 0 3px var(--card-cream), inset 0 0 0 5px var(--card-ink);
-      filter: drop-shadow(0 18px 26px rgba(40, 25, 5, .35));
+    /* ---------- Sign-up: name and email on the left, the book on the right ---------- */
+    .signup {
+      display: grid; grid-template-columns: 1.15fr 1fr; align-items: center;
+      max-width: 860px; margin: 10px auto 0; text-align: left;
+      background: radial-gradient(ellipse at 50% 30%, var(--parchment-light, #f7efd9), #e7d6ad 85%);
+      border-radius: 18px;
+      box-shadow: inset 0 0 0 6px #e7d6ad, inset 0 0 0 8px var(--gold), inset 0 0 0 12px #e7d6ad, inset 0 0 0 13px var(--gold),
+        0 22px 40px rgba(0, 0, 0, .45);
+      animation: emerge 1.4s ease both;
     }
-    .card-sub {
-      display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
-      padding: 14px 18px 8px; margin: 0;
-      border-bottom: 2px solid var(--card-ink);
-      font-family: "IM Fell English SC", serif; font-size: .95rem; letter-spacing: .06em; color: var(--card-ink);
+    .signup-form { padding: 44px 34px 34px 46px; }
+    .signup-form .kicker { margin: 0 0 6px; }
+    .signup-form h1 { font-size: clamp(1.8rem, 3.6vw, 2.25rem); margin: 0 0 8px; line-height: 1.1; }
+    .signup-lede { font-style: italic; color: var(--ink-soft); font-size: 1.08rem; margin: 0 0 20px; line-height: 1.45; }
+    form { position: relative; }
+    .field { display: block; margin-bottom: 14px; }
+    .field span { display: block; font-family: "Cinzel", serif; font-weight: 700; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; color: var(--card-ink); margin-bottom: 4px; }
+    .field input {
+      width: 100%; box-sizing: border-box; font: inherit; font-size: 1.12rem; color: var(--lapis-deep);
+      background: rgba(255, 252, 244, .85); border: 1.5px solid var(--card-ink); border-radius: 8px; padding: 11px 14px;
     }
-    .card-sub i { font-family: "IM Fell English", serif; letter-spacing: 0; font-size: 1.02rem; }
-    form { position: relative; padding: 16px 18px 20px; }
-    .line { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
-    .line label { font-family: "IM Fell English SC", serif; font-size: .95rem; white-space: nowrap; color: var(--card-ink); }
-    .line input {
-      flex: 1; min-width: 0;
-      font: inherit; font-size: 1.15rem; font-style: italic; color: var(--lapis-deep);
-      background: transparent; border: 0; border-bottom: 1.5px solid var(--card-ink); border-radius: 0;
-      padding: 4px 2px;
-    }
-    .line input::placeholder { color: #8f8472; }
-    .line input:focus { outline: none; border-bottom-color: var(--vermilion); background: rgba(255, 255, 255, .45); }
-    fieldset { border: 0; margin: 6px 0 16px; padding: 0; }
-    legend { font-family: "IM Fell English SC", serif; font-size: .95rem; color: var(--card-ink); padding: 0; margin-bottom: 6px; }
-    legend i { font-family: "IM Fell English", serif; font-size: .9rem; }
-    .picks { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
-    .pick { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 1rem; line-height: 1.3; }
-    .pick input {
-      appearance: none; -webkit-appearance: none;
-      width: 18px; height: 18px; flex: none; margin: 0;
-      border: 1.5px solid var(--card-ink); background: #f6ecd6;
-      display: grid; place-items: center; cursor: pointer;
-    }
-    .pick input::after {
-      content: ""; width: 11px; height: 11px; background: var(--gold-light);
-      clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
-      transform: scale(0); transition: transform .12s;
-    }
-    .pick input:checked { background: var(--card-ink); }
-    .pick input:checked::after { transform: scale(1.3); }
-    .pick input:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 2px; }
-    .about-book {
-      margin: 4px 0 18px; padding: 14px 4px 12px; text-align: center; color: var(--card-ink);
-      border-top: 3px double var(--card-ink); border-bottom: 3px double var(--card-ink);
-    }
-    .about-book p { margin: 0 0 8px; line-height: 1.5; }
-    .about-book strong { font-family: "Cinzel", serif; font-size: .92em; }
+    .field input::placeholder { color: #8f8472; font-style: italic; }
+    .field input:focus { outline: none; border-color: var(--vermilion); box-shadow: 0 0 0 3px rgba(192, 65, 45, .18); background: #fff; }
+    .signup-book { padding: 40px 40px 34px 18px; text-align: center; color: var(--card-ink); }
+    .signup-book strong { font-family: "Cinzel", serif; font-size: .92em; }
+    .about-title { font-family: "Cinzel", serif; font-weight: 700; letter-spacing: .04em; font-size: .86rem; color: var(--vermilion); white-space: nowrap; margin: 0 0 4px; }
     .book-cover {
       position: relative; width: 150px; aspect-ratio: 3 / 4; margin: 6px auto 14px; padding: 18px 10px 12px;
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
@@ -227,40 +195,17 @@
     .book-cover img { width: 92px; height: 92px; border-radius: 50%; }
     .book-cover-vol { font-family: "Cinzel", serif; font-weight: 800; letter-spacing: .14em; font-size: .78rem; color: var(--gold-light); }
     .book-cover-soon { font-style: italic; font-size: .72rem; color: #e7d6ad; }
-    .about-lead { font-size: 1.05rem; }
-    .inside { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 10px; }
+    .about-lead { font-size: 1.05rem; margin: 0 0 4px; line-height: 1.45; }
+    .inside { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 0; }
     .inside figure { margin: 0; color: var(--card-ink); }
-    .inside svg { display: block; width: 100%; max-width: 72px; margin: 0 auto 6px; }
+    .inside svg { display: block; width: 100%; max-width: 64px; margin: 0 auto 6px; }
     .inside figcaption { font-size: .82rem; line-height: 1.3; color: var(--ink-soft); }
     .inside figcaption b { display: block; font-family: "Cinzel", serif; font-size: .78rem; color: var(--card-ink); letter-spacing: .03em; }
-    .about-title { font-family: "Cinzel", serif; font-weight: 700; letter-spacing: .04em; font-size: .86rem; color: var(--vermilion); white-space: nowrap; }
-    .about-book .about-small { margin: 0; font-style: italic; color: var(--ink-soft); font-size: .95rem; }
-    .ask { margin: 6px 0 10px; font-family: "IM Fell English SC", serif; font-size: 1rem; color: var(--card-ink); line-height: 1.4; }
-    .ask i { display: block; font-family: "IM Fell English", serif; font-size: .95rem; color: var(--ink-soft); }
-    .line.tall { flex-direction: column; align-items: stretch; gap: 0; margin-bottom: 12px; }
-    .groups { display: grid; gap: 6px; margin-bottom: 12px; }
-    .group { border: 1.5px solid var(--card-ink); background: rgba(246, 236, 214, .6); }
-    .group summary {
-      cursor: pointer; list-style: none; padding: 7px 12px;
-      font-family: "IM Fell English SC", serif; font-size: 1rem; color: var(--card-ink);
-      display: flex; align-items: center; gap: 8px; border: 0;
+    @media (max-width: 760px) {
+      .signup { grid-template-columns: 1fr; }
+      .signup-form { padding: 34px 26px 18px; }
+      .signup-book { padding: 8px 26px 32px; border-top: 1px solid rgba(156, 127, 76, .5); margin: 0 26px; padding-left: 0; padding-right: 0; padding-top: 22px; }
     }
-    .group summary::-webkit-details-marker { display: none; }
-    .group summary::after { content: "+"; margin-left: auto; font-family: "Cinzel", serif; font-weight: 700; }
-    .group[open] summary::after { content: "\2013"; }
-    .group .count:not(:empty) { font-family: "IM Fell English", serif; font-style: italic; font-size: .9rem; color: var(--vermilion); }
-    .group .chips { padding: 2px 10px 10px; }
-    .line.tall label i { font-family: "IM Fell English", serif; text-transform: none; }
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-    .chip span {
-      display: inline-block; padding: 4px 11px; font-size: .95rem; line-height: 1.3; cursor: pointer;
-      border: 1.5px solid var(--card-ink); border-radius: 999px; background: #f6ecd6; color: var(--card-ink);
-      user-select: none;
-    }
-    .chip input:checked + span { background: var(--card-ink); color: var(--card-cream); }
-    .chip input:checked + span::before { content: "\2726  "; color: var(--gold-light); }
-    .chip input:focus-visible + span { outline: 2px solid var(--vermilion); outline-offset: 2px; }
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
     .submit {
       display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
@@ -281,13 +226,13 @@
       display: inline-block; transform: rotate(-6deg);
       border: 3px double var(--vermilion); color: var(--vermilion);
       font-family: "IM Fell English SC", serif; font-size: 1.3rem; letter-spacing: .12em;
-      padding: 6px 14px; margin-bottom: 14px; background: var(--card-cream);
+      padding: 6px 14px; margin-bottom: 14px;
     }
     .inscribed .place-no { font-family: "Cinzel", serif; font-weight: 800; font-size: 2.4rem; letter-spacing: .08em; color: var(--card-ink); margin: 0 0 6px; }
     .inscribed .place-line { margin: 0 0 10px; }
     .inscribed .place-line strong { font-family: "Cinzel", serif; color: var(--vermilion); }
     .inscribed h3 { font-family: "Cinzel Decorative", serif; font-size: 1.6rem; margin: 0 0 8px; color: var(--card-ink); }
-    .inscribed p { margin: 0; background: var(--card-cream); }
+    .inscribed p { margin: 0 0 6px; }
 
     /* ---------- Section headings over the forest ---------- */
     .section-title {
@@ -408,7 +353,7 @@
       .c1 { width: 90px; } .c2 { width: 64px; } .c3 { width: 40px; } .c6 { width: 56px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .sky .fog, .firefly, .creature, .creature img, .bfly, .bfly img, .hero .card-wrap { animation: none !important; }
+      .sky .fog, .firefly, .creature, .creature img, .bfly, .bfly img, .signup { animation: none !important; }
       .c1 { transform: translate(8vw, 18vh); } .c2 { transform: translate(80vw, 16vh); }
       .c3, .c6 { display: none; }
     }
@@ -637,9 +582,6 @@
       .hero-logo { width: 140px; height: 140px; margin-top: -30px; }
       .brand-logo { width: 50px; height: 50px; }
       h1 { font-size: 1.8rem; letter-spacing: 0; }
-      .card-sub { padding: 10px 12px 6px; font-size: .85rem; }
-      form { padding: 12px 12px 16px; }
-      .line { flex-direction: column; align-items: stretch; gap: 0; }
       .picks { grid-template-columns: 1fr; }
       .submit { font-size: 1.1rem; padding: 12px 8px; }
       .tomes, .scrolls { grid-template-columns: 1fr; }
@@ -747,108 +689,81 @@
     <span class="twinkle" style="top:46%;left:2%;width:16px;height:16px;animation-delay:1.2s" aria-hidden="true"><svg><use href="#star"/></svg></span>
     <span class="twinkle" style="bottom:60px;right:2%;width:18px;height:18px;animation-delay:2.1s" aria-hidden="true"><svg><use href="#star"/></svg></span>
 
-    <h1 class="sr-only">CorvidzzPuzzles waiting list</h1>
-      <div class="card-wrap">
-        <div class="libcard" id="signup" role="group" aria-label="Library card: waiting list">
-          <p class="card-sub"><i>The Ravens' Waiting List</i><span>No. ____</span></p>
-          <form id="waitlist" novalidate>
-            <div class="line">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Thy name">
-            </div>
-            <div class="line">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" placeholder="thee@example.com" required>
-            </div>
+    <div class="signup">
+      <div class="signup-form" id="signup">
+        <p class="kicker">&#10022; Volume I &middot; Coming Soon &#10022;</p>
+        <h1>Join the waiting list</h1>
+        <p class="signup-lede">Leave your name and email and be the first to know when the book is out.</p>
+        <form id="waitlist" novalidate>
+          <label class="field">
+            <span>Name</span>
+            <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Your name">
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </label>
 
-            <div class="about-book">
-              <p class="about-title">&#10022; What the raven is hiding &#10022;</p>
-              <div class="book-cover" aria-hidden="true">
-                <img src="assets/img/logo.png" alt="">
-                <span class="book-cover-vol">Volume I</span>
-                <span class="book-cover-soon">Coming soon</span>
-              </div>
-              <p class="about-lead">A fairy-tale <strong>puzzle book</strong> about <strong>what's happening right now</strong>.</p>
-              <div class="inside">
-                <figure>
-                  <svg viewBox="0 0 64 64" aria-hidden="true">
-                    <g stroke="currentColor" stroke-width="1.6" fill="#fbf4e0">
-                      <rect x="8" y="8" width="16" height="16"/><rect x="24" y="8" width="16" height="16"/><rect x="40" y="8" width="16" height="16" fill="currentColor"/>
-                      <rect x="8" y="24" width="16" height="16"/><rect x="24" y="24" width="16" height="16" fill="currentColor"/><rect x="40" y="24" width="16" height="16"/>
-                      <rect x="8" y="40" width="16" height="16"/><rect x="24" y="40" width="16" height="16"/><rect x="40" y="40" width="16" height="16"/>
-                    </g>
-                    <g font-family="Cinzel, serif" font-weight="700" font-size="11" text-anchor="middle" fill="var(--vermilion)">
-                      <text x="16" y="20">T</text><text x="32" y="20">V</text><text x="16" y="36">O</text><text x="48" y="36">S</text><text x="16" y="52">P</text><text x="32" y="52">O</text><text x="48" y="52">P</text>
-                    </g>
-                  </svg>
-                  <figcaption><b>Crosswords</b> on the shows you binge</figcaption>
-                </figure>
-                <figure>
-                  <svg viewBox="0 0 64 64" aria-hidden="true">
-                    <circle cx="32" cy="32" r="26" fill="#fbf4e0" stroke="currentColor" stroke-width="1.6"/>
-                    <circle cx="32" cy="32" r="16" fill="none" stroke="currentColor" stroke-width="1.2"/>
-                    <g stroke="currentColor" stroke-width="1"><path d="M32 6v10M32 48v10M6 32h10M48 32h10M13.6 13.6l7 7M43.4 43.4l7 7M50.4 13.6l-7 7M20.6 43.4l-7 7"/></g>
-                    <g font-family="Cinzel, serif" font-weight="700" font-size="8" text-anchor="middle" fill="currentColor"><text x="22" y="13">A</text><text x="44" y="13">B</text><text x="56" y="27">C</text><text x="56" y="44">D</text></g>
-                    <g font-family="Cinzel, serif" font-weight="700" font-size="7" text-anchor="middle" fill="var(--vermilion)"><text x="27" y="26">X</text><text x="38" y="26">Y</text><text x="40" y="38">Z</text></g>
-                    <circle cx="32" cy="32" r="3" fill="var(--vermilion)"/>
-                  </svg>
-                  <figcaption><b>Ciphers</b> hiding celebrity secrets</figcaption>
-                </figure>
-                <figure>
-                  <svg viewBox="0 0 64 64" aria-hidden="true">
-                    <path d="M14 12h34a6 6 0 0 1 0 12H48v26a6 6 0 0 1-6 6H16a6 6 0 0 1 0-12h2V18a6 6 0 0 0-4-6z" fill="#fbf4e0" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                    <path d="M18 44h20a6 6 0 0 1-6 12" fill="none" stroke="currentColor" stroke-width="1.6"/>
-                    <text x="33" y="40" font-family="Cinzel, serif" font-weight="800" font-size="20" text-anchor="middle" fill="var(--vermilion)">?</text>
-                  </svg>
-                  <figcaption><b>Riddles</b> about this week's trends</figcaption>
-                </figure>
-              </div>
-              <p class="about-small">Sign up and be the first to know when it's out.</p>
-            </div>
+          <input type="hidden" name="access" value="waiting list">
+          <input type="hidden" name="came_from" id="came_from" value="direct">
 
-            <fieldset>
-              <legend>Puzzles thou lovest <i>(tap any)</i></legend>
-              <div class="chips">
-                <label class="chip"><input type="checkbox" name="puzzles" value="Crosswords"><span>Crosswords</span></label>
-                <label class="chip"><input type="checkbox" name="puzzles" value="Cryptic crosswords"><span>Cryptic crosswords</span></label>
-                <label class="chip"><input type="checkbox" name="puzzles" value="Word search"><span>Word search</span></label>
-                <label class="chip"><input type="checkbox" name="puzzles" value="Ciphers and codes"><span>Ciphers &amp; codes</span></label>
-                <label class="chip"><input type="checkbox" name="puzzles" value="Riddles"><span>Riddles</span></label>
-                <label class="chip"><input type="checkbox" name="puzzles" value="Logic puzzles"><span>Logic puzzles</span></label>
-                <label class="chip"><input type="checkbox" name="puzzles" value="Sudoku"><span>Sudoku</span></label>
-                <label class="chip"><input type="checkbox" name="puzzles" value="Mazes"><span>Mazes</span></label>
-              </div>
-            </fieldset>
+          <!-- Spam trap: real people never see or fill this -->
+          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-            <fieldset>
-              <legend>Where didst thou find us? <i>(tap one)</i></legend>
-              <div class="chips" id="found-us">
-                <label class="chip"><input type="radio" name="found_us" value="Instagram"><span>Instagram</span></label>
-                <label class="chip"><input type="radio" name="found_us" value="TikTok"><span>TikTok</span></label>
-                <label class="chip"><input type="radio" name="found_us" value="Reddit"><span>Reddit</span></label>
-                <label class="chip"><input type="radio" name="found_us" value="A bookstore"><span>A bookstore</span></label>
-                <label class="chip"><input type="radio" name="found_us" value="A friend"><span>A friend</span></label>
-                <label class="chip"><input type="radio" name="found_us" value="Google search"><span>Google search</span></label>
-                <label class="chip"><input type="radio" name="found_us" value="Somewhere else"><span>Somewhere else</span></label>
-              </div>
-            </fieldset>
-
-            <input type="hidden" name="access" value="waiting list">
-            <input type="hidden" name="came_from" id="came_from" value="direct">
-
-            <!-- Spam trap: real people never see or fill this -->
-            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-            <button type="submit" class="submit" id="submit">
-              <span class="star" aria-hidden="true">&#10022;</span>
-              <span id="submit-label">Join the Waitlist</span>
-              <span class="star" aria-hidden="true">&#10022;</span>
-            </button>
-            <p class="msg" id="msg" role="status" aria-live="polite"></p>
-            <p class="fine">Only thy email is needed. No spam, only the launch news and the occasional riddle. Leave whenever thou wilt.</p>
-          </form>
-        </div>
+          <button type="submit" class="submit" id="submit">
+            <span class="star" aria-hidden="true">&#10022;</span>
+            <span id="submit-label">Join the Waitlist</span>
+            <span class="star" aria-hidden="true">&#10022;</span>
+          </button>
+          <p class="msg" id="msg" role="status" aria-live="polite"></p>
+          <p class="fine">No spam, only the launch news and the occasional riddle. Unsubscribe any time.</p>
+        </form>
       </div>
+
+      <div class="signup-book">
+        <p class="about-title">&#10022; What the raven is hiding &#10022;</p>
+          <div class="book-cover" aria-hidden="true">
+            <img src="assets/img/logo.png" alt="">
+            <span class="book-cover-vol">Volume I</span>
+            <span class="book-cover-soon">Coming soon</span>
+          </div>
+          <p class="about-lead">A fairy-tale <strong>puzzle book</strong> about <strong>what's happening right now</strong>.</p>
+          <div class="inside">
+            <figure>
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <g stroke="currentColor" stroke-width="1.6" fill="#fbf4e0">
+                  <rect x="8" y="8" width="16" height="16"/><rect x="24" y="8" width="16" height="16"/><rect x="40" y="8" width="16" height="16" fill="currentColor"/>
+                  <rect x="8" y="24" width="16" height="16"/><rect x="24" y="24" width="16" height="16" fill="currentColor"/><rect x="40" y="24" width="16" height="16"/>
+                  <rect x="8" y="40" width="16" height="16"/><rect x="24" y="40" width="16" height="16"/><rect x="40" y="40" width="16" height="16"/>
+                </g>
+                <g font-family="Cinzel, serif" font-weight="700" font-size="11" text-anchor="middle" fill="var(--vermilion)">
+                  <text x="16" y="20">T</text><text x="32" y="20">V</text><text x="16" y="36">O</text><text x="48" y="36">S</text><text x="16" y="52">P</text><text x="32" y="52">O</text><text x="48" y="52">P</text>
+                </g>
+              </svg>
+              <figcaption><b>Crosswords</b> on the shows you binge</figcaption>
+            </figure>
+            <figure>
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle cx="32" cy="32" r="26" fill="#fbf4e0" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="32" cy="32" r="16" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                <g stroke="currentColor" stroke-width="1"><path d="M32 6v10M32 48v10M6 32h10M48 32h10M13.6 13.6l7 7M43.4 43.4l7 7M50.4 13.6l-7 7M20.6 43.4l-7 7"/></g>
+                <g font-family="Cinzel, serif" font-weight="700" font-size="8" text-anchor="middle" fill="currentColor"><text x="22" y="13">A</text><text x="44" y="13">B</text><text x="56" y="27">C</text><text x="56" y="44">D</text></g>
+                <g font-family="Cinzel, serif" font-weight="700" font-size="7" text-anchor="middle" fill="var(--vermilion)"><text x="27" y="26">X</text><text x="38" y="26">Y</text><text x="40" y="38">Z</text></g>
+                <circle cx="32" cy="32" r="3" fill="var(--vermilion)"/>
+              </svg>
+              <figcaption><b>Ciphers</b> hiding celebrity secrets</figcaption>
+            </figure>
+            <figure>
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <path d="M14 12h34a6 6 0 0 1 0 12H48v26a6 6 0 0 1-6 6H16a6 6 0 0 1 0-12h2V18a6 6 0 0 0-4-6z" fill="#fbf4e0" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M18 44h20a6 6 0 0 1-6 12" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <text x="33" y="40" font-family="Cinzel, serif" font-weight="800" font-size="20" text-anchor="middle" fill="var(--vermilion)">?</text>
+              </svg>
+              <figcaption><b>Riddles</b> about this week's trends</figcaption>
+            </figure>
+          </div>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -1047,10 +962,6 @@
       const p = new URLSearchParams(location.search);
       const from = (p.get("from") || p.get("utm_source") || "").toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 30);
       if (from) document.getElementById("came_from").value = from;
-      // a QR code scan already tells us where they found us, so tick that answer for them
-      const SPOT = { instagram: "Instagram", tiktok: "TikTok", reddit: "Reddit", bookstore: "A bookstore" };
-      const pre = SPOT[from] && document.querySelector('#found-us input[value="' + SPOT[from] + '"]');
-      if (pre) pre.checked = true;
     })();
 
     const form = document.getElementById("waitlist");
@@ -1067,25 +978,21 @@
 
       const email = form.email.value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError("Alas, that email looks amiss. Please check it.");
+        showError("That email doesn't look right. Please check it.");
         form.email.focus();
         return;
       }
 
       if (FORM_ENDPOINT.includes("YOUR_FORM_ID")) {
-        showError("The ledger is not yet open. (Site owner: set FORM_ENDPOINT in index.html.)");
+        showError("Sign-ups are not open yet. (Site owner: set FORM_ENDPOINT in index.html.)");
         return;
       }
 
       const data = new FormData(form);
-      if (!data.get("found_us")) data.set("found_us", "(not answered)");
-      const puzzles = data.getAll("puzzles");
-      data.delete("puzzles");
-      data.append("puzzles", puzzles.join(", ") || "(none chosen)");
       data.append("_subject", "New CorvidzzPuzzles sign-up");
 
       submit.disabled = true;
-      submitLabel.textContent = "Inscribing…";
+      submitLabel.textContent = "Signing you up…";
 
       const sheetOn = !SHEET_ENDPOINT.includes("PASTE_");
 
@@ -1107,22 +1014,21 @@
         const ordinal = (n) => n + ((n % 100 >= 11 && n % 100 <= 13) ? "th" : ({ 1: "st", 2: "nd", 3: "rd" }[n % 10] || "th"));
         const placeLine = num
           ? (sheet.value.returning
-              ? "Thou wert already in the ledger. Thy place is kept: <strong>the " + ordinal(num) + "</strong> to sign."
-              : "Thou art <strong>the " + ordinal(num) + "</strong> to sign the ledger.")
+              ? "You were already on the list. You're still <strong>the " + ordinal(num) + "</strong> to sign up."
+              : "You're <strong>the " + ordinal(num) + "</strong> to join the waiting list.")
           : "";
 
         const name = form.name.value.trim().replace(/[<>&"]/g, "");
         card.innerHTML =
-          '<p class="card-sub"><i>' + "The Ravens\' Waiting List" + '</i><span>' + numText + '</span></p>' +
           '<div class="inscribed">' +
-            '<div class="stamp">Inscribed</div>' +
+            '<div class="stamp">You\'re on the list</div>' +
             (num ? '<div class="place-no">' + numText + '</div>' : '') +
-            '<h3>' + (name ? "Welcome, " + name : "Welcome, Reader") + '</h3>' +
+            '<h3>' + (name ? "Welcome, " + name + "!" : "Welcome!") + '</h3>' +
             (placeLine ? '<p class="place-line">' + placeLine + '</p>' : '') +
-            '<p>Thy name is written in the ledger. The ravens shall bring word when the book is ready.</p>' +
+            '<p>We\'ll email you as soon as Volume I is ready.</p>' +
           '</div>';
       } catch (err) {
-        showError("A storm has scattered the ravens. Please try again in a moment.");
+        showError("Something went wrong. Please try again in a moment.");
         submit.disabled = false;
         submitLabel.textContent = "Join the Waitlist";
       }
