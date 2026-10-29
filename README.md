@@ -2,19 +2,20 @@
 
 The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups for the CorvidzzPuzzles puzzle books.
 
-The page is `index.html` plus the pictures in `assets/img/`: `forest-night.jpg` (the painted night forest used as the fixed page background), `logo.png` (the round logo in the header, main panel and footer), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
-
-The page is a simple sign-up box on the night-forest background, between the header and footer. The gold stars, raven, moon and icons are drawn in code on the page.
+The page is `index.html` plus a few pictures in `assets/img/`: `logo.png` (the round logo in the header, on the book cover and in the closing section), `raven.svg` (the two ravens gliding across the background), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
 
 ## What's on the page
 
-It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The sign-up box fades in on arrival.
+A single landing page in the brand colours (deep green, gold and cream, as on the logo and bookmark), with fonts Cinzel and Cormorant Garamond. The background is drawn in code: a deep-green glow, a faint gold crossword grid, twinkling gold stars and two ravens gliding slowly across.
 
-- **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
-- **The sign-up box:** a parchment panel with a gold double border. On the left: "Volume I · Coming Soon", the heading "Join the waiting list", one line of explanation, Name and Email boxes and a "Join the Waitlist" button. On the right, "What the raven is hiding" shows what's being sold: a drawn book cover (logo, "Volume I · Coming soon"), "A fairy-tale puzzle book about what's happening right now", and three small drawings for crosswords, ciphers and riddles. On a phone the form comes first and the book sits below it. Only the email is required. After signing up, the form is replaced by "You're on the list", the person's number and a welcome.
-- **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
+- **Header:** the logo, CORVIDZZ PUZZLES and round Instagram and TikTok buttons.
+- **Top of the page:** "Volume I · Coming soon", the heading "What is the raven hiding?", one line saying what's being sold ("A fairy-tale puzzle book about what's happening right now: the shows, songs, celebrities and trends everyone is talking about"), then the sign-up box with **Name** and **Email** and a "Join the waiting list" button. Only the email is required. Next to it (below it on phones) a 3D book with the logo, "Volume I" and "Old riddles, modern answers", with two gold tags: "Pop culture inside" and "Crosswords · Ciphers · Riddles".
+- **Old riddles. Modern answers.:** three parchment cards with riddles written like an old manuscript. Tapping one flips it to show the modern answer (VIRAL, EMOJI, BINGE). The riddles are in the `.riddles` section of `index.html`.
+- **Inside Volume I:** Crosswords, Ciphers & codes, Riddles and Word searches, each with a gold drawing and one line.
+- **The raven is waiting.:** a closing section with the logo and a button that scrolls back to the sign-up box and puts the cursor in the Name box.
+- **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok.
 
-To swap the background, replace `assets/img/forest-night.jpg` with another picture of the same name.
+After signing up, the sign-up box is replaced by "You're on the list", the person's number (for example "No. 0037"), "Welcome, Ana!" and "We'll email you as soon as Volume I is ready."
 
 ## QR codes
 
