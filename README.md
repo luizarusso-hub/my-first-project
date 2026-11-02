@@ -2,20 +2,20 @@
 
 The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups for the CorvidzzPuzzles puzzle books.
 
-The page is `index.html` plus a few pictures in `assets/img/`: `logo.png` (the round logo in the header, on the book cover and in the closing section), `raven.svg` (the two ravens gliding across the background), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
+The page is `index.html` plus the pictures in `assets/img/`: `forest-night.jpg` (the painted night forest used as the fixed page background), `logo.png` (the round logo in the header and on the book cover), `raven.svg` and `butterfly.svg` (the flying ravens and butterflies), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
 
 ## What's on the page
 
-A single landing page in the brand colours (deep green, gold and cream, as on the logo and bookmark), with fonts Cinzel and Cormorant Garamond. The background is drawn in code: a deep-green glow, a faint gold crossword grid, twinkling gold stars and two ravens gliding slowly across.
+The storybook look of the earlier site: the painted night forest, parchment arches with an engraved sepia garland of roses, blossoms, grapes and leaves (redrawn in code to fit any screen), long gold stars, ravens flying as if searching, small gold butterflies, fog and fireflies. Fonts are IM Fell English, Cinzel and Cinzel Decorative, with the UnifrakturMaguntia wordmark.
 
-- **Header:** the logo, CORVIDZZ PUZZLES and round Instagram and TikTok buttons.
-- **Top of the page:** "Volume I · Coming soon", the heading "What is the raven hiding?", one line saying what's being sold ("A fairy-tale puzzle book about what's happening right now: the shows, songs, celebrities and trends everyone is talking about"), then the sign-up box with **Name** and **Email** and a "Join the waiting list" button. Only the email is required. Next to it (below it on phones) a 3D book with the logo, "Volume I" and "Old riddles, modern answers", with two gold tags: "Pop culture inside" and "Crosswords · Ciphers · Riddles".
-- **Old riddles. Modern answers.:** three parchment cards with riddles written like an old manuscript. Tapping one flips it to show the modern answer (VIRAL, EMOJI, BINGE). The riddles are in the `.riddles` section of `index.html`.
-- **Inside Volume I:** Crosswords, Ciphers & codes, Riddles and Word searches, each with a gold drawing and one line.
-- **The raven is waiting.:** a closing section with the logo and a button that scrolls back to the sign-up box and puts the cursor in the Name box.
+- **Header:** the logo, the CorvidzzPuzzles wordmark and Instagram and TikTok buttons.
+- **The arch at the top:** "Volume I · Coming Soon", the title "What is the raven hiding?", the line "A fairy-tale puzzle book about what's happening right now: the shows, songs, celebrities and trends everyone is talking about", then **Name** and **Email** and the "Join the Waitlist" button. Only the email is required.
+- **Ancient Riddles, Modern Answers:** six parchment cards with old-fashioned riddles. Tapping "Reveal the modern answer" shows it (a smartphone, doomscrolling, binge-watching, the song of the summer, a viral video, celebrity drama online).
+- **A Bestiary of Puzzles:** nine puzzle types (crossword, cryptic crossword, word search, rebus, rune sudoku, truth-teller and liar, Caesar cipher, quest map, the ravens' secret).
+- **The Raven Is Waiting:** a closing arch with the dark green book cover and a "Join the Waitlist" button that scrolls back up and puts the cursor in the Name box.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok.
 
-After signing up, the sign-up box is replaced by "You're on the list", the person's number (for example "No. 0037"), "Welcome, Ana!" and "We'll email you as soon as Volume I is ready."
+After signing up, the form is replaced by a "You're on the list" stamp, the person's number (for example "No. 0037"), "Welcome, Ana!" and "We'll email you as soon as Volume I is ready."
 
 ## QR codes
 
