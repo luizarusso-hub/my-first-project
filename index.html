@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#4a7044">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <link rel="preload" as="image" href="assets/img/bg-clouds.webp">
+  <link rel="preload" as="image" href="assets/img/bg-sky.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
@@ -52,31 +52,35 @@
       overflow-x: clip;
     }
     /* ---------- The storybook scene behind everything (the owner's pictures) ---------- */
+    /* the green sky with glowing clouds (the owner's picture), anchored at the top so its clouds frame the header */
     body::before {
       content: "";
       position: fixed; inset: 0; z-index: -3;
-      background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .1 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-        radial-gradient(ellipse 90% 70% at 50% 35%, #5f8656 0%, #4a7044 45%, #2f4d2e 100%);
+      background: url("assets/img/bg-sky.jpg") center top / cover no-repeat, #46663b;
     }
     .scene { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
     .scene img { position: absolute; display: block; height: auto; user-select: none; }
-    .scene .tree { left: -2vw; bottom: 8vh; height: 64vh; width: auto; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .25)); }
-    .scene .castle { right: 0; bottom: 6vh; height: 74vh; width: auto; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .25)); }
-    .scene .clouds {
-      position: absolute; left: 0; right: 0; bottom: -2vh; height: 38vh;
-      background: url("assets/img/bg-clouds.webp") center bottom / auto 100% repeat-x;
-    }
-    .scene .birds { left: 14vw; top: 9vh; width: clamp(150px, 20vw, 300px); animation: flock 40s ease-in-out infinite alternate; }
-    @keyframes flock { from { transform: translate(0, 0); } to { transform: translate(14vw, -3vh); } }
-    .scene .star { width: 60px; animation: glint 5s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(236, 200, 111, .55)); }
+    /* left: the hollow tree trunk with the willow beside it */
+    .scene .trunk { left: 0; bottom: 0; height: 100vh; width: auto; }
+    .scene .tree { left: 13vw; bottom: 12vh; height: 46vh; width: auto; }
+    /* right: the castle seen through the forest arch */
+    .scene .arch-wrap { position: absolute; right: -2vw; bottom: 5vh; width: 38vw; max-width: 640px; aspect-ratio: 656 / 547; }
+    .scene .arch-wrap .arch { left: 0; top: 0; width: 100%; }
+    .scene .arch-wrap .castle { left: 46%; bottom: 8%; height: 64%; width: auto; transform: translateX(-50%); }
+    /* front: the hill, once on each side */
+    .scene .hill { left: -2vw; bottom: -3vh; width: 56vw; }
+    .scene .hill.flip { left: auto; right: -2vw; transform: scaleX(-1); }
+    .scene .birds { left: 30vw; top: 18vh; width: clamp(140px, 16vw, 250px); animation: flock 40s ease-in-out infinite alternate; }
+    @keyframes flock { from { transform: translate(0, 0); } to { transform: translate(12vw, -3vh); } }
+    .scene .star { width: 56px; animation: glint 5s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(236, 200, 111, .55)); }
     @keyframes glint { 0%, 100% { opacity: .95; transform: scale(1); } 50% { opacity: .55; transform: scale(.82); } }
     @media (max-width: 760px) {
-      .scene .tree { height: 40vh; left: -14vw; bottom: 10vh; opacity: .95; }
-      .scene .castle { height: 46vh; right: -12vw; }
-      .scene .clouds { height: 24vh; }
-      .scene .birds { left: 4vw; top: 12vh; width: 130px; }
-      .scene .star { width: 34px; }
+      .scene .trunk { left: -34vw; height: 82vh; }
+      .scene .tree { height: 28vh; left: 2vw; bottom: 10vh; }
+      .scene .arch-wrap { width: 70vw; right: -18vw; bottom: 7vh; }
+      .scene .hill { width: 70vw; bottom: -2vh; }
+      .scene .birds { left: 34vw; top: 16vh; width: 110px; }
+      .scene .star { width: 30px; }
     }
     @media (prefers-reduced-motion: reduce) { .scene .birds, .scene .star { animation: none; } }
     a { color: var(--lapis); }
@@ -666,14 +670,17 @@
 </head>
 <body>
   <div class="scene" aria-hidden="true">
-    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:7vh;right:22vw">
-    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:30vh;left:6vw;width:38px;animation-delay:-2s">
-    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:16vh;left:44vw;width:26px;animation-delay:-3.5s">
-    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:42vh;right:8vw;width:30px;animation-delay:-1s">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:42vh;left:30vw;width:36px;animation-delay:-2s">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:36vh;right:30vw;width:26px;animation-delay:-3.5s">
     <img class="birds" src="assets/img/bg-birds.webp" alt="">
+    <div class="arch-wrap">
+      <img class="castle" src="assets/img/bg-castle.webp" alt="">
+      <img class="arch" src="assets/img/bg-arch.webp" alt="">
+    </div>
     <img class="tree" src="assets/img/bg-tree.webp" alt="">
-    <img class="castle" src="assets/img/bg-castle.webp" alt="">
-    <div class="clouds"></div>
+    <img class="trunk" src="assets/img/bg-trunk.webp" alt="">
+    <img class="hill" src="assets/img/bg-hill.webp" alt="">
+    <img class="hill flip" src="assets/img/bg-hill.webp" alt="">
   </div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
