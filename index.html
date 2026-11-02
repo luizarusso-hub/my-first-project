@@ -566,6 +566,7 @@
 
     /* ---------- After signing up: the book opens on a crossword page ---------- */
     .signup-mid.is-open { max-width: 1240px; }
+    .signup-mid { min-height: 100vh; min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 40px; }
     .open-book { position: relative; width: min(1180px, 100%); margin: 0 auto; perspective: 2400px; transition: transform 1.5s cubic-bezier(.3, .7, .2, 1); }
     .open-book.closed { transform: translateX(-25%); }
     .spread {
@@ -703,7 +704,7 @@
       .riddle { --arch: 150px; padding: 86px var(--pad-x) 40px; }
       .finale .panel { --arch: 160px; padding: 92px var(--pad-x) 44px; }
       .hero h1 { font-size: 1.7rem; }
-      .signup-mid { padding-top: 60px; }
+      .signup-mid { padding-top: 196px; justify-content: flex-start; }
       .signup-mid .panel { --arch: 170px; --pad-x: 38px; padding: 92px var(--pad-x) 44px; }
       .hero-logo { width: 140px; height: 140px; margin-top: -30px; }
       .brand-logo { width: 50px; height: 50px; }
@@ -802,95 +803,14 @@
   </svg>
 
 
-  <header class="topbar">
-    <a class="brand" href="/" aria-label="CorvidzzPuzzles home">
-      <img class="brand-logo" src="assets/img/logo.png" width="480" height="480" alt="">
-      <span class="wordmark">CorvidzzPuzzles</span>
-    </a>
-    <nav class="social" aria-label="Social media">
-      <a href="https://www.instagram.com/corvidzzpuzzles/" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-      </a>
-      <a href="https://www.tiktok.com/@corvidzzpuzzles" target="_blank" rel="noopener" aria-label="TikTok">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.8 5.8 0 1 0 5 5.7V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg>
-      </a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <span class="twinkle" style="top:30px;right:6%;width:20px;height:20px" aria-hidden="true"><svg><use href="#star"/></svg></span>
-    <span class="twinkle" style="top:46%;left:2%;width:16px;height:16px;animation-delay:1.2s" aria-hidden="true"><svg><use href="#star"/></svg></span>
-    <span class="twinkle" style="bottom:60px;right:2%;width:18px;height:18px;animation-delay:2.1s" aria-hidden="true"><svg><use href="#star"/></svg></span>
-
-    <div class="cover-book">
-      <img class="book-logo" src="assets/img/logo.png" width="480" height="480" alt="">
-      <p class="kicker">&#10022; Volume I &middot; Coming Soon &#10022;</p>
-      <h1>Remember that book you finished and just wanted more?</h1>
-      <p class="whisper">Sign up here, and that feeling might be gone for good. A fairy-tale book of <strong>crossword puzzles</strong>, riddles and ciphers about <strong>what's happening right now</strong>: the shows, songs, celebrities and trends everyone is talking about.</p>
-
-      <div class="flourish" aria-hidden="true"><svg><use href="#flourish"/></svg></div>
-
-      <a class="btn to-form" href="#signup">&#10022; Join the Waitlist &#10022;</a>
-    </div>
-  </section>
-
-  <section class="oracles" aria-labelledby="oracles-title">
-    <h2 class="section-title" id="oracles-title"><span class="i-red">A</span>ncient Riddles, Modern Answers</h2>
-    <p class="section-lead">The book looks like it was written five hundred years ago, but every puzzle is about what's happening right now: the trends, the shows, the music, the memes and the headlines everyone is talking about. Tap a riddle to see.</p>
-    <div class="oracle-grid">
-      <details class="oracle">
-        <summary>
-          <span class="olde">&ldquo;A glowing mirror that answereth every question, and is never more than an arm's length from its keeper.&rdquo;</span>
-          <span class="reveal">Reveal the modern answer</span>
-        </summary>
-        <p class="modern">A smartphone</p>
-      </details>
-      <details class="oracle">
-        <summary>
-          <span class="olde">&ldquo;A scroll that hath no end, read by the whole kingdom by candlelight when they ought to be asleep.&rdquo;</span>
-          <span class="reveal">Reveal the modern answer</span>
-        </summary>
-        <p class="modern">Doomscrolling</p>
-      </details>
-      <details class="oracle">
-        <summary>
-          <span class="olde">&ldquo;A tale told in many chapters, which the court watcheth one after another until the cock crows.&rdquo;</span>
-          <span class="reveal">Reveal the modern answer</span>
-        </summary>
-        <p class="modern">Binge-watching</p>
-      </details>
-      <details class="oracle">
-        <summary>
-          <span class="olde">&ldquo;A minstrel's tune that every soul in the land hath heard twenty times since the last full moon.&rdquo;</span>
-          <span class="reveal">Reveal the modern answer</span>
-        </summary>
-        <p class="modern">The song of the summer</p>
-      </details>
-      <details class="oracle">
-        <summary>
-          <span class="olde">&ldquo;A tiny moving picture, passed from hand to hand until the whole realm hath laughed at it.&rdquo;</span>
-          <span class="reveal">Reveal the modern answer</span>
-        </summary>
-        <p class="modern">A viral video</p>
-      </details>
-      <details class="oracle">
-        <summary>
-          <span class="olde">&ldquo;A great quarrel among the nobles, which every peasant followeth closely though none were invited.&rdquo;</span>
-          <span class="reveal">Reveal the modern answer</span>
-        </summary>
-        <p class="modern">Celebrity drama online</p>
-      </details>
-    </div>
-    <p class="more">Each month the book takes on whatever the world is talking about, from the newest streaming hit to the latest internet obsession.</p>
-  </section>
-
   <section class="signup-mid" aria-labelledby="signup-title">
     <span class="twinkle" style="top:40px;left:4%;width:18px;height:18px;animation-delay:.7s" aria-hidden="true"><svg><use href="#star"/></svg></span>
     <span class="twinkle" style="bottom:70px;right:5%;width:16px;height:16px;animation-delay:1.9s" aria-hidden="true"><svg><use href="#star"/></svg></span>
     <div class="cover-book">
-      <p class="kicker">&#10022; The Ravens' Waiting List &#10022;</p>
-      <h2 class="section-title" id="signup-title"><span class="i-red">W</span>ant More of What You Just Read?</h2>
-      <p class="whisper">Try this: a whole book of <strong>crossword puzzles</strong>, riddles and ciphers, written like an ancient tale but hiding what everyone is talking about right now. Leave your name and email and be the first to get Volume I.</p>
+      <img class="book-logo" src="assets/img/logo.png" width="480" height="480" alt="CorvidzzPuzzles">
+      <p class="kicker">&#10022; Volume I &middot; Coming Soon &#10022;</p>
+      <h1 class="section-title" id="signup-title">Remember that book you finished and just wanted more?</h1>
+      <p class="whisper">Sign up here, and that feeling might be gone for good. A fairy-tale book of <strong>crossword puzzles</strong> about the book series, shows and stories everyone is talking about.</p>
       <div class="flourish" aria-hidden="true"><svg><use href="#flourish"/></svg></div>
       <div class="signup-box" id="signup">
         <form id="waitlist" novalidate>
@@ -922,41 +842,6 @@
       </div>
     </div>
   </section>
-
-  <section class="bestiary">
-    <h2 class="section-title"><span class="i-red">A</span> Bestiary of Puzzles</h2>
-    <p class="section-lead">Old-world puzzles, every one of them hiding something from this month's feed.</p>
-    <div class="scrolls">
-      <div class="scroll"><span class="medal">I</span><div><h3>Crossword</h3><p>A grid painted onto a manuscript page with gold-leaf borders, its clues old proverbs hiding this month's trending words.</p></div></div>
-      <div class="scroll"><span class="medal">II</span><div><h3>Cryptic Crossword</h3><p>Each clue a riddling line of verse from a scribe, leading to answers like STREAMING or PLAYLIST.</p></div></div>
-      <div class="scroll"><span class="medal">III</span><div><h3>Word Search</h3><p>An ordinary-looking page of ancient script, secretly hiding the words everyone is posting about.</p></div></div>
-      <div class="scroll"><span class="medal">IV</span><div><h3>Rebus</h3><p>A row of tiny medieval pictures (a raven, a key, a crown) that combine to spell a modern word or phrase.</p></div></div>
-      <div class="scroll"><span class="medal">V</span><div><h3>Rune Sudoku</h3><p>A 9&times;9 grid set inside a stained-glass window, with runes and emoji-like heraldic symbols in place of numbers.</p></div></div>
-      <div class="scroll"><span class="medal">VI</span><div><h3>Truth-teller &amp; Liar</h3><p>Three castle guards each spread a rumour. Work out which one is fake news to find the right door.</p></div></div>
-      <div class="scroll"><span class="medal">VII</span><div><h3>Caesar Cipher</h3><p>A rotating wheel drawn like an astrolabe, turned to shift the letters and decode a message about the latest headline.</p></div></div>
-      <div class="scroll"><span class="medal">VIII</span><div><h3>Quest Map</h3><p>A painted fantasy map where every landmark holds a puzzle, and the answers reveal the path to the treasure.</p></div></div>
-      <div class="scroll"><span class="medal">IX</span><div><h3>The Ravens' Secret</h3><p>The answers from every chapter combine at the end of the book to unlock the ravens' final secret.</p></div></div>
-    </div>
-    <p class="more">&hellip;and many more besides: mazes, chess problems, magic squares, nonograms, pigpen ciphers and alchemists' riddles.</p>
-  </section>
-
-  <section class="finale">
-    <div class="finale-inner">
-      <img class="finale-logo" src="assets/img/logo.png" width="480" height="480" alt="">
-      <h2 class="section-title"><span class="i-red">T</span>he Raven Is Waiting</h2>
-      <p>Volume I is coming soon. Leave your name and email and be the first to read it.</p>
-      <a class="btn to-form" href="#signup">&#10022; Join the Waitlist &#10022;</a>
-    </div>
-  </section>
-
-  <footer>
-    <nav aria-label="Contact">
-      <a href="mailto:corvidzzpuzzles@gmail.com">corvidzzpuzzles@gmail.com</a>
-      <a href="https://www.instagram.com/corvidzzpuzzles/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.tiktok.com/@corvidzzpuzzles" target="_blank" rel="noopener">TikTok</a>
-    </nav>
-    <p>&copy; <span id="year"></span> CorvidzzPuzzles &middot; corvidzz.com</p>
-  </footer>
 
   <script>
 
@@ -1148,7 +1033,6 @@
     const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwi1_NTpWYUcPXas5lc9P-DTyyEm5nawYiZtY1KEhnrJyXCkNWoZengd7d3Q341ywp0Gg/exec";
     // =================
 
-    document.getElementById("year").textContent = new Date().getFullYear();
 
     // where the visitor came from: the QR codes add ?from=instagram or ?from=tiktok
     (function () {
