@@ -74,8 +74,8 @@
     /* front: the grassy hill, once on each side */
     .scene .hill { left: -2vw; bottom: -3vh; width: 56vw; }
     .scene .hill.flip { left: auto; right: -2vw; transform: scaleX(-1); }
-    .scene .birds { left: 26vw; top: 9vh; width: clamp(150px, 18vw, 280px); animation: flock 40s ease-in-out infinite alternate; }
-    @keyframes flock { from { transform: translate(0, 0); } to { transform: translate(14vw, -3vh); } }
+    .scene .birds { right: 3vw; top: 12vh; width: clamp(160px, 17vw, 270px); animation: flock 30s ease-in-out infinite alternate; }
+    @keyframes flock { from { transform: translate(0, 0); } to { transform: translate(-6vw, 3vh); } }
     .scene .star { width: 60px; animation: glint 5s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(236, 200, 111, .55)); }
     @keyframes glint { 0%, 100% { opacity: .95; transform: scale(1); } 50% { opacity: .55; transform: scale(.82); } }
     @media (max-width: 760px) {
@@ -84,7 +84,7 @@
       .scene .tree { height: 30vh; left: 4vw; bottom: 10vh; }
       .scene .trunk { left: -36vw; height: 100vh; }
       .scene .hill { width: 70vw; bottom: -2vh; }
-      .scene .birds { left: 34vw; top: 12vh; width: 120px; }
+      .scene .birds { right: 8vw; top: 84px; width: 118px; }
       .scene .star { width: 34px; }
     }
     @media (prefers-reduced-motion: reduce) { .scene .birds, .scene .star { animation: none; } }
@@ -739,7 +739,7 @@
       .social a { width: 38px; height: 38px; }
       .tiles { height: 40px; }
       .panel, .hero .panel, .tale .panel, .riddle, .finale .panel { --pad-x: 22px; }
-      .hero { padding-top: 40px; }
+      .hero { padding-top: 118px; }
       .hero .panel { --arch: 170px; --pad-x: 38px; padding: 96px var(--pad-x) 44px; }
       .tale .panel { padding: 46px var(--pad-x) 40px; }
       .riddle { --arch: 150px; padding: 86px var(--pad-x) 40px; }
@@ -1005,7 +1005,7 @@
     // ===== After signing up: the book opens on a crossword page from Volume I =====
     // Grid rows: letters are answers, "." is a black square. Clue keys: a = across, d = down, then the clue number.
     const XW = {
-      rows: ["VIRAL", "I...O", "B...G", "EMOJI", "....N"],
+      rows: ["MOANA", "I...S", "K...L", "ENOLA", "....N"],
       words: {
         a1: [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
         a3: [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4]],
@@ -1013,10 +1013,10 @@
         d2: [[0, 4], [1, 4], [2, 4], [3, 4], [4, 4]]
       },
       clues: {
-        a1: "Spreads faster than the plague, yet no one falls ill (5)",
-        a3: "A tiny painted face, sent by messenger to show your mood (5)",
-        d1: "The feeling in the air, as the young ones of the court say (4)",
-        d2: "The secret word that opens the gate to your account (5)"
+        a1: "The Disney heroine who sails across the ocean with the demigod Maui (5)",
+        a3: "___ Holmes, Sherlock's clever younger sister in the books and the Netflix films (5)",
+        d1: "Eleven's loyal friend in Stranger Things, who leads the boys' party (4)",
+        d2: "The great lion who rules Narnia in C.S. Lewis's books (5)"
       }
     };
 
