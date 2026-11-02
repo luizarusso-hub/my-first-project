@@ -9,10 +9,11 @@ The page is `index.html` plus the pictures in `assets/img/`: `forest-night.jpg` 
 The storybook look of the earlier site: the painted night forest, parchment arches with an engraved sepia garland of roses, blossoms, grapes and leaves (redrawn in code to fit any screen), long gold stars, ravens flying as if searching, small gold butterflies, fog and fireflies. Fonts are IM Fell English, Cinzel and Cinzel Decorative, with the UnifrakturMaguntia wordmark.
 
 - **Header:** the logo, the CorvidzzPuzzles wordmark and Instagram and TikTok buttons.
-- **The arch at the top:** "Volume I · Coming Soon", the title "What is the raven hiding?", the line "A fairy-tale puzzle book about what's happening right now: the shows, songs, celebrities and trends everyone is talking about", then **Name** and **Email** and the "Join the Waitlist" button. Only the email is required.
+- **The arch at the top:** "Volume I · Coming Soon", the title "What is the raven hiding?", the line "A fairy-tale puzzle book about what's happening right now: the shows, songs, celebrities and trends everyone is talking about", and a "Join the Waitlist" button that scrolls down to the sign-up.
 - **Ancient Riddles, Modern Answers:** six parchment cards with old-fashioned riddles. Tapping "Reveal the modern answer" shows it (a smartphone, doomscrolling, binge-watching, the song of the summer, a viral video, celebrity drama online).
+- **The sign-up, in the middle of the page:** an arch headed "Just finished a book?" and "Want More of What You Just Read?", with "Try this: a whole book of crossword puzzles, riddles and ciphers, written like an ancient tale but hiding what everyone is talking about right now. Leave your name and email and be the first to get Volume I." Then **Name** and **Email** and the "Join the Waitlist" button. Only the email is required.
 - **A Bestiary of Puzzles:** nine puzzle types (crossword, cryptic crossword, word search, rebus, rune sudoku, truth-teller and liar, Caesar cipher, quest map, the ravens' secret).
-- **The Raven Is Waiting:** a closing arch with the dark green book cover and a "Join the Waitlist" button that scrolls back up and puts the cursor in the Name box.
+- **The Raven Is Waiting:** a closing arch with the dark green book cover and a "Join the Waitlist" button that scrolls to the sign-up and puts the cursor in the Name box.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok.
 
 After signing up, the form is replaced by a "You're on the list" stamp, the person's number (for example "No. 0037"), "Welcome, Ana!" and "We'll email you as soon as Volume I is ready."
