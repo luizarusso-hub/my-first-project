@@ -11,10 +11,10 @@
   <meta property="og:url" content="https://corvidzz.com/">
   <meta property="og:image" content="https://corvidzz.com/assets/img/share-preview.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#0e2421">
+  <meta name="theme-color" content="#104244">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <link rel="preload" as="image" href="assets/img/forest-night.jpg">
+  <link rel="preload" as="image" href="assets/img/cover-frame.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
@@ -51,18 +51,16 @@
       min-height: 100vh;
       overflow-x: clip;
     }
-    /* The night-forest painting, fixed behind everything (works on phones too) */
+    /* The teal book cloth (cut from the cover artwork), fixed behind everything */
     body::before {
       content: "";
       position: fixed; inset: 0; z-index: -2;
-      background: url("assets/img/forest-night.jpg") center / cover no-repeat, var(--forest);
+      background: url("assets/img/cloth.jpg") 0 0 / 360px 360px repeat, #104244;
     }
     body::after {
       content: "";
       position: fixed; inset: 0; z-index: -1;
-      background:
-        radial-gradient(ellipse at 50% 30%, rgba(14, 36, 33, 0) 0%, rgba(14, 36, 33, .35) 70%),
-        linear-gradient(rgba(8, 22, 20, .15), rgba(8, 22, 20, .35));
+      background: radial-gradient(ellipse 80% 75% at 50% 40%, rgba(6, 30, 31, 0) 40%, rgba(6, 30, 31, .55) 100%);
       pointer-events: none;
     }
     a { color: var(--lapis); }
@@ -522,9 +520,49 @@
     .btn:hover { background: #9e3120; }
 
 
-    /* ---------- Borrowed from the antique book cover: the medallion and gold-and-black tooled borders ---------- */
-    .medallion { display: block; width: 230px; height: 230px; margin: -46px auto 14px; filter: drop-shadow(0 10px 16px rgba(40, 25, 5, .4)); }
-    .medallion.small { width: 190px; height: 190px; margin: -30px auto 10px; }
+    /* ---------- The owner's antique book cover: teal cloth with a gold-tooled frame ---------- */
+    /* the corners and the top and bottom borders keep their shape however long the content is */
+    .hero, .signup-mid { container-type: inline-size; }
+    .cover-book {
+      container-type: inline-size;
+      --w: min(560px, 100cqw);
+      position: relative; width: var(--w); margin: 0 auto; box-sizing: border-box;
+      min-height: calc(var(--w) * 1274 / 834);
+      border-style: solid;
+      /* slice sizes match the picture's own proportions (834 x 1274) so nothing is squashed */
+      border-width: calc(var(--w) * .275) calc(var(--w) * .19);
+      border-image: url("assets/img/cover-frame.jpg") 18% 19% fill / 1 / 0 stretch;
+      padding: 0 2px;
+      text-align: center; color: var(--moon);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      filter: drop-shadow(0 26px 40px rgba(0, 0, 0, .55));
+    }
+    .book-logo { width: 30cqw; height: 30cqw; margin: 0 auto 2cqw; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .5)); }
+    .cover-book .kicker { color: var(--gold-light); font-size: clamp(.78rem, 3.6cqw, 1.05rem); margin: 0 0 1.5cqw; }
+    .cover-book h1, .cover-book .section-title {
+      font-family: "Cinzel", serif; font-weight: 800; color: var(--moon); letter-spacing: .01em;
+      font-size: clamp(1.25rem, 8.6cqw, 2.4rem); line-height: 1.14; margin: 0 0 2.4cqw;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, .55), 0 6px 18px rgba(0, 0, 0, .45);
+    }
+    .cover-book .section-title .i-red { color: var(--gold-light); }
+    .cover-book .whisper { color: #e3d8b8; font-size: clamp(.92rem, 4.4cqw, 1.25rem); line-height: 1.5; margin: 0 0 2.4cqw; text-shadow: 0 1px 6px rgba(0, 0, 0, .7); }
+    .cover-book .whisper strong { color: var(--gold-light); }
+    .cover-book .flourish { color: var(--gold); margin-bottom: 3cqw; max-width: 70%; }
+    .cover-book .signup-box { width: 100%; }
+    .cover-book .btn, .cover-book .submit { white-space: nowrap; font-size: clamp(.95rem, 4.6cqw, 1.2rem); padding: 11px 18px; }
+    .cover-book .fields { grid-template-columns: 1fr; }
+    .cover-book .field { margin-bottom: 2cqw; }
+    .cover-book .field span { color: var(--gold-light); }
+    .cover-book .fine { color: #d8ccaa; text-align: center; }
+    .cover-book .msg { color: #ffb2a3; text-align: center; }
+    .cover-book .inscribed { color: var(--moon); padding: 10px 0; }
+    .cover-book .inscribed .stamp { border-color: var(--gold-light); color: var(--gold-light); }
+    .cover-book .inscribed .place-no, .cover-book .inscribed h3 { color: var(--moon); }
+    .cover-book .inscribed .place-line strong { color: var(--gold-light); }
+    .hero { padding-top: 24px; }
+    .signup-mid { padding-top: 60px; }
+
+    /* gold-and-black tooled borders on the parchment cards and the buttons */
     .oracle, .scroll {
       border: 3px solid #0b1613;
       box-shadow: inset 0 0 0 3px var(--parchment-light), inset 0 0 0 5px var(--vermilion), inset 0 0 0 7px var(--parchment-light), inset 0 0 0 8px var(--gold),
@@ -535,14 +573,19 @@
     .btn, .submit {
       color: var(--gold-light); background: radial-gradient(ellipse at 50% 30%, #cf5340, #9e3120);
       border: 3px solid #0b1613; outline: 0;
-      box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 5px #9e3120, inset 0 0 0 6px var(--gold-deep, #9b6f22), 0 10px 20px rgba(0, 0, 0, .3);
+      box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 5px #9e3120, inset 0 0 0 6px #9b6f22, 0 10px 20px rgba(0, 0, 0, .3);
     }
     .btn:hover, .submit:hover { background: radial-gradient(ellipse at 50% 30%, #d85e4a, #a5372a); }
     .submit .star { color: var(--gold-light); }
     .field input { border-radius: 0; border: 2px solid #0b1613; box-shadow: inset 0 0 0 1px var(--gold); }
+
+    /* closing */
+    .finale-inner { text-align: center; color: var(--moon); }
+    .finale-logo { width: 130px; height: 130px; margin: 0 auto 12px; filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .5)); }
+    .finale-inner p { max-width: 30em; margin: 0 auto 22px; text-shadow: 0 1px 6px rgba(0, 0, 0, .7); }
     @media (max-width: 560px) {
-      .medallion { width: 180px; height: 180px; margin-top: -40px; }
-      .medallion.small { width: 150px; height: 150px; }
+      .cover-book .flourish { display: none; }
+      .signup-mid .cover-book .kicker { display: none; }
     }
 
     /* ---------- Footer ---------- */
@@ -670,69 +713,9 @@
         <path fill="currentColor" d="M44 12l1.4 4 4 1.4-4 1.4-1.4 4-1.4-4-4-1.4 4-1.4z"/>
         <path fill="currentColor" d="M52 26l1 2.8 2.8 1-2.8 1-1 2.8-1-2.8-2.8-1 2.8-1z"/>
       </symbol>
-      <radialGradient id="redDisc" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#d0533f"/><stop offset=".7" stop-color="#b13a28"/><stop offset="1" stop-color="#86281a"/></radialGradient>
-<linearGradient id="goldRibbon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7e6a6"/><stop offset=".5" stop-color="#e2bd62"/><stop offset="1" stop-color="#c99a3e"/></linearGradient>
-<radialGradient id="tealRing" cx="50%" cy="50%" r="50%"><stop offset=".8" stop-color="#1b3b36"/><stop offset="1" stop-color="#0e2421"/></radialGradient>
-      <symbol id="flower" viewBox="-20 -20 40 40">
-        <g fill="#c8963a" stroke="#6b4a14" stroke-width=".8">
-          <ellipse cx="0" cy="-9" rx="5" ry="8"/><ellipse cx="0" cy="9" rx="5" ry="8"/>
-          <ellipse cx="-9" cy="0" rx="8" ry="5"/><ellipse cx="9" cy="0" rx="8" ry="5"/>
-          <ellipse cx="-7" cy="-7" rx="3" ry="5" transform="rotate(-45 -7 -7)" fill="#ecc86f"/><ellipse cx="7" cy="-7" rx="3" ry="5" transform="rotate(45 7 -7)" fill="#ecc86f"/>
-          <ellipse cx="-7" cy="7" rx="3" ry="5" transform="rotate(45 -7 7)" fill="#ecc86f"/><ellipse cx="7" cy="7" rx="3" ry="5" transform="rotate(-45 7 7)" fill="#ecc86f"/>
-          <circle r="4" fill="#b5362a"/>
-        </g>
-      </symbol>
-      <symbol id="medallion" viewBox="0 0 400 400">
-        <circle cx="200" cy="200" r="196" fill="url(#tealRing)" stroke="#0b1613" stroke-width="5"/>
-        <circle cx="200" cy="200" r="184" fill="none" stroke="#c8963a" stroke-width="7" stroke-dasharray="0.1 11.2" stroke-linecap="round"/>
-        <circle cx="200" cy="200" r="174" fill="none" stroke="#0b1613" stroke-width="4"/>
-        <circle cx="200" cy="200" r="169" fill="none" stroke="#c8963a" stroke-width="1.5"/>
-        <circle cx="200" cy="200" r="160" fill="url(#redDisc)" stroke="#c8963a" stroke-width="5"/>
-        <g fill="none" stroke="#ecc86f" stroke-width="2" opacity=".7">
-          <circle cx="200" cy="200" r="146"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(0 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(30 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(60 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(90 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(120 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(150 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(180 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(210 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(240 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(270 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(300 200 200)"/>
-          <path d="M200 64 C214 82 214 100 200 116 C186 100 186 82 200 64 Z" transform="rotate(330 200 200)"/>
-        </g>
-        <g fill="#ecc86f" opacity=".9">
-          <circle cx="200" cy="58" r="3"/><circle cx="342" cy="200" r="3"/><circle cx="200" cy="342" r="3"/><circle cx="58" cy="200" r="3"/>
-        </g>
-        <!-- raven perched at the top of the disc -->
-        <circle cx="200" cy="96" r="30" fill="#efe4c6" stroke="#c8963a" stroke-width="3"/>
-        <use href="#raven" x="176" y="73" width="50" height="46" color="#0b1613"/>
-        <!-- ribbons -->
-        <g stroke="#6b3a10" stroke-width="2.4" fill="url(#goldRibbon)">
-          <path d="M52 150 H348 L330 174 L348 198 H52 L70 174 Z"/>
-          <path d="M70 238 H330 L314 260 L330 282 H70 L86 260 Z"/>
-        </g>
-        <text x="200" y="186" text-anchor="middle" font-family="UnifrakturMaguntia, serif" font-size="34" fill="#8a2a1c">Corvidzz Puzzles</text>
-        <text x="200" y="224" text-anchor="middle" font-family="IM Fell English SC, serif" font-size="17" letter-spacing="3" fill="#ecc86f">&#10022; Volume I &#10022;</text>
-        <text x="200" y="268" text-anchor="middle" font-family="IM Fell English SC, serif" font-size="22" letter-spacing="3" fill="#8a2a1c">Coming Soon</text>
-        <!-- gold lily at the bottom of the disc -->
-        <g fill="#ecc86f">
-          <path d="M200 296 C207 306 207 316 200 328 C193 316 193 306 200 296 Z"/>
-          <path d="M200 328 C190 324 182 316 180 306 C190 308 197 316 200 328 Z"/>
-          <path d="M200 328 C210 324 218 316 220 306 C210 308 203 316 200 328 Z"/>
-          <rect x="186" y="330" width="28" height="4" rx="2"/>
-        </g>
-      </symbol>
     </defs>
   </svg>
 
-  <div class="sky" id="sky" aria-hidden="true">
-    <div class="fog"></div>
-    <div class="fog two"></div>
-    <div class="veil"></div>
-  </div>
 
   <header class="topbar">
     <a class="brand" href="/" aria-label="CorvidzzPuzzles home">
@@ -754,11 +737,9 @@
     <span class="twinkle" style="top:46%;left:2%;width:16px;height:16px;animation-delay:1.2s" aria-hidden="true"><svg><use href="#star"/></svg></span>
     <span class="twinkle" style="bottom:60px;right:2%;width:18px;height:18px;animation-delay:2.1s" aria-hidden="true"><svg><use href="#star"/></svg></span>
 
-    <div class="panel arch" data-garland>
-      <span class="sparkle" style="width:66px;height:104px;left:24%;bottom:-50px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
-      <span class="sparkle" style="width:36px;height:56px;left:calc(24% + 58px);bottom:-10px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
-
-      <svg class="medallion" viewBox="0 0 400 400" role="img" aria-label="Corvidzz Puzzles, Volume I, coming soon"><use href="#medallion"/></svg>
+    <div class="cover-book">
+      <img class="book-logo" src="assets/img/logo.png" width="480" height="480" alt="">
+      <p class="kicker">&#10022; Volume I &middot; Coming Soon &#10022;</p>
       <h1>Remember that book you finished and just wanted more?</h1>
       <p class="whisper">Sign up here, and that feeling might be gone for good. A fairy-tale book of <strong>crossword puzzles</strong>, riddles and ciphers about <strong>what's happening right now</strong>: the shows, songs, celebrities and trends everyone is talking about.</p>
 
@@ -821,8 +802,7 @@
   <section class="signup-mid" aria-labelledby="signup-title">
     <span class="twinkle" style="top:40px;left:4%;width:18px;height:18px;animation-delay:.7s" aria-hidden="true"><svg><use href="#star"/></svg></span>
     <span class="twinkle" style="bottom:70px;right:5%;width:16px;height:16px;animation-delay:1.9s" aria-hidden="true"><svg><use href="#star"/></svg></span>
-    <div class="panel arch" data-garland>
-      <span class="sparkle" style="width:52px;height:82px;right:18%;bottom:-38px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
+    <div class="cover-book">
       <p class="kicker">&#10022; The Ravens' Waiting List &#10022;</p>
       <h2 class="section-title" id="signup-title"><span class="i-red">W</span>ant More of What You Just Read?</h2>
       <p class="whisper">Try this: a whole book of <strong>crossword puzzles</strong>, riddles and ciphers, written like an ancient tale but hiding what everyone is talking about right now. Leave your name and email and be the first to get Volume I.</p>
@@ -876,9 +856,8 @@
   </section>
 
   <section class="finale">
-    <div class="panel arch" data-garland>
-      <span class="sparkle" style="width:44px;height:68px;right:14%;bottom:-30px" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
-      <svg class="medallion small" viewBox="0 0 400 400" aria-hidden="true"><use href="#medallion"/></svg>
+    <div class="finale-inner">
+      <img class="finale-logo" src="assets/img/logo.png" width="480" height="480" alt="">
       <h2 class="section-title"><span class="i-red">T</span>he Raven Is Waiting</h2>
       <p>Volume I is coming soon. Leave your name and email and be the first to read it.</p>
       <a class="btn to-form" href="#signup">&#10022; Join the Waitlist &#10022;</a>
@@ -895,173 +874,6 @@
   </footer>
 
   <script>
-    // ===== Engraved flower garland =====
-    // Draws a climbing vine of roses, blossoms, grapes, buds and leaves just inside
-    // each panel's edge (up the sides and over the arch), sized to the panel.
-    (function () {
-      const NS = "http://www.w3.org/2000/svg";
-      const PIECES = ["g-rose", "g-blossom", "g-grapes", "g-blossom", "g-bud"];
-
-      function rng(seed) {
-        return function () {
-          seed = (seed * 16807) % 2147483647;
-          return (seed - 1) / 2147483646;
-        };
-      }
-
-      function el(name, attrs) {
-        const n = document.createElementNS(NS, name);
-        for (const k in attrs) n.setAttribute(k, attrs[k]);
-        return n;
-      }
-
-      function draw(panel, index) {
-        const W = panel.clientWidth, H = panel.clientHeight;
-        if (!W || !H) return;
-        const small = W < 460;
-        const d = small ? 14 : 24;          // inset from the edge
-        const k = small ? 0.8 : 1.3;        // size of flowers and leaves
-        const arch = panel.classList.contains("arch");
-        const ry = arch ? parseFloat(getComputedStyle(panel).getPropertyValue("--arch")) || 300 : 0;
-
-        let svg = panel.querySelector(":scope > .garland");
-        if (!svg) {
-          svg = el("svg", { class: "garland", "aria-hidden": "true" });
-          panel.prepend(svg);
-        }
-        svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-        svg.replaceChildren();
-
-        const bottom = H - d - 6;
-        let guide;
-        if (arch) {
-          const r = Math.min(ry, H * 0.6);
-          guide = `M${d} ${bottom} L${d} ${r} A${W / 2 - d} ${r - d} 0 0 1 ${W - d} ${r} L${W - d} ${bottom}`;
-        } else {
-          const c = 16;
-          guide = `M${d} ${bottom} L${d} ${d + c} Q${d} ${d} ${d + c} ${d} L${W - d - c} ${d} Q${W - d} ${d} ${W - d} ${d + c} L${W - d} ${bottom}`;
-        }
-        const g = el("path", { d: guide, fill: "none" });
-        svg.appendChild(g);
-        const L = g.getTotalLength();
-
-        const at = (s) => {
-          const p = g.getPointAtLength(Math.max(0, Math.min(L, s)));
-          const q = g.getPointAtLength(Math.max(0, Math.min(L, s + 1)));
-          const len = Math.hypot(q.x - p.x, q.y - p.y) || 1;
-          const tx = (q.x - p.x) / len, ty = (q.y - p.y) / len;
-          return { x: p.x, y: p.y, tx, ty, nx: -ty, ny: tx, a: Math.atan2(ty, tx) * 180 / Math.PI };
-        };
-
-        // Two intertwined wavy stems
-        for (const phase of [0, Math.PI]) {
-          let dStr = "";
-          for (let s = 0; s <= L; s += 4) {
-            const p = at(s);
-            const off = Math.sin(s / (38 * k) + phase) * 5 * k;
-            dStr += (s ? "L" : "M") + (p.x + p.nx * off).toFixed(1) + " " + (p.y + p.ny * off).toFixed(1);
-          }
-          svg.appendChild(el("path", { d: dStr, class: "vine" }));
-        }
-
-        const rand = rng(1234 + index * 97);
-        const leaves = el("g", {}), flowers = el("g", {}), tendrils = el("g", {});
-        let n = 0;
-        for (let s = 10; s < L - 6; s += 11 * k, n++) {
-          const p = at(s);
-          const side = n % 2 ? 1 : -1;
-          // leaf on alternating sides of the stem
-          const la = p.a + side * (48 + rand() * 20);
-          leaves.appendChild(el("use", {
-            href: "#g-leaf",
-            width: 18, height: 10,
-            transform: `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) rotate(${la.toFixed(1)}) scale(${(k * (0.8 + rand() * 0.45)).toFixed(2)}) translate(0 -5)`
-          }));
-          // a flower, grape cluster or bud every few leaves
-          if (n % 2 === 1) {
-            const piece = PIECES[Math.floor(rand() * PIECES.length)];
-            const inward = 4 + rand() * 6;
-            const fx = p.x + p.nx * inward * k, fy = p.y + p.ny * inward * k;
-            const size = piece === "g-rose" ? 26 : piece === "g-grapes" ? 16 : piece === "g-bud" ? 8 : 20;
-            const h = piece === "g-grapes" ? 22 : piece === "g-bud" ? 12 : size;
-            const sc = k * (0.85 + rand() * 0.35);
-            flowers.appendChild(el("use", {
-              href: "#" + piece,
-              width: size, height: h,
-              transform: `translate(${fx.toFixed(1)} ${fy.toFixed(1)}) rotate(${(p.a + 90 + (rand() - 0.5) * 60).toFixed(1)}) scale(${sc.toFixed(2)}) translate(${-size / 2} ${-h / 2})`
-            }));
-          }
-          // curling tendrils now and then
-          if (n % 7 === 3) {
-            const r = 7 * k;
-            const sx = p.x, sy = p.y;
-            const ex = sx + p.nx * r * 2 + p.tx * r, ey = sy + p.ny * r * 2 + p.ty * r;
-            tendrils.appendChild(el("path", {
-              class: "tendril",
-              d: `M${sx.toFixed(1)} ${sy.toFixed(1)} Q${(sx + p.nx * r * 2.6).toFixed(1)} ${(sy + p.ny * r * 2.6).toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)} q${(p.tx * r * 0.8).toFixed(1)} ${(p.ty * r * 0.8).toFixed(1)} ${(-p.nx * r * 0.6).toFixed(1)} ${(-p.ny * r * 0.6).toFixed(1)}`
-            }));
-          }
-        }
-        svg.append(tendrils, leaves, flowers);
-      }
-
-      const panels = [...document.querySelectorAll("[data-garland]")];
-      const redraw = () => panels.forEach(draw);
-      if ("ResizeObserver" in window) {
-        const ro = new ResizeObserver((entries) => entries.forEach((e) => draw(e.target, panels.indexOf(e.target))));
-        panels.forEach((p) => ro.observe(p));
-      } else {
-        window.addEventListener("resize", redraw);
-      }
-      redraw();
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
-    })();
-
-
-    // ===== The night sky: searching ravens, butterflies, fireflies =====
-    (function () {
-      const sky = document.getElementById("sky");
-      const RAVEN = '<img src="assets/img/raven.svg" alt="">';
-      [["c1", RAVEN], ["c2", RAVEN], ["c3", RAVEN], ["c6", RAVEN]].forEach(([cls, art]) => {
-        const d = document.createElement("div");
-        d.className = "creature " + cls;
-        d.innerHTML = art;
-        sky.appendChild(d);
-      });
-      // butterflies: each wanders its own slow path, mostly beside the panel
-      const side = (i) => (i % 2 ? 78 + Math.random() * 18 : 2 + Math.random() * 16);
-      for (let i = 0; i < 8; i++) {
-        const b = document.createElement("div");
-        b.className = "bfly";
-        b.innerHTML = '<img src="assets/img/butterfly.svg" alt="">';
-        const st = b.style, base = side(i);
-        for (let k = 0; k < 5; k++) {
-          const x = Math.min(97, Math.max(0, base + (Math.random() * 14 - 7)));
-          st.setProperty("--x" + k, x.toFixed(1) + "vw");
-          st.setProperty("--y" + k, (20 + Math.random() * 72).toFixed(1) + "vh");
-        }
-        st.setProperty("--s", (24 + Math.random() * 16).toFixed(0) + "px");
-        st.setProperty("--d", (18 + Math.random() * 16).toFixed(1) + "s");
-        st.setProperty("--delay", (-Math.random() * 30).toFixed(1) + "s");
-        st.setProperty("--f", (0.22 + Math.random() * 0.18).toFixed(2) + "s");
-        st.setProperty("--r", (Math.random() * 40 - 20).toFixed(0) + "deg");
-        st.opacity = (0.55 + Math.random() * 0.4).toFixed(2);
-        sky.appendChild(b);
-      }
-      for (let i = 0; i < 18; i++) {
-        const f = document.createElement("span");
-        f.className = "firefly";
-        f.style.left = Math.random() * 100 + "vw";
-        f.style.top = 40 + Math.random() * 60 + "vh";
-        f.style.setProperty("--d", 10 + Math.random() * 14 + "s");
-        f.style.setProperty("--g", 2 + Math.random() * 4 + "s");
-        f.style.setProperty("--x", (Math.random() * 120 - 60).toFixed(0) + "px");
-        f.style.setProperty("--y", (Math.random() * -120).toFixed(0) + "px");
-        f.style.animationDelay = (-Math.random() * 10).toFixed(1) + "s, " + (-Math.random() * 4).toFixed(1) + "s";
-        sky.appendChild(f);
-      }
-    })();
-
     // ===== SETUP =====
     // 1. Create a free form at https://formspree.io using corvidzzpuzzles@gmail.com.
     // 2. Paste the endpoint it gives you below, e.g. "https://formspree.io/f/abcdwxyz".
