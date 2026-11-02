@@ -2,19 +2,23 @@
 
 The "coming soon" page for **corvidzz.com**. It collects waiting-list sign-ups for the CorvidzzPuzzles puzzle books.
 
-The page is `index.html` plus the pictures in `assets/img/`: `forest-night.jpg` (the painted night forest used as the fixed page background), `library-card.png` (the vintage library card that frames the sign-up form), `logo.png` (the round logo in the header, main panel and footer), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
-
-The page is just the vintage library card sign-up, sitting on the night-forest background between the header and footer. The gold stars, raven, moon and icons are drawn in code on the page.
+The page is `index.html` plus the pictures in `assets/img/`: `cover-frame.jpg` (the teal antique book cover with the gold-tooled border, made in the owner's Canva account), `cloth.jpg` (a seamless piece of the same teal cloth, used as the page background), `logo.png` (the round logo), `favicon.png` and `apple-touch-icon.png` (browser-tab and phone home-screen icons) and `share-preview.jpg` (the picture shown when the link is shared). The full-size logo files for social media are in `brand/`. There's no build step.
 
 ## What's on the page
 
-It's deliberately a single, mysterious page. Behind everything, raven silhouettes (`assets/img/raven.svg`, generated in the owner's Canva account and traced into a vector shape) fly slowly over the night forest, circling back as if searching. Small pale-gold butterflies (`assets/img/butterfly.svg`, made the same way) flutter and wander along the sides, with drifting fog and fireflies. The library card fades in on arrival.
+The whole page sits on the teal book cloth. The top section and the sign-up are each set inside the antique book cover, with the gold corners kept in shape however long the text is (the cover is used as a CSS border image). The riddle and puzzle cards are parchment with gold, vermilion and black borders, and the buttons are vermilion with gold edges. Fonts are IM Fell English, Cinzel and Cinzel Decorative, with the UnifrakturMaguntia wordmark. To change the cover, replace `assets/img/cover-frame.jpg` with a picture of the same shape (834 × 1274).
 
-- **Header:** the logo, the CorvidzzPuzzles name and Instagram and TikTok links
-- **The library card sign-up:** headed "The Ravens' Waiting List" with a "Join the Waitlist" button. It has name and email, tap-to-choose names grouped into Shows & movies, Music, Creators & internet, Games, Sports and Celebrities, an optional "Not listed?" box, tap-to-choose puzzle types, "Where didst thou find us?" (tap one: Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else) and a "Claim Early Access" button. Only the email is required. To change the names, edit the chips inside each `<details class="group">` in `index.html`.
-- **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok
+- **Header:** the logo, the CorvidzzPuzzles wordmark and Instagram and TikTok buttons.
+- **The book cover at the top:** the round logo, "Volume I · Coming Soon", the title "Remember that book you finished and just wanted more?", the line "Sign up here, and that feeling might be gone for good. A fairy-tale book of crossword puzzles, riddles and ciphers about what's happening right now…", and a "Join the Waitlist" button that scrolls down to the sign-up.
+- **Ancient Riddles, Modern Answers:** six parchment cards with old-fashioned riddles. Tapping "Reveal the modern answer" shows it (a smartphone, doomscrolling, binge-watching, the song of the summer, a viral video, celebrity drama online).
+- **The sign-up, in the middle of the page:** a second book cover, headed "The Ravens' Waiting List" and "Want More of What You Just Read?", with "Try this: a whole book of crossword puzzles, riddles and ciphers, written like an ancient tale but hiding what everyone is talking about right now. Leave your name and email and be the first to get Volume I." Then **Name** and **Email** and the "Join the Waitlist" button. Only the email is required.
+- **A Bestiary of Puzzles:** nine puzzle types (crossword, cryptic crossword, word search, rebus, rune sudoku, truth-teller and liar, Caesar cipher, quest map, the ravens' secret).
+- **The Raven Is Waiting:** the round logo and a "Join the Waitlist" button that scrolls to the sign-up and puts the cursor in the Name box.
+- **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok.
 
-To swap the background or the card, replace the file in `assets/img/` with another picture of the same name. The card frame is sliced from the picture's edges (top 116px, sides 50px, bottom 62px of a 336×528 image), so a replacement card should have a similar layout.
+After signing up, the sign-up book opens: the teal cover swings open (on a computer the book first slides into the middle, then opens into a two-page spread; on a phone the cover swings away and the two pages are stacked). Both pages are drawn like the owner's printed puzzle page (`ACOTAR – puzzle` PDF): cream paper inside the engraved black vine border with spiral corners (`assets/img/page-frame.jpg`, taken from that page and used as a border image), page numbers in a rounded tab, and ink-black IM Fell English type. The left page shows the mountain vignette (`page-mountains.webp`), a "You're on the list" stamp, the person's number, a welcome and "While you wait, here is a page from Volume I". The right page has the raven medallion with laurels and mountains (`page-emblem.webp`), the title "Worlds You've Read", "Fill in the crossword using the clues below.", a short sample crossword drawn with only the answer squares, and Across and Down clues in two columns with a rule between them (one column on phones). Its five answers come from famous book series: HOGWARTS (Harry Potter), HOBBIT (The Lord of the Rings) and RHYSAND (A Court of Thorns and Roses) across, KATNISS (The Hunger Games) and ASLAN (Narnia) down. There's a "Stuck? The raven will lend a letter" hint and a message when it's solved. To change the puzzle, edit `XW` (grid rows, word positions and clues) in the script in `index.html`.
+
+The background is a scene made from the owner's pictures, each cut out of its white background: a green sky, the hollow tree trunk at the left edge, the willow tree, the castle, the starry clouds, the flock of birds (drifting slowly), gold stars (glinting) and the grassy hill across the front.
 
 ## QR codes
 
@@ -26,26 +30,17 @@ To swap the background or the card, replace the file in `assets/img/` with anoth
 
 ## The numbered list (Google Sheet)
 
-Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the library card shows the person's place, for example "No. 0042 · Thou art the 42nd to sign the ledger". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number. Whenever `Code.gs` changes (it last gained the `found_us` column), paste the new version into Apps Script and choose **Deploy → Manage deployments → Edit → Version: New version**; the sheet adds the new column heading by itself.
+Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the page shows the person's place, for example "No. 0042 · You're the 42nd to join the waiting list". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number. Whenever `Code.gs` changes (it last gained the `found_us` column), paste the new version into Apps Script and choose **Deploy → Manage deployments → Edit → Version: New version**; the sheet adds the new column heading by itself.
 
 ## What each sign-up sends to Formspree
 
 | Field | Example |
 |---|---|
 | `name`, `email` | Morgan, morgan@example.com |
-| `shows_and_movies` | Stranger Things, Squid Game |
-| `music` | Taylor Swift, Bad Bunny |
-| `creators_and_internet` | MrBeast, BookTok |
-| `games` | Minecraft, Pokémon |
-| `sports` | Formula 1 |
-| `celebrities` | The Royal Family |
-| `something_else` | (anything typed in "Not listed?") |
-| `puzzles` | Crosswords, Ciphers and codes, Riddles |
 | `access` | waiting list (kept so the Google Sheet columns stay the same) |
 | `came_from` | instagram, tiktok, bookstore (from the QR codes) *or* direct |
-| `found_us` | Instagram, TikTok, Reddit, A bookstore, A friend, Google search, Somewhere else *or* (not answered) |
 
-Groups with nothing ticked arrive as "(none chosen)" and an empty "Not listed?" box as "(not answered)". Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
+(The Google Sheet still has the old interest, puzzle and found_us columns; they now stay empty. `came_from` still records instagram, tiktok, reddit or bookstore from the QR codes and links.) Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
 
 ## 1. Connect the sign-up form (free)
 
@@ -57,7 +52,7 @@ The page needs somewhere to send sign-ups. It uses [Formspree](https://formspree
 
 Each sign-up arrives by email and in the Formspree dashboard, and you can export the list to CSV. You can later import that CSV into Shopify's customer list, or into any email tool, for the launch announcement.
 
-Until the endpoint is set, the form shows "The ledger is not yet open" and nothing is lost silently.
+Until the endpoint is set, the form shows "Sign-ups are not open yet" and nothing is lost silently.
 
 ## 2. Put it on corvidzz.com (GoDaddy domain)
 
