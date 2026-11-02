@@ -395,56 +395,6 @@
     }
     .oracles .more { margin-top: 28px; }
 
-    /* ---------- Try a page: open puzzle book ---------- */
-    .sample { max-width: 1120px; margin: 0 auto; padding: 80px 16px 20px; }
-    .book {
-      position: relative;
-      display: grid; grid-template-columns: 1fr 1fr;
-      padding: 14px;
-      background: linear-gradient(#5a3a26, #3f2718);
-      border-radius: 10px;
-      box-shadow: 0 34px 70px rgba(0, 0, 0, .6), inset 0 0 0 2px #7a5436;
-    }
-    .page {
-      position: relative;
-      padding: 40px 44px 54px;
-      background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-        var(--parchment-light);
-      box-shadow: inset 0 0 0 10px var(--parchment-light), inset 0 0 0 11px var(--sepia-soft), inset 0 0 0 14px var(--parchment-light), inset 0 0 0 15px var(--sepia-soft);
-      text-align: center;
-    }
-    .page.left { border-radius: 6px 2px 2px 6px; background-color: var(--parchment-light); }
-    .page.left::after, .page.right::after {
-      content: ""; position: absolute; top: 0; bottom: 0; width: 46px; pointer-events: none;
-    }
-    .page.left::after { right: 0; background: linear-gradient(90deg, transparent, rgba(80, 55, 20, .28)); }
-    .page.right { border-radius: 2px 6px 6px 2px; }
-    .page.right::after { left: 0; background: linear-gradient(270deg, transparent, rgba(80, 55, 20, .28)); }
-    .page h3 { font-family: "Cinzel Decorative", serif; font-size: 1.45rem; margin: 0 0 4px; color: var(--vermilion); }
-    .page .how { font-style: italic; color: var(--ink-soft); margin: 0 0 18px; font-size: 1.02rem; }
-    .folio-no { position: absolute; left: 0; right: 0; bottom: 22px; font-style: italic; color: var(--sepia-soft); font-size: .95rem; }
-
-    .cipher-text {
-      font-family: "Cinzel", serif; font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 1.7rem); letter-spacing: .14em;
-      color: var(--lapis-deep); margin: 8px 0 14px; line-height: 1.5;
-    }
-    .wheel { width: 150px; height: 150px; margin: 0 auto 14px; color: var(--sepia); }
-    .guess { display: flex; gap: 8px; max-width: 340px; margin: 0 auto; }
-    .guess input {
-      flex: 1; min-width: 0; font: inherit; font-style: italic; font-size: 1.1rem; color: var(--lapis-deep);
-      background: transparent; border: 0; border-bottom: 1.5px solid var(--ink); border-radius: 0; padding: 4px 2px;
-    }
-    .guess input:focus { outline: none; border-bottom-color: var(--vermilion); }
-    .try-btn {
-      font-family: "IM Fell English SC", serif; font-size: 1.05rem; letter-spacing: .05em;
-      padding: 8px 16px; color: var(--parchment-light); background: var(--lapis-deep);
-      border: 0; outline: 1px solid var(--gold-light); outline-offset: -4px; cursor: pointer;
-    }
-    .try-btn:hover { background: var(--lapis); }
-    .sample .more { margin-top: 26px; }
-    .sample .more a { color: var(--gold-light); }
-
     /* ---------- Once upon a time ---------- */
     .tale { max-width: 1120px; margin: 0 auto; padding: 80px 16px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 44px; align-items: end; }
     .tale .panel { --pad-x: 64px; padding: 64px var(--pad-x) 56px; }
@@ -615,39 +565,44 @@
 
 
     /* ---------- After signing up: the book opens on a crossword page ---------- */
-    .open-book { position: relative; width: min(960px, 100%); margin: 0 auto; perspective: 2400px; transition: transform 1.5s cubic-bezier(.3, .7, .2, 1); }
+    .signup-mid.is-open { max-width: 1240px; }
+    .open-book { position: relative; width: min(1180px, 100%); margin: 0 auto; perspective: 2400px; transition: transform 1.5s cubic-bezier(.3, .7, .2, 1); }
     .open-book.closed { transform: translateX(-25%); }
     .spread {
       display: grid; grid-template-columns: 1fr 1fr; padding: 12px;
       background: url("assets/img/cloth.jpg") 0 0 / 300px 300px, #104244;
       border-radius: 14px; box-shadow: inset 0 0 0 2px var(--gold), 0 28px 44px rgba(0, 0, 0, .55);
     }
+    /* the pages: cream paper inside the engraved vine border from the owner's puzzle page */
     .page {
-      position: relative; padding: 40px 34px 46px; color: var(--ink); text-align: center;
-      background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-        radial-gradient(ellipse at 50% 40%, var(--parchment-light), var(--parchment) 70%, #d6c08f);
-      box-shadow: inset 0 0 0 1px var(--sepia-soft), inset 0 0 0 6px rgba(239, 228, 198, .55), inset 0 0 0 7px var(--sepia-soft);
+      position: relative; padding: 18px 18px 30px; color: #1d1918; text-align: center;
+      font-family: "IM Fell English", Georgia, serif;
+      background: #ece8dc;
+      border: 34px solid transparent;
+      border-image: url("assets/img/page-frame.jpg") 100 fill / 34px / 0 round;
     }
-    .page.left { border-radius: 8px 2px 2px 8px; }
-    /* while closed only the right half (under the cover) exists; the left side unfolds as the cover swings over */
-    .spread { transition: clip-path 1.3s cubic-bezier(.3, .7, .2, 1); }
-    .open-book.closed .spread { clip-path: inset(-60px -60px -60px 50%); }
-    .open-book.opened .spread { clip-path: inset(-60px -60px -60px -60px); }
-    .page.left > * { transition: opacity .5s ease 1.2s; }
-    .open-book.closed .page.left > * { opacity: 0; }
-    .page.right { border-radius: 2px 8px 8px 2px; }
-    .page.left::after, .page.right::after { content: ""; position: absolute; top: 0; bottom: 0; width: 46px; pointer-events: none; }
-    .page.left::after { right: 0; background: linear-gradient(90deg, transparent, rgba(80, 55, 20, .25)); }
-    .page.right::after { left: 0; background: linear-gradient(270deg, transparent, rgba(80, 55, 20, .25)); }
-    .page .folio { position: absolute; left: 0; right: 0; bottom: 16px; font-style: italic; color: var(--sepia-soft); font-size: .95rem; }
-    .page .inscribed { padding: 6px 0 0; }
-    .page .page-note { font-style: italic; color: var(--ink-soft); margin: 0 auto; max-width: 20em; }
-    .page .page-note strong { font-style: normal; font-family: "Cinzel", serif; color: var(--vermilion); }
-    .page .arrow { font-family: "Cinzel", serif; font-size: 1.6rem; color: var(--vermilion); margin: 6px 0 0; }
+    .page.left::after, .page.right::after { content: ""; position: absolute; top: -34px; bottom: -34px; width: 30px; pointer-events: none; }
+    .page.left::after { right: -34px; background: linear-gradient(90deg, transparent, rgba(60, 45, 20, .18)); }
+    .page.right::after { left: -34px; background: linear-gradient(270deg, transparent, rgba(60, 45, 20, .18)); }
+    .page .folio {
+      position: absolute; left: 50%; bottom: -46px; transform: translateX(-50%);
+      background: #ece8dc; border: 2px solid #1d1918; border-radius: 14px; padding: 0 14px; line-height: 1.6;
+      font-size: .95rem; color: #1d1918;
+    }
+    .page-emblem { display: block; width: min(80%, 300px); margin: 0 auto 4px; }
+    .page.left { display: flex; flex-direction: column; justify-content: center; }
+    .page-mountains { display: block; width: min(60%, 220px); margin: 6px auto 10px; }
+    .page .inscribed { padding: 0; color: #1d1918; }
+    .page .inscribed .stamp { border: 3px double #1d1918; color: #1d1918; font-family: "IM Fell English SC", serif; }
+    .page .inscribed .place-no { color: #1d1918; font-family: "IM Fell English SC", serif; font-weight: 400; letter-spacing: .06em; }
+    .page .inscribed h3 { color: #1d1918; font-family: "IM Fell English SC", serif; font-weight: 400; font-size: 1.7rem; letter-spacing: .04em; }
+    .page .inscribed .place-line strong { color: #1d1918; font-family: "IM Fell English SC", serif; }
+    .page .page-rule { margin: 16px 0 10px; font-size: 1.1rem; }
+    .page .page-note { font-style: italic; color: #1d1918; margin: 0 auto; max-width: 20em; font-size: 1.08rem; }
+    .page .arrow { font-family: "Cinzel", serif; font-size: 1.6rem; color: #1d1918; margin: 6px 0 0; }
     .page .arrow .down { display: none; }
-    .page h3.xw-title { font-family: "Cinzel Decorative", serif; font-size: 1.35rem; margin: 0 0 2px; color: var(--vermilion); }
-    .page .xw-how { font-style: italic; color: var(--ink-soft); margin: 0 0 12px; font-size: 1rem; }
+    .page h3.xw-title { font-family: "IM Fell English SC", serif; font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2rem); letter-spacing: .06em; margin: 0 0 2px; color: #1d1918; }
+    .page .xw-how { font-style: italic; color: #1d1918; margin: 0 0 14px; font-size: 1.02rem; }
 
     /* the cover that swings open */
     .flip-cover { container-type: inline-size; position: absolute; top: 0; bottom: 0; right: 0; width: 50%; z-index: 3; transform-origin: left center; transform-style: preserve-3d; transition: transform 1.5s cubic-bezier(.3, .7, .2, 1); }
@@ -663,39 +618,46 @@
     .flip-cover .front img { width: 34cqw; max-width: 150px; margin: 0 -8cqw; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .5)); }
     .flip-cover .back { transform: rotateY(180deg); border-radius: 14px 4px 4px 14px; background: radial-gradient(ellipse at 50% 40%, var(--parchment-light), var(--parchment) 70%, #d6c08f); box-shadow: inset 0 0 0 7px var(--sepia-soft); }
 
-    /* the crossword */
-    .xw { display: grid; grid-template-columns: repeat(5, 1fr); width: min(100%, 250px); margin: 0 auto 16px; border: 2px solid var(--ink); background: var(--ink); box-shadow: 0 8px 16px rgba(40, 25, 5, .25); transition: box-shadow .6s; }
-    .xw .cell { position: relative; aspect-ratio: 1; border: 1px solid var(--ink); background: #fbf4e0; }
-    .xw .cell.blk { background: repeating-linear-gradient(45deg, rgba(236, 200, 111, .25) 0 2px, transparent 2px 7px), #104244; }
-    .xw .num { position: absolute; top: 1px; left: 3px; font-size: .62rem; line-height: 1; color: var(--ink-soft); font-family: "IM Fell English SC", serif; pointer-events: none; }
+    /* the crossword, drawn like the printed page: only the answer squares, thin ink lines */
+    .xw { container-type: inline-size; display: grid; grid-template-columns: repeat(var(--cols, 13), minmax(0, 1fr)); width: min(100%, calc(var(--cols, 13) * 32px)); margin: 0 auto 18px; }
+    .xw .cell { position: relative; aspect-ratio: 1; }
+    .xw .cell:not(.blank) { background: #f5f2ea; outline: 1.5px solid #1d1918; outline-offset: -.75px; }
+    .xw .num { position: absolute; top: 1px; left: 2px; font-size: max(.5rem, calc(100cqw / var(--cols, 13) * .28)); line-height: 1; color: #1d1918; font-family: "IM Fell English", serif; pointer-events: none; }
     .xw input {
-      box-sizing: border-box; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; border-radius: 0;
+      box-sizing: border-box; display: block; width: 100%; min-width: 0; height: 100%; border: 0; padding: 0; margin: 0; border-radius: 0;
       background: transparent; text-align: center; text-transform: uppercase;
-      font-family: "Cinzel", serif; font-weight: 700; font-size: 1.3rem; color: var(--lapis-deep); caret-color: var(--vermilion);
+      font-family: "IM Fell English SC", serif; font-size: calc(100cqw / var(--cols, 13) * .62); color: #1d1918; caret-color: var(--vermilion);
     }
-    .xw input:focus { outline: none; background: rgba(236, 200, 111, .45); }
-    .xw .cell.ok { background: #eef3dc; }
-    .xw .cell.ok input { color: var(--leaf); }
-    .xw .cell.given input { color: #9b6f22; }
-    .xw.solved { box-shadow: 0 0 0 3px var(--gold-light), 0 0 30px rgba(236, 200, 111, .8); }
-    .xw-clues { text-align: left; font-size: 1rem; line-height: 1.4; margin: 0 auto 10px; max-width: 330px; }
-    .xw-clues h4 { font-family: "IM Fell English SC", serif; font-weight: 400; margin: 6px 0 2px; color: var(--lapis-deep); font-size: 1.05rem; }
-    .xw-clues p { margin: 0 0 5px; transition: color .3s; }
-    .xw-clues b { font-family: "Cinzel", serif; font-size: .85rem; color: var(--vermilion); }
-    .xw-clues p.done { color: var(--leaf); text-decoration: line-through; text-decoration-color: rgba(95, 143, 78, .5); }
-    .xw-hint { font: inherit; font-style: italic; font-size: .98rem; background: none; border: 0; padding: 2px 0; color: var(--vermilion); text-decoration: underline; cursor: pointer; }
-    .xw-verdict { min-height: 1.4em; margin: 8px 0 0; font-style: italic; color: var(--ink-soft); }
-    .xw-verdict.win { color: var(--leaf); font-weight: 700; }
+    .xw input:focus { outline: none; background: rgba(200, 150, 58, .28); }
+    .xw .cell.ok { background: #e6ead7; }
+    .xw .cell.given input { color: #8a6420; }
+    .xw.solved .cell:not(.blank) { background: #f1e7c4; }
+    .xw-clues { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; text-align: left; font-size: .95rem; line-height: 1.35; margin: 0 0 10px; }
+    .xw-clues > div + div { border-left: 1px solid #1d1918; padding-left: 14px; }
+    .xw-clues h4 { display: flex; align-items: center; gap: 8px; font-family: "IM Fell English SC", serif; font-weight: 400; margin: 0 0 6px; color: #1d1918; font-size: 1.15rem; letter-spacing: .08em; }
+    .xw-clues h4::after { content: ""; flex: 1; height: 1px; background: #1d1918; margin-right: 6px; }
+    .xw-clues p { margin: 0 0 6px; padding-left: 1.5em; text-indent: -1.5em; transition: color .3s; }
+    .xw-clues b { font-weight: 400; }
+    .xw-clues p.done { color: #6b7d55; text-decoration: line-through; text-decoration-color: rgba(107, 125, 85, .6); }
+    .xw-tip { font-style: italic; font-size: .92rem; color: #4a4239; margin: 4px 0 2px; }
+    .xw-hint { font: inherit; font-style: italic; font-size: .98rem; background: none; border: 0; padding: 2px 0; color: #1d1918; text-decoration: underline; cursor: pointer; }
+    .xw-verdict { min-height: 1.4em; margin: 6px 0 0; font-style: italic; color: #4a4239; }
+    .xw-verdict.win { color: #1d1918; font-family: "IM Fell English SC", serif; font-style: normal; font-size: 1.1rem; }
 
     @media (max-width: 760px) {
       .open-book.closed { transform: none; }
       .open-book.closed .spread, .open-book.opened .spread { clip-path: none; }
       .open-book.closed .page.left > * { opacity: 1; }
       .spread { grid-template-columns: 1fr; padding: 8px; }
-      .page { padding: 34px 22px 44px; }
-      .page.left, .page.right { border-radius: 6px; }
+      .page { padding: 10px 6px 22px; border-width: 16px; border-image-width: 16px; }
+      .page .xw-clues, .page .xw-tip { padding: 0 6px; }
+      .page .folio { bottom: -28px; font-size: .85rem; }
+      .spread { padding: 5px; }
+      .page.left { display: block; }
       .page.left::after, .page.right::after { display: none; }
       .page.left { margin-bottom: 8px; }
+      .xw-clues { grid-template-columns: 1fr; }
+      .xw-clues > div + div { border-left: 0; padding-left: 0; margin-top: 8px; }
       .page .arrow .side { display: none; }
       .page .arrow .down { display: inline; }
       .flip-cover { width: 100%; }
@@ -725,14 +687,10 @@
       .oracle-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 820px) {
-      .book { grid-template-columns: 1fr; gap: 10px; }
-      .page.left, .page.right { border-radius: 6px; }
       .page.left::after, .page.right::after { display: none; }
     }
     @media (max-width: 560px) {
       body { font-size: 1.07rem; }
-      .book { padding: 8px; }
-      .page { padding: 34px 22px 50px; }
       .wordmark { font-size: 1.45rem; }
       .seal { width: 44px; height: 44px; }
       .seal svg { width: 34px; height: 30px; }
@@ -1003,20 +961,55 @@
   <script>
 
     // ===== After signing up: the book opens on a crossword page from Volume I =====
-    // Grid rows: letters are answers, "." is a black square. Clue keys: a = across, d = down, then the clue number.
+    // Grid rows: letters are answers, "." is an empty space. Clue keys: a = across, d = down, then the clue number.
+    // The answers come from famous book series.
     const XW = {
-      rows: ["MOANA", "I...S", "K...L", "ENOLA", "....N"],
+      rows: [
+        "..F......K...",
+        ".MOCKINGJAY..",
+        "E.R......T.L.",
+        "D.K.P.H..N.Y.",
+        "WESTEROS.I.R.",
+        "A...R.G.ASLAN",
+        "R...C.W..S...",
+        "D.RHYSAND.H..",
+        "......R.R.O..",
+        ".VIOLET.A.B..",
+        "......S.G.B..",
+        "........O.I..",
+        ".......SNITCH"
+      ],
       words: {
-        a1: [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
-        a3: [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4]],
-        d1: [[0, 0], [1, 0], [2, 0], [3, 0]],
-        d2: [[0, 4], [1, 4], [2, 4], [3, 4], [4, 4]]
+        d1: [[0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+        d2: [[0, 9], [1, 9], [2, 9], [3, 9], [4, 9], [5, 9], [6, 9]],
+        a3: [[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8], [1, 9], [1, 10]],
+        d4: [[2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0]],
+        d5: [[2, 11], [3, 11], [4, 11], [5, 11]],
+        d6: [[3, 4], [4, 4], [5, 4], [6, 4], [7, 4]],
+        d7: [[3, 6], [4, 6], [5, 6], [6, 6], [7, 6], [8, 6], [9, 6], [10, 6]],
+        a8: [[4, 0], [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7]],
+        a9: [[5, 8], [5, 9], [5, 10], [5, 11], [5, 12]],
+        a10: [[7, 2], [7, 3], [7, 4], [7, 5], [7, 6], [7, 7], [7, 8]],
+        d11: [[7, 8], [8, 8], [9, 8], [10, 8], [11, 8], [12, 8]],
+        d12: [[7, 10], [8, 10], [9, 10], [10, 10], [11, 10], [12, 10]],
+        a13: [[9, 1], [9, 2], [9, 3], [9, 4], [9, 5], [9, 6]],
+        a14: [[12, 7], [12, 8], [12, 9], [12, 10], [12, 11], [12, 12]]
       },
       clues: {
-        a1: "The Disney heroine who sails across the ocean with the demigod Maui (5)",
-        a3: "___ Holmes, Sherlock's clever younger sister in the books and the Netflix films (5)",
-        d1: "Eleven's loyal friend in Stranger Things, who leads the boys' party (4)",
-        d2: "The great lion who rules Narnia in C.S. Lewis's books (5)"
+        d1: "Rainy Washington town where Bella meets Edward in Twilight (5)",
+        d2: "Girl who volunteers as tribute in The Hunger Games (7)",
+        a3: "Bird that becomes the symbol of the rebellion in Panem (10)",
+        d4: "Sparkling vampire who falls for Bella Swan (6)",
+        d5: "Brave girl with a golden compass in His Dark Materials (4)",
+        d6: "___ Jackson, the son of Poseidon at Camp Half-Blood (5)",
+        d7: "Castle school of witchcraft and wizardry in Harry Potter (8)",
+        a8: "Continent where the game of thrones is played in A Song of Ice and Fire (8)",
+        a9: "Great lion who rules Narnia (5)",
+        a10: "High Lord of the Night Court in A Court of Thorns and Roses (7)",
+        d11: "Fire-breathing beast like Smaug or Tairn (6)",
+        d12: "Small, home-loving folk like Bilbo and Frodo (6)",
+        a13: "Heroine of Fourth Wing who must bond with a dragon (6)",
+        a14: "Golden ball every Seeker chases in Quidditch (6)"
       }
     };
 
@@ -1032,30 +1025,35 @@
       let grid = "";
       XW.rows.forEach((row, r) => [...row].forEach((ch, c) => {
         grid += ch === "."
-          ? '<div class="cell blk"></div>'
+          ? '<div class="cell blank"></div>'
           : '<div class="cell" data-a="' + ch + '" data-r="' + r + '" data-c="' + c + '">' +
             (nums[r + "," + c] ? '<span class="num">' + nums[r + "," + c] + '</span>' : '') +
             '<input maxlength="1" aria-label="Row ' + (r + 1) + ', column ' + (c + 1) + '" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>';
       }));
-      const clue = (k) => '<p data-word="' + k + '"><b>' + k.slice(1) + '</b> ' + XW.clues[k] + '</p>';
-      const keys = Object.keys(XW.words);
+      const clue = (k) => '<p data-word="' + k + '"><b>' + k.slice(1) + '.</b> ' + XW.clues[k] + '</p>';
+      const keys = Object.keys(XW.words).sort((p, q) => +p.slice(1) - +q.slice(1));
 
       const book = document.createElement("div");
       book.className = "open-book closed";
       book.innerHTML =
         '<div class="spread">' +
-          '<div class="page left">' + leftHtml +
-            '<div class="flourish" aria-hidden="true" style="margin:18px auto 14px"><svg><use href="#flourish"/></svg></div>' +
-            '<p class="page-note">While you wait, here is a page from <strong>Volume I</strong>. Old riddles, modern answers: can you solve it?</p>' +
+          '<div class="page left">' +
+            '<img class="page-mountains" src="assets/img/page-mountains.webp" alt="">' + leftHtml +
+            '<p class="page-rule" aria-hidden="true">&#10022;</p>' +
+            '<p class="page-note">While you wait, here is a page from Volume I. Can you name the famous book series hiding in it?</p>' +
             '<p class="arrow" aria-hidden="true"><span class="side">&rarr;</span><span class="down">&darr;</span></p>' +
             '<span class="folio">i</span>' +
           '</div>' +
           '<div class="page right">' +
-            '<h3 class="xw-title">The Raven\'s Crossword</h3>' +
-            '<p class="xw-how">Tap a square and type. Tap it again to switch between across and down.</p>' +
-            '<div class="xw" id="xw">' + grid + '</div>' +
-            '<div class="xw-clues"><h4>Across</h4>' + keys.filter((k) => k[0] === "a").map(clue).join("") +
-              '<h4>Down</h4>' + keys.filter((k) => k[0] === "d").map(clue).join("") + '</div>' +
+            '<img class="page-emblem" src="assets/img/page-emblem.webp" alt="">' +
+            '<h3 class="xw-title">The Raven\'s Library</h3>' +
+            '<p class="xw-how">Fill in the crossword using the clues below.</p>' +
+            '<div class="xw" id="xw" style="--cols:' + XW.rows[0].length + '">' + grid + '</div>' +
+            '<div class="xw-clues">' +
+              '<div><h4>Across</h4>' + keys.filter((k) => k[0] === "a").map(clue).join("") + '</div>' +
+              '<div><h4>Down</h4>' + keys.filter((k) => k[0] === "d").map(clue).join("") + '</div>' +
+            '</div>' +
+            '<p class="xw-tip">Tap a square and type. Tap it again to switch between across and down.</p>' +
             '<button type="button" class="xw-hint" id="xw-hint">Stuck? The raven will lend a letter</button>' +
             '<p class="xw-verdict" id="xw-verdict" role="status" aria-live="polite"></p>' +
             '<span class="folio">1</span>' +
@@ -1067,6 +1065,7 @@
         '</div>';
 
       const closed = form.closest(".cover-book");
+      closed.closest("section").classList.add("is-open");
       closed.replaceWith(book);
       setupCrossword(book);
       book.scrollIntoView({ behavior: "smooth", block: "start" });
