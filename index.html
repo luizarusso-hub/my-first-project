@@ -613,6 +613,96 @@
       .signup-mid .cover-book .kicker { display: none; }
     }
 
+
+    /* ---------- After signing up: the book opens on a crossword page ---------- */
+    .open-book { position: relative; width: min(960px, 100%); margin: 0 auto; perspective: 2400px; transition: transform 1.5s cubic-bezier(.3, .7, .2, 1); }
+    .open-book.closed { transform: translateX(-25%); }
+    .spread {
+      display: grid; grid-template-columns: 1fr 1fr; padding: 12px;
+      background: url("assets/img/cloth.jpg") 0 0 / 300px 300px, #104244;
+      border-radius: 14px; box-shadow: inset 0 0 0 2px var(--gold), 0 28px 44px rgba(0, 0, 0, .55);
+    }
+    .page {
+      position: relative; padding: 40px 34px 46px; color: var(--ink); text-align: center;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at 50% 40%, var(--parchment-light), var(--parchment) 70%, #d6c08f);
+      box-shadow: inset 0 0 0 1px var(--sepia-soft), inset 0 0 0 6px rgba(239, 228, 198, .55), inset 0 0 0 7px var(--sepia-soft);
+    }
+    .page.left { border-radius: 8px 2px 2px 8px; }
+    /* while closed only the right half (under the cover) exists; the left side unfolds as the cover swings over */
+    .spread { transition: clip-path 1.3s cubic-bezier(.3, .7, .2, 1); }
+    .open-book.closed .spread { clip-path: inset(-60px -60px -60px 50%); }
+    .open-book.opened .spread { clip-path: inset(-60px -60px -60px -60px); }
+    .page.left > * { transition: opacity .5s ease 1.2s; }
+    .open-book.closed .page.left > * { opacity: 0; }
+    .page.right { border-radius: 2px 8px 8px 2px; }
+    .page.left::after, .page.right::after { content: ""; position: absolute; top: 0; bottom: 0; width: 46px; pointer-events: none; }
+    .page.left::after { right: 0; background: linear-gradient(90deg, transparent, rgba(80, 55, 20, .25)); }
+    .page.right::after { left: 0; background: linear-gradient(270deg, transparent, rgba(80, 55, 20, .25)); }
+    .page .folio { position: absolute; left: 0; right: 0; bottom: 16px; font-style: italic; color: var(--sepia-soft); font-size: .95rem; }
+    .page .inscribed { padding: 6px 0 0; }
+    .page .page-note { font-style: italic; color: var(--ink-soft); margin: 0 auto; max-width: 20em; }
+    .page .page-note strong { font-style: normal; font-family: "Cinzel", serif; color: var(--vermilion); }
+    .page .arrow { font-family: "Cinzel", serif; font-size: 1.6rem; color: var(--vermilion); margin: 6px 0 0; }
+    .page .arrow .down { display: none; }
+    .page h3.xw-title { font-family: "Cinzel Decorative", serif; font-size: 1.35rem; margin: 0 0 2px; color: var(--vermilion); }
+    .page .xw-how { font-style: italic; color: var(--ink-soft); margin: 0 0 12px; font-size: 1rem; }
+
+    /* the cover that swings open */
+    .flip-cover { container-type: inline-size; position: absolute; top: 0; bottom: 0; right: 0; width: 50%; z-index: 3; transform-origin: left center; transform-style: preserve-3d; transition: transform 1.5s cubic-bezier(.3, .7, .2, 1); }
+    .open-book.opened .flip-cover { transform: rotateY(-180deg); }
+    .flip-cover .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; transition: opacity .5s ease 1.25s; }
+    .open-book.opened .flip-cover .face { opacity: 0; }
+    .flip-cover .front {
+      border-radius: 4px 14px 14px 4px; background: #104244;
+      /* corners and top and bottom borders keep their shape on a tall cover too */
+      border-style: solid; border-width: 27.5cqw 19cqw; border-image: url("assets/img/cover-frame.jpg") 18% 19% fill / 1 / 0 stretch;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .5); display: grid; place-items: center;
+    }
+    .flip-cover .front img { width: 34cqw; max-width: 150px; margin: 0 -8cqw; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .5)); }
+    .flip-cover .back { transform: rotateY(180deg); border-radius: 14px 4px 4px 14px; background: radial-gradient(ellipse at 50% 40%, var(--parchment-light), var(--parchment) 70%, #d6c08f); box-shadow: inset 0 0 0 7px var(--sepia-soft); }
+
+    /* the crossword */
+    .xw { display: grid; grid-template-columns: repeat(5, 1fr); width: min(100%, 250px); margin: 0 auto 16px; border: 2px solid var(--ink); background: var(--ink); box-shadow: 0 8px 16px rgba(40, 25, 5, .25); transition: box-shadow .6s; }
+    .xw .cell { position: relative; aspect-ratio: 1; border: 1px solid var(--ink); background: #fbf4e0; }
+    .xw .cell.blk { background: repeating-linear-gradient(45deg, rgba(236, 200, 111, .25) 0 2px, transparent 2px 7px), #104244; }
+    .xw .num { position: absolute; top: 1px; left: 3px; font-size: .62rem; line-height: 1; color: var(--ink-soft); font-family: "IM Fell English SC", serif; pointer-events: none; }
+    .xw input {
+      box-sizing: border-box; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; border-radius: 0;
+      background: transparent; text-align: center; text-transform: uppercase;
+      font-family: "Cinzel", serif; font-weight: 700; font-size: 1.3rem; color: var(--lapis-deep); caret-color: var(--vermilion);
+    }
+    .xw input:focus { outline: none; background: rgba(236, 200, 111, .45); }
+    .xw .cell.ok { background: #eef3dc; }
+    .xw .cell.ok input { color: var(--leaf); }
+    .xw .cell.given input { color: #9b6f22; }
+    .xw.solved { box-shadow: 0 0 0 3px var(--gold-light), 0 0 30px rgba(236, 200, 111, .8); }
+    .xw-clues { text-align: left; font-size: 1rem; line-height: 1.4; margin: 0 auto 10px; max-width: 330px; }
+    .xw-clues h4 { font-family: "IM Fell English SC", serif; font-weight: 400; margin: 6px 0 2px; color: var(--lapis-deep); font-size: 1.05rem; }
+    .xw-clues p { margin: 0 0 5px; transition: color .3s; }
+    .xw-clues b { font-family: "Cinzel", serif; font-size: .85rem; color: var(--vermilion); }
+    .xw-clues p.done { color: var(--leaf); text-decoration: line-through; text-decoration-color: rgba(95, 143, 78, .5); }
+    .xw-hint { font: inherit; font-style: italic; font-size: .98rem; background: none; border: 0; padding: 2px 0; color: var(--vermilion); text-decoration: underline; cursor: pointer; }
+    .xw-verdict { min-height: 1.4em; margin: 8px 0 0; font-style: italic; color: var(--ink-soft); }
+    .xw-verdict.win { color: var(--leaf); font-weight: 700; }
+
+    @media (max-width: 760px) {
+      .open-book.closed { transform: none; }
+      .open-book.closed .spread, .open-book.opened .spread { clip-path: none; }
+      .open-book.closed .page.left > * { opacity: 1; }
+      .spread { grid-template-columns: 1fr; padding: 8px; }
+      .page { padding: 34px 22px 44px; }
+      .page.left, .page.right { border-radius: 6px; }
+      .page.left::after, .page.right::after { display: none; }
+      .page.left { margin-bottom: 8px; }
+      .page .arrow .side { display: none; }
+      .page .arrow .down { display: inline; }
+      .flip-cover { width: 100%; }
+      .flip-cover .front { border-radius: 6px 12px 12px 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .open-book, .flip-cover, .flip-cover .face { transition: none; } }
+
     /* ---------- Footer ---------- */
     footer { text-align: center; padding: 44px 16px 54px; color: var(--moon); background: rgba(8, 22, 20, .6); border-top: 1px solid rgba(236, 200, 111, .35); }
     footer .seal { margin: 0 auto 10px; }
@@ -911,6 +1001,166 @@
   </footer>
 
   <script>
+
+    // ===== After signing up: the book opens on a crossword page from Volume I =====
+    // Grid rows: letters are answers, "." is a black square. Clue keys: a = across, d = down, then the clue number.
+    const XW = {
+      rows: ["VIRAL", "I...O", "B...G", "EMOJI", "....N"],
+      words: {
+        a1: [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
+        a3: [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4]],
+        d1: [[0, 0], [1, 0], [2, 0], [3, 0]],
+        d2: [[0, 4], [1, 4], [2, 4], [3, 4], [4, 4]]
+      },
+      clues: {
+        a1: "Spreads faster than the plague, yet no one falls ill (5)",
+        a3: "A tiny painted face, sent by messenger to show your mood (5)",
+        d1: "The feeling in the air, as the young ones of the court say (4)",
+        d2: "The secret word that opens the gate to your account (5)"
+      }
+    };
+
+    function openBook(leftHtml) {
+      const nums = {};
+      let n = 1;
+      XW.rows.forEach((row, r) => [...row].forEach((ch, c) => {
+        if (ch === ".") return;
+        const across = (c === 0 || row[c - 1] === ".") && row[c + 1] && row[c + 1] !== ".";
+        const down = (r === 0 || XW.rows[r - 1][c] === ".") && XW.rows[r + 1] && XW.rows[r + 1][c] !== ".";
+        if (across || down) nums[r + "," + c] = n++;
+      }));
+      let grid = "";
+      XW.rows.forEach((row, r) => [...row].forEach((ch, c) => {
+        grid += ch === "."
+          ? '<div class="cell blk"></div>'
+          : '<div class="cell" data-a="' + ch + '" data-r="' + r + '" data-c="' + c + '">' +
+            (nums[r + "," + c] ? '<span class="num">' + nums[r + "," + c] + '</span>' : '') +
+            '<input maxlength="1" aria-label="Row ' + (r + 1) + ', column ' + (c + 1) + '" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>';
+      }));
+      const clue = (k) => '<p data-word="' + k + '"><b>' + k.slice(1) + '</b> ' + XW.clues[k] + '</p>';
+      const keys = Object.keys(XW.words);
+
+      const book = document.createElement("div");
+      book.className = "open-book closed";
+      book.innerHTML =
+        '<div class="spread">' +
+          '<div class="page left">' + leftHtml +
+            '<div class="flourish" aria-hidden="true" style="margin:18px auto 14px"><svg><use href="#flourish"/></svg></div>' +
+            '<p class="page-note">While you wait, here is a page from <strong>Volume I</strong>. Old riddles, modern answers: can you solve it?</p>' +
+            '<p class="arrow" aria-hidden="true"><span class="side">&rarr;</span><span class="down">&darr;</span></p>' +
+            '<span class="folio">i</span>' +
+          '</div>' +
+          '<div class="page right">' +
+            '<h3 class="xw-title">The Raven\'s Crossword</h3>' +
+            '<p class="xw-how">Tap a square and type. Tap it again to switch between across and down.</p>' +
+            '<div class="xw" id="xw">' + grid + '</div>' +
+            '<div class="xw-clues"><h4>Across</h4>' + keys.filter((k) => k[0] === "a").map(clue).join("") +
+              '<h4>Down</h4>' + keys.filter((k) => k[0] === "d").map(clue).join("") + '</div>' +
+            '<button type="button" class="xw-hint" id="xw-hint">Stuck? The raven will lend a letter</button>' +
+            '<p class="xw-verdict" id="xw-verdict" role="status" aria-live="polite"></p>' +
+            '<span class="folio">1</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="flip-cover" aria-hidden="true">' +
+          '<div class="face front"><img src="assets/img/logo.png" alt=""></div>' +
+          '<div class="face back"></div>' +
+        '</div>';
+
+      const closed = form.closest(".cover-book");
+      closed.replaceWith(book);
+      setupCrossword(book);
+      book.scrollIntoView({ behavior: "smooth", block: "start" });
+      const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      setTimeout(() => {
+        book.classList.remove("closed");
+        book.classList.add("opened");
+        setTimeout(() => book.querySelector(".flip-cover").remove(), still ? 0 : 1900);
+      }, still ? 0 : 700);
+    }
+
+    function setupCrossword(book) {
+      const cells = [...book.querySelectorAll("#xw .cell[data-a]")];
+      const at = (r, c) => cells.find((x) => +x.dataset.r === r && +x.dataset.c === c);
+      const input = (cell) => cell.querySelector("input");
+      const verdict = book.querySelector("#xw-verdict");
+      const maxR = XW.rows.length - 1, maxC = XW.rows[0].length - 1;
+      let dir = "across", solved = false;
+
+      function next(cell, step) {
+        let r = +cell.dataset.r, c = +cell.dataset.c;
+        for (let i = 0; i <= Math.max(maxR, maxC); i++) {
+          if (dir === "across") c += step; else r += step;
+          if (r < 0 || c < 0 || r > maxR || c > maxC) return null;
+          const n = at(r, c);
+          if (n) return n;
+        }
+        return null;
+      }
+
+      function check() {
+        let all = true;
+        cells.forEach((c) => c.classList.remove("ok"));
+        Object.entries(XW.words).forEach(([k, pos]) => {
+          const ok = pos.every(([r, c]) => input(at(r, c)).value === at(r, c).dataset.a);
+          book.querySelector('.xw-clues [data-word="' + k + '"]').classList.toggle("done", ok);
+          if (ok) pos.forEach(([r, c]) => at(r, c).classList.add("ok"));
+          else all = false;
+        });
+        if (all && !solved) {
+          solved = true;
+          book.querySelector("#xw").classList.add("solved");
+          book.querySelector("#xw-hint").hidden = true;
+          cells.forEach((c) => (input(c).readOnly = true));
+          verdict.className = "xw-verdict win";
+          verdict.textContent = "Splendid! You solved the raven's page. Volume I holds many more.";
+        }
+      }
+
+      cells.forEach((cell) => {
+        const inp = input(cell);
+        inp.addEventListener("focus", () => inp.select());
+        inp.addEventListener("click", () => {
+          // tapping the same square again switches between across and down
+          if (document.activeElement === inp && inp.dataset.tapped) dir = dir === "across" ? "down" : "across";
+          inp.dataset.tapped = "1";
+          const r = +cell.dataset.r, c = +cell.dataset.c;
+          if (!at(r, c + 1) && !at(r, c - 1)) dir = "down";
+          if (!at(r + 1, c) && !at(r - 1, c)) dir = "across";
+        });
+        inp.addEventListener("blur", () => delete inp.dataset.tapped);
+        inp.addEventListener("input", () => {
+          inp.value = inp.value.replace(/[^a-z]/gi, "").slice(-1).toUpperCase();
+          if (inp.value) { const n = next(cell, 1); if (n) input(n).focus(); }
+          check();
+        });
+        inp.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace" && !inp.value) {
+            const p = next(cell, -1);
+            if (p) { input(p).focus(); input(p).value = ""; }
+            e.preventDefault(); check();
+          }
+          const moves = { ArrowRight: [0, 1, "across"], ArrowLeft: [0, -1, "across"], ArrowDown: [1, 0, "down"], ArrowUp: [-1, 0, "down"] };
+          if (moves[e.key]) {
+            const [dr, dc, d] = moves[e.key]; dir = d;
+            const n = at(+cell.dataset.r + dr, +cell.dataset.c + dc) || next(cell, dr + dc);
+            if (n) input(n).focus();
+            e.preventDefault();
+          }
+        });
+      });
+
+      book.querySelector("#xw-hint").addEventListener("click", () => {
+        const empty = cells.filter((c) => input(c).value !== c.dataset.a);
+        if (!empty.length) return;
+        const pick = empty[Math.floor(Math.random() * empty.length)];
+        input(pick).value = pick.dataset.a;
+        pick.classList.add("given");
+        verdict.className = "xw-verdict";
+        verdict.textContent = "The raven drops a letter into the grid.";
+        check();
+      });
+    }
+
     // ===== SETUP =====
     // 1. Create a free form at https://formspree.io using corvidzzpuzzles@gmail.com.
     // 2. Paste the endpoint it gives you below, e.g. "https://formspree.io/f/abcdwxyz".
@@ -944,7 +1194,6 @@
     const msg = document.getElementById("msg");
     const submit = document.getElementById("submit");
     const submitLabel = document.getElementById("submit-label");
-    const card = document.getElementById("signup");
 
     function showError(text) { msg.textContent = text; }
 
@@ -995,14 +1244,15 @@
           : "";
 
         const name = form.name.value.trim().replace(/[<>&"]/g, "");
-        card.innerHTML =
+        openBook(
           '<div class="inscribed">' +
             '<div class="stamp">You\'re on the list</div>' +
             (num ? '<div class="place-no">' + numText + '</div>' : '') +
             '<h3>' + (name ? "Welcome, " + name + "!" : "Welcome!") + '</h3>' +
             (placeLine ? '<p class="place-line">' + placeLine + '</p>' : '') +
             '<p>We\'ll email you as soon as Volume I is ready.</p>' +
-          '</div>';
+          '</div>'
+        );
       } catch (err) {
         showError("Something went wrong. Please try again in a moment.");
         submit.disabled = false;

@@ -16,7 +16,9 @@ The whole page sits on the teal book cloth. The top section and the sign-up are 
 - **The Raven Is Waiting:** the round logo and a "Join the Waitlist" button that scrolls to the sign-up and puts the cursor in the Name box.
 - **Footer:** corvidzzpuzzles@gmail.com, Instagram, TikTok.
 
-After signing up, the form is replaced by a "You're on the list" stamp, the person's number (for example "No. 0037"), "Welcome, Ana!" and "We'll email you as soon as Volume I is ready."
+After signing up, the sign-up book opens: the teal cover swings open (on a computer the book first slides into the middle, then opens into a two-page spread; on a phone the cover swings away and the two pages are stacked). The left page shows a "You're on the list" stamp, the person's number, a welcome and "While you wait, here is a page from Volume I". The right page is "The Raven's Crossword", a 5×5 crossword (VIRAL and EMOJI across, VIBE and LOGIN down) with storybook clues in plain English, a "Stuck? The raven will lend a letter" hint button and a "Splendid!" message when solved. To change the puzzle, edit `XW` (the grid rows, the word positions and the clues) in the script in `index.html`.
+
+The background is a scene made from the owner's pictures, each cut out of its white background: a green sky, the hollow tree trunk at the left edge, the willow tree, the castle, the starry clouds, the flock of birds (drifting slowly), gold stars (glinting) and the grassy hill across the front.
 
 ## QR codes
 
