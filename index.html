@@ -522,6 +522,10 @@
     .cover-book .section-title .i-red { color: var(--gold-light); }
     .cover-book .whisper { color: #e3d8b8; font-size: clamp(.92rem, 4.4cqw, 1.25rem); line-height: 1.5; margin: 0 0 2.4cqw; text-shadow: 0 1px 6px rgba(0, 0, 0, .7); }
     .cover-book .whisper strong { color: var(--gold-light); }
+    .perks { list-style: none; margin: 0 auto 2.6cqw; padding: 0; text-align: left; width: fit-content; max-width: 100%; }
+    .perks li { position: relative; padding-left: 1.5em; margin: 0 0 .55em; color: #efe6cc; font-size: clamp(.95rem, 4.3cqw, 1.18rem); line-height: 1.35; text-shadow: 0 1px 6px rgba(0, 0, 0, .7); }
+    .perks li::before { content: "\2726"; position: absolute; left: 0; top: .05em; color: var(--gold-light); }
+    .perks strong { font-family: "Cinzel", serif; font-weight: 700; font-size: .88em; letter-spacing: .02em; color: var(--gold-light); }
     .cover-book .flourish { color: var(--gold); margin-bottom: 3cqw; max-width: 70%; }
     .cover-book .signup-box { width: 100%; }
     .cover-book .btn, .cover-book .submit { white-space: nowrap; font-size: clamp(.95rem, 4.6cqw, 1.2rem); padding: 11px 18px; }
@@ -810,7 +814,13 @@
       <img class="book-logo" src="assets/img/logo.png" width="480" height="480" alt="CorvidzzPuzzles">
       <p class="kicker">&#10022; Volume I &middot; Coming Soon &#10022;</p>
       <h1 class="section-title" id="signup-title">Remember that book you finished and just wanted more?</h1>
-      <p class="whisper">Sign up here, and that feeling might be gone for good. A fairy-tale book of <strong>crossword puzzles</strong> about the book series, shows and stories everyone is talking about.</p>
+      <p class="whisper">Sign up and that feeling could be gone for good:</p>
+      <ul class="perks">
+        <li>A fairy-tale book of <strong>crossword puzzles</strong></li>
+        <li>Every clue hides the <strong>book series, shows and films</strong> you love</li>
+        <li><strong>A free sample puzzle</strong> the moment you join</li>
+        <li><strong>First to know</strong> when Volume I is out</li>
+      </ul>
       <div class="flourish" aria-hidden="true"><svg><use href="#flourish"/></svg></div>
       <div class="signup-box" id="signup">
         <form id="waitlist" novalidate>
