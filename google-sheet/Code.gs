@@ -81,6 +81,14 @@ function notify(number, p, email) {
   }
 }
 
+// Run this once from the Apps Script editor (choose "testEmail" next to the Run button, then Run).
+// Google then asks for permission to send email; after you allow it, a test email arrives
+// and every new sign-up sends an alert.
+function testEmail() {
+  MailApp.sendEmail(NOTIFY_EMAIL, 'CorvidzzPuzzles sign-up alerts are working',
+    'This is a test. From now on you will get an email like this for every new sign-up.');
+}
+
 // Visiting the web app URL in a browser shows how many have signed up (handy to test the deployment).
 function doGet() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
