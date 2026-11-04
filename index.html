@@ -532,7 +532,8 @@
     .cover-book .fields { grid-template-columns: 1fr; }
     .cover-book .field { margin-bottom: 2cqw; }
     .cover-book .field span { color: var(--gold-light); }
-    .cover-book .fine { color: #d8ccaa; text-align: center; }
+    .cover-book .fine { color: #f3ead0; text-align: center; font-style: normal; font-size: clamp(.9rem, 3.8cqw, 1.05rem); margin: 8px 0 0; text-shadow: 0 1px 2px #000, 0 0 8px rgba(0, 0, 0, .8); }
+    .cover-book .msg:empty { min-height: 0; margin: 0; }
     .cover-book .msg { color: #ffb2a3; text-align: center; }
     .cover-book .inscribed { color: var(--moon); padding: 10px 0; }
     .cover-book .inscribed .stamp { border-color: var(--gold-light); color: var(--gold-light); }
@@ -847,7 +848,7 @@
             <span class="star" aria-hidden="true">&#10022;</span>
           </button>
           <p class="msg" id="msg" role="status" aria-live="polite"></p>
-          <p class="fine">Be the first to know when the book is out. No spam, unsubscribe any time.</p>
+          <p class="fine">No spam. Unsubscribe any time.</p>
         </form>
       </div>
     </div>
