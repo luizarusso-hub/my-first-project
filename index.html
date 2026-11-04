@@ -1032,15 +1032,13 @@
     }
 
     // ===== SETUP =====
-    // 1. Create a free form at https://formspree.io using corvidzzpuzzles@gmail.com.
-    // 2. Paste the endpoint it gives you below, e.g. "https://formspree.io/f/abcdwxyz".
-    // Every sign-up then appears in the Formspree dashboard and your inbox,
-    // and the whole list can be exported as CSV.
-    const FORM_ENDPOINT = "https://formspree.io/f/xyezlyoe";
-    // 3. The Google Sheet that numbers the list (see SETUP-GOOGLE-SHEET.md).
-    //    Paste the web app URL from Apps Script below. Until it's set, sign-ups
-    //    still go to Formspree, just without a place number.
+    // Sign-ups are saved, free and without limit, in the Google Sheet owned by
+    // corvidzzpuzzles@gmail.com (see SETUP-GOOGLE-SHEET.md). The sheet numbers each
+    // person and emails you about every new sign-up. Paste the Apps Script web app URL here:
     const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwi1_NTpWYUcPXas5lc9P-DTyyEm5nawYiZtY1KEhnrJyXCkNWoZengd7d3Q341ywp0Gg/exec";
+    // Optional: a Formspree endpoint (e.g. "https://formspree.io/f/abcdwxyz") for a second copy.
+    // Left empty, because the Google Sheet already keeps the list and sends the emails.
+    const FORM_ENDPOINT = "";
     // =================
 
 
@@ -1077,8 +1075,8 @@
         return;
       }
 
-      if (FORM_ENDPOINT.includes("YOUR_FORM_ID")) {
-        showError("Sign-ups are not open yet. (Site owner: set FORM_ENDPOINT in index.html.)");
+      if (!FORM_ENDPOINT && SHEET_ENDPOINT.includes("PASTE_")) {
+        showError("Sign-ups are not open yet. (Site owner: set SHEET_ENDPOINT in index.html.)");
         return;
       }
 
@@ -1096,8 +1094,11 @@
             .then((r) => r.json())
             .then((j) => (j && j.ok ? j : Promise.reject(new Error("sheet refused"))))
         : Promise.reject(new Error("sheet not set up"));
-      const toFormspree = fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } })
-        .then((r) => (r.ok ? r : Promise.reject(new Error("formspree refused"))));
+      // optional second copy to Formspree (left empty: the free Google Sheet is enough)
+      const toFormspree = FORM_ENDPOINT
+        ? fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } })
+            .then((r) => (r.ok ? r : Promise.reject(new Error("formspree refused"))))
+        : Promise.reject(new Error("formspree not used"));
 
       try {
         const [sheet, fs] = await Promise.allSettled([toSheet, toFormspree]);
