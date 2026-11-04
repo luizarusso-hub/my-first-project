@@ -57,9 +57,27 @@ function doPost(e) {
       return String(p[key] || '').slice(0, 500);
     });
     sheet.appendRow(row);
+    notify(number, p, email);
     return reply({ ok: true, number: number });
   } finally {
     lock.releaseLock();
+  }
+}
+
+// Emails the owner about each new sign-up (free, sent from the Google account that owns the sheet).
+// To turn this off, set NOTIFY_EMAIL to ''.
+var NOTIFY_EMAIL = 'corvidzzpuzzles@gmail.com';
+function notify(number, p, email) {
+  if (!NOTIFY_EMAIL) return;
+  try {
+    MailApp.sendEmail(NOTIFY_EMAIL, 'New CorvidzzPuzzles sign-up: No. ' + number,
+      'No. ' + number + '\n' +
+      'Name: ' + String(p.name || '(not given)').slice(0, 200) + '\n' +
+      'Email: ' + email + '\n' +
+      'Came from: ' + String(p.came_from || 'direct').slice(0, 60) + '\n\n' +
+      'The full list is in the Google Sheet.');
+  } catch (err) {
+    // a failed email must never stop the sign-up from being saved
   }
 }
 

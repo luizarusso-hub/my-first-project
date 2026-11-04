@@ -22,31 +22,28 @@ The background is a scene made from the owner's pictures, each cut out of its wh
 
 `brand/video/corvidzz-loop-instagram.mp4` and `corvidzz-loop-tiktok.mp4` are 12-second vertical videos (1080×1920, 30 fps) for Reels, Stories and TikTok. The site's night sky moves behind the QR poster, and every animation repeats a whole number of times in 12 seconds, so the video loops seamlessly. To change and re-render: edit `brand/video/scene.html`, then run `node brand/video/render.js <frames folder> <path to ffmpeg>` (needs Playwright).
 
-## The numbered list (Google Sheet)
+## Where sign-ups go (free: Google Sheet)
 
-Each sign-up is also saved to a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. The sheet gives each new email the next number and sends it back, so the page shows the person's place, for example "No. 0042 · You're the 42nd to join the waiting list". A returning email gets its original number back. Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Until it's set, sign-ups still go to Formspree, just without a number. Whenever `Code.gs` changes (it last gained the `found_us` column), paste the new version into Apps Script and choose **Deploy → Manage deployments → Edit → Version: New version**; the sheet adds the new column heading by itself.
+Every sign-up is saved in a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. It's free and has no monthly limit. The sheet:
 
-## What each sign-up sends to Formspree
+- gives each new email the next number and sends it back, so the page shows the person's place, for example "No. 0042 · You're the 42nd to join the waiting list" (a returning email gets its original number back);
+- emails corvidzzpuzzles@gmail.com about each new sign-up (number, name, email and where they came from). To stop these emails, set `NOTIFY_EMAIL` to `''` in `Code.gs`.
+
+Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Whenever `Code.gs` changes, paste the new version into Apps Script and choose **Deploy → Manage deployments → Edit (pencil) → Version: New version → Deploy**. The URL stays the same. The first time after adding the emails, Google asks you to allow the script to send email as you; allow it.
+
+To download the list (for example to import into an email tool at launch), open the sheet and choose **File → Download → Comma-separated values (.csv)**.
+
+What each sign-up sends:
 
 | Field | Example |
 |---|---|
 | `name`, `email` | Morgan, morgan@example.com |
-| `access` | waiting list (kept so the Google Sheet columns stay the same) |
-| `came_from` | instagram, tiktok, bookstore (from the QR codes) *or* direct |
+| `access` | waiting list (kept so the sheet's columns stay the same) |
+| `came_from` | instagram, tiktok, reddit, bookstore (from the QR codes and links) *or* direct |
 
-(The Google Sheet still has the old interest, puzzle and found_us columns; they now stay empty. `came_from` still records instagram, tiktok, reddit or bookstore from the QR codes and links.) Export the submissions from Formspree as CSV to sort and count them in a spreadsheet.
+(The sheet still has the old interest, puzzle and found_us columns; they now stay empty.)
 
-## 1. Connect the sign-up form (free)
-
-The page needs somewhere to send sign-ups. It uses [Formspree](https://formspree.io), which is free for up to 50 sign-ups a month.
-
-1. Sign up at Formspree with **corvidzzpuzzles@gmail.com** and click **New form**.
-2. Copy the endpoint it gives you, which looks like `https://formspree.io/f/abcdwxyz`.
-3. In `index.html`, find `FORM_ENDPOINT` near the bottom and replace `https://formspree.io/f/YOUR_FORM_ID` with your endpoint.
-
-Each sign-up arrives by email and in the Formspree dashboard, and you can export the list to CSV. You can later import that CSV into Shopify's customer list, or into any email tool, for the launch announcement.
-
-Until the endpoint is set, the form shows "Sign-ups are not open yet" and nothing is lost silently.
+Formspree is no longer used, because its free trial ended. `FORM_ENDPOINT` in `index.html` is left empty; if you ever want a second copy in Formspree again, paste an endpoint there and each sign-up goes to both.
 
 ## 2. Put it on corvidzz.com (GoDaddy domain)
 
