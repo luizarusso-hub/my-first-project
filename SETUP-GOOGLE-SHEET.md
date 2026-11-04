@@ -41,7 +41,7 @@ Send that Web app URL to Claude, or paste it yourself into `index.html` in place
 
 ## Good to know
 
-- **Email alerts.** The script emails corvidzzpuzzles@gmail.com about each new sign-up. Google asks once for permission to send email as you; allow it. To turn the alerts off, set `NOTIFY_EMAIL` to `''` in the script. If an alert ever fails (Google limits a free account to about 100 script emails a day), the sign-up is still saved.
+- **Email alerts.** The script emails corvidzzpuzzles@gmail.com about each new sign-up (not about an email that is already on the list). Google must be given permission once: in Apps Script, choose **testEmail** in the menu next to **Run**, click **Run**, and allow it; a test email arrives. Until then the alerts are silently skipped, though sign-ups are still saved. To turn the alerts off, set `NOTIFY_EMAIL` to `''`. Google limits a free account to about 100 script emails a day.
 - **The same email twice** isn't added again. The person is told their original number.
 - **Changing the script later:** after editing it in Apps Script, click **Deploy → Manage deployments**, click the **pencil**, set **Version** to **New version**, then **Deploy**. The URL stays the same.
 - **Don't** sort or delete rows in the sheet if you want the numbers to keep counting correctly. The next number is always "rows in the sheet + 1". Use filters, or copy the data to another tab, to sort it.
