@@ -935,7 +935,7 @@
               '<div><h4>Down</h4>' + keys.filter((k) => k[0] === "d").map(clue).join("") + '</div>' +
             '</div>' +
             '<p class="xw-tip">Tap a square and type. Tap it again to switch between across and down.</p>' +
-            '<button type="button" class="xw-hint" id="xw-hint">Stuck? The raven will lend a letter</button>' +
+            '<button type="button" class="xw-hint" id="xw-hint">Stuck? Reveal a letter</button>' +
             '<p class="xw-verdict" id="xw-verdict" role="status" aria-live="polite"></p>' +
             '<span class="folio">1</span>' +
           '</div>' +
@@ -1036,7 +1036,7 @@
         input(pick).value = pick.dataset.a;
         pick.classList.add("given");
         verdict.className = "xw-verdict";
-        verdict.textContent = "The raven drops a letter into the grid.";
+        verdict.textContent = "Here's a letter to help you along.";
         check();
       });
     }
