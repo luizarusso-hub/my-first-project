@@ -522,10 +522,15 @@
     .cover-book .section-title .i-red { color: var(--gold-light); }
     .cover-book .whisper { color: #f3ead0; font-style: normal; font-family: "Cinzel", serif; font-weight: 700; letter-spacing: .04em; font-size: clamp(1rem, 4.6cqw, 1.3rem); line-height: 1.5; margin: 0 0 2.4cqw; text-shadow: 0 1px 6px rgba(0, 0, 0, .7); }
     .cover-book .whisper strong { color: var(--gold-light); }
-    .perks { list-style: none; margin: 0 auto 2.6cqw; padding: 0; text-align: left; width: fit-content; max-width: 100%; }
-    .perks li { position: relative; padding-left: 1.5em; margin: 0 0 .5em; color: #f6eed6; font-size: clamp(1.2rem, 5.6cqw, 1.6rem); line-height: 1.3; font-weight: 600; text-shadow: 0 1px 2px #000, 0 0 8px rgba(0, 0, 0, .8); }
+    .perks {
+      list-style: none; margin: 0 auto 2.6cqw; padding: .8em 1em .35em; text-align: left; width: fit-content; max-width: 100%; box-sizing: border-box;
+      /* a dark panel behind the bullets so they stand out from the textured cloth */
+      background: rgba(5, 22, 22, .82); border: 1px solid rgba(236, 200, 111, .7); border-radius: 6px;
+      box-shadow: 0 0 0 3px rgba(5, 22, 22, .45), 0 6px 16px rgba(0, 0, 0, .35);
+    }
+    .perks li { position: relative; padding-left: 1.5em; margin: 0 0 .5em; color: #fffaf0; font-size: clamp(1.22rem, 5.8cqw, 1.6rem); line-height: 1.3; font-weight: 600; text-shadow: 0 1px 2px #000, 0 0 8px rgba(0, 0, 0, .8); }
     .perks li::before { content: "\2726"; position: absolute; left: 0; top: .05em; color: var(--gold-light); }
-    .perks strong { font-family: "Cinzel", serif; font-weight: 800; font-size: .9em; letter-spacing: .02em; color: var(--gold-light); }
+    .perks strong { font-family: "Cinzel", serif; font-weight: 800; font-size: .9em; letter-spacing: .02em; color: #ffd97a; }
     .cover-book .flourish { color: var(--gold); margin-bottom: 3cqw; max-width: 70%; }
     .cover-book .signup-box { width: 100%; }
     .cover-book .btn, .cover-book .submit { white-space: nowrap; font-size: clamp(.95rem, 4.6cqw, 1.2rem); padding: 11px 18px; }
@@ -566,6 +571,8 @@
     @media (max-width: 560px) {
       .cover-book .flourish { display: none; }
       .signup-mid .cover-book .kicker { display: none; }
+      .cover-book .perks { width: auto; max-width: none; margin-left: -9cqw; margin-right: -9cqw; padding: .75em .85em .3em; }
+      .cover-book .perks li { font-size: 1.15rem; padding-left: 1.3em; }
     }
 
 
