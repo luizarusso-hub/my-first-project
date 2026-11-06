@@ -657,7 +657,8 @@
     .xw-tip { font-style: italic; font-size: .92rem; color: #4a4239; margin: 4px 0 2px; }
     .xw-hint { font: inherit; font-style: italic; font-size: .98rem; background: none; border: 0; padding: 2px 0; color: #1d1918; text-decoration: underline; cursor: pointer; }
     .xw-verdict { min-height: 1.4em; margin: 6px 0 0; font-style: italic; color: #4a4239; }
-    .xw-verdict.win { color: #1d1918; font-family: "IM Fell English SC", serif; font-style: normal; font-size: 1.1rem; }
+    .xw-verdict.win { color: #1d1918; font-style: italic; font-size: 1.15rem; }
+    .xw-verdict.win strong { display: block; font-family: "IM Fell English SC", serif; font-style: normal; font-weight: 400; font-size: 1.5rem; letter-spacing: .04em; }
 
     @media (max-width: 760px) {
       .open-book.closed { transform: none; }
@@ -991,7 +992,7 @@
           book.querySelector("#xw-hint").hidden = true;
           cells.forEach((c) => (input(c).readOnly = true));
           verdict.className = "xw-verdict win";
-          verdict.textContent = "Splendid! You solved the raven's page. Volume I holds many more.";
+          verdict.innerHTML = "<strong>You cracked it!</strong> Now imagine a whole book of these.";
         }
       }
 
