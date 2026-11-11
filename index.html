@@ -79,13 +79,14 @@
     .scene .star { width: 60px; animation: glint 5s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(236, 200, 111, .55)); }
     @keyframes glint { 0%, 100% { opacity: .95; transform: scale(1); } 50% { opacity: .55; transform: scale(.82); } }
     @media (max-width: 760px) {
-      .scene .clouds { height: 26vh; bottom: 4vh; }
-      .scene .castle { height: 42vh; right: -10vw; bottom: 12vh; }
-      .scene .tree { height: 30vh; left: 4vw; bottom: 10vh; }
-      .scene .trunk { left: -36vw; height: 100vh; }
-      .scene .hill { width: 70vw; bottom: -2vh; }
-      .scene .birds { right: 8vw; top: 84px; width: 118px; }
-      .scene .star { width: 34px; }
+      /* on phones the whole scene sits in the top part of the screen, above the book */
+      .scene .clouds { height: 15svh; bottom: auto; top: 29.5svh; }
+      .scene .castle { height: 31svh; right: 4vw; bottom: auto; top: 8svh; }
+      .scene .tree { height: 22svh; left: 14vw; bottom: auto; top: 18svh; }
+      .scene .trunk { left: -14vw; height: 46svh; bottom: auto; top: 0; }
+      .scene .hill { width: 64vw; bottom: auto; top: 33svh; }
+      .scene .birds { right: auto; left: 30vw; top: 4svh; width: 104px; }
+      .scene .star { width: 24px; }
     }
     @media (prefers-reduced-motion: reduce) { .scene .birds, .scene .star { animation: none; } }
     a { color: var(--lapis); }
@@ -719,7 +720,7 @@
       .riddle { --arch: 150px; padding: 86px var(--pad-x) 40px; }
       .finale .panel { --arch: 160px; padding: 92px var(--pad-x) 44px; }
       .hero h1 { font-size: 1.7rem; }
-      .signup-mid { padding-top: 196px; justify-content: flex-start; }
+      .signup-mid { padding-top: 47svh; justify-content: flex-start; }
       .signup-mid .panel { --arch: 170px; --pad-x: 38px; padding: 92px var(--pad-x) 44px; }
       .hero-logo { width: 140px; height: 140px; margin-top: -30px; }
       .brand-logo { width: 50px; height: 50px; }
