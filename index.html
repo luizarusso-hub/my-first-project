@@ -67,6 +67,7 @@
       position: absolute; left: 0; right: 0; bottom: 4vh; height: 40vh;
       background: url("assets/img/bg-clouds.webp") center bottom / auto 100% repeat-x;
     }
+    .scene .ground { display: none; position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(#6c7a51, #556544 40%, #3d4f33); }
     .scene .castle { right: 4vw; bottom: 14vh; height: 66vh; width: auto; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .25)); }
     .scene .tree { left: 12vw; bottom: 12vh; height: 54vh; width: auto; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .25)); }
     /* the hollow tree trunk at the left edge, rising out of the frame */
@@ -79,13 +80,18 @@
     .scene .star { width: 60px; animation: glint 5s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(236, 200, 111, .55)); }
     @keyframes glint { 0%, 100% { opacity: .95; transform: scale(1); } 50% { opacity: .55; transform: scale(.82); } }
     @media (max-width: 760px) {
-      .scene .clouds { height: 26vh; bottom: 4vh; }
-      .scene .castle { height: 42vh; right: -10vw; bottom: 12vh; }
-      .scene .tree { height: 30vh; left: 4vw; bottom: 10vh; }
-      .scene .trunk { left: -36vw; height: 100vh; }
-      .scene .hill { width: 70vw; bottom: -2vh; }
-      .scene .birds { right: 8vw; top: 84px; width: 118px; }
-      .scene .star { width: 34px; }
+      /* on phones the whole scene sits in the top part of the screen, above the book,
+         layered back to front: sky, castle, clouds, meadow, willow, trunk, hills */
+      .scene .ground { display: block; top: 45.5svh; }
+      .scene .castle { height: 30svh; right: 6vw; bottom: auto; top: 9svh; }
+      .scene .clouds { height: 17svh; bottom: auto; top: 29svh; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
+      .scene .tree { height: 22svh; left: 16vw; bottom: auto; top: 20svh; }
+      /* the trunk picture ends in a square block of ground: cut it off where the hill hides the cut */
+      .scene .trunk { left: -14vw; height: 50svh; bottom: auto; top: 0; -webkit-mask-image: linear-gradient(#000 84%, transparent 87%); mask-image: linear-gradient(#000 84%, transparent 87%); }
+      .scene .hill { width: 68vw; left: -8vw; bottom: auto; top: 31svh; }
+      .scene .hill.flip { left: auto; right: -8vw; }
+      .scene .birds { right: auto; left: 30vw; top: 4svh; width: 104px; }
+      .scene .star { width: 24px; }
     }
     @media (prefers-reduced-motion: reduce) { .scene .birds, .scene .star { animation: none; } }
     a { color: var(--lapis); }
@@ -719,7 +725,7 @@
       .riddle { --arch: 150px; padding: 86px var(--pad-x) 40px; }
       .finale .panel { --arch: 160px; padding: 92px var(--pad-x) 44px; }
       .hero h1 { font-size: 1.7rem; }
-      .signup-mid { padding-top: 196px; justify-content: flex-start; }
+      .signup-mid { padding-top: 47svh; justify-content: flex-start; }
       .signup-mid .panel { --arch: 170px; --pad-x: 38px; padding: 92px var(--pad-x) 44px; }
       .hero-logo { width: 140px; height: 140px; margin-top: -30px; }
       .brand-logo { width: 50px; height: 50px; }
@@ -753,6 +759,7 @@
     <img class="star" src="assets/img/bg-star.webp" alt="" style="top:52vh;left:24vw;width:22px;animation-delay:-2.5s">
     <img class="birds" src="assets/img/bg-birds.webp" alt="">
     <img class="castle" src="assets/img/bg-castle.webp" alt="">
+    <div class="ground"></div>
     <div class="clouds"></div>
     <img class="tree" src="assets/img/bg-tree.webp" alt="">
     <img class="trunk" src="assets/img/bg-trunk.webp" alt="">
