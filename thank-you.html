@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thank You | CorvidzzPuzzles</title>
+  <meta name="description" content="Thank you for joining the Corvidzz waitlist.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#4a7044">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --moon: #efe6cc;
+      --gold: #c8963a;
+      --gold-light: #ecc86f;
+      --forest: #0e2421;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: "IM Fell English", Georgia, "Times New Roman", serif;
+      font-size: 1.15rem; line-height: 1.6; color: var(--moon);
+      background: var(--forest); min-height: 100vh; overflow-x: clip;
+    }
+
+    /* ---------- The storybook scene behind everything (same as the main page) ---------- */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -3;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .1 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse 90% 70% at 50% 35%, #5f8656 0%, #4a7044 45%, #2f4d2e 100%);
+    }
+    .scene { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+    .scene img { position: absolute; display: block; height: auto; user-select: none; }
+    .scene .clouds { position: absolute; left: 0; right: 0; bottom: 4vh; height: 40vh; background: url("assets/img/bg-clouds.webp") center bottom / auto 100% repeat-x; }
+    .scene .ground { display: none; position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(#6c7a51, #556544 40%, #3d4f33); }
+    .scene .castle { right: 4vw; bottom: 14vh; height: 66vh; width: auto; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .25)); }
+    .scene .tree { left: 12vw; bottom: 12vh; height: 54vh; width: auto; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .25)); }
+    .scene .trunk { left: 0; bottom: 0; height: 100vh; width: auto; filter: drop-shadow(8px 0 18px rgba(0, 0, 0, .35)); }
+    .scene .hill { left: -2vw; bottom: -3vh; width: 56vw; }
+    .scene .hill.flip { left: auto; right: -2vw; transform: scaleX(-1); }
+    .scene .birds { right: 3vw; top: 12vh; width: clamp(160px, 17vw, 270px); animation: flock 30s ease-in-out infinite alternate; }
+    @keyframes flock { from { transform: translate(0, 0); } to { transform: translate(-6vw, 3vh); } }
+    .scene .star { width: 60px; animation: glint 5s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(236, 200, 111, .55)); }
+    @keyframes glint { 0%, 100% { opacity: .95; transform: scale(1); } 50% { opacity: .55; transform: scale(.82); } }
+    @media (max-width: 760px) {
+      .scene .ground { display: block; top: 45.5svh; }
+      .scene .castle { height: 30svh; right: 6vw; bottom: auto; top: 9svh; }
+      .scene .clouds { height: 17svh; bottom: auto; top: 29svh; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
+      .scene .tree { height: 22svh; left: 16vw; bottom: auto; top: 20svh; }
+      .scene .trunk { left: -14vw; height: 50svh; bottom: auto; top: 0; -webkit-mask-image: linear-gradient(#000 84%, transparent 87%); mask-image: linear-gradient(#000 84%, transparent 87%); }
+      .scene .hill { width: 68vw; left: -8vw; bottom: auto; top: 31svh; }
+      .scene .hill.flip { left: auto; right: -8vw; }
+      .scene .birds { right: auto; left: 30vw; top: 4svh; width: 104px; }
+      .scene .star { width: 24px; }
+    }
+
+    /* ---------- The teal antique book cover with the gold-tooled frame ---------- */
+    .thanks {
+      container-type: inline-size; max-width: 900px; margin: 0 auto;
+      min-height: 100vh; min-height: 100svh; padding: 40px 16px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .cover-book {
+      container-type: inline-size;
+      --w: min(660px, 100cqw);
+      position: relative; width: var(--w); margin: 0 auto;
+      min-height: calc(var(--w) * 1274 / 834);
+      border-style: solid;
+      border-width: calc(var(--w) * .275) calc(var(--w) * .19);
+      border-image: url("assets/img/cover-frame.jpg") 18% 19% fill / 1 / 0 stretch;
+      padding: 0 2px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      filter: drop-shadow(0 26px 40px rgba(0, 0, 0, .55));
+      animation: emerge 1.4s ease both;
+    }
+    @keyframes emerge { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .book-logo { width: 30cqw; height: 30cqw; margin: 0 auto 2cqw; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .5)); }
+    .kicker { font-family: "IM Fell English SC", serif; letter-spacing: .14em; color: var(--gold-light); font-size: clamp(.9rem, 4cqw, 1.2rem); margin: 0 0 1.5cqw; }
+    h1 {
+      font-family: "Cinzel", serif; font-weight: 800; color: var(--moon); letter-spacing: .01em;
+      font-size: clamp(1.25rem, 8.6cqw, 2.4rem); line-height: 1.14; margin: 0 0 3cqw;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, .55), 0 6px 18px rgba(0, 0, 0, .45);
+    }
+
+    /* the letter sits on a teal panel framed in gold, cut from the same cloth as the cover */
+    .letter {
+      margin: 0 auto 3cqw; padding: 1em 1.2em .6em; text-align: left; max-width: 100%;
+      background: linear-gradient(rgba(6, 34, 35, .72), rgba(6, 34, 35, .72)), url("assets/img/cloth.jpg") 0 0 / 240px 240px, #0d3233;
+      border-radius: 3px;
+      box-shadow: inset 0 0 0 1px #c8963a, inset 0 0 0 4px rgba(6, 34, 35, .9), inset 0 0 0 5px #ecc86f,
+        0 0 0 2px #071a1a, 0 8px 18px rgba(0, 0, 0, .4);
+    }
+    .letter p { margin: 0 0 .7em; color: #f6eed6; font-size: clamp(1.05rem, 4.8cqw, 1.3rem); line-height: 1.4; text-shadow: 0 1px 2px rgba(0, 0, 0, .8); }
+    .letter strong { font-family: "Cinzel", serif; font-weight: 800; font-size: .9em; color: #f2cf73; }
+    .letter .cta { text-align: center; margin: .2em 0 1em; }
+    .letter .sign { font-style: italic; }
+    .letter .sign strong { font-style: normal; display: block; margin-top: .1em; }
+
+    .flourish { display: flex; align-items: center; justify-content: center; gap: 12px; width: 70%; margin: 0 auto 3cqw; color: var(--gold); }
+    .flourish::before, .flourish::after { content: ""; flex: 1; height: 1px; background: currentColor; }
+    .flourish svg { width: 80px; height: 22px; flex: none; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: "IM Fell English SC", serif; font-size: clamp(1rem, 4.8cqw, 1.3rem); letter-spacing: .06em;
+      padding: 12px 22px; text-decoration: none; white-space: nowrap;
+      color: var(--gold-light); background: radial-gradient(ellipse at 50% 30%, #cf5340, #9e3120);
+      border: 3px solid #0b1613;
+      box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 5px #9e3120, inset 0 0 0 6px #9b6f22, 0 10px 20px rgba(0, 0, 0, .3);
+    }
+    .btn:hover { background: radial-gradient(ellipse at 50% 30%, #d85e4a, #a5372a); }
+    .btn:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 3px; }
+    .home { display: inline-block; margin-top: 0; color: #f3ead0; font-size: clamp(.95rem, 4cqw, 1.1rem); text-shadow: 0 1px 2px #000; }
+
+    @media (max-width: 560px) {
+      .thanks { padding-top: 47svh; justify-content: flex-start; }
+      .flourish { display: none; }
+      .letter { margin-left: -9cqw; margin-right: -9cqw; padding: .8em .9em .4em; }
+      .letter p { font-size: 1.05rem; }
+      .btn { white-space: normal; font-size: 1rem; padding: 10px 14px; letter-spacing: .03em; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scene .birds, .scene .star, .cover-book { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:7vh;right:22vw">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:16vh;left:48vw;width:26px;animation-delay:-3.5s">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:40vh;right:30vw;width:30px;animation-delay:-1s">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:4vh;left:20vw;width:34px;animation-delay:-2.2s">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:22vh;left:27vw;width:22px;animation-delay:-4.1s">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:33vh;left:17vw;width:28px;animation-delay:-1.6s">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:28vh;right:6vw;width:26px;animation-delay:-2.9s">
+    <img class="star" src="assets/img/bg-star.webp" alt="" style="top:4vh;right:6vw;width:30px;animation-delay:-4.6s">
+    <img class="birds" src="assets/img/bg-birds.webp" alt="">
+    <img class="castle" src="assets/img/bg-castle.webp" alt="">
+    <div class="ground"></div>
+    <div class="clouds"></div>
+    <img class="tree" src="assets/img/bg-tree.webp" alt="">
+    <img class="trunk" src="assets/img/bg-trunk.webp" alt="">
+    <img class="hill" src="assets/img/bg-hill.webp" alt="">
+    <img class="hill flip" src="assets/img/bg-hill.webp" alt="">
+  </div>
+
+  <main class="thanks">
+    <div class="cover-book">
+      <img class="book-logo" src="assets/img/logo.png" width="480" height="480" alt="CorvidzzPuzzles">
+      <p class="kicker">&#10022; You're on the list &#10022;</p>
+      <h1>Thank you for signing up!</h1>
+
+      <div class="letter">
+        <p>Hi there,</p>
+        <p>Thank you for signing up for the <strong>Corvidzz waitlist</strong>! We're excited to have you.</p>
+        <p>Here's your <strong>free sample</strong>:</p>
+        <p class="cta">
+          <!-- FREE SAMPLE: replace the href below with the link to the sample (a PDF in assets/, a Google Drive link, etc.) -->
+          <a class="btn" id="sample-link" href="#" target="_blank" rel="noopener">&#10022; Open your free sample &#10022;</a>
+        </p>
+        <p>Stay tuned. We'll be sharing more with you very soon.</p>
+        <p class="sign">Thanks,<strong>The Corvidzz Team</strong></p>
+      </div>
+
+      <div class="flourish" aria-hidden="true">
+        <svg viewBox="0 0 80 22"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 11 C14 2 24 20 34 11"/><path d="M78 11 C66 2 56 20 46 11"/></g><path fill="currentColor" d="M40 3 l2.2 6 6 2 -6 2 -2.2 6 -2.2 -6 -6 -2 6 -2z"/></svg>
+      </div>
+
+      <a class="home" href="./">Back to corvidzz.com</a>
+    </div>
+  </main>
+</body>
+</html>
