@@ -58,7 +58,7 @@ function doPost(e) {
     });
     sheet.appendRow(row);
     notify(number, p, email);
-    sendWelcome(email, p.name);
+    sendWelcome(email, p.name, p.puzzles);
     return reply({ ok: true, number: number });
   } finally {
     lock.releaseLock();
@@ -95,33 +95,95 @@ function testEmail() {
 // It shows the storybook scene from the waitlist page (castle, willow, trunk, birds, stars, clouds, hills).
 // The pictures are loaded from corvidzz.com/assets/email/, so they must be on the live site.
 
-// The free sample: paste its link between the quotes (a Google Drive link, a PDF on the site, ...).
-// While this is empty, no welcome email is sent.
-var SAMPLE_URL = '';
+// The free samples, one per "Favourite world" on the sign-up form.
+// Paste each sample's link between its quotes (a Google Drive link, a PDF on the site, ...).
+// Someone who picks a world gets that world's sample. Someone who picks nothing, or a world
+// whose link is still empty, gets DEFAULT_SAMPLE_URL. If that is empty too, no welcome email is sent.
+// The names on the left must match the drop-down on the page exactly.
+var DEFAULT_SAMPLE_URL = '';
+var SAMPLES = {
+  // Books
+  'The Hunger Games': '',
+  'ACOTAR': '',
+  'Fourth Wing': '',
+  'Harry Potter': '',
+  'Percy Jackson': '',
+  'Narnia': '',
+  'Lord of the Rings': '',
+  'A Song of Ice and Fire': '',
+  'Throne of Glass': '',
+  'Crescent City': '',
+  'Twilight': '',
+  'Mistborn': '',
+  'The Wheel of Time': '',
+  'The First Law': '',
+  'Dune': '',
+  'The Witcher': '',
+  'Outlander': '',
+  'Wolf King': '',
+  'Alchemised': '',
+  'Jane Austen': '',
+  'Shakespeare': '',
+  'Classic Literature': '',
+  'Lord of the Flies': '',
+  // Shows & films
+  'Iconic TV Shows': '',
+  'The Pitt': '',
+  'The Gilded Age': '',
+  'Gossip Girl': '',
+  'Star Wars': '',
+  'Jurassic Park': '',
+  // Music
+  'Michael Jackson': '',
+  'Noah Kahan': '',
+  // Curious things
+  'Magical Animals': '',
+  'Constellations': '',
+  'Remote Places': '',
+  'Accidental Discoveries': ''
+};
 var SITE = 'https://www.corvidzz.com';
 var WELCOME_SUBJECT = "You're on the Corvidzz waitlist! Here's your free sample";
 var WELCOME_FROM_NAME = 'The Corvidzz Team';
 
-function sendWelcome(email, name) {
-  if (!SAMPLE_URL) return;
+// Which sample this person gets: { topic: 'ACOTAR' or '' for the general one, url: '...' }
+function pickSample(topic) {
+  topic = String(topic || '').trim();
+  if (Object.prototype.hasOwnProperty.call(SAMPLES, topic) && SAMPLES[topic]) {
+    return { topic: topic, url: SAMPLES[topic] };
+  }
+  return { topic: '', url: DEFAULT_SAMPLE_URL };
+}
+
+function sendWelcome(email, name, topic) {
+  var sample = pickSample(topic);
+  if (!sample.url) return;
   try {
     MailApp.sendEmail({
       to: email,
-      subject: WELCOME_SUBJECT,
+      subject: welcomeSubject(sample),
       name: WELCOME_FROM_NAME,
-      body: welcomeText(name),
-      htmlBody: welcomeHtml(name)
+      body: welcomeText(name, sample),
+      htmlBody: welcomeHtml(name, sample)
     });
   } catch (err) {
     // a failed email must never stop the sign-up from being saved
   }
 }
 
+function welcomeSubject(sample) {
+  return sample.topic ? "You're on the Corvidzz waitlist! Here's your free " + sample.topic + ' sample' : WELCOME_SUBJECT;
+}
+
 // Run this from the Apps Script editor (choose "testWelcome" next to Run) to get the welcome email yourself.
+// Change TEST_TOPIC to see another world's email ('' shows the general one).
+var TEST_TOPIC = 'ACOTAR';
 function testWelcome() {
+  var sample = pickSample(TEST_TOPIC);
+  if (!sample.url) sample = { topic: TEST_TOPIC, url: SITE };
   MailApp.sendEmail({
-    to: NOTIFY_EMAIL, subject: '[Test] ' + WELCOME_SUBJECT, name: WELCOME_FROM_NAME,
-    body: welcomeText('Morgan'), htmlBody: welcomeHtml('Morgan')
+    to: NOTIFY_EMAIL, subject: '[Test] ' + welcomeSubject(sample), name: WELCOME_FROM_NAME,
+    body: welcomeText('Morgan', sample), htmlBody: welcomeHtml('Morgan', sample)
   });
 }
 
@@ -129,18 +191,20 @@ function firstName(name) {
   return String(name || '').trim().split(/\s+/)[0].slice(0, 40);
 }
 
-function welcomeText(name) {
+function welcomeText(name, sample) {
   return 'Hi ' + (firstName(name) || 'there') + ',\n\n' +
     'Thank you for signing up for the Corvidzz waitlist! We’re excited to have you.\n\n' +
-    'Here’s your free sample: ' + (SAMPLE_URL || SITE) + '\n\n' +
+    'Here’s your free ' + (sample.topic ? sample.topic + ' ' : '') + 'sample: ' + sample.url + '\n\n' +
     'Stay tuned. We’ll be sharing more with you very soon.\n\n' +
     'Thanks,\nThe Corvidzz Team\n' + SITE;
 }
 
-function welcomeHtml(name) {
+function welcomeHtml(name, sample) {
   var who = firstName(name).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') || 'there';
   var img = SITE + '/assets/email/';
-  var sample = String(SAMPLE_URL || SITE).replace(/"/g, '%22');
+  var link = String(sample.url).replace(/"/g, '%22');
+  // the topic always comes from SAMPLES above, never straight from the form
+  var topic = sample.topic ? sample.topic.replace(/&/g, '&amp;').replace(/</g, '&lt;') + ' ' : '';
   var serif = "'IM Fell English', Georgia, 'Times New Roman', serif";
   var caps = "'Cinzel', Georgia, 'Times New Roman', serif";
   var green = '#2f4d2e';
@@ -171,10 +235,10 @@ function welcomeHtml(name) {
     '<tr><td class="pad" style="padding:0 56px;text-align:left;">' +
     '<p class="txt" style="' + p + '">Hi ' + who + ',</p>' +
     '<p class="txt" style="' + p + '">Thank you for signing up for the <span style="' + gold + '">Corvidzz waitlist</span>! We’re excited to have you.</p>' +
-    '<p class="txt" style="' + p + '">Here’s your <span style="' + gold + '">free sample</span>:</p>' +
+    '<p class="txt" style="' + p + '">Here’s your <span style="' + gold + '">free ' + topic + 'sample</span>:</p>' +
     '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:6px auto 26px;"><tr>' +
     '<td class="btn" align="center" bgcolor="#b23c29" style="background:#b23c29;border:3px solid #0b1613;">' +
-    '<a href="' + sample + '" target="_blank" style="display:inline-block;padding:14px 26px;border:2px solid #c8963a;font-family:\'IM Fell English SC\',Georgia,serif;font-size:20px;letter-spacing:.05em;color:#ecc86f;text-decoration:none;">&#10022; Open your free sample &#10022;</a>' +
+    '<a href="' + link + '" target="_blank" style="display:inline-block;padding:14px 26px;border:2px solid #c8963a;font-family:\'IM Fell English SC\',Georgia,serif;font-size:20px;letter-spacing:.05em;color:#ecc86f;text-decoration:none;">&#10022; Open your free sample &#10022;</a>' +
     '</td></tr></table>' +
     '<p class="txt" style="' + p + '">Stay tuned. We’ll be sharing more with you very soon.</p>' +
     '<p class="txt" style="' + p + 'font-style:italic;margin-bottom:0;">Thanks,<br><span style="' + gold + 'font-style:normal;">The Corvidzz Team</span></p>' +
