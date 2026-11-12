@@ -579,6 +579,9 @@
     @media (max-width: 560px) {
       .cover-book .flourish { display: none; }
       .signup-mid .cover-book .kicker { display: none; }
+      .cover-book .topics { margin-left: -9cqw; margin-right: -9cqw; }
+      .chips { gap: 5px; }
+      .chip span { padding: 4px 9px; font-size: .9rem; }
       .cover-book .perks { width: auto; max-width: none; margin-left: -9cqw; margin-right: -9cqw; padding: .75em .85em .3em; }
       .cover-book .perks li { font-size: 1.12rem; padding-left: 1.3em; }
     }
@@ -686,6 +689,23 @@
       .flip-cover .front { border-radius: 6px 12px 12px 6px; }
     }
     @media (prefers-reduced-motion: reduce) { .open-book, .flip-cover, .flip-cover .face { transition: none; } }
+
+
+    /* topic chips on the sign-up */
+    .topics { border: 0; margin: 4px 0 16px; padding: 0; min-width: 0; }
+    .topics legend { padding: 0; margin: 0 0 6px; font-family: "Cinzel", serif; font-weight: 700; font-size: clamp(.9rem, 3.8cqw, 1.05rem); letter-spacing: .06em; color: var(--gold-light); }
+    .topics legend i { font-family: "IM Fell English", serif; font-weight: 400; letter-spacing: 0; color: #e3d8b8; }
+    .topic-group { margin: 10px 0 5px; font-family: "IM Fell English SC", serif; font-size: 1rem; color: #e3d8b8; letter-spacing: .04em; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { position: relative; }
+    .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .chip span {
+      display: inline-block; padding: 5px 11px; font-size: clamp(.92rem, 3.9cqw, 1.02rem); line-height: 1.25; cursor: pointer; user-select: none;
+      color: #f6eed6; background: rgba(6, 34, 35, .78); border: 1px solid rgba(236, 200, 111, .75); border-radius: 999px;
+    }
+    .chip input:checked + span { background: #ecc86f; color: #102b2b; border-color: #ecc86f; font-weight: 600; }
+    .chip input:checked + span::before { content: "\2726  "; }
+    .chip input:focus-visible + span { outline: 2px solid #ffd97a; outline-offset: 2px; }
 
     /* ---------- Footer ---------- */
     footer { text-align: center; padding: 44px 16px 54px; color: var(--moon); background: rgba(8, 22, 20, .6); border-top: 1px solid rgba(236, 200, 111, .35); }
@@ -859,6 +879,57 @@
               <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
             </label>
           </div>
+
+          <fieldset class="topics">
+            <legend>Which worlds would you solve first? <i>Tap any</i></legend>
+            <p class="topic-group">Books</p>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="puzzles" value="The Hunger Games"><span>The Hunger Games</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="ACOTAR"><span>ACOTAR</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Fourth Wing"><span>Fourth Wing</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Harry Potter"><span>Harry Potter</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Percy Jackson"><span>Percy Jackson</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Narnia"><span>Narnia</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Lord of the Rings"><span>Lord of the Rings</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="A Song of Ice and Fire"><span>A Song of Ice and Fire</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Throne of Glass"><span>Throne of Glass</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Crescent City"><span>Crescent City</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Twilight"><span>Twilight</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Mistborn"><span>Mistborn</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="The Wheel of Time"><span>The Wheel of Time</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="The First Law"><span>The First Law</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Dune"><span>Dune</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="The Witcher"><span>The Witcher</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Outlander"><span>Outlander</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Wolf King"><span>Wolf King</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Alchemised"><span>Alchemised</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Jane Austen"><span>Jane Austen</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Shakespeare"><span>Shakespeare</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Classic Literature"><span>Classic Literature</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Lord of the Flies"><span>Lord of the Flies</span></label>
+            </div>
+            <p class="topic-group">Shows &amp; films</p>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="puzzles" value="Iconic TV Shows"><span>Iconic TV Shows</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="The Pitt"><span>The Pitt</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="The Gilded Age"><span>The Gilded Age</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Gossip Girl"><span>Gossip Girl</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Star Wars"><span>Star Wars</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Jurassic Park"><span>Jurassic Park</span></label>
+            </div>
+            <p class="topic-group">Music</p>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="puzzles" value="Michael Jackson"><span>Michael Jackson</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Noah Kahan"><span>Noah Kahan</span></label>
+            </div>
+            <p class="topic-group">Curious things</p>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="puzzles" value="Magical Animals"><span>Magical Animals</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Constellations"><span>Constellations</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Remote Places"><span>Remote Places</span></label>
+              <label class="chip"><input type="checkbox" name="puzzles" value="Accidental Discoveries"><span>Accidental Discoveries</span></label>
+            </div>
+          </fieldset>
 
           <input type="hidden" name="access" value="waiting list">
           <input type="hidden" name="came_from" id="came_from" value="direct">
@@ -1106,6 +1177,9 @@
       }
 
       const data = new FormData(form);
+      const topics = data.getAll("puzzles");
+      data.delete("puzzles");
+      data.append("puzzles", topics.join(", ") || "(none chosen)");
       data.append("_subject", "New CorvidzzPuzzles sign-up");
 
       submit.disabled = true;
