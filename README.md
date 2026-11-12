@@ -27,7 +27,10 @@ The background is a scene made from the owner's pictures, each cut out of its wh
 Every sign-up is saved in a Google Sheet owned by corvidzzpuzzles@gmail.com, through the script in `google-sheet/Code.gs`. It's free and has no monthly limit. The sheet:
 
 - gives each new email the next number and sends it back, so the page shows the person's place, for example "No. 0042 · You're the 42nd to join the waiting list" (a returning email gets its original number back);
-- emails corvidzzpuzzles@gmail.com about each new sign-up (number, name, email and where they came from). To stop these emails, set `NOTIFY_EMAIL` to `''` in `Code.gs`.
+- emails corvidzzpuzzles@gmail.com about each new sign-up (number, name, email and where they came from). To stop these emails, set `NOTIFY_EMAIL` to `''` in `Code.gs`;
+- sends each new sign-up a **welcome email** ("Thank you for signing up for the Corvidzz waitlist!" with a button to the free sample), styled like the page: the teal book cover with the gold frame on the green background. The pictures it uses are in `assets/email/` and load from corvidzz.com, so they must be on the live site. Put the sample's link in `SAMPLE_URL` in `Code.gs`; while it is empty, no welcome email is sent. To see the email yourself, run `testWelcome` in Apps Script. The wording is in `welcomeHtml` (and `welcomeText`, the plain-text copy) in `Code.gs`.
+
+Google lets a free account send about 100 script emails a day, and the welcome email and the alert to you each count, so that is about 50 sign-ups a day with both on. Turning off the alerts (`NOTIFY_EMAIL = ''`) doubles it.
 
 Setup steps are in [SETUP-GOOGLE-SHEET.md](SETUP-GOOGLE-SHEET.md); the web app URL goes in `SHEET_ENDPOINT` in `index.html`. Whenever `Code.gs` changes, paste the new version into Apps Script and choose **Deploy → Manage deployments → Edit (pencil) → Version: New version → Deploy**. The URL stays the same. The first time after adding the emails, Google asks you to allow the script to send email as you; allow it.
 
