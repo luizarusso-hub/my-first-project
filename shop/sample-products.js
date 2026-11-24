@@ -7,12 +7,12 @@
 // descriptionHtml, images (leave empty to draw the teal book cover), variants (formats).
 window.CORVIDZZ_SAMPLE_PRODUCTS = [
   {
-    handle: "volume-i",
-    title: "Worlds You've Read: Volume I",
+    handle: "from-the-library-of",
+    title: "From the Library of…",
     kicker: "Volume I",
     badge: "New",
     descriptionHtml:
-      "<p>Remember that book you finished and just wished there were more? Volume I is a whole book of crosswords set in the worlds you can't stop thinking about.</p>" +
+      "<p>Remember that book you finished and just wished there were more? <em>From the Library of…</em> is a whole book of crosswords set in the worlds you can't stop thinking about.</p>" +
       "<ul><li>Puzzles from 35 worlds: books, shows &amp; films, music and curious things</li>" +
       "<li>Clues only a true fan will crack</li><li>Answers at the back, for when you're truly stuck</li></ul>" +
       "<p><em>Sample text. Replace it with the real description in Shopify.</em></p>",

@@ -85,7 +85,7 @@
     return `<div class="cover" role="img" aria-label="${esc(p.title)}">
       <img src="${opts.base || ""}../assets/img/logo.png?v=2" alt="">
       ${p.kicker ? `<span class="c-kicker">${esc(p.kicker)}</span>` : ""}
-      <span class="c-title">${esc(p.title)}</span></div>`;
+      <span class="c-title">${esc(p.title).replace(/ (\S+)$/, "&nbsp;$1")}</span></div>`;
   }
   function priceRange(p) {
     const prices = p.variants.map((v) => v.price);
