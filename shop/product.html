@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CorvidzzPuzzles Shop</title>
+  <meta name="description" content="Crossword puzzle books set in the worlds you've read.">
+  <meta property="og:image" content="https://corvidzz.com/assets/img/share-preview.jpg?v=2">
+  <meta name="theme-color" content="#0d3233">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=UnifrakturMaguntia&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <img class="star" src="../assets/img/bg-star.webp" alt="" style="top:16vh;right:24vw">
+    <img class="star" src="../assets/img/bg-star.webp" alt="" style="top:30vh;left:40vw;width:24px;animation-delay:-3.5s">
+    <img class="birds" src="../assets/img/bg-birds.webp" alt="">
+    <img class="castle" src="../assets/img/bg-castle.webp" alt="">
+    <div class="clouds"></div>
+    <img class="trunk" src="../assets/img/bg-trunk.webp" alt="">
+    <img class="hill" src="../assets/img/bg-hill.webp" alt="">
+    <img class="hill flip" src="../assets/img/bg-hill.webp" alt="">
+  </div>
+
+  <header class="site-head">
+    <div class="inner">
+      <a class="brand" href="./"><img src="../assets/img/logo.png?v=2" width="52" height="52" alt=""><span class="wordmark">CorvidzzPuzzles</span></a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./">Shop</a>
+        <a href="../">Waitlist</a>
+      </nav>
+      <button class="cart-btn" type="button" data-open-cart>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1.4 11.2a1.5 1.5 0 0 1-1.5 1.3H7.9a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="label">Basket</span>
+        <span class="cart-count" data-n="0">0</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="preview-note" id="preview-note" hidden>
+    <p>Preview: sample product and price. Checkout opens once the shop is connected to Shopify.</p>
+  </div>
+
+  <main id="main">
+    <p class="crumbs"><a href="./">&larr; Back to the shop</a></p>
+    <div id="product" aria-live="polite"><p class="status">Opening the book…</p></div>
+  </main>
+
+  <footer>
+    <div class="wordmark">CorvidzzPuzzles</div>
+    <nav aria-label="Footer"><a href="./">Shop</a><a href="../">Join the waitlist</a></nav>
+    <p>&copy; <span id="year">2026</span> CorvidzzPuzzles</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="sample-products.js"></script>
+  <script src="shop.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const box = document.getElementById("product");
+    const handle = new URLSearchParams(location.search).get("p") || "";
+
+    CZ.getProduct(handle).then((p) => {
+      if (!p) {
+        box.innerHTML = '<p class="status">We couldn\'t find that puzzle. <a href="./" style="color:var(--gold-light)">See everything in the shop</a>.</p>';
+        return;
+      }
+      document.title = p.title + " | CorvidzzPuzzles";
+      const first = p.variants.find((v) => v.available) || p.variants[0];
+      const showChoices = p.variants.length > 1 || (p.variants[0] && p.variants[0].title);
+      const avail = CZ.isAvailable(p);
+
+      box.innerHTML = `
+        <article class="product">
+          <div class="gallery">
+            <div class="main-art" id="main-art">${CZ.art(p)}</div>
+            ${p.images.length > 1 ? `<div class="thumbs">${p.images.map((im, i) =>
+              `<button type="button" data-i="${i}" aria-pressed="${i === 0}" aria-label="Picture ${i + 1}"><img src="${CZ.esc(im.url)}" alt=""></button>`).join("")}</div>` : ""}
+          </div>
+          <div class="leaf">
+            <img class="emblem" src="../assets/img/page-emblem.webp" width="810" height="510" alt="">
+            <h1>${CZ.esc(p.title)}</h1>
+            <p class="price" id="price">${CZ.money(first.price, first.currency)}</p>
+            <form id="buy">
+              ${showChoices ? `<div class="rule">Choose your format</div>
+              <fieldset class="choices"><legend class="visually-hidden">Format</legend>
+                ${p.variants.map((v) => `<label class="choice">
+                  <input type="radio" name="variant" value="${CZ.esc(v.id)}" ${v.id === first.id ? "checked" : ""} ${v.available ? "" : "disabled"}>
+                  <span>${CZ.esc(v.title || "Standard")}<small>${v.available ? CZ.esc(CZ.money(v.price, v.currency)) + (v.note ? " · " + CZ.esc(v.note) : "") : "Not available yet"}</small></span>
+                </label>`).join("")}
+              </fieldset>` : ""}
+              <div class="buy-row">
+                <div class="qty">
+                  <button type="button" id="dec" aria-label="One fewer">&minus;</button>
+                  <input id="qty" type="number" min="1" max="99" value="1" aria-label="Quantity">
+                  <button type="button" id="inc" aria-label="One more">+</button>
+                </div>
+                <button class="btn" type="submit" ${avail ? "" : "disabled"}>
+                  <span class="star" aria-hidden="true">&#10022;</span> ${avail ? "Add to Basket" : "Coming Soon"} <span class="star" aria-hidden="true">&#10022;</span>
+                </button>
+              </div>
+              <p class="added" id="added" role="status" aria-live="polite"></p>
+            </form>
+            ${avail ? "" : `<p class="small-print">Want to know when it's ready? <a href="../">Join the waiting list</a>.</p>`}
+            <div class="rule">About this book</div>
+            <div class="desc">${p.descriptionHtml || ""}</div>
+          </div>
+        </article>`;
+
+      const form = document.getElementById("buy");
+      const qty = document.getElementById("qty");
+      const chosen = () => {
+        const r = form.querySelector('input[name="variant"]:checked');
+        return r ? p.variants.find((v) => v.id === r.value) : first;
+      };
+      form.addEventListener("change", () => {
+        const v = chosen();
+        document.getElementById("price").textContent = CZ.money(v.price, v.currency);
+      });
+      const clamp = (n) => Math.max(1, Math.min(99, parseInt(n, 10) || 1));
+      document.getElementById("dec").addEventListener("click", () => { qty.value = clamp(qty.value - 1); });
+      document.getElementById("inc").addEventListener("click", () => { qty.value = clamp(+qty.value + 1); });
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const v = chosen();
+        if (!v || !v.available) return;
+        CZ.addToCart(p, v, clamp(qty.value));
+        document.getElementById("added").innerHTML = 'Added to your basket. <a href="#" id="view-basket">View basket</a>';
+        document.getElementById("view-basket").addEventListener("click", (ev) => { ev.preventDefault(); CZ.openCart(); });
+        CZ.openCart();
+      });
+      box.querySelectorAll(".thumbs button").forEach((b) => b.addEventListener("click", () => {
+        document.getElementById("main-art").innerHTML = CZ.art(p, { index: +b.dataset.i });
+        box.querySelectorAll(".thumbs button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+      }));
+    }).catch((e) => {
+      box.innerHTML = '<p class="status">This page didn\'t open (' + CZ.esc(e.message) + '). Please refresh.</p>';
+    });
+  </script>
+</body>
+</html>

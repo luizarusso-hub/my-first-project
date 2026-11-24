@@ -1,0 +1,263 @@
+/* CorvidzzPuzzles shop: shared styles for the shop, product and cart.
+   Same look as the waiting-list page: the storybook scene behind, the teal
+   book cloth with the gold-tooled cover, parchment cards and vermilion buttons. */
+:root {
+  --ink: #1d1918;
+  --ink-soft: #4a4239;
+  --parchment: #e4d4ac;
+  --parchment-light: #efe4c6;
+  --paper: #ece8dc;
+  --gold: #c8963a;
+  --gold-light: #ecc86f;
+  --vermilion: #c0412d;
+  --vermilion-deep: #9e3120;
+  --teal: #104244;
+  --teal-deep: #0d3233;
+  --night: #071a1a;
+  --moon: #efe6cc;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: "IM Fell English", Georgia, "Times New Roman", serif;
+  font-size: 1.12rem; line-height: 1.55; color: var(--ink);
+  background: #2f4d2e; min-height: 100vh; overflow-x: clip;
+}
+img { max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- The storybook scene (same pictures as the home page) ---------- */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -3;
+  background: radial-gradient(ellipse 90% 70% at 50% 35%, #5f8656 0%, #4a7044 45%, #2f4d2e 100%);
+}
+.scene { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+.scene img { position: absolute; display: block; height: auto; user-select: none; }
+.scene .clouds { position: absolute; left: 0; right: 0; bottom: 4vh; height: 40vh; background: url("../assets/img/bg-clouds.webp") center bottom / auto 100% repeat-x; }
+.scene .castle { right: 3vw; bottom: 14vh; height: 62vh; width: auto; }
+.scene .trunk { left: 0; bottom: 0; height: 100vh; width: auto; }
+.scene .hill { left: -2vw; bottom: -3vh; width: 56vw; }
+.scene .hill.flip { left: auto; right: -2vw; transform: scaleX(-1); }
+.scene .birds { right: 3vw; top: 14vh; width: clamp(140px, 15vw, 240px); animation: flock 30s ease-in-out infinite alternate; }
+@keyframes flock { from { transform: translate(0, 0); } to { transform: translate(-6vw, 3vh); } }
+.scene .star { width: 40px; animation: glint 5s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(236, 200, 111, .55)); }
+@keyframes glint { 0%, 100% { opacity: .95; transform: scale(1); } 50% { opacity: .55; transform: scale(.82); } }
+/* a soft night veil so the shop reads clearly over the scene */
+.scene::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(7, 26, 26, .25), rgba(7, 26, 26, .55)); }
+@media (max-width: 760px) {
+  .scene .castle { height: 34svh; bottom: auto; top: 10svh; }
+  .scene .trunk { left: -20vw; height: 60svh; bottom: auto; top: 0; }
+  .scene .clouds { height: 18svh; }
+  .scene .hill { width: 90vw; left: -20vw; }
+  .scene .hill.flip { right: -20vw; }
+  .scene .birds { width: 110px; }
+}
+@media (prefers-reduced-motion: reduce) { .scene .birds, .scene .star { animation: none; } * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* ---------- Header ---------- */
+.site-head {
+  position: sticky; top: 0; z-index: 20;
+  background: linear-gradient(rgba(6, 34, 35, .82), rgba(6, 34, 35, .82)), url("../assets/img/cloth.jpg") 0 0 / 240px 240px, var(--teal-deep);
+  border-bottom: 3px solid var(--gold);
+  box-shadow: inset 0 -5px 0 rgba(6, 34, 35, .9), inset 0 -6px 0 var(--gold-light), 0 8px 20px rgba(0, 0, 0, .4);
+}
+.site-head .inner { display: flex; align-items: center; gap: 16px; max-width: 1180px; margin: 0 auto; padding: 10px 16px 14px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--gold-light); margin-right: auto; }
+.brand img { width: 52px; height: 52px; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .5)); }
+.wordmark { font-family: "UnifrakturMaguntia", serif; font-size: 1.75rem; line-height: 1; text-shadow: 0 2px 0 rgba(0, 0, 0, .5); }
+.site-nav { display: flex; align-items: center; gap: 18px; font-family: "Cinzel", serif; font-weight: 700; font-size: .95rem; letter-spacing: .05em; }
+.site-nav a { color: var(--moon); text-decoration: none; padding: 4px 0; border-bottom: 1px solid transparent; }
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--gold-light); border-bottom-color: var(--gold); }
+.cart-btn {
+  position: relative; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font-family: "Cinzel", serif; font-weight: 700; font-size: .95rem; letter-spacing: .05em;
+  color: var(--gold-light); background: rgba(7, 26, 26, .6); padding: 8px 14px;
+  border: 2px solid #0b1613; box-shadow: inset 0 0 0 1px var(--gold);
+}
+.cart-btn:hover { background: rgba(7, 26, 26, .9); }
+.cart-btn svg { width: 20px; height: 20px; }
+.cart-count {
+  min-width: 24px; height: 24px; padding: 0 6px; border-radius: 12px; display: inline-grid; place-items: center;
+  background: var(--vermilion); color: #fff; font-family: "IM Fell English", serif; font-size: .9rem; box-shadow: 0 0 0 1.5px var(--gold);
+}
+.cart-count[data-n="0"] { background: transparent; color: var(--gold-light); box-shadow: 0 0 0 1px rgba(236, 200, 111, .5); }
+@media (max-width: 640px) {
+  .site-head .inner { flex-wrap: wrap; gap: 8px 12px; padding: 8px 12px 12px; }
+  .brand img { width: 42px; height: 42px; }
+  .wordmark { font-size: 1.35rem; }
+  .site-nav { order: 3; width: 100%; justify-content: center; gap: 22px; font-size: .85rem; }
+  .cart-btn .label { display: none; }
+}
+
+/* ---------- Preview notice (shown until Shopify is connected) ---------- */
+.preview-note {
+  max-width: 1180px; margin: 14px auto 0; padding: 0 16px;
+}
+.preview-note p {
+  margin: 0; padding: 8px 14px; text-align: center; font-size: .98rem; color: var(--ink);
+  background: var(--parchment-light); border: 2px dashed var(--vermilion-deep);
+}
+.preview-note[hidden] { display: none; }
+
+/* ---------- Shared pieces ---------- */
+main { max-width: 1180px; min-height: 70vh; margin: 0 auto; padding: 28px 16px 70px; }
+.kicker { font-family: "Cinzel", serif; font-weight: 700; color: var(--gold-light); letter-spacing: .12em; text-transform: uppercase; font-size: .9rem; margin: 0 0 6px; }
+.page-title {
+  font-family: "Cinzel", serif; font-weight: 800; color: var(--moon); line-height: 1.12; margin: 0 0 10px;
+  font-size: clamp(2rem, 5vw, 3.2rem); text-shadow: 0 2px 0 rgba(0, 0, 0, .55), 0 6px 18px rgba(0, 0, 0, .5);
+}
+.lede { color: #f3ead0; max-width: 34em; margin: 0 auto; text-shadow: 0 1px 6px rgba(0, 0, 0, .8); font-size: 1.2rem; }
+.flourish { display: block; width: 120px; height: 24px; margin: 12px auto; color: var(--gold-light); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; text-decoration: none;
+  font-family: "IM Fell English SC", serif; font-size: 1.2rem; letter-spacing: .06em; line-height: 1.2;
+  color: var(--gold-light); background: radial-gradient(ellipse at 50% 30%, #cf5340, var(--vermilion-deep));
+  border: 3px solid #0b1613; padding: 12px 24px;
+  box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 5px var(--vermilion-deep), inset 0 0 0 6px #9b6f22, 0 10px 20px rgba(0, 0, 0, .3);
+}
+.btn:hover { background: radial-gradient(ellipse at 50% 30%, #d85e4a, #a5372a); }
+.btn:disabled { cursor: not-allowed; filter: grayscale(.7); opacity: .7; }
+.btn.block { width: 100%; }
+.btn .star { font-size: .9em; }
+:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 2px; }
+
+/* the gold-tooled parchment card, as on the home page */
+.parchment {
+  background: radial-gradient(ellipse at 50% 30%, var(--parchment-light), var(--parchment) 75%, #d9c595);
+  border: 3px solid #0b1613;
+  box-shadow: inset 0 0 0 3px var(--parchment-light), inset 0 0 0 5px var(--vermilion), inset 0 0 0 7px var(--parchment-light), inset 0 0 0 8px var(--gold),
+    0 0 0 2px var(--gold), 0 16px 32px rgba(0, 0, 0, .45);
+}
+
+/* ---------- The book cover drawn in CSS (used when a product has no photo) ---------- */
+.cover {
+  container-type: inline-size;
+  position: relative; width: 100%; aspect-ratio: 834 / 1274;
+  background: url("../assets/img/cover-frame.jpg") center / 100% 100% no-repeat, var(--teal);
+  border-radius: 3px 8px 8px 3px;
+  box-shadow: inset 6px 0 10px rgba(0, 0, 0, .35), 0 18px 30px rgba(0, 0, 0, .5);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  padding: 24% 17%; color: var(--moon);
+}
+.cover img { width: 52cqw; height: auto; margin-bottom: 5cqw; filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .5)); }
+.cover .c-kicker { font-family: "Cinzel", serif; font-weight: 700; color: var(--gold-light); font-size: 6cqw; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2.5cqw; }
+.cover .c-title { font-family: "Cinzel", serif; font-weight: 800; font-size: 9.6cqw; line-height: 1.15; text-shadow: 0 2px 0 rgba(0, 0, 0, .55); }
+.photo { width: 100%; aspect-ratio: 834 / 1274; object-fit: contain; display: block; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .5)); }
+
+/* ---------- Shop page ---------- */
+.shop-hero { text-align: center; padding: 18px 0 34px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 40px 30px; }
+.card { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); transition: transform .25s ease; }
+.card:hover { transform: translateY(-6px); }
+.card .art { padding: 0 9%; position: relative; z-index: 1; }
+.card .label { margin-top: -30px; padding: 44px 22px 20px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+.card h2 { font-family: "Cinzel", serif; font-weight: 800; font-size: 1.22rem; line-height: 1.2; margin: 0 0 4px; }
+.card .formats { font-style: italic; color: var(--ink-soft); margin: 0 0 10px; font-size: 1rem; }
+.card .price { font-family: "IM Fell English SC", serif; font-size: 1.35rem; margin: auto 0 0; }
+.card .soon { display: inline-block; margin-top: 6px; font-family: "IM Fell English SC", serif; color: var(--vermilion-deep); }
+.ribbon {
+  position: absolute; top: 14px; right: 2%; z-index: 2;
+  font-family: "IM Fell English SC", serif; font-size: .95rem; letter-spacing: .06em; color: var(--gold-light);
+  background: var(--vermilion-deep); padding: 3px 12px; border: 2px solid #0b1613; box-shadow: inset 0 0 0 1px var(--gold);
+}
+.status { text-align: center; color: var(--moon); font-style: italic; text-shadow: 0 1px 6px rgba(0, 0, 0, .8); }
+
+/* ---------- Product page ---------- */
+.crumbs { font-size: 1rem; color: var(--moon); margin: 0 0 18px; text-shadow: 0 1px 4px rgba(0, 0, 0, .8); }
+.crumbs a { color: var(--gold-light); }
+.product { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 44px; align-items: start; }
+.gallery .main-art { max-width: 440px; margin: 0 auto; }
+.thumbs { display: flex; justify-content: center; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+.thumbs button { width: 64px; height: 84px; padding: 0; cursor: pointer; background: var(--paper); border: 2px solid #0b1613; box-shadow: inset 0 0 0 1px var(--gold); overflow: hidden; }
+.thumbs button[aria-pressed="true"] { outline: 3px solid var(--gold-light); }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; }
+/* the details sit on a cream page inside the engraved vine border */
+.leaf {
+  background: var(--paper); border: 34px solid transparent;
+  border-image: url("../assets/img/page-frame.jpg") 100 fill / 34px / 0 round;
+  padding: 14px 18px 22px; filter: drop-shadow(0 20px 30px rgba(0, 0, 0, .45));
+}
+.leaf .emblem { display: block; width: min(50%, 200px); height: auto; margin: 0 auto 6px; }
+.leaf h1 { font-family: "IM Fell English SC", serif; font-weight: 400; font-size: clamp(1.8rem, 3.4vw, 2.5rem); line-height: 1.1; letter-spacing: .03em; text-align: center; margin: 0 0 6px; }
+.leaf .price { text-align: center; font-family: "IM Fell English SC", serif; font-size: 1.7rem; margin: 0 0 14px; }
+.rule { display: flex; align-items: center; gap: 10px; margin: 16px 0 12px; font-family: "IM Fell English SC", serif; letter-spacing: .08em; font-size: 1.1rem; }
+.rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: var(--ink); }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; border: 0; padding: 0; margin: 0; }
+.choice { position: relative; cursor: pointer; }
+.choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.choice span {
+  display: block; text-align: center; padding: 10px 8px; background: #f5f2ea;
+  border: 1.5px solid var(--ink); font-size: 1.08rem; line-height: 1.25;
+}
+.choice small { display: block; color: var(--ink-soft); font-size: .92rem; }
+.choice input:checked + span { background: #f1e7c4; box-shadow: inset 0 0 0 2px var(--gold), 0 0 0 2px var(--ink); }
+.choice input:focus-visible + span { outline: 3px solid var(--vermilion); outline-offset: 2px; }
+.choice input:disabled + span { opacity: .5; text-decoration: line-through; cursor: not-allowed; }
+.buy-row { display: flex; gap: 12px; margin-top: 18px; align-items: stretch; }
+.buy-row .btn { flex: 1; }
+.qty { display: flex; align-items: stretch; border: 1.5px solid var(--ink); background: #f5f2ea; }
+.qty button { width: 40px; border: 0; background: transparent; cursor: pointer; font-size: 1.3rem; color: var(--ink); }
+.qty button:hover { background: rgba(200, 150, 58, .25); }
+.qty input { width: 44px; border: 0; background: transparent; text-align: center; font: inherit; font-size: 1.15rem; color: var(--ink); -moz-appearance: textfield; }
+.qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.added { min-height: 1.5em; margin: 10px 0 0; text-align: center; font-style: italic; }
+.desc { font-size: 1.1rem; }
+.desc p { margin: 0 0 12px; }
+.desc ul { padding-left: 1.2em; margin: 0 0 12px; }
+.small-print { font-size: .98rem; color: var(--ink-soft); font-style: italic; text-align: center; margin: 14px 0 0; }
+@media (max-width: 860px) {
+  .product { grid-template-columns: 1fr; gap: 30px; }
+  .gallery .main-art { max-width: 320px; }
+}
+@media (max-width: 560px) {
+  .leaf { border-width: 18px; border-image-width: 18px; padding: 8px 8px 16px; }
+  .buy-row { flex-direction: column; }
+  .qty { align-self: center; }
+}
+
+/* ---------- Cart drawer ---------- */
+.cart-shade { position: fixed; inset: 0; z-index: 40; background: rgba(4, 14, 14, .6); opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+.cart {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 41; width: min(440px, 100%);
+  display: flex; flex-direction: column;
+  background: var(--paper); border-left: 4px solid #0b1613;
+  box-shadow: inset 6px 0 0 var(--gold), -16px 0 40px rgba(0, 0, 0, .5);
+  transform: translateX(105%); transition: transform .35s cubic-bezier(.3, .7, .2, 1);
+}
+body.cart-open .cart { transform: none; }
+body.cart-open .cart-shade { opacity: 1; pointer-events: auto; }
+body.cart-open { overflow: hidden; }
+.cart-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 10px 26px; }
+.cart-head h2 { font-family: "IM Fell English SC", serif; font-weight: 400; font-size: 1.9rem; margin: 0; letter-spacing: .04em; }
+.close { width: 42px; height: 42px; border: 1.5px solid var(--ink); background: transparent; cursor: pointer; font-size: 1.5rem; line-height: 1; color: var(--ink); }
+.close:hover { background: rgba(200, 150, 58, .25); }
+.cart .rule { margin: 0 20px 0 26px; }
+.cart-lines { flex: 1; overflow-y: auto; padding: 6px 20px 6px 26px; list-style: none; margin: 0; }
+.line { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(29, 25, 24, .25); align-items: start; }
+.line .thumb { width: 64px; }
+.line .thumb .cover { padding: 24% 20%; border-radius: 2px 4px 4px 2px; box-shadow: 0 4px 8px rgba(0, 0, 0, .35); }
+.line .thumb .cover .c-kicker, .line .thumb .cover .c-title { display: none; }
+.line .thumb .cover img { width: 70cqw; margin: 0; }
+.line .thumb .photo { filter: none; }
+.line h3 { font-family: "Cinzel", serif; font-weight: 800; font-size: 1rem; line-height: 1.2; margin: 0 0 2px; }
+.line .variant { font-style: italic; color: var(--ink-soft); font-size: .98rem; margin: 0 0 8px; }
+.line .qty { display: inline-flex; }
+.line .qty button { width: 32px; font-size: 1.1rem; }
+.line .qty span { min-width: 30px; display: grid; place-items: center; }
+.line .amount { text-align: right; font-family: "IM Fell English SC", serif; font-size: 1.15rem; }
+.line .remove { display: block; margin: 8px 0 0 auto; border: 0; background: none; padding: 0; color: var(--vermilion-deep); text-decoration: underline; cursor: pointer; font-size: .95rem; }
+.cart-empty { text-align: center; padding: 30px 26px; font-style: italic; }
+.cart-empty img { width: 120px; display: block; margin: 0 auto 12px; opacity: .9; }
+.cart-foot { padding: 14px 20px 22px 26px; border-top: 1.5px solid var(--ink); background: #e6e0cf; }
+.subtotal { display: flex; justify-content: space-between; font-family: "IM Fell English SC", serif; font-size: 1.4rem; margin: 0 0 2px; }
+.cart-foot .note { font-size: .95rem; font-style: italic; color: var(--ink-soft); margin: 0 0 12px; }
+.cart-msg { min-height: 1.3em; margin: 10px 0 0; text-align: center; color: var(--vermilion-deep); font-size: .98rem; }
+
+/* ---------- Footer ---------- */
+footer { text-align: center; padding: 34px 16px 44px; color: var(--moon); background: rgba(8, 22, 20, .75); border-top: 1px solid rgba(236, 200, 111, .35); }
+footer .wordmark { color: var(--gold-light); font-size: 1.6rem; }
+footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 22px; margin-top: 10px; font-family: "IM Fell English SC", serif; }
+footer p { margin: 10px 0 0; font-size: .98rem; opacity: .85; }

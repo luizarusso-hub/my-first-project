@@ -66,3 +66,14 @@ Go to [app.netlify.com/drop](https://app.netlify.com/drop) and drag in the whole
 ## Preview locally
 
 Double-click `index.html` to open it in a browser. Keep the `assets` folder next to it.
+
+## The shop (`shop/`)
+
+The shop lives at `corvidzz.com/shop/`, next to the waiting-list page, which it doesn't change. It's plain HTML in the same storybook style: `shop/index.html` (all products), `shop/product.html?p=<handle>` (one product, with format choice and quantity) and a basket that slides in from the right. Styles are in `shop/shop.css`, the logic in `shop/shop.js`.
+
+Shopify runs behind it (products, prices, payments, orders, customers) through the Storefront API:
+
+- **Until Shopify is connected**, the shop shows the placeholder products in `shop/sample-products.js` with a "Preview" notice, and checkout says it isn't open yet.
+- **To connect it**, put the store address (e.g. `corvidzz.myshopify.com`) and the **public** Storefront access token from Shopify's Headless channel into `shop/config.js`. Never put the private token there. Products, photos and prices then come from Shopify, and the Checkout button opens Shopify's checkout.
+- A product with no photo is drawn as the teal book cover with its title. To show a small ribbon on a product (e.g. "New"), give it a Shopify tag like `badge: New`.
+- Where people came from (`?from=instagram` etc.) is sent with each order as the `came_from` note, like the waiting list.

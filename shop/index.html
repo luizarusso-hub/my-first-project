@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Puzzle Shop | CorvidzzPuzzles</title>
+  <meta name="description" content="Crossword puzzle books set in the worlds you've read. Shop CorvidzzPuzzles.">
+  <meta property="og:title" content="The Puzzle Shop | CorvidzzPuzzles">
+  <meta property="og:description" content="Crossword puzzle books set in the worlds you've read.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://corvidzz.com/shop/">
+  <meta property="og:image" content="https://corvidzz.com/assets/img/share-preview.jpg?v=2">
+  <meta name="theme-color" content="#0d3233">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=UnifrakturMaguntia&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <img class="star" src="../assets/img/bg-star.webp" alt="" style="top:16vh;right:24vw">
+    <img class="star" src="../assets/img/bg-star.webp" alt="" style="top:30vh;left:40vw;width:24px;animation-delay:-3.5s">
+    <img class="star" src="../assets/img/bg-star.webp" alt="" style="top:22vh;left:18vw;width:30px;animation-delay:-2.2s">
+    <img class="birds" src="../assets/img/bg-birds.webp" alt="">
+    <img class="castle" src="../assets/img/bg-castle.webp" alt="">
+    <div class="clouds"></div>
+    <img class="trunk" src="../assets/img/bg-trunk.webp" alt="">
+    <img class="hill" src="../assets/img/bg-hill.webp" alt="">
+    <img class="hill flip" src="../assets/img/bg-hill.webp" alt="">
+  </div>
+
+  <header class="site-head">
+    <div class="inner">
+      <a class="brand" href="./"><img src="../assets/img/logo.png?v=2" width="52" height="52" alt=""><span class="wordmark">CorvidzzPuzzles</span></a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./" aria-current="page">Shop</a>
+        <a href="../">Waitlist</a>
+      </nav>
+      <button class="cart-btn" type="button" data-open-cart>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1.4 11.2a1.5 1.5 0 0 1-1.5 1.3H7.9a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="label">Basket</span>
+        <span class="cart-count" data-n="0">0</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="preview-note" id="preview-note" hidden>
+    <p>Preview: these are sample products and prices. Checkout opens once the shop is connected to Shopify.</p>
+  </div>
+
+  <main>
+    <section class="shop-hero">
+      <p class="kicker">&#10022; The Puzzle Shop &#10022;</p>
+      <h1 class="page-title">Worlds You've Read</h1>
+      <svg class="flourish" viewBox="0 0 80 22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 11 C14 2 24 20 34 11"/><path d="M78 11 C66 2 56 20 46 11"/></g><path fill="currentColor" d="M40 3 l2.2 6 6 2 -6 2 -2.2 6 -2.2 -6 -6 -2 6 -2z"/></svg>
+      <p class="lede">Crosswords for the book hangover you're still not over. Pick a book, a pack, or start with a free puzzle.</p>
+    </section>
+
+    <div class="grid" id="grid" aria-live="polite"><p class="status">Opening the shelves…</p></div>
+  </main>
+
+  <footer>
+    <div class="wordmark">CorvidzzPuzzles</div>
+    <nav aria-label="Footer"><a href="./">Shop</a><a href="../">Join the waitlist</a></nav>
+    <p>&copy; <span id="year">2026</span> CorvidzzPuzzles</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="sample-products.js"></script>
+  <script src="shop.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const grid = document.getElementById("grid");
+    CZ.getProducts().then((products) => {
+      if (!products.length) { grid.innerHTML = '<p class="status">New puzzles are on their way. Check back soon.</p>'; return; }
+      grid.innerHTML = products.map((p) => {
+        const formats = p.variants.map((v) => v.title).filter(Boolean).join(" · ");
+        const avail = CZ.isAvailable(p);
+        const badge = p.badge || (avail ? "" : "Sold out");
+        return `<a class="card" href="product.html?p=${encodeURIComponent(p.handle)}">
+          <div class="art">${badge ? `<span class="ribbon">${CZ.esc(badge)}</span>` : ""}${CZ.art(p)}</div>
+          <div class="label parchment">
+            <h2>${CZ.esc(p.title)}</h2>
+            ${formats ? `<p class="formats">${CZ.esc(formats)}</p>` : ""}
+            <p class="price">${avail ? CZ.priceRange(p) : "&nbsp;"}</p>
+          </div>
+        </a>`;
+      }).join("");
+    }).catch((e) => {
+      grid.innerHTML = '<p class="status">The shelves didn\'t open (' + CZ.esc(e.message) + '). Please refresh the page.</p>';
+    });
+  </script>
+</body>
+</html>
