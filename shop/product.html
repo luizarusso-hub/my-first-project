@@ -46,7 +46,7 @@
   </div>
 
   <main id="main">
-    <p class="crumbs"><a href="./">&larr; Back to the shop</a></p>
+    <p class="crumbs" id="crumbs" hidden><a href="./">&larr; Back to the shop</a></p>
     <div id="product" aria-live="polite"><p class="status">Opening the book…</p></div>
   </main>
 
@@ -63,6 +63,8 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     const box = document.getElementById("product");
     const handle = new URLSearchParams(location.search).get("p") || "";
+    // the "Back to the shop" link only makes sense when there's more than one product
+    CZ.getProducts().then((all) => { if (all.length > 1) document.getElementById("crumbs").hidden = false; }).catch(() => {});
 
     CZ.getProduct(handle).then((p) => {
       if (!p) {

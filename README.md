@@ -69,7 +69,7 @@ Double-click `index.html` to open it in a browser. Keep the `assets` folder next
 
 ## The shop (`shop/`)
 
-The shop lives at `corvidzz.com/shop/`, next to the waiting-list page, which it doesn't change. It's plain HTML in the same storybook style: `shop/index.html` (all products), `shop/product.html?p=<handle>` (one product, with format choice and quantity) and a basket that slides in from the right. Styles are in `shop/shop.css`, the logic in `shop/shop.js`.
+The shop lives at `corvidzz.com/shop/`, next to the waiting-list page, which it doesn't change. It's plain HTML in the same storybook style: `shop/index.html` (all products), `shop/product.html?p=<handle>` (one product, with format choice and quantity) and a basket that slides in from the right. While there is only one product, `corvidzz.com/shop/` goes straight to its page; the shelf of products appears by itself once a second one is added. Styles are in `shop/shop.css`, the logic in `shop/shop.js`.
 
 Shopify runs behind it (products, prices, payments, orders, customers) through the Storefront API:
 

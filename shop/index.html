@@ -75,6 +75,8 @@
     const grid = document.getElementById("grid");
     CZ.getProducts().then((products) => {
       if (!products.length) { grid.innerHTML = '<p class="status">New puzzles are on their way. Check back soon.</p>'; return; }
+      // only one book for sale: go straight to its page
+      if (products.length === 1) { location.replace("product.html?p=" + encodeURIComponent(products[0].handle)); return; }
       grid.innerHTML = products.map((p) => {
         const formats = p.variants.map((v) => v.title).filter(Boolean).join(" · ");
         const avail = CZ.isAvailable(p);
