@@ -12,7 +12,7 @@ window.CORVIDZZ_SAMPLE_PRODUCTS = [
     kicker: "The First Issue",
     badge: "New",
     descriptionHtml:
-      "<p>Remember that book you finished and just wished there were more? <em>From the Library of…</em> is a storybook puzzle book about the worlds everyone is talking about right now. Old riddles, modern answers.</p>" +
+      "<p>Remember that book you finished and just wished there were more? <em>From the Library of…</em> is a storybook puzzle book about the worlds everyone is talking about right now, with a new issue every month. Old riddles, modern answers.</p>" +
       "<ul><li>30–40 crosswords, the heart of the book</li>" +
       "<li>5–10 wildcard puzzles: ciphers, riddles, logic puzzles, mazes and more</li>" +
       "<li>A progress tracker on the first page: collect points that unlock limited-edition books and prizes</li></ul>" +

@@ -357,3 +357,4 @@ footer p { margin: 10px 0 0; font-size: .98rem; opacity: .85; }
 .closing .lede { margin-bottom: 22px; }
 .issue-actions .btn { white-space: nowrap; }
 @media (max-width: 560px) { .steps li { padding-left: 54px; } .steps li::before { width: 40px; height: 40px; font-size: .95rem; } }
+@media (max-width: 560px) { .hero-book .text-link { display: none; } }
