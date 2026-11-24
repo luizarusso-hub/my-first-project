@@ -69,7 +69,7 @@ Double-click `index.html` to open it in a browser. Keep the `assets` folder next
 
 ## The shop (`shop/`)
 
-The shop lives at `corvidzz.com/shop/`, next to the waiting-list page, which it doesn't change. It's plain HTML in the same storybook style: `shop/index.html` (all products), `shop/product.html?p=<handle>` (one product, with format choice and quantity) and a basket that slides in from the right. While there is only one product, `corvidzz.com/shop/` goes straight to its page; the shelf of products appears by itself once a second one is added. Styles are in `shop/shop.css`, the logic in `shop/shop.js`.
+The shop lives at `corvidzz.com/shop/`, next to the waiting-list page, which it doesn't change. It's plain HTML in the same storybook style. `shop/index.html` is the landing page for the book *From the Library of…*: the teal book cover at the top, what's inside every book (30–40 crosswords, 5–10 wildcard puzzles, the progress tracker, a real book in the mail), How It Works (readers choose the topic, the title holds the secret, the book comes to you, solve and unlock), Why the raven?, then The First Issue with its price and an Add to Basket button, and links to the waiting list, Instagram and TikTok. `shop/product.html?p=<handle>` is the book's own page (quantity, and a format choice if a product ever has more than one), and the basket slides in from the right. If a second product is added in Shopify, it appears as a shelf under The First Issue. Styles are in `shop/shop.css`, the logic in `shop/shop.js`.
 
 Shopify runs behind it (products, prices, payments, orders, customers) through the Storefront API:
 

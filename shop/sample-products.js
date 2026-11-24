@@ -9,12 +9,14 @@ window.CORVIDZZ_SAMPLE_PRODUCTS = [
   {
     handle: "from-the-library-of",
     title: "From the Library of…",
-    kicker: "Volume I",
+    kicker: "The First Issue",
     badge: "New",
     descriptionHtml:
-      "<p>Remember that book you finished and just wished there were more? <em>From the Library of…</em> is a whole book of crosswords set in the worlds you can't stop thinking about.</p>" +
-      "<ul><li>Puzzles from 35 worlds: books, shows &amp; films, music and curious things</li>" +
-      "<li>Clues only a true fan will crack</li><li>Answers at the back, for when you're truly stuck</li></ul>" +
+      "<p>Remember that book you finished and just wished there were more? <em>From the Library of…</em> is a storybook puzzle book about the worlds everyone is talking about right now. Old riddles, modern answers.</p>" +
+      "<ul><li>30–40 crosswords, the heart of the book</li>" +
+      "<li>5–10 wildcard puzzles: ciphers, riddles, logic puzzles, mazes and more</li>" +
+      "<li>A progress tracker on the first page: collect points that unlock limited-edition books and prizes</li></ul>" +
+      "<p>The topic of this first issue is a secret until the reveal. Follow us on Instagram and TikTok for clues.</p>" +
       "<p><em>Sample text. Replace it with the real description in Shopify.</em></p>",
     images: [],
     variants: [

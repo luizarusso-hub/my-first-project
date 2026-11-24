@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Puzzle Shop | CorvidzzPuzzles</title>
-  <meta name="description" content="Crossword puzzle books set in the worlds you've read. Shop CorvidzzPuzzles.">
-  <meta property="og:title" content="The Puzzle Shop | CorvidzzPuzzles">
-  <meta property="og:description" content="Crossword puzzle books set in the worlds you've read.">
+  <title>From the Library of… | CorvidzzPuzzles</title>
+  <meta name="description" content="A storybook puzzle book about the worlds everyone is talking about. 30 to 40 crosswords and a handful of riddles, ciphers and more in every issue. Old riddles, modern answers.">
+  <meta property="og:title" content="From the Library of… | CorvidzzPuzzles">
+  <meta property="og:description" content="A storybook puzzle book about the worlds everyone is talking about. Old riddles, modern answers.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://corvidzz.com/shop/">
   <meta property="og:image" content="https://corvidzz.com/assets/img/share-preview.jpg?v=2">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0d3233">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png?v=2">
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2">
@@ -35,7 +36,8 @@
     <div class="inner">
       <a class="brand" href="./"><img src="../assets/img/logo.png?v=2" width="52" height="52" alt=""><span class="wordmark">CorvidzzPuzzles</span></a>
       <nav class="site-nav" aria-label="Main">
-        <a href="./" aria-current="page">Shop</a>
+        <a href="#how">How it works</a>
+        <a href="#first-issue">The book</a>
         <a href="../">Waitlist</a>
       </nav>
       <button class="cart-btn" type="button" data-open-cart>
@@ -47,23 +49,115 @@
   </header>
 
   <div class="preview-note" id="preview-note" hidden>
-    <p>Preview: these are sample products and prices. Checkout opens once the shop is connected to Shopify.</p>
+    <p>Preview: sample cover and price. Checkout opens once the shop is connected to Shopify.</p>
   </div>
 
-  <main>
-    <section class="shop-hero">
-      <p class="kicker">&#10022; CorvidzzPuzzles &#10022;</p>
-      <h1 class="page-title">The Puzzle Shop</h1>
-      <svg class="flourish" viewBox="0 0 80 22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 11 C14 2 24 20 34 11"/><path d="M78 11 C66 2 56 20 46 11"/></g><path fill="currentColor" d="M40 3 l2.2 6 6 2 -6 2 -2.2 6 -2.2 -6 -6 -2 6 -2z"/></svg>
-      <p class="lede">Crosswords for the book hangover you're still not over. Pick a book, a pack, or start with a free puzzle.</p>
+  <main class="landing">
+    <!-- ===== Hero: the book cover ===== -->
+    <section class="hero-wrap">
+      <div class="hero-book">
+        <img class="book-logo" src="../assets/img/logo.png?v=2" width="480" height="480" alt="CorvidzzPuzzles">
+        <p class="kicker">&#10022; The First Issue &#10022;</p>
+        <h1 class="hero-title">From the Library of…</h1>
+        <p class="whisper">A storybook puzzle book about the worlds everyone is talking about right now. <strong>Old riddles, modern answers.</strong></p>
+        <div class="hero-actions">
+          <a class="btn" href="#first-issue"><span class="star" aria-hidden="true">&#10022;</span> Get the First Issue <span class="star" aria-hidden="true">&#10022;</span></a>
+          <a class="text-link" href="#how">How it works &darr;</a>
+        </div>
+      </div>
     </section>
 
-    <div class="grid" id="grid" aria-live="polite"><p class="status">Opening the shelves…</p></div>
+    <!-- ===== What's inside ===== -->
+    <section class="band" aria-labelledby="inside-title">
+      <p class="kicker">&#10022; Inside every book &#10022;</p>
+      <h2 class="band-title" id="inside-title">Turn the page, crack the clue</h2>
+      <p class="lede">Every puzzle looks like it came out of an old manuscript, but the answers come from the shows, books, music and mysteries everyone is talking about today.</p>
+      <div class="features">
+        <article class="feature parchment">
+          <p class="big">30–40</p>
+          <h3>Crosswords</h3>
+          <p>The heart of every book. Grids painted on manuscript pages, with clues written like old proverbs that hide modern answers.</p>
+        </article>
+        <article class="feature parchment">
+          <p class="big">5–10</p>
+          <h3>Wildcard puzzles</h3>
+          <p>Ciphers, riddles, logic puzzles, mazes and more. New kinds rotate in, and the ones readers love most stay.</p>
+        </article>
+        <article class="feature parchment">
+          <p class="big">&#10022;</p>
+          <h3>A progress tracker</h3>
+          <p>The first page tracks the puzzles you solve. Collect points that unlock limited-edition books and prizes.</p>
+        </article>
+        <article class="feature parchment">
+          <p class="big">&#9993;</p>
+          <h3>Real paper, real mail</h3>
+          <p>No screens, no notifications. A real book that arrives in your mailbox, ready for a pencil and a cup of tea.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== How it works ===== -->
+    <section class="band" id="how" aria-labelledby="how-title">
+      <div class="leaf how">
+        <img class="emblem" src="../assets/img/page-emblem.webp" width="810" height="510" alt="">
+        <h2 id="how-title">How It Works</h2>
+        <p class="how-sub">Fill in the story, one clue at a time.</p>
+        <ol class="steps">
+          <li>
+            <h3>Readers choose the topic</h3>
+            <p>Each issue is built around something everyone is talking about: a show, a book series, an artist, a mystery. Readers vote on the topics they want to see next.</p>
+          </li>
+          <li>
+            <h3>The title holds the secret</h3>
+            <p>Every book is called <em>From the Library of…</em>, and its topic finishes the title. The topic stays hidden until the reveal, with clues dropped along the way. Follow us on Instagram and TikTok to spot them.</p>
+          </li>
+          <li>
+            <h3>The book comes to you</h3>
+            <p>Order the paperback and it's printed and mailed to your door.</p>
+          </li>
+          <li>
+            <h3>Solve, score, unlock</h3>
+            <p>Work through the puzzles, mark them on your tracker and collect points toward limited editions and prizes.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Why the raven ===== -->
+    <section class="band raven-note" aria-labelledby="raven-title">
+      <span class="raven-mark" aria-hidden="true"></span>
+      <div>
+        <h2 class="band-title small" id="raven-title">Why the raven?</h2>
+        <p>Corvids are the family of birds that includes the raven, and they are famous for solving puzzles and riddles. In old storybooks, the raven is a magical bird. Ours keeps the key to the library.</p>
+      </div>
+    </section>
+
+    <!-- ===== The first issue (filled in from Shopify or the sample product) ===== -->
+    <section class="band" id="first-issue" aria-labelledby="issue-title">
+      <p class="kicker">&#10022; Available now &#10022;</p>
+      <h2 class="band-title" id="issue-title">The First Issue</h2>
+      <div id="featured" aria-live="polite"><p class="status">Opening the library…</p></div>
+      <div class="grid more-issues" id="more"></div>
+    </section>
+
+    <!-- ===== Stay close ===== -->
+    <section class="band closing">
+      <h2 class="band-title small">Not ready to turn the page?</h2>
+      <p class="lede">Join the waiting list for news, clues and the next topic reveal.</p>
+      <div class="hero-actions">
+        <a class="btn" href="../">Join the Waitlist</a>
+        <a class="text-link" href="https://www.instagram.com/corvidzzpuzzles/" rel="noopener">Instagram</a>
+        <a class="text-link" href="https://www.tiktok.com/@corvidzzpuzzles" rel="noopener">TikTok</a>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="wordmark">CorvidzzPuzzles</div>
-    <nav aria-label="Footer"><a href="./">Shop</a><a href="../">Join the waitlist</a></nav>
+    <nav aria-label="Footer">
+      <a href="#how">How it works</a><a href="#first-issue">The book</a><a href="../">Join the waitlist</a>
+      <a href="https://www.instagram.com/corvidzzpuzzles/" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@corvidzzpuzzles" rel="noopener">TikTok</a>
+    </nav>
     <p>&copy; <span id="year">2026</span> CorvidzzPuzzles</p>
   </footer>
 
@@ -72,26 +166,43 @@
   <script src="shop.js"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    const grid = document.getElementById("grid");
+    const featured = document.getElementById("featured");
+    const more = document.getElementById("more");
+
     CZ.getProducts().then((products) => {
-      if (!products.length) { grid.innerHTML = '<p class="status">New puzzles are on their way. Check back soon.</p>'; return; }
-      // only one book for sale: go straight to its page
-      if (products.length === 1) { location.replace("product.html?p=" + encodeURIComponent(products[0].handle)); return; }
-      grid.innerHTML = products.map((p) => {
-        const formats = p.variants.map((v) => v.title).filter(Boolean).join(" · ");
-        const avail = CZ.isAvailable(p);
-        const badge = p.badge || (avail ? "" : "Sold out");
-        return `<a class="card" href="product.html?p=${encodeURIComponent(p.handle)}">
-          <div class="art">${badge ? `<span class="ribbon">${CZ.esc(badge)}</span>` : ""}${CZ.art(p)}</div>
-          <div class="label parchment">
-            <h2>${CZ.esc(p.title)}</h2>
-            ${formats ? `<p class="formats">${CZ.esc(formats)}</p>` : ""}
-            <p class="price">${avail ? CZ.priceRange(p) : "&nbsp;"}</p>
+      if (!products.length) { featured.innerHTML = '<p class="status">The first issue is on its way. <a href="../">Join the waiting list</a> to hear first.</p>'; return; }
+      const p = products[0];
+      const avail = CZ.isAvailable(p);
+      const v = p.variants.find((x) => x.available) || p.variants[0];
+      const single = p.variants.length === 1;
+      const link = "product.html?p=" + encodeURIComponent(p.handle);
+      featured.innerHTML = `
+        <div class="issue">
+          <a class="issue-art" href="${link}">${p.badge ? `<span class="ribbon">${CZ.esc(p.badge)}</span>` : ""}${CZ.art(p)}</a>
+          <div class="issue-card parchment">
+            ${p.kicker ? `<p class="issue-kicker">${CZ.esc(p.kicker)}</p>` : ""}
+            <h3>${CZ.esc(p.title)}</h3>
+            <p class="price">${single ? CZ.money(v.price, v.currency) : CZ.priceRange(p)}</p>
+            ${single && v.title ? `<p class="format">${CZ.esc(v.title)}${v.note ? " · " + CZ.esc(v.note) : ""}</p>` : ""}
+            <div class="issue-actions">
+              ${avail && single ? `<button class="btn" type="button" id="quick-add"><span class="star" aria-hidden="true">&#10022;</span> Add to Basket <span class="star" aria-hidden="true">&#10022;</span></button>` : ""}
+              ${avail && !single ? `<a class="btn" href="${link}">Choose a format</a>` : ""}
+              ${avail ? "" : `<a class="btn" href="../">Join the Waitlist</a>`}
+              <a class="text-link dark" href="${link}">More about the book &rarr;</a>
+            </div>
           </div>
-        </a>`;
-      }).join("");
+        </div>`;
+      const quick = document.getElementById("quick-add");
+      if (quick) quick.addEventListener("click", () => { CZ.addToCart(p, v, 1); CZ.openCart(); });
+
+      // more products later (e.g. a second issue): show them as a shelf underneath
+      more.innerHTML = products.slice(1).map((q) => `
+        <a class="card" href="product.html?p=${encodeURIComponent(q.handle)}">
+          <div class="art">${q.badge ? `<span class="ribbon">${CZ.esc(q.badge)}</span>` : ""}${CZ.art(q)}</div>
+          <div class="label parchment"><h2>${CZ.esc(q.title)}</h2><p class="price">${CZ.isAvailable(q) ? CZ.priceRange(q) : "&nbsp;"}</p></div>
+        </a>`).join("");
     }).catch((e) => {
-      grid.innerHTML = '<p class="status">The shelves didn\'t open (' + CZ.esc(e.message) + '). Please refresh the page.</p>';
+      featured.innerHTML = '<p class="status">The book didn\'t load (' + CZ.esc(e.message) + '). Please refresh the page.</p>';
     });
   </script>
 </body>
