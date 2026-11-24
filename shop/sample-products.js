@@ -18,8 +18,7 @@ window.CORVIDZZ_SAMPLE_PRODUCTS = [
       "<p><em>Sample text. Replace it with the real description in Shopify.</em></p>",
     images: [],
     variants: [
-      { id: "sample-vol1-paperback", title: "Paperback", note: "Shipped to you", price: 24.0, currency: "USD", available: true },
-      { id: "sample-vol1-pdf", title: "Printable PDF", note: "Instant download", price: 12.0, currency: "USD", available: true }
+      { id: "sample-vol1-paperback", title: "Paperback", note: "Shipped to you", price: 27.99, currency: "USD", available: true }
     ]
   }
 ];

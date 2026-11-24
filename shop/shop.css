@@ -183,6 +183,7 @@ main { max-width: 1180px; min-height: 70vh; margin: 0 auto; padding: 28px 16px 7
 .leaf .emblem { display: block; width: min(50%, 200px); height: auto; margin: 0 auto 6px; }
 .leaf h1 { font-family: "IM Fell English SC", serif; font-weight: 400; font-size: clamp(1.8rem, 3.4vw, 2.5rem); line-height: 1.1; letter-spacing: .03em; text-align: center; margin: 0 0 6px; }
 .leaf .price { text-align: center; font-family: "IM Fell English SC", serif; font-size: 1.7rem; margin: 0 0 14px; }
+.leaf .format { text-align: center; font-style: italic; color: var(--ink-soft); margin: -12px 0 6px; }
 .rule { display: flex; align-items: center; gap: 10px; margin: 16px 0 12px; font-family: "IM Fell English SC", serif; letter-spacing: .08em; font-size: 1.1rem; }
 .rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: var(--ink); }
 .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; border: 0; padding: 0; margin: 0; }

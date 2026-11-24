@@ -73,7 +73,9 @@
       }
       document.title = p.title + " | CorvidzzPuzzles";
       const first = p.variants.find((v) => v.available) || p.variants[0];
-      const showChoices = p.variants.length > 1 || (p.variants[0] && p.variants[0].title);
+      // a choice of formats only when there is more than one; otherwise just name the format
+      const showChoices = p.variants.length > 1;
+      const onlyFormat = !showChoices && first.title ? first.title + (first.note ? " · " + first.note : "") : "";
       const avail = CZ.isAvailable(p);
 
       box.innerHTML = `
@@ -87,6 +89,7 @@
             <img class="emblem" src="../assets/img/page-emblem.webp" width="810" height="510" alt="">
             <h1>${CZ.esc(p.title)}</h1>
             <p class="price" id="price">${CZ.money(first.price, first.currency)}</p>
+            ${onlyFormat ? `<p class="format">${CZ.esc(onlyFormat)}</p>` : ""}
             <form id="buy">
               ${showChoices ? `<div class="rule">Choose your format</div>
               <fieldset class="choices"><legend class="visually-hidden">Format</legend>
